@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is ECDF anyway
+title: What is an ECDF anyway
 ---
 
 # Work In Progress
