@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Diptanshu singh's and I am a Network engineer.This blog is mostly about Networking, stats and science.
+My name is Diptanshu singh's and I am a Network engineer.This blog is mostly about Networking, Stats and Data science.
 
 
 ### Public Presentations and blogs
