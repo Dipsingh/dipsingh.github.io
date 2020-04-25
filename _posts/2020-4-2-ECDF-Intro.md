@@ -59,8 +59,9 @@ Let's explicitily mark the graph with $$ 50^{th} $$, $$ 95^{th} $$ and $$ 99^{th
  By this time hopefully, you had some intuition on what an ECDF is and how to read it. Now let's take a look at the ECDF's
  for our two made up time series and there $$ 95^{th} $$ percentile.
  
+ Our sample time series
  ![Sample Time Series](/images/post1/fig_1.png "Sample Time Series")
- ECDF
+ ECDF of our sample time series
  ![Sample Time Series ECDF](/images/post1/fig_4.png "Sample Time Series ECDF")
  
  You can see that $$ 95^{th} $$ percentile for Time Series1 and Time Series2 is `~122Gbps` and `~20.5Gbps` respectively.
