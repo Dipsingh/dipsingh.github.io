@@ -18,7 +18,9 @@ We as Network engineers see Time series almost every day in our lives.Let's say 
  ![Sample Time Series](/images/post1/fig_1.png "Sample Time Series")
 
 ## What is an Empirical Distribution Function (ECDF)
-An ECDF is basically a non-parametric estimator of the underlying CDF of a random variable. The difference between a CDF and ECDF is how probability measures are used. In case of an ECDF, the probability measure is defined by the frequency counts in an empirical sample. In other words, ECDF is the probability distribution which you would get if sampled from your set of observations.
+An ECDF is basically a **non-parametric** estimator of the underlying CDF of a random variable.The difference between a CDF and ECDF is how probability measures are used. In case of an ECDF, the probability measure is defined by the frequency counts in an empirical sample. In other words, ECDF is the probability distribution which you would get if sampled from your set of observations.
+
+_Note: a Non-parametric estimator makes no assumption on the distribution._
 
 Let's assume that we have `n` observations. An ECDF, assigns a probability of `1/n` to each observation, sort them from smallest to largest, and then sums the assigned probabilities up to and including each observation.
 
