@@ -4,7 +4,7 @@ title: What is an ECDF anyway
 ---
 
 # Motivation
-A few years back my colleague presented me to ECDF's while doing some Time Series analysis. I quickly realized how elegant they are. This post is my attempt to pay it forward and would consider this post a success if at a bare minimum you are able to read an ECDF plot by the end of this post.
+A few years back my colleague introduced me to ECDF's while doing some Time Series analysis. I quickly realized how elegant they are. This post is my attempt to pay it forward and would consider this post a success if at a bare minimum you are able to read an ECDF plot by the end of this post.
 
 # Prerequisites
 I am presuming that the reader has somewhat familiarity with probability theory and understand what is a Cumulative Distribution Function (CDF). If you don’t, then either you can skip the section ECDF introduction section or do some background reading.
