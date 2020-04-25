@@ -55,3 +55,12 @@ Let's explicitily mark the graph with $$ 50^{th} $$, $$ 95^{th} $$ and $$ 99^{th
  Red line, shows $$ 95^{th} $$ percentile which is `~101.5`<br>
  Green line, shows $$ 99^{th} $$ percentile which is `~102.3`<br>
  
+ ## ECDF for Sample Time Series
+ By this time hopefully, you had some intuition on what an ECDF is and how to read it. Now let's take a look at the ECDF's
+ for our two made up time series and there $$ 95^{th} $$ percentile.
+ ![Sample Time Series](/images/post1/fig_1.png "Sample Time Series")
+ ECDF
+ ![Sample Time Series ECDF](/images/post1/fig_4.png "Sample Time Series ECDF")
+ 
+ 
+ 
