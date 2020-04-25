@@ -46,5 +46,5 @@ This gives us a sample ECDF
 
 You can make few observations like: 
 - Majority of the value range is between `98` to `102` on x-axis.
-- Graph is centered around `100` on x-axis and corresponding y-axis seems to be `~0.5`. This is actually your $$50^_{th}$$
+- Graph is centered around `100` on x-axis and corresponding y-axis seems to be `~0.5`. This is actually your $$ 50^th $$
 - 
