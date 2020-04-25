@@ -47,11 +47,11 @@ This gives us a sample ECDF
 You can make few observations like: 
 - Majority of the valus are between `98` to `102` on x-axis.
 - Graph is centered around `100` on x-axis and corresponding y-axis seems to be `~0.5`. This is actually your $$ 50^{th} $$ 
-percentile(median).In this case it's also the mean as you recall we generated observations with mean $$ mu = 100 $$ 
+percentile(median).In this case it's also the mean as you recall we generated observations with mean $$ \mu = 100 $$ 
 
-Let's explicitily mark the graph with $$ 50^_{th} $$, $$ 95^_{th} $$ and $$ 99^_{th} $$ percentile.
+Let's explicitily mark the graph with $$ 50^{th} $$, $$ 95^{th} $$ and $$ 99^{th} $$ percentile.
  ![Percentiles](/images/post1/fig_3.png "Sample ECDF Percentiles")
- Orange line, shows $$ 50^_{th} $$ percentile which is `~100`<br>
- Red line, shows $$ 95^_{th} $$ percentile which is `~101.5`<br>
- Green line, shows $$ 99^_{th} $$ percentile which is `~102.3`<br>
+ Orange line, shows $$ 50^{th} $$ percentile which is `~100`<br>
+ Red line, shows $$ 95^{th} $$ percentile which is `~101.5`<br>
+ Green line, shows $$ 99^{th} $$ percentile which is `~102.3`<br>
  
