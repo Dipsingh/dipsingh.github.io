@@ -38,16 +38,6 @@ y = np.arange(1, n+1)/n
 # ECDF plot
 fig, ax = plt.subplots(figsize=(12,4))
 plt.plot(x,y)
-ax.set_title("Sample ECDF", fontsize=14)
-ax.xaxis.set_ticks_position('none')
-ax.yaxis.set_ticks_position('none')
-ax.spines["top"].set_alpha(0)
-ax.tick_params(labelsize=6)
-ax.set_ylabel("Frac. Of Observations", fontsize=12)
-ax.set_xlabel("Observations", fontsize=12)
-ax.tick_params(axis='both', which='major', labelsize=12)
-ax.tick_params(axis='both', which='minor', labelsize=12)
-plt.tight_layout(h_pad=1.5)
 ```
 This gives us a sample ECDF
  ![Sample ECDF](/images/post1/fig_2.png "Sample ECDF")
