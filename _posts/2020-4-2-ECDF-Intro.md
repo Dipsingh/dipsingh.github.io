@@ -45,8 +45,8 @@ This gives us a sample ECDF
  ![Sample ECDF](/images/post1/fig_2.png "Sample ECDF")
 
 You can make few observations like: 
-- Majority of the value range is between `98` to `102` on x-axis.
-- Graph is centered around `100` on x-axis and corresponding y-axis seems to be `~0.5`. This is actually your $$ 50^_{th} $$ 
+- Majority of the valus are between `98` to `102` on x-axis.
+- Graph is centered around `100` on x-axis and corresponding y-axis seems to be `~0.5`. This is actually your $$ 50^{th} $$ 
 percentile(median).In this case it's also the mean as you recall we generated observations with mean $$ mu = 100 $$ 
 
 Let's explicitily mark the graph with $$ 50^_{th} $$, $$ 95^_{th} $$ and $$ 99^_{th} $$ percentile.
