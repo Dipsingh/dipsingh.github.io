@@ -71,6 +71,7 @@ compared to TimeSeries2 ECDF. This indicates that traffic is increasing more ste
  
 To make this comparison easier, we could plot both ECDF's together, but we have to normalize there x-axis units first as they are
 on different scales. we can normalize both timeseries x-axis units between 0 and 1 and then do a visual comparison.
+
 ECDF comparison of two Time Series
 ![ECDF Comparison](/images/post1/fig_5.png "ECDF Comparison")
  
