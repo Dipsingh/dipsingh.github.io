@@ -108,7 +108,7 @@ and the other centered around 200-250Gbps.
 Below is how an ECDF will look like for a Bimodal traffic.
 ![ECDF Sample Timeseries3](/images/post1/fig_8.png "ECDF Sample Timeseries3")
  
-##Conclusion
+## Conclusion
 We started this post with the motivation, did a quick introduction of ECDF and then looked at some examples of ECDF's for
 sample timeseries and ECDF comparisons. We also looked at how one can detect bimodality with ECDF's. At this point I hope
 that the reader should have developed enough understanding to be comfortable enough in reading an ECDF plot. I hope that
