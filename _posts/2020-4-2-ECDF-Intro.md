@@ -7,7 +7,7 @@ title: What is an ECDF anyway
 A few years back my colleague introduced me to ECDF's while doing some Time Series analysis. I quickly realized there elegance. This post is my attempt to pay it forward and would consider this post a success if at a bare minimum you are able to read an ECDF plot by the end of this post.
 
 ## Prerequisites
-I am presuming that the reader has somewhat familiarity with probability theory and understand what a Cumulative Distribution Function (CDF) is.If you don’t, then just skim the introductory part and focus on the applied part.
+I am presuming that the reader has somewhat familiarity with probability theory and understand what a Cumulative Distribution Function (CDF) is.If you don’t, then try to skim the parts you don't understand and focus on the applied part.
 
 ## Problem Statement
 We as Network engineers see Time series almost every day in our lives.Let's say we have two made up time series (Fig.1) which represents egress traffic of router interfaces.Just by looking at it, various observations can be made. In this post, we will like to summarize things like:
@@ -29,7 +29,7 @@ $$
 
 F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},\\
 
-where, 
+where 
 
 1\{X_{i} \leq x\} = \begin{cases}  1,  &X_{i} \leq x \\  0, & otherwise\end{cases}
 
