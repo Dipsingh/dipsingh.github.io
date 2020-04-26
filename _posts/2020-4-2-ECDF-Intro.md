@@ -22,6 +22,20 @@ An ECDF is basically a **non-parametric** estimator of the underlying CDF of a r
 
 _Note: a Non-parametric estimator makes no assumption on the distribution._
 
+Mathematically you can denote ECDF as
+
+$$ 
+\begin{align*}
+
+F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},
+
+where 
+
+1\{X_{i} \leq x\} =
+
+\end{align*}
+$$
+
 Let's assume that we have `n` observations. An ECDF, assigns a probability of `1/n` to each observation, sort them from smallest to largest, and then sums the assigned probabilities up to and including each observation.
 
 For instance, lets take a look at a simple example:
@@ -94,3 +108,8 @@ and the other centered around 200-250Gbps.
 Below is how an ECDF will look like for a Bimodal traffic.
 ![ECDF Sample Timeseries3](/images/post1/fig_8.png "ECDF Sample Timeseries3")
  
+##Conclusion
+We started this post with the motivation, did a quick introduction of ECDF and then looked at some examples of ECDF's for
+sample timeseries and ECDF comparisons. We also looked at how one can detect bimodality with ECDF's. At this point I hope
+that the reader should have developed enough understanding to be comfortable enough in reading an ECDF plot. I hope that
+you find this post useful.
