@@ -61,9 +61,18 @@ Let's explicitily mark the graph with $$ 50^{th} $$, $$ 95^{th} $$ and $$ 99^{th
  
  Our sample time series
  ![Sample Time Series](/images/post1/fig_1.png "Sample Time Series")
+ 
  ECDF of our sample time series
  ![Sample Time Series ECDF](/images/post1/fig_4.png "Sample Time Series ECDF")
  
- You can see that $$ 95^{th} $$ percentile for Time Series1 and Time Series2 is `~122Gbps` and `~20.5Gbps` respectively.
+You can see that $$ 95^{th} $$ percentile for Time Series1 and Time Series2 is `~122Gbps` and `~20.5Gbps` respectively.
+Another observation you can make is the difference between the shape of the curves. TimeSeries1 ECDF shape is less steep
+compared to TimeSeries2 ECDF. This indicates that traffic is increasing more steadily in TimeSeries1 compared to TimeSeries2.
+ 
+To make this comparison easier, we could plot both ECDF's together, but we have to normalize there x-axis units first as they are
+on different scales. we can normalize both timeseries x-axis units between 0 and 1 and then do a visual comparison.
+ECDF comparison of two Time Series
+![ECDF Comparison](/images/post1/fig_5.png "ECDF Comparison")
+ 
  
  
