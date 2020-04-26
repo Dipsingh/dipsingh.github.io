@@ -97,8 +97,8 @@ as you know in a Normal Distribution it's the mean which is the peak of the dist
 are two sets of observations which appears most often, which will translate into two peaks.
 
 For example, let's assume we have this TimeSeries which represents the case where traffic suddenly increased for whatever 
-reason.You can see that traffic was centered around 50-100Gbps and after increase, it centered around 150-250Gbps.Please note
-that many times in real-life data is not that clear.
+reason.You can see that traffic was centered around 50-100Gbps and after increase, it centered around 150-250Gbps.Though many
+times in real life data may not be that clear.
 
 Sample TimeSeries
 ![Sample TimeSeries](/images/post1/fig_6.png "Sample TimeSeries")
