@@ -33,3 +33,13 @@ layout: default
 <script type="text/javascript"
    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
 </script>
+
+<div id="hyvor-talk-view"></div>
+<script type="text/javascript">
+    var HYVOR_TALK_WEBSITE = 527; // DO NOT CHANGE THIS
+    var HYVOR_TALK_CONFIG = {
+           url: '{{ page.url | absolute_url }}',
+            id: '{{page.id}}'
+    };
+</script>
+<script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
