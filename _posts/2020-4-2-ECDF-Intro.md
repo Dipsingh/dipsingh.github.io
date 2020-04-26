@@ -36,6 +36,9 @@ F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},\\
 \end{align*}
 $$
 
+You will notice many books will use Indicator function in the notation, which is basically compact notation for what is 
+above expressed here. 
+
 Let's assume that we have `n` observations. An ECDF, assigns a probability of `1/n` to each observation, sort them from smallest to largest, and then sums the assigned probabilities up to and including each observation.
 
 For instance, lets take a look at a simple example:
