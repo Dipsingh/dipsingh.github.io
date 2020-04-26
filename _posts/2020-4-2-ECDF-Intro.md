@@ -75,5 +75,22 @@ on different scales. we can normalize both timeseries x-axis units between 0 and
 ECDF comparison of two Time Series
 ![ECDF Comparison](/images/post1/fig_5.png "ECDF Comparison")
  
- 
+## Bimodal Traffic
+In statistics, mode is basically the term used to refer the set of observations which appears most often. For example,
+as you know in a Normal Distribution it's the mean which is the peak of the distribution.Bimodal basically means there
+are two sets of observations which appears most often, which will translate into two peaks.
+
+For example, let's assume we have this TimeSeries which represents the case where traffic suddenly increased for whatever 
+reason.You can see that traffic was centered around 50-100Gbps and after increase, it centered around 150-250Gbps.Please note
+that many times in real-life data is not that clear.
+
+Sample TimeSeries
+![Sample TimeSeries](/images/post1/fig_6.png "Sample TimeSeries")
+
+If we try to estimate the underlying distribution of the above timeseries, You can see two peaks with one centered around 50-100
+and the other centered around 200-250Gbps.
+![Distribution](/images/post1/fig_7.png "Distribution")
+
+Below is how an ECDF will look like for a Bimodal traffic.
+![ECDF Sample Timeseries3](/images/post1/fig_8.png "ECDF Sample Timeseries3")
  
