@@ -27,11 +27,11 @@ Mathematically you can denote ECDF as
 $$ 
 \begin{align*}
 
-F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},
+F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},\\
 
-where 
+where,\\
 
-1\{X_{i} \leq x\} =
+1\{X_{i} \leq x\} = \begin{cases}  1,  &X_{i} \leq x \\  0, & otherwise\end{cases}
 
 \end{align*}
 $$
