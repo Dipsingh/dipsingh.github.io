@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is an ECDF anyway
+title: What is an ECDF anyway ?
 ---
 
 ## Motivation
