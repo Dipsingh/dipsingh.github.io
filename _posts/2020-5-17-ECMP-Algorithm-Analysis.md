@@ -64,18 +64,18 @@ regions to grow equally and internal regions to shift to compensate for the addi
 
 In this case, we will have 8 bits free which means each of the remaining regions will get 2 bits each. This can be generalized by saying:
 
-* Anytime a next hop is deleted, 1/N bits gets free where N is the number of next-hops (1/5 * 40 = 8 bits).
-* Free bits get distributed equally by remaining N-1 next hops. Which gives you 1/(N* (N-1)).  Ex: 1/(5*4) * 40 = 2 bits.
+* Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ (\frac{1}_{5} * 40 = 8 bits) $$.
+* Free bits get distributed equally by remaining N-1 next hops. Which gives you $$ \frac{1}_{(N * (N-1))} $$.  Ex: $$ \frac_{1}_{(5*4)} * 40 = 2 bits $$.
 
 Another thing to observe is that as the corner regions (1 and 5 in our example), expand inwards, this will cause the internal
 regions to shift in addition to expand. For example, Region #2 which was starting from 8 now starts from 10 (to free space for #1)
-and lies between 10 to 19. This brings a net change of 4 bits for region #2. Total bit change in our example is 12 (2 + 4 + 4 + 2). 
+and lies between `10` to `19`. This brings a net change of `4` bits for region #2. Total bit change in our example is `12 (2 + 4 + 4 + 2)`. 
 
-If we pick lets say region #4 this time for removal,then we are moving around 14 bits = (2+4+6+2). 
+If we pick lets say region #4 this time for removal,then we are moving around `14 bits = (2+4+6+2)`. 
 
 ![Flow Disruption2](/images/post2/ecmp_analysis_fig3.png "Flow Disruption Region4")
 
-If we pick region #5 for removal,then we are moving around 20 bits = (2+4+6+8)
+If we pick region #5 for removal,then we are moving around `20 bits = (2+4+6+8)`.
 
 ![Flow Disruption3](/images/post2/ecmp_analysis_fig4.png "Flow Disruption Region5")
 
@@ -128,4 +128,7 @@ $$
 1 + 2 + 3 + .. N  = \frac{N * (N+1))}{2}
 \end{align*}
 $$
+
+Applying the above in our case, we are adding `K-1` terms in the first part $$ \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i $$. This can be summed
+as $$ \frac{(K-1) * (K))}{2} $$. In the second part, 
 
