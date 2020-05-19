@@ -4,17 +4,16 @@ title: Colorization of RFC 2992:Analysis of an ECMP Algorithm
 ---
 ## Motivation
 I recently observed a conversation around ECMP/Hash buckets which made me realize on how the end to end concept is not 
-well understood. So this provided me enough motivation to write about this topic which will be covered in various 
+very well understood. So this provided me enough motivation to write about this topic which will be covered in various 
 upcoming blog posts. But while thinking about the subject, I ran into an interesting RFC [RFC2992](https://tools.ietf.org/html/rfc2992).
 This RFC goes through a simple mathematical proof which I found impressive due to the fact that someone wrote that in 
-ASCII in 2000, but I felt like the beauty got lost somewhere behind those black and white ASCII diagrams. My intent in this
-blog post is to provide some colorization and perhaps go a bit more in detail.
+ASCII in 2000. My intent in this blog post is to provide some colorization to the RFC and perhaps cover a bit more in detail.
 
 ## Introduction
-In this RFC, the focus is on Hash-threshold implementation for mapping hash values to the next-hop. To re-iterate for the
+In the RFC, the focus is on Hash-threshold implementation for mapping hash values to the next-hop. To re-iterate for
 completeness sake, we all know that a router computes a hash key based on certain fields, like SRC IP, DST IP, SRC Port, 
 DST Port by performing a hash (CRC16, CRC32, XOR16, XOR32 etc.).  This hash gets mapped to a region and the next-hop assigned
-to that region, is where the flow get's assigned.
+to that region is where the flow get's assigned.
 
 For example,assume that we have 5-next hops to choose from and we have a key space which is 40 bits wide. We divide the 
 available keyspace equally and allocate 8 bits per region to each of our 5 next hops.
@@ -31,7 +30,7 @@ Region =  (key/region_size)
 
 Sample snippet illustrating the concept
 
-```jupyterpython
+```jupyter
 import math
 region_size = 40/5 # KeySpace Size/No. Of Next-hops
 key = [0,7,8,15,16,23,24,31,32,39]
