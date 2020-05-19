@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Colorization of RFC 2992: Analysis of an ECMP Algorithm
+title: Colorization of RFC 2992(Analysis of an ECMP Algorithm)
 ---
 ## Motivation
 I recently observed a conversation around ECMP/Hash buckets which made me realize on how the end to end concept is not 
