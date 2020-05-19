@@ -64,8 +64,8 @@ regions to grow equally and internal regions to shift to compensate for the addi
 
 In this case, we will have 8 bits free which means each of the remaining regions will get 2 bits each. This can be generalized by saying:
 
-* Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}_{5} * 40 = 8 bits $$.
-* Free bits get distributed equally by remaining N-1 next hops. Which gives you $$ \frac{1}_{N * (N-1)} $$.  Ex: $$ \frac_{1}_{5*4} * 40 = 2 bits $$.
+* Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}{5} * 40 = 8 bits $$.
+* Free bits get distributed equally by remaining N-1 next hops. Which gives you $$ \frac{1}{N * (N-1)} $$.  Ex: $$ \frac{1}{5*4} * 40 = 2 bits $$.
 
 Another thing to observe is that as the corner regions (1 and 5 in our example), expand inwards, this will cause the internal
 regions to shift in addition to expand. For example, Region #2 which was starting from 8 now starts from 10 (to free space for #1)
@@ -88,14 +88,16 @@ Assuming the Kth region is removed
 Total Disruption = Total change of bits on the left of Kth region + Total change of bits on the right of Kth region
 ````
 
-`Total Change of bits on the left of Kth region` can be expressed
+`Total Change of bits on the left of Kth region` can be expressed as
+
 $$
 \begin{align*}
 \sum_{i=1}^{K-1} \frac{i}{N * (N-1)}
 \end{align*}
 $$
 
-`Total Change of bits on the right of Kth region` can be expressed mathematically
+`Total Change of bits on the right of Kth region` can be expressed as
+
 $$
 \begin{align*}
 \sum_{i=K+1}^{N} \frac{i-K}{N * (N-1)}
@@ -112,7 +114,7 @@ Total Disruption = \sum_{i=1}^{K-1} \frac{i}{N * (N-1)} + \sum_{i=K+1}^{N} \frac
 $$
 
 
-## Proof that minimal disruption happens when the middle region is deleted/added.
+## Proof for minimal disruption
 Following up from the above equation, you can take $$ \frac{1}{N * (N-1))} $$ outside of the summation
 
 $$
