@@ -65,7 +65,7 @@ In this case, we will have 8 bits free which means each of the remaining regions
 
 * Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}{5} * 40 = 8 bits $$.
 * Free bits get distributed equally by remaining `N-1` next hops. You can generalize this by saying $$ \frac{1}{N(N-1)} * KeySpace$$.
-Example: $$ \frac{1}{5x4} * 40 = 2 bits $$.
+Example: $$ \frac{1}{5*4} * 40 = 2 bits $$.
 
 Another thing to observe is that as the corner regions (1 and 5 in our example), expand inwards, this will cause the internal
 regions to shift in addition to expand. For example, `Region #2` which was starting from `8` now starts from `10` (to free space for #1)
@@ -137,7 +137,7 @@ In our case, we are adding `K-1` terms in the first part which gives us $$ \frac
 
 In the second part, We are adding numbers from `1` to `N-K`, which gives us $$ \frac{(N-K)(N-K+1))}{2} $$.
 
-Substituting the above to back to our original equation gives us 
+Substituting the above to back into our original equation gives us 
 
 $$
 \begin{align*}
@@ -145,7 +145,7 @@ $$
 \end{align*}
 $$
 
-After expanding the above expression and simplifying it it gives us
+After expanding the above expression and simplifying it, we get
 
 $$
 \begin{align*}
