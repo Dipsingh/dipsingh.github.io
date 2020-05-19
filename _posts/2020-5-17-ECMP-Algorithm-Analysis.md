@@ -174,7 +174,7 @@ for both parts.
 We can go a bit further and drop the denominator $$ \frac{K^{2} - K - NK}{N(N-1)} $$ as it's a constant as well and makes no
 difference to the shape or where the minimum of the function is as evident by the below graph.
 
-![Without Denominator](/images/post2/ecmp_analysis_fig6.png "Without Denominator")
+![Without Denominator](/images/post2/ecmp_analysis_fig7.png "Without Denominator")
 
 
 Now the way you want to find the minimum of a given function is where the slope is zero, i.e. Its not increasing or decreasing.
