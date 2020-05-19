@@ -7,21 +7,21 @@ I recently observed a conversation around ECMP/Hash buckets which made me realiz
 well understood. So this provided me enough motivation to write about this topic which will be covered in various 
 upcoming blog posts. But while thinking about the subject, I ran into an interesting RFC [RFC2992](https://tools.ietf.org/html/rfc2992).
 This RFC goes through a simple mathematical proof which I found impressive due to the fact that someone wrote that in 
-ASCII in 2000, but I think the beauty got lost somewhere behind those black and white ASCII diagrams. So my intent in this
-blog post is to provide colorization.
+ASCII in 2000, but I felt like the beauty got lost somewhere behind those black and white ASCII diagrams. My intent in this
+blog post is to provide some colorization and perhaps go a bit more in detail.
 
 ## Introduction
 In this RFC, the focus is on Hash-threshold implementation for mapping hash values to the next-hop. To re-iterate for the
 completeness sake, we all know that a router computes a hash key based on certain fields, like SRC IP, DST IP, SRC Port, 
-DST Port by performing a hash (CRC16, CRC32, XOR16, XOR32 etc.).  This hash gets mapped to a region and the next-hop allocated
+DST Port by performing a hash (CRC16, CRC32, XOR16, XOR32 etc.).  This hash gets mapped to a region and the next-hop assigned
 to that region, is where the flow get's assigned.
 
 For example,assume that we have 5-next hops to choose from and we have a key space which is 40 bits wide. We divide the 
-available region equally and allocate 8 bits of the region to each of our 5 next hops.
+available keyspace equally and allocate 8 bits per region to each of our 5 next hops.
 
 ![ECMP Hashing](/images/post2/ecmp_analysis_fig1.png "ECMP Hashing")
 
-In order to choose the next-hop, we need to map the key to a region. Since the regions are equally divided, this becomes
+In order to choose a next-hop, we need to map the hash key to a region. Since the regions are equally divided, this becomes
 a very simple task.
 
 ```
@@ -29,25 +29,25 @@ Region_size = Keyspace Size/No.of Nexthops.
 Region =  (key/region_size)
 ```
 
-We can apply this to our example and see the regions based on various bit numbers.
+Sample snippet illustrating the concept
 
-```python
+```jupyterpython
 import math
 region_size = 40/5 # KeySpace Size/No. Of Next-hops
-key = [0,7,8,15,16,23,24,31,32,39] #Bits location
+key = [0, 7,8,15,16,23,24,31,32,39]
 for k in key:
-    print(f"Region: {math.ceil((k+1)/region_size)}")
+    print(f"Key {k} Region: {math.ceil((k+1)/region_size)}")
 
-Region: 1
-Region: 1
-Region: 2
-Region: 2
-Region: 3
-Region: 3
-Region: 4
-Region: 4
-Region: 5
-Region: 5
+Key 0 Region: 1
+Key 7 Region: 1
+Key 8 Region: 2
+Key 15 Region: 2
+Key 16 Region: 3
+Key 23 Region: 3
+Key 24 Region: 4
+Key 31 Region: 4
+Key 32 Region: 5
+Key 39 Region: 5
 ```
 
 ## Disruption
