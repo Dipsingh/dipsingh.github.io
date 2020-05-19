@@ -146,3 +146,10 @@ $$
 \end{align*}
 $$
 
+After expanding the above expression and simplifying it it gives us
+
+$$
+\begin{align*}
+\frac{2{k^{2}} -2k + N^{2} - 2NK + N}{2N(N-1)} => \frac{K^{2} - K - NK}{N(N-1)} + \frac{N+1}{2(N-1)}
+\end{align*}
+$$
