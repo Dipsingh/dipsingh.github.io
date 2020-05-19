@@ -141,7 +141,7 @@ Substituting the above to back to our original equation gives us
 
 $$
 \begin{align*}
-\frac{(K-1)  K + (N-K)(N-K+1)}{2N(N-1)}
+=> \frac{(K-1)  K + (N-K)(N-K+1)}{2N(N-1)}
 \end{align*}
 $$
 
@@ -149,11 +149,11 @@ After expanding the above expression and simplifying it it gives us
 
 $$
 \begin{align*}
-\frac{2{K^{2}} -2K + N^{2} - 2NK + N}{2N(N-1)} => \frac{K^{2} - K - NK}{N(N-1)} + \frac{N+1}{2(N-1)}
+=> \frac{2{K^{2}} -2K + N^{2} - 2NK + N}{2N(N-1)} => \frac{K^{2} - K - NK}{N(N-1)} + \frac{N+1}{2(N-1)}
 \end{align*}
 $$
 
-Let's plot the above expression and see the shape of the function for few values of `N=16,32,64`.
+Let's plot the above expression and see the shape of the function for few values of `N`.
 
 ![Function plot](/images/post2/ecmp_analysis_fig5.png "Function plot")
 
@@ -161,12 +161,12 @@ You can see it looks like a nice U shaped function. In Mathematics, we also call
 The nice property of convex function is that they have one local minima or in simple words, there is one point where the function
 have the minimum value.
 
-The last part of the equation $$  \frac{N+1}{2(N-1)} $$ is considered constant as it's not dependent on value of `K`. We can see
+The second part of the equation $$  \frac{N+1}{2(N-1)} $$ is considered constant as it's not dependent on value of `K`. We can see
 that by plotting with and without the constant part for a given value of N. For example, for N=64, you can see the shape remains
 
 ![With and Without Constant](/images/post2/ecmp_analysis_fig6.png "With and Without Constant")
 
-the same. The only thing Constant part did was that it just added an offset. This basically shows you that if you find a value
+the same. All the constant part did was that it just added an offset. This basically shows you that if you find a value
 of `K` where the function is minimized, it's going to be the same for both. Which from the graph, you can tell its around `K=30`
 for both parts.
 
