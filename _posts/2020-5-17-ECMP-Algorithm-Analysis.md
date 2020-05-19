@@ -93,7 +93,7 @@ Total Change of bits on the left of $$ K^{th} $$ region can be expressed as
 
 $$
 \begin{align*}
-\sum_{i=1}^{K-1} \frac{i}{N * (N-1)}
+\sum_{i=1}^{K-1} \frac{i}{N(N-1)}
 \end{align*}
 $$
 
@@ -101,7 +101,7 @@ Total Change of bits on the right of $$ K^{th} $$ region can be expressed as
 
 $$
 \begin{align*}
-\sum_{i=K+1}^{N} \frac{i-K}{N * (N-1)}
+\sum_{i=K+1}^{N} \frac{i-K}{N(N-1)}
 \end{align*}
 $$
 
@@ -109,7 +109,7 @@ Combining both gives us the Total Disruption
 
 $$
 \begin{align*}
-Total Disruption = \sum_{i=1}^{K-1} \frac{i}{N * (N-1)} + \sum_{i=K+1}^{N} \frac{i-K}{N * (N-1)}
+Total Disruption = \sum_{i=1}^{K-1} \frac{i}{N(N-1)} + \sum_{i=K+1}^{N} \frac{i-K}{N(N-1)}
 \end{align*}
 $$
 
@@ -117,11 +117,11 @@ If the $$ K^{th} $$ region happens to be the right most region, then you skip ad
 the right part of the $$ K^{th} $$ or vice versa for the left most region.
 
 ## Proof for minimal disruption
-Following up from the above equation, you can take $$ \frac{1}{N * (N-1))} $$ outside of the summation
+Following up from the above equation, you can take $$ \frac{1}{N(N-1))} $$ outside of the summation
 
 $$
 \begin{align*}
-=  \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i + \sum_{i=K+1}^{N} (i-K)
+=  \frac{1}{N(N-1))}\sum_{i=1}^{K-1} i + \sum_{i=K+1}^{N} (i-K)
 \end{align*}
 $$
 
@@ -138,5 +138,11 @@ In our case, we are adding `K-1` terms in the first part which gives us $$ \frac
 
 In the second part, We are adding numbers from `1` to `N-K`, which gives us $$ \frac{(N-K) * (N-K+1))}{2} $$.
 
+Substituting the above to back to our original equation gives us 
 
+$$
+\begin{align*}
+\frac{(K-1)  K + (N-K)(N-K+1)}{2N(N-1)}
+\end{align*}
+$$
 
