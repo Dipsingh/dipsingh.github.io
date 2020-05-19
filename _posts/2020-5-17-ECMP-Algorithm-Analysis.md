@@ -137,7 +137,7 @@ In our case, we are adding `K-1` terms in the first part which gives us $$ \frac
 
 In the second part, We are adding numbers from `1` to `N-K`, which gives us $$ \frac{(N-K)(N-K+1))}{2} $$.
 
-Substituting the above to back into our original equation gives us 
+Substituting the above back into our original equation gives us 
 
 $$
 \begin{align*}
