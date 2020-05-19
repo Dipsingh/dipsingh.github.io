@@ -172,13 +172,13 @@ of `K` where the function is minimized, it's going to be the same for both. Whic
 for both parts.
 
 We can go a bit further and drop the denominator $$ \frac{K^{2} - K - NK}{N(N-1)} $$ as it's a constant as well and makes no
-difference to the shape or where the minimum of the function is as evident by the below graph.
+difference to the shape or where the minimum of the function is still the same as evident by the below graph.
 
 ![Without Denominator](/images/post2/ecmp_analysis_fig7.png "Without Denominator")
 
 
 Now the way you want to find the minimum of a given function is where the slope is zero, i.e. Its not increasing or decreasing.
-We all know calculus is a study about rates and we will differentiate the function to find the point where the slope is zero.
+We all know calculus is a study of change and we will differentiate the function to find the point where the slope is zero.
 
 $$
 \begin{align*}
@@ -188,4 +188,10 @@ $$
 \end{align*}
 $$
 
-This gives us the result where for `K` where it's minimum i.e. $$ K = \frac{N+1}{2} $$.
+This gives us the result for `K` where it's minimum $$ K = \frac{N+1}{2} $$. If we plug this back into our original example,
+where `N=5`, we get the value `K=3` and if you recall that's where we noticed the least disruption.
+
+## Conclusion
+Based on the above results, RFC recommends to add new regions as new Next-Hops get's added to the middle of the region. We 
+can not control from where the Next-Hop get's deleted but at least in this way we optimize what we can. 
+
