@@ -88,7 +88,7 @@ Assuming the Kth region is removed
 Total Disruption = Total change of bits on the left of Kth region + Total change of bits on the right of Kth region
 ````
 
-`Total Change of bits on the left of Kth region` can be expressed mathematically
+`Total Change of bits on the left of Kth region` can be expressed
 $$
 \begin{align*}
 \sum_{i=1}^{K-1} \frac{i}{N * (N-1)}
@@ -112,13 +112,13 @@ Total Disruption = \sum_{i=1}^{K-1} \frac{i}{N * (N-1)} + \sum_{i=K+1}^{N} \frac
 $$
 
 
-## Formal proof that minimal disruption happens when the middle region is deleted/added.
+## Proof that minimal disruption happens when the middle region is deleted/added.
 Following up from the above equation, you can take $$ \frac{1}{N * (N-1))} $$ outside of the summation
 
 $$
-\begin{align+}
+\begin{align*}
 =  \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i + \sum_{i=K+1}^{N} (i-K)
-\end{align+}
+\end{align*}
 $$
 
 ### Algebraic Series
