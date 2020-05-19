@@ -121,11 +121,11 @@ Following up from the above equation, you can take $$ \frac{1}{N * (N-1))} $$ ou
 
 $$
 \begin{align*}
-=  \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i + \sum_{i=K+1}^{N} (i-K)   ...eq(1)
+=  \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i + \sum_{i=K+1}^{N} (i-K)
 \end{align*}
 $$
 
-### Partial Sums
+**Partial Sums**
 You may be already familiar with the partial sums of the series where a sum of `N` numbers can be expressed as
 
 $$
@@ -134,6 +134,9 @@ $$
 \end{align*}
 $$
 
-In our case, we are adding `K-1` terms in the first part $$ \frac{1}{N * (N-1))}\sum_{i=1}^{K-1} i $$. This can be summed
-as $$ \frac{(K-1) * (K))}{2} $$. In the second part, 
+In our case, we are adding `K-1` terms in the first part which gives us $$ \frac{(K-1) * (K)}{2} $$. 
+
+In the second part, We are adding numbers from `1` to `N-K`, which gives us $$ \frac{(N-K) * (N-K+1))}{2} $$.
+
+
 
