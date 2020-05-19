@@ -130,7 +130,7 @@ You may be already familiar with the partial sums of the series where a sum of `
 
 $$
 \begin{align*}
-1 + 2 + 3 + .. N  = \frac{N * (N+1))}{2}
+1 + 2 + 3 + .. N  = \frac{N(N+1))}{2}
 \end{align*}
 $$
 
