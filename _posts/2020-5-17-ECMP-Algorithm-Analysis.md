@@ -64,9 +64,9 @@ regions to grow equally to compensate for the additional space created by the de
 
 In this case, we will have 8 bits free which means each of the remaining regions will get 2 bits each. This can be generalized by saying:
 
-* Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}{5} x 40 = 8 bits $$.
-* Free bits get distributed equally by remaining `N-1` next hops. You can generalize this by saying $$ \frac{1}{N(N-1)} x KeySpace$$.
-Example: $$ \frac{1}{5x4} x 40 = 2 bits $$.
+* Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}{5} * 40 = 8 bits $$.
+* Free bits get distributed equally by remaining `N-1` next hops. You can generalize this by saying $$ \frac{1}{N(N-1)} * KeySpace$$.
+Example: $$ \frac{1}{5x4} * 40 = 2 bits $$.
 
 Another thing to observe is that as the corner regions (1 and 5 in our example), expand inwards, this will cause the internal
 regions to shift in addition to expand. For example, `Region #2` which was starting from `8` now starts from `10` (to free space for #1)
