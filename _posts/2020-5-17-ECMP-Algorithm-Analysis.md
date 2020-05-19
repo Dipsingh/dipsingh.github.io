@@ -153,3 +153,39 @@ $$
 \frac{2{K^{2}} -2K + N^{2} - 2NK + N}{2N(N-1)} => \frac{K^{2} - K - NK}{N(N-1)} + \frac{N+1}{2(N-1)}
 \end{align*}
 $$
+
+Let's plot the above expression and see the shape of the function for few values of `N=100,200,300`.
+
+![Function plot](/images/post2/ecmp_analysis_fig5.png "Function plot")
+
+You can see it looks like a nice U shaped function. In Mathematics, we also call this as [Convex function](https://en.wikipedia.org/wiki/Convex_function).
+The nice property of convex function is that they have one local minima or in simple words, there is one point where the function
+achieves the minimum value.
+
+The last part of the equation $$  \frac{N+1}{2(N-1)} $$ is considered constant as it's not dependent on value of `K`. We can see
+that by plotting with and without the constant part for a given value of N. For example, for N=300, you can see the shape remains
+
+![With and Without Constant](/images/post2/ecmp_analysis_fig6.png "With and Without Constant")
+
+the same. The only thing Constant part did was that it just added an offset. This basically shows you that if you find a value
+of `K` where the function is minimized, it's going to be the same for both. Which from the graph, you can tell its around `K=150`
+for both parts.
+
+We can go a bit further and drop the denominator $$ \frac{K^{2} - K - NK}{N(N-1)} $$ as it's a constant as well and makes no
+difference to the shape or where the minimum of the function is as evident by the below graph.
+
+![Without Denominator](/images/post2/ecmp_analysis_fig6.png "Without Denominator")
+
+
+Now the way you want to find the minimum of a given function is where the slope is zero, i.e. Its not increasing or decreasing.
+We all know calculus is a study about rates and we will differentiate the function to find the point where the slope is zero.
+
+$$
+\begin{align*}
+\frac{\mathrm{d (K^{2} - K - NK)} }{\mathrm{d} K} = 0
+=> 2K - 1 - N = 0
+=> K = \frac{N+1}{2}
+\end{align*}
+$$
+
+This gives us the result where for `K` where it's minimum i.e. $$ K = \frac{N+1}{2} $$.
