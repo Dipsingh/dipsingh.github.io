@@ -177,7 +177,8 @@ difference to the shape or where the minimum of the function is still the same a
 ![Without Denominator](/images/post2/ecmp_analysis_fig7.png "Without Denominator")
 
 
-Now the way you want to find the minimum of a given function is where the slope is zero, i.e. Its not increasing or decreasing.
+Now the way you want to find the minimum of a given function is where the slope is zero, i.e. Its not increasing or decreasing.In 
+the below graph, it's the orange point where the slope is zero.
 
 ![Slope](/images/post2/slope.gif "Slope")
 
