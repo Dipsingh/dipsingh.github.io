@@ -34,7 +34,7 @@ Sample snippet illustrating the concept
 ```jupyterpython
 import math
 region_size = 40/5 # KeySpace Size/No. Of Next-hops
-key = [0, 7,8,15,16,23,24,31,32,39]
+key = [0,7,8,15,16,23,24,31,32,39]
 for k in key:
     print(f"Key {k} Region: {math.ceil((k+1)/region_size)}")
 
@@ -50,7 +50,7 @@ Key 32 Region: 5
 Key 39 Region: 5
 ```
 
-## Disruption
+## Disruption of Flows
 In this section, we will look at how much flow disruption is caused by the addition or deletion of a next-hop. Since the
 method requires to have an equal size allocation for next-hops, whenever a next-hop is taken out or added, the regions have
 to be re-sized. This will result into disruption for the flows if the key they were pointing to is allocated to a different
@@ -65,17 +65,18 @@ regions to grow equally and internal regions to shift to compensate for the addi
 In this case, we will have 8 bits free which means each of the remaining regions will get 2 bits each. This can be generalized by saying:
 
 * Anytime a next hop is deleted, `1/N` bits gets free where `N` is the number of next-hops $$ \frac{1}{5} * 40 = 8 bits $$.
-* Free bits get distributed equally by remaining N-1 next hops. Which gives you $$ \frac{1}{N * (N-1)} $$.  Ex: $$ \frac{1}{5*4} * 40 = 2 bits $$.
+* Free bits get distributed equally by remaining `N-1` next hops. You can generalize this by saying $$ \frac{1}{N * (N-1)} * KeySpace$$.
+Example: $$ \frac{1}{5*4} * 40 = 2 bits $$.
 
 Another thing to observe is that as the corner regions (1 and 5 in our example), expand inwards, this will cause the internal
-regions to shift in addition to expand. For example, Region #2 which was starting from 8 now starts from 10 (to free space for #1)
-and lies between `10` to `19`. This brings a net change of `4` bits for region #2. Total bit change in our example is `12 (2 + 4 + 4 + 2)`. 
+regions to shift in addition to expand. For example, `Region #2` which was starting from `8` now starts from `10` (to free space for #1)
+and lies between `10` to `19`. This brings a net change of `4` bits for `region #2`. Total bit change in our example is `12 (2 + 4 + 4 + 2)`. 
 
-If we pick lets say region #4 this time for removal,then we are moving around `14 bits = (2+4+6+2)`. 
+If we pick lets say region #4 this time for removal,then we are moving around `14 bits=(2+4+6+2)`. 
 
 ![Flow Disruption2](/images/post2/ecmp_analysis_fig3.png "Flow Disruption Region4")
 
-If we pick region #5 for removal,then we are moving around `20 bits = (2+4+6+8)`.
+If we pick `region #5` for removal,then we are moving around `20 bits=(2+4+6+8)`.
 
 ![Flow Disruption3](/images/post2/ecmp_analysis_fig4.png "Flow Disruption Region5")
 
