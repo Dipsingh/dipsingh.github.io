@@ -171,7 +171,7 @@ of `K` where the function is minimized, it's going to be the same for both. Whic
 for both parts.
 
 We can go a bit further and drop the denominator $$ \frac{K^{2} - K - NK}{N(N-1)} $$ as it's a constant as well and makes no
-difference to the shape or where the minimum of the function is still the same as evident by the below graph.
+difference to the shape or the minima of the function. It is still the same as evident by the below graph.
 
 ![Without Denominator](/images/post2/ecmp_analysis_fig7.png "Without Denominator")
 
