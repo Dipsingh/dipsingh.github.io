@@ -122,4 +122,5 @@ In next post, we will look into Non-Finite Mixture models.
 
 ## References
 [Bayesian Analysis with Python](https://www.amazon.com/Bayesian-Analysis-Python-Introduction-probabilistic-ebook/dp/B07HHBCR9G)
+<br>
 [Visualizaing Dirchilet Distribution](http://blog.bogatron.net/blog/2014/02/02/visualizing-dirichlet-distributions/)
