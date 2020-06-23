@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bayesian Mixture Models- Finite Mixture Models
+title: Bayesian Finite Mixture Models
 ---
 ## Motivation
 I have been lately looking at Bayesian Modelling which allows me to approach modelling problems from
@@ -119,3 +119,7 @@ cmp_df
 
 ## Next
 In next post, we will look into Non-Finite Mixture models.
+
+## References
+[Bayesian Analysis with Python](https://www.amazon.com/Bayesian-Analysis-Python-Introduction-probabilistic-ebook/dp/B07HHBCR9G)
+[Visualizaing Dirchilet Distribution](http://blog.bogatron.net/blog/2014/02/02/visualizing-dirichlet-distributions/)
