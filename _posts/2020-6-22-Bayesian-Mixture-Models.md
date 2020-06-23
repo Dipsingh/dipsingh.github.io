@@ -60,10 +60,10 @@ import scipy.stats as stats
 import seaborn as sns
 
 data_size = 1000
-g0 = stats.norm(loc=50, scale=2).rvs(data_size)
-g1 = stats.norm(loc=200, scale=100).rvs(data_size)
-g2 = stats.norm(loc=300, scale=10).rvs(data_size)
-y_data = g0 + g1 + g2
+y0 = stats.norm(loc=50, scale=2).rvs(data_size)
+y1 = stats.norm(loc=200, scale=100).rvs(data_size)
+y2 = stats.norm(loc=300, scale=10).rvs(data_size)
+y_data = y0 + y1 + y2
 y_data = pd.Series(y_data)
 fig, ax = plt.subplots(3,1, figsize=(10,5))
 sns.distplot(g0, ax=ax[0])
