@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Notes on Bayesian Mixture Models
+title: Bayesian Mixture Models- Finite Mixture Models
 ---
 ## Motivation
 I have been lately looking at Bayesian Modelling which allows me to approach modelling problems from
