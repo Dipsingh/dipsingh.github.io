@@ -43,7 +43,7 @@ to think about is the mean of a Gaussian distribution.
 One way to view DP is the so-called stick breaking process. Imagine, that we have a stick of length 1, then we break that stick
 into two parts (does not have to be equal), we keep one part aside and keep breaking the other part again and again. In practice,
 we limit this breaking process to some predefined value `K`. Other parameter which plays a role in the stick breaking process is 
-$ \alpha $. As we increase the value of $ \aplha $, stick is broken into smaller and smaller parts. At $ \alpha \rightarrow 0 $,
+$ \alpha $. As we increase the value of $ \alpha $, stick is broken into smaller and smaller parts. At $ \alpha \rightarrow 0 $,
 we don't break the stick and at $ \alpha \rightarrow \infty $, we break the stick into infinite parts.
 
 for some visual aid, check this blog out [Bayesian non-parametric](https://statsbot.co/blog/bayesian-nonparametrics/).
