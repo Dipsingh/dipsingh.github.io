@@ -20,10 +20,10 @@ distribution. The Dirichlet distribution is a probability distribution on the sp
 is a probability distribution on the space of distributions. A Dirichlet Process is a distribution over distributions. 
 When I first read this, my mind went 
 <br>
-<img src="https://media.giphy.com/media/kVA5mbyY6Z6AU/giphy.gif" width="70" height="70"/>.
+  <img src="https://media.giphy.com/media/kVA5mbyY6Z6AU/giphy.gif" width="100" height="100"/>.
 
 
-What it means is, that a single draw from a Dirichlet distribution will give us a probability and a single draw from a Dirichlet 
+What this means is, that a single draw from a Dirichlet distribution will give us a probability and a single draw from a Dirichlet 
 Process will give us a Dirichlet distribution. For finite mixture models, we used Dirichlet distribution to assign a prior for the 
 fixed number of clusters, A Dirichlet Process is a way to assign a prior distribution to a non-fixed number of clusters.
 
