@@ -18,7 +18,8 @@ We briefly mentioned about Dirichlet distribution in the previous post [Bayesian
 which is a generalization of beta distribution, similarly Dirichlet Process is an infinite-dimensional generalization of Dirichlet 
 distribution. The Dirichlet distribution is a probability distribution on the space of probabilities, while Dirichlet Process
 is a probability distribution on the space of distributions. A Dirichlet Process is a distribution over distributions. 
-When I first read this, that's how i felt ![kaboom](https://gph.is/13FcTC4).
+When I first read this, my mind went ![kaboom](<iframe src="https://giphy.com/embed/kVA5mbyY6Z6AU" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/mind-blown-kVA5mbyY6Z6AU">via GIPHY</a></p>).
+
 
 What it means is, that a single draw from a Dirichlet distribution will give us a probability and a single draw from a Dirichlet 
 Process will give us a Dirichlet distribution. For finite mixture models, we used Dirichlet distribution to assign a prior for the 
