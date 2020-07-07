@@ -25,7 +25,7 @@ _Note: a Non-parametric estimator makes no assumption on the distribution._
 Mathematically you can denote ECDF as
 
 $$ 
-\begin{align*}
+
 
 F_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}1\{X_{i} \leq x\},\\
 
@@ -33,7 +33,7 @@ where
 
 1\{X_{i} \leq x\} = \begin{cases}  1,  &X_{i} \leq x \\  0, & otherwise\end{cases}
 
-\end{align*}
+
 $$
 
 You will notice many books will use Indicator function in the notation, which is basically a compact notation of the above. 
