@@ -32,7 +32,7 @@ $$
 The resultant vector $$ \begin{pmatrix} 1\\2 \end{pmatrix} $$ is in orange after transformation.
 ![Transformed Vector (1,3)](/images/post5/vector2.png "Vector (1,2)")
 
-you can see how the vector changes its direction and it's magnitude (length) after the transformation. Now In case of 
+you can see how the vector changed its direction after the transformation. Now in case of 
 Eigenvectors, which are special kinds of vectors on which, when we apply a transformation, they don’t change their 
 direction. For example, assume we have a matrix A
 
@@ -43,18 +43,19 @@ $$
 \end{pmatrix}
 $$
 
-The eigen vectors for this matrix are (1,1) and (1,-3). Multiplying the Matrix A to these vectors 
-(hence applying a transformation to these vectors), only changes the scale of these vectors by a certain value 
-(i.e. eigen value) but it does not changes its direction. As you can see below, the vectors scaled by 8 and 4 and those
-are the eigen values corresponding to those vectors.
+The eigen vectors for this matrix are $$ \begin{pmatrix} 1\\1 \end{pmatrix} $$ and $$ \begin{pmatrix} 1\\-3 \end{pmatrix} $$. 
+Multiplying the Matrix A to these vectors (hence applying a transformation to these vectors), only changes the length of these 
+vectors by a certain value (i.e. eigen value) but it does not changes its direction. As you can see below, the vectors are scaled 
+by 8 and 4 and those are the eigen values corresponding to those vectors.
+
 ![Eigen Vectors](/images/post5/vector3.png "Eigen Vector ")
 
 Mathematically we can express this by saying 
 
 $ Av = \lambda v $
 
-So this is concludes our 1 minute introduction of Eigen Vectors/Values with a hope that this brings some familiarity. 
-There are lot of excellent resources out there where you can learn more about this.
+So this concludes our one minute introduction of Eigen Vectors/Values with a hope that this brings some familiarity. There are 
+lots of excellent resources out there where you can learn more about this.
 
 
 ### Adjacency Matrix
