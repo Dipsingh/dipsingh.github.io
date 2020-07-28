@@ -22,12 +22,12 @@ vector $$ \begin{pmatrix} 3\\2 \end{pmatrix} $$
  
 we apply a transformation by multiplying this vector to a matrix
 
-$
+$$
 \begin{pmatrix}
 -1 & 2 \\ 
  3 & 3
 \end{pmatrix}
-$
+$$
 
 The resultant vector in orange after transformation is now (1,3).
 ![Transformed Vector (1,3)](/images/post5/vector2.png "Vector (1,3)")
