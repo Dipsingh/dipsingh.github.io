@@ -6,13 +6,13 @@ title: Spectral Clustering
 Clustering is a way to make sense of the data by grouping similar values into a group. There are many ways to achieve 
 that and in this post we will be looking at one of the way based on spectral method. Spectral clustering provides a 
 starting point to understand graphs with many nodes by clustering them into 2 or more clusters. This clustering 
-technique can also be applied for analyzing general data.This technique is based on Linear algebra and Graph theory. 
+technique can also be applied for analyzing general data. This technique is based on Linear algebra and Graph theory. 
 
-We will start with a very brief introduction of the pre-requisites for the sake of completeness and one can skip those 
-topics if they already have the familiarity.
+We will start with a very brief introduction of the prerequisite for the sake of completeness and one can skip the 
+prerequisite topics if they already have the familiarity.
 
 
-## Pre-Requisite Topic
+## Prerequisite Topic
 
 ### Eigen Vectors and Eigen Values
 One way to interpret when we multiply a vector a matrix is that a matrix transforms the vector. For example: below is a 
@@ -20,7 +20,8 @@ vector $$ \begin{pmatrix} 3\\2 \end{pmatrix} $$
 
 ![Original Vector (3,2)](/images/post5/vector1.png "Vector (3,2)")
  
-we apply a transformation by multiplying this vector to a matrix 
+we apply a transformation by multiplying this vector to a matrix
+
 $
 \begin{pmatrix}
 -1 & 2 \\ 
@@ -35,12 +36,12 @@ you can see how the vector changes its direction and it's magnitude (length) aft
 Eigenvectors, which are special kinds of vectors on which, when we apply a transformation, they don’t change their 
 direction. For example, assume we have a matrix A
 
-$
+$$
 \begin{pmatrix}
 7 & 1 \\ 
 3 & 5
 \end{pmatrix}
-$
+$$
 
 The eigen vectors for this matrix are (1,1) and (1,-3). Multiplying the Matrix A to these vectors 
 (hence applying a transformation to these vectors), only changes the scale of these vectors by a certain value 
@@ -338,6 +339,5 @@ ax.scatter(X_mn[:, 0], X_mn[:, 1],c=y_spec ,s=dot_size, cmap=cmap)
 
 
 ## References
-[Bayesian Analysis with Python](https://www.amazon.com/Bayesian-Analysis-Python-Introduction-probabilistic-ebook/dp/B07HHBCR9G)
+[Linear Algebra and Learning from Data](https://www.amazon.com/Linear-Algebra-Learning-Gilbert-Strang/dp/0692196382)
 <br>
-[Bayesian Non-Parametrics](https://statsbot.co/blog/bayesian-nonparametrics/)
