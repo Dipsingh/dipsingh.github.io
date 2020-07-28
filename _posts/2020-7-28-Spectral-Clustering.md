@@ -189,7 +189,7 @@ nx.algebraic_connectivity(G3)
 0.43844718719117043
 ```
 
-Below is the corresponding Fiedler eigen vector
+Below is the corresponding Fiedler vector
 ```python
 vecs[:,1]
 ### Fiedler Vector
@@ -204,7 +204,7 @@ NodeView((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
 You can see that few values are postive and remaining are negative. Fiedler vector shows that if we have to split
 the graph into two clusters, than the positive values belong to one cluster and negative values belong to 
 second cluster. Which in our examples translates into `0,1,2,3,4,5` into one cluster and `6,7,8,9,10,11` into another
-cluster. 
+cluster which makes sense.
 
 In general, one looks at the first biggest gap between eigen values to get an idea on the number of clusters present in 
 a graph. In our example, we can see that that first biggest gap is between 4 and 5, indicating that the graph contains 
@@ -229,6 +229,9 @@ Cluster2 - 2,3,5
 Cluster3 - 0,1,4
 Cluster4 - 7,10,11
 ```
+
+![Four Clusters](/images/post5/graph8.png "Four Clusters")
+
 
 ## Strength of a Graph or Algebraic Connectivity
 We saw earlier that how Fiedler Eigen value tells us about the strength of a graph. One can potentially use this during
