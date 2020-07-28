@@ -100,7 +100,7 @@ print(A)
 
 Degree matrix tells how many degrees each node has. For example, Node 8 has 2 degrees (connected to 9 and 6) and Node 6
 has 4 degrees. We can compute the degrees from the adjacency matrix as well by counting the number of adjacency. Below 
-is the adjacency matrix of the above graph
+is the degree matrix of the above graph
 
 ```python
 D = np.diag(A.sum(axis=1))
@@ -123,7 +123,7 @@ print(D)
 
 ## Laplacian Matrix or Graph Laplacian
 
-At this point, you know already what is an Adjacency and Degree matrix. Laplacian matrix or Graph Laplacian is given by
+At this point, you already know what an Adjacency and Degree matrix are. Laplacian matrix or Graph Laplacian is given by
 
 $ L = Degree Matrix - Adjacency Matrix $
 
@@ -175,14 +175,16 @@ ax2.set_ylabel("Eigen Values", fontsize=12)
 The first Eigen value is zero for the first eigen vector and all other eigen values are positive. This also means that
 the matrix is positive semi-definite.
 
-** The second eigen vector which has a positive eigen value is known as Fiedler vector. Eigen value for the fiedler vector 
-(second eigen value) tells us about the strength of the graph connectivity. **
+**The second eigen vector which has a positive eigen value is known as Fiedler vector. Eigen value for the fiedler vector 
+(second eigen value) tells us about the strength of the graph connectivity.**
 
 Fiedler eigen value is also known as Algebraic connectivity in Graph theory. 
 ```python
+#second eigen value
 vals[1]
 0.43844718719116876
 
+#algebraic connectivity
 nx.algebraic_connectivity(G3)
 0.43844718719117043
 ```
