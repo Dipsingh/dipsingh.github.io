@@ -172,7 +172,7 @@ ax2.set_ylabel("Eigen Values", fontsize=12)
 
 ![Eigen Values of Graph Laplacian](/images/post5/graph2.png "Graph Laplacian")
 
-The first Eigen value is zero for the first eigen vector and all other eigen values are positive. This also means that
+First Eigen value is zero for the first eigen vector and all other eigen values are positive. This also means that
 the matrix is positive semi-definite.
 
 **The second eigen vector which has a positive eigen value is known as Fiedler vector. Eigen value for the fiedler vector 
