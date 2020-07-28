@@ -16,21 +16,21 @@ prerequisite topics if they already have the familiarity.
 
 ### Eigen Vectors and Eigen Values
 One way to interpret when we multiply a vector a matrix is that a matrix transforms the vector. For example: below is a 
-vector $$ \begin{pmatrix} 3\\2 \end{pmatrix} $$ 
+vector $$ \begin{pmatrix} 2\\1 \end{pmatrix} $$ 
 
-![Original Vector (3,2)](/images/post5/vector1.png "Vector (3,2)")
+![Original Vector (3,2)](/images/post5/vector1.png "Vector (2,1)")
  
-we apply a transformation by multiplying this vector to a matrix
+we apply a transformation by multiplying the above vector to a matrix
 
 $$
 \begin{pmatrix}
--1 & 2 \\ 
- 3 & 3
+-1 & 3 \\ 
+ 2 & -2
 \end{pmatrix}
 $$
 
-The resultant vector in orange after transformation is now (1,3).
-![Transformed Vector (1,3)](/images/post5/vector2.png "Vector (1,3)")
+The resultant vector $$ \begin{pmatrix} 1\\2 \end{pmatrix} $$ is in orange after transformation.
+![Transformed Vector (1,3)](/images/post5/vector2.png "Vector (1,2)")
 
 you can see how the vector changes its direction and it's magnitude (length) after the transformation. Now In case of 
 Eigenvectors, which are special kinds of vectors on which, when we apply a transformation, they don’t change their 
