@@ -230,7 +230,7 @@ Cluster3 - 0,1,4
 Cluster4 - 7,10,11
 ```
 
-![Four Clusters](/images/post5/graph8.png "Four Clusters")
+![Four Clusters](/images/post5/graph8.jpg "Four Clusters")
 
 
 ## Strength of a Graph or Algebraic Connectivity
