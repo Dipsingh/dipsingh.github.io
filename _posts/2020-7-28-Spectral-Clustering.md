@@ -234,8 +234,8 @@ Cluster4 - 7,10,11
 
 
 ## Strength of a Graph or Algebraic Connectivity
-We saw earlier that how Fiedler Eigen value tells us about the strength of a graph. One can potentially use this during
-topology design. Here is an example, Assume that we have a graph like this (assume it’s a backbone network):
+As I mentioned earlier that Fiedler value tells us about the strength of a graph. let's look at this by looking at an example.
+Assume that we have a graph like this (assume it’s a backbone network):
 
 ![Backbone Graph1](/images/post5/graph4.jpg "Backbone Graph1")
 
