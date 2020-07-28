@@ -234,7 +234,7 @@ Cluster4 - 7,10,11
 
 
 ## Strength of a Graph or Algebraic Connectivity
-As I mentioned earlier that Fiedler value tells us about the strength of a graph. let's look at this by looking at an example.
+As I mentioned earlier that Fiedler value tells us about the strength of a graph. Let's look at this by looking at an example.
 Assume that we have a graph like this (assume it’s a backbone network):
 
 ![Backbone Graph1](/images/post5/graph4.jpg "Backbone Graph1")
@@ -347,3 +347,4 @@ ax.scatter(X_mn[:, 0], X_mn[:, 1],c=y_spec ,s=dot_size, cmap=cmap)
 ## References
 [Linear Algebra and Learning from Data](https://www.amazon.com/Linear-Algebra-Learning-Gilbert-Strang/dp/0692196382)
 <br>
+[A Tutorial on Spectral Clustering](http://people.csail.mit.edu/dsontag/courses/ml14/notes/Luxburg07_tutorial_spectral_clustering.pdf)
