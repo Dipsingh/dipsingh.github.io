@@ -237,7 +237,7 @@ Cluster4 - 7,10,11
 As I mentioned earlier that Fiedler value tells us about the strength of a graph. Let's look at this by looking at an example.
 Assume that we have a graph like this (assume it’s a backbone network):
 
-![Backbone Graph1](/images/post5/graph4.jpg "Backbone Graph1")
+![Backbone Graph1](/images/post5/graph5.jpg "Backbone Graph1")
 
 As you can see, the topology most looks like a ring and the algebraic connectivity score is around `0.75302`.
 
@@ -258,7 +258,7 @@ vals[1].round(5)
 Min-Cut for the graph is 2, i.e. the network will get partitioned with two cuts. Now let's add a link between ORD-DAL and
 see what our score looks like.
 
-![Backbone Graph2](/images/post5/graph5.jpg "Backbone Graph2")
+![Backbone Graph2](/images/post5/graph4.jpg "Backbone Graph2")
 
 ```python
 G4.add_edge(3,4)
