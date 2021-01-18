@@ -25,7 +25,10 @@ think the most essential are:
 We will be using Cogent topology, which is publicly available [here](http://www.topology-zoo.org/dataset.html) to follow
 along with our examples. The map represents the nodes in US + Mexico, and European countries.Each node color represents
 a specific country.
-![Cogent Topology](/images/post6/cogent.png "Cogent").
+![Cogent Public Topo](/images/post6/Cogentco.jpg "Cogent Public Topo")
+
+Graphml version
+![Cogent Topology](/images/post6/cogent.png "Cogent")
 
 You can notice that graph represents a city as a Node. Further, any city can have many routers, making the topology a lot
 bigger and more attractive. For our purposes, the current topology abstraction provides the right balance where it's not 
