@@ -179,7 +179,7 @@ This is also known as *"six degrees of seperation"* where the idea is that all p
 from each other. This also means that the circle of our friends of friends is vast than we think. We often say this when we run into
 people again or know someone in common that it's a small world.
 
-We can see if the real-life networks exhibit this small world property or not. But before we go further, let's say if the network only 
+We can see, if the real-life networks exhibit this small world property or not. But before we go further, let's say if the network only 
 consists of 10 nodes and the average path length is around 5 or 6, is that a short path in the network? What if the network consists of 
 1 million nodes, and the average path length is around 5 or 6. Is that a short path in the network?. 
 
@@ -210,6 +210,16 @@ Nodes with degree K < 2 are excluded when calculating the average clustering coe
 
 A low clustering coefficient means that the network has few triangles, while a high clustering coefficient means that the network has
 many triangles.
+
+```python
+nx.average_clustering(G) \\ 0.016
+```
+The clustering Coefficient for our Topology is low indicating that we have
+
+| Topology     | Density | Avg Degree     | Assortativity Coefficient    | Avg Path length | Clustering Coefficient     |
+| :---        |    :----:   |          ---: | :---        |    :----:   |          ---: |
+| Cogent     | 0.0126       | 2.48   | 0.019     | 10.5       | 0.016   |
+
 
 ### Summary 
 We looked at some essential properties of Network Topologies. These properties can be used to assess various network topologies and 
