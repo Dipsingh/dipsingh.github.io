@@ -39,6 +39,7 @@ have are bounded by its nodes. This means the maximum number of links a network 
 of nodes. A **Complete Network** is the one which has all possible pair of nodes connected by links.
 
 A maximum number of links in an Undirected network with $$ N $$ nodes, can be given by:
+
 $$
 L_{max} = \left(\begin{array}{c}N\\ 2\end{array}\right) = \frac{N(N-1)}{2}
 $$
@@ -52,17 +53,19 @@ Density of the Network is given by:
 $$
 d = \frac{L}{L_{max}}
 $$
+
 We can substitute $$ L_{max} $$ in the equation and get
+
 $$
-d = \frac{2L}{N(N-1)} {\color{Blue} }
+d = \frac{2L}{N(N-1)}
 $$
 
 In a complete network, $$ L = L_{max}$$ which means density d = 1. In a sparse network, $$ L << L_{max}$$ and therefore
-$$ d << 1 $$ (*symbol << means much less than*).
+$$ d << 1 $$ (*symbol $<<$ means much less than*).
 
 As a network grows, nodes will increase, which will increase the number of Links. Hence we can say that the number of
-links is a function of the number of nodes. If the number of links grows proportionally to the number of nodes (L ~ N) or slower,
-then we can say that the network is **sparse**. If the number of links grows faster e.g. quadratic or cubic growth $$(L ~ N^2 | N^3)$$,
+links is a function of the number of nodes. If the number of links grows proportionally to the number of nodes $(L \sim N)$ or slower,
+then we can say that the network is **sparse**. If the number of links grows faster e.g. quadratic or cubic growth $$(L \sim N^2 or N^3)$$,
 then we say that the network is **dense**.
 
 Let's look at our sample cogent topology.
@@ -86,11 +89,12 @@ K_{avg} = \frac{\sum_{i}^{}k_{i}}{N}
 $$
 
 Let's look at the average degree of nodes in our Cogent topology.
-```jupyterpython
+```python
 sum([d for (n, d) in nx.degree(G)]) / G.number_of_nodes() // 2.48
 ```
 The average node degree for our cogent topology is around 2.48. This means on an average most nodes are connected to 2-3 neighbors.
 Let's plot the degree distribution of our graph and see how it looks like:
+
 ![Degree Distribution](/images/post6/cgnt_nd_deg_dist.png "Cogent Degree Distribution").
 
 You can observe that the maximum nodes have degree = 2 (peak), and it has a thin tail on the right with very few nodes with a
