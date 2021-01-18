@@ -150,7 +150,7 @@ function of k then high degree nodes tend to be connected to high degree nodes; 
 decreases with k, the network is disassortative.
 
 ### Average Path Length
-It's possible to define an aggregate distance measure for the entire network by using the shortest path lenght as a measure of
+It's possible to define an aggregate distance measure for the entire network by using the shortest path length as a measure of
 distance between nodes. The Average Shortest Path Length is obtained by averaging the shortest path lentgh across all pair of nodes.
 
 Formally the Average Shortest Path Length for an undirected graph is given by
