@@ -64,7 +64,7 @@ d = \frac{2L}{N(N-1)}
 $$
 
 In a complete network, $$ L = L_{max}$$ which means density d = 1. In a sparse network, $$ L << L_{max}$$ and therefore
-$$ d << 1 $$ (*symbol $<<$ means much less than*).
+$$ d << 1 $$ (*symbol $$ << $$ means much less than*).
 
 As a network grows, nodes will increase, which will increase the number of Links. Hence we can say that the number of
 links is a function of the number of nodes. If the number of links grows proportionally to the number of nodes $(L \sim N)$ or slower,
