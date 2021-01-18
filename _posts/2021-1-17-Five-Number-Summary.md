@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Six Number Summary for Network Topologies
+title: Five Number Summary for Network Topologies
 ---
 ## Introduction
 You may or may not have already heard about the [Five Number summary](https://en.wikipedia.org/wiki/Five-number_summary) for a dataset. 
@@ -17,14 +17,15 @@ think the most essential are:
 
 1. Density and Sparsity
 2. Average Degree
-3. Average Path Length
-4. Attribute/Degree Assortative Coefficient
-5. Pearson Coefficient
+3. Assortativity
+4. Average Path Length
+5. Clustering Coefficient
 
 ## Sample Topology
 We will be using Cogent topology, which is publicly available [here](http://www.topology-zoo.org/dataset.html) to follow
 along with our examples. The map represents the nodes in US + Mexico, and European countries.Each node color represents
 a specific country.
+
 ![Cogent Public Topo](/images/post6/Cogentco.jpg "Cogent Public Topo")
 
 Graphml version
@@ -110,5 +111,62 @@ The weighted degree of a node is like a degree but ponderated by the weight of e
 with weight 1 each(1+1+1+1) is equal to a node with 2 edges with weight 2 (2+2).
 
 ### Assortativity
+Assortatvitiy is a property of the network where nodes with similar features are connected together. We see this property in 
+social networks all the time where people with similar interests are friends a.k.a connected to each other. This is also 
+captured by the popular saying that "birds of a feather flock together" and technically it's called as **Homophily**.
 
+We know that a degree is a property of a Node. Assortativity based on degree is called degree assortativity. In this high degree
+nodes are connected to high degree nodes and low degree nodes tends to connect low degree nodes. This type of network is called 
+Assortative. If the high degree nodes tend to connect to low degree nodes and vice versa then that network is called dissasortatvie.
 
+There are two ways to measure degree assortatvity of a network, both based on measuring the correlation between degrees of neighbor
+nodes.
+
+One way to measure network assortativity is by assortativity coefficient, defined as the pearson correleation between
+the degrees of pairs of linked nodes. If the coefficient is positive, then the network is assortative and disassortative if it's negative.
+
+If we look at the below degree-degree scatter plot of our Cogent Topology, we can observe that most low degree nodes are connected
+to other low degree nodes but also connected to few high degree nodes. The shades indicate the density, it's not very conclusive but there
+are darker shades between low degree nodes.
+
+![Degree-Degree Scatter Plot](/images/post6/deg_deg_plot.png "Degree-Degree Scatter Plot")
+
+It seems like our network may be slightly assortative—the degree assortativity coefficient= 0.019, which is a positive value indicates that our 
+topology is slightly assortative but not much due to the value closer to zero.
+
+```python
+nx.degree_assortativity_coefficient(G) //0.019
+```
+
+The second method is based on measuring the average degree of the neighbors of node i
+
+$$
+k_{nn}(i) = \frac{1}{k_{i}}\sum_{j}^{}a_{ij}k_{j}
+$$
+
+where $$ a_{ij} = 1 $$, if i and j are neighbors and 0 otherwise. We then define K-nearest neighbors function $$ K_{nn}(k) $$ for 
+nodes of a given degree $$ K $$ as the avg. degree of k_nn(i) across all nodes with degree k. if $$ K_{nn}(k) $$ is an increasing
+function of k then high degree nodes tend to be connected to high degree nodes; there the netowork is assortative, if $$ K_{nn}(k) $$
+decreases with k, the network is disassortative.
+
+### Average Path Length
+It's possible to define an aggregate distance measure for the entire network by using the shortest path lenght as a measure of
+distance between nodes. The Average Shortest Path Length is obtained by averaging the shortest path lentgh across all pair of nodes.
+
+Formally the Average Shortest Path Length for an undirected graph is given by
+
+$$
+L_{avg} = \frac{\sum_{i}^{j}l_{ij}} {\left(\begin{array}{c}N\\ 2\end{array}\right)} = \frac{2\sum_{i}^{j}l_{ij}}{N(N-1)}
+$$
+
+where $$l_{ij}  $$ is the shortest path length between nodes $$ i $$ and $$ j $$ and $$ N $$ is the number of the nodes.
+
+The diameter of the network is the max shortest path length across all pairs.
+
+The Average shortest path length for our example topology is 10.5 hops.
+```python
+nx.average_shortest_path_length(G) // 10.5
+nx.diameter(G) // 28
+```
+
+### Clustering Coefficient
