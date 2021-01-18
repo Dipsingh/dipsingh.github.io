@@ -216,16 +216,16 @@ nx.average_clustering(G) \\ 0.016
 ```
 The clustering Coefficient for our Topology is low indicating that we have
 
-Five Number summary for our Sample Topology 
+
+### Summary 
+We looked at some essential properties of Network Topologies. Five Number summary for our Sample Topology 
+
 1. Desity: 0.0126 
 2. Avg Degree: 2.48
 3. Assortativity Coefficient: 0.019
 4. Avg Path length: 10.5
 5. Clustering Coefficient: 0.016
 
-
-
-### Summary 
-We looked at some essential properties of Network Topologies. These properties can be used to assess various network topologies and 
-understand the deep structure while doing topology design. In the next upcoming posts, we will look at more network science aspects, 
-meanwhile, how does the above five summary number look like for your network?
+These properties can be used to assess various network topologies and  understand the deep structure while doing topology
+design. In the next upcoming posts, we will look at more network science aspects, meanwhile, how does the above five summary 
+number look like for your network?
