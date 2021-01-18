@@ -31,9 +31,9 @@ a specific country.
 Graphml version
 ![Cogent Topology](/images/post6/cogent.png "Cogent")
 
-You may have already noticed that in the graph, each city is represented as a Node. Further, any city can have many routers, making the topology a lot
-bigger and more attractive. For our purposes, the current topology abstraction provides the right balance where it's not 
-huge to overwhelm the reader but big enough to keep things interesting.
+You may have already noticed that in the graph, each city is represented as a Node. In reality, any city will have many routers, 
+which will make the topology a lot bigger and more attractive. For our purposes, the current topology abstraction provides the 
+right balance where it's not huge to overwhelm the reader but big enough to keep things interesting.
 
 ## Five Number Summary
 
