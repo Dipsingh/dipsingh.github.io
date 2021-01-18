@@ -169,4 +169,49 @@ nx.average_shortest_path_length(G) // 10.5
 nx.diameter(G) // 28
 ```
 
+
+#### Small World Property
+A small world property is a popular notion that social distances are short on average. For example, If I just consider the
+network engineer population, If I have to guess, then most of the engineers are either 3 or 4 connections away from any other
+engineer. Some famous folks will act as Hubs, and most folks will be connected to them.
+
+This is also known as *"six degrees of seperation"* where the idea is that all people on average are six or fewer connections away
+from each other. This also means that the circle of our friends of friends is vast than we think. We often say this when we run into
+people again or know someone in common that it's a small world.
+
+We can see if the real-life networks exhibit this small world property or not. But before we go further, let's say if the network only 
+consists of 10 nodes and the average path length is around 5 or 6, is that a short path in the network? What if the network consists of 
+1 million nodes, and the average path length is around 5 or 6. Is that a short path in the network?. 
+
+It turns out that when our Average Shortest Path length grows slowly with the size of the network, then we consider the path lengths to be
+short. We can express this mathematically.
+
+$$
+Average Path Length \sim log N
+$$
+
 ### Clustering Coefficient
+A clustering coefficient is the average probability that two friends of a node are also friends. In other words, It's the ratio between
+the number of triangles that include the node, and the maximum number of triangles in which the node can participate.
+
+It's formally given as:
+
+$$
+C(i) = \frac{\tau (i)}{\tau_{max}(i)} = \frac{\tau (i)}{\left(\begin{array}{c}k_{i}\\ 2\end{array}\right)} = \frac{2\tau (i)}{k_{i}(k_{i} -1)}
+$$
+
+where $$\tau (i) $$ is the number of triangles involving i. The Clustering Coefficient of the entire network is the average of the 
+clustering coefficients of its nodes:
+
+$$
+C = \frac{\sum_{i:k_{i>1}}C(i)}{N_{k>1}} 
+$$
+Nodes with degree K < 2 are excluded when calculating the average clustering coefficient.
+
+A low clustering coefficient means that the network has few triangles, while a high clustering coefficient means that the network has
+many triangles.
+
+### Summary 
+We looked at some essential properties of Network Topologies. These properties can be used to assess various network topologies and 
+understand the deep structure while doing topology design. In the next upcoming posts, we will look at more network science aspects, 
+meanwhile, how does the above five summary number look like for your network?
