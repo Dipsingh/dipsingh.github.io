@@ -214,7 +214,7 @@ many triangles.
 ```python
 nx.average_clustering(G) \\ 0.016
 ```
-The clustering Coefficient for our Topology is low indicating that we have
+The clustering Coefficient for our Topology is low indicating little to no clusters in our topology.
 
 
 ### Summary 
