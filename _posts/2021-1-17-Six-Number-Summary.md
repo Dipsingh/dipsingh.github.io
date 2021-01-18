@@ -6,20 +6,20 @@ title: Six Number Summary for Network Topologies
 You may or may not have already heard about the [Five Number summary](https://en.wikipedia.org/wiki/Five-number_summary) for a dataset. 
 It's basically a set of descriptive statistics for a given dataset, which provides an idea about the dataset. Those are:
 
-	1. Minimum
-	2. First quartile
-	3. Median
-	4. Third quartile
-	5. Maximum
+1. Minimum
+2. First quartile
+3. Median
+4. Third quartile
+5. Maximum
 	
 Similarly, there are specific statistics about topology, which gives an idea about any network topology. The ones which I
 think the most essential are:
 
-	1. Density and Sparsity
-	2. Average Degree
-	3. Average Path Length
-	4. Attribute/Degree Assortative Coefficient
-	5. Pearson Coefficient
+1. Density and Sparsity
+2. Average Degree
+3. Average Path Length
+4. Attribute/Degree Assortative Coefficient
+5. Pearson Coefficient
 
 ## Sample Topology
 We will be using Cogent topology, which is publicly available [here](http://www.topology-zoo.org/dataset.html) to follow
