@@ -206,6 +206,7 @@ clustering coefficients of its nodes:
 $$
 C = \frac{\sum_{i:k_{i>1}}C(i)}{N_{k>1}} 
 $$
+
 Nodes with degree K < 2 are excluded when calculating the average clustering coefficient.
 
 A low clustering coefficient means that the network has few triangles, while a high clustering coefficient means that the network has
