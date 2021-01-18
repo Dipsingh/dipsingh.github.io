@@ -216,9 +216,13 @@ nx.average_clustering(G) \\ 0.016
 ```
 The clustering Coefficient for our Topology is low indicating that we have
 
-| Topology    | Density   | Avg Degree | Assortativity Coefficient | Avg Path length | Clustering Coefficient |
-| :---        |    :----: |    :----:  | :----:                    |    :----:        |                  ---: |
-| Cogent      | 0.0126    | 2.48       | 0.019                     | 10.5             |               0.016   |
+Five Number summary for our Sample Topology 
+1. Desity: 0.0126 
+2. Avg Degree: 2.48
+3. Assortativity Coefficient: 0.019
+4. Avg Path length: 10.5
+5. Clustering Coefficient: 0.016
+
 
 
 ### Summary 
