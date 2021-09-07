@@ -9,10 +9,10 @@ failures like link, node failures all the time.
 Generally, we use various Network modeling tools like Cariden(WAE), WANDL, etc. to model failures and see how the network reacts
 under a given failure condition. The components which are in play are:
 
-1) Type and Number of failures. Type: Link, Node. Number of Failures: Single or Double.
-2) Routing protocols running on top of the network and there reaction to the failure. Example: RSVP-TE, Pure IGP, SR-TE etc.
-3) Network flows and their volume.
-4) Network Topology. 
+1. Type and Number of failures. Type: Link, Node. Number of Failures: Single or Double.
+2. Routing protocols running on top of the network and there reaction to the failure. Example: RSVP-TE, Pure IGP, SR-TE etc.
+3. Network flows and their volume.
+4. Network Topology. 
 
 In this blog post, we will focus purely on #4 Network topology and certain characteristics of topology, which may make them more 
 robust than other topologies.
