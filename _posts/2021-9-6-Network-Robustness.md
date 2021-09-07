@@ -1,4 +1,4 @@
-  ---
+---
 layout: post
 title: Network Centrality and Robustness
 ---
@@ -160,4 +160,5 @@ After removing `sea2` and `lax1` we see that the left side of the graph is isola
 ### Summary 
 We looked at various centrality measures and then looked at application of degree centrality to check the robustness of the graph.
 
-In large networks it is necessary to use statistical tools to analyze the global features of the network. 
+In large networks, it is necessary to use statistical tools to analyze the global features of the network. These tools can also help
+in comparing various topologies. I hope you get something useful out of this post.
