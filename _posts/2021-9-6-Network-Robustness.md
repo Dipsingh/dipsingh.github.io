@@ -30,9 +30,9 @@ So this brings the question: How do we identify important nodes in a topology? T
 The importance of a node or link is identified by computing its centrality. The higher the score, the more critical is the node. There 
 are several ways to compute Centrality:
 
-1) Degree
-2) Closeness
-3) Betweenness
+1. Degree
+2. Closeness
+3. Betweenness
 
 For our example, we will follow the below sample topology. The graph computed is a directed graph with weight=1. In reality,
 weights will be different based on the IGP cost representing latency, but I have skipped that detail here.
