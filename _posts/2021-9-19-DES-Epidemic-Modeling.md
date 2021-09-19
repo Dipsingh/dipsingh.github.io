@@ -237,5 +237,5 @@ power of Discrete Event Simulation(DES) for validating ideas. In future, we will
 related problems.
 
 ## References
-- (A First Course in Network Science)[https://www.amazon.com/First-Course-Network-Science/dp/1108471137]
-- (Compartmental models in epidemiology)[https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology]
+- [A First Course in Network Science](https://www.amazon.com/First-Course-Network-Science/dp/1108471137)
+- [Compartmental models in epidemiology](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology)
