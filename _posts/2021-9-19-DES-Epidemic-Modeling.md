@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DES: Epidemic Modeling
+title:  Epidemic Modeling(DES)
 ---
 ## Introduction
 One of the things I have been trying to play recently with is Discrete Event Simulation(DES). I think it is a powerful 
