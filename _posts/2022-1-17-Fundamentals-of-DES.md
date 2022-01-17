@@ -4,12 +4,13 @@ title:  Fundamentals of Discrete Event Simulation(DES)
 ---
 ## Introduction
 In the last blog, we looked at SIS/SIR epidemic modeling using Discrete event simulation. This post will cover some 
-more fundamental concepts of Discrete Event Simulation. To get started, let's look at an elementary example.
+fundamental concepts of Discrete Event Simulation, look at a few basic examples to develop an understanding, and end 
+with a simulation of M/M/1 queuing model.
 
-Assume that we want to estimate the probability of observing the head in an experiment of tossing a coin. We know that
-if the coin is not biased, then the likelihood of getting a head is `1/2`. We also know that if I toss the coin two 
-or three times, we may not get exactly `1/2`. We expect that if we keep tossing the coin for a very long
-time, the average probability of getting heads will converge to `1/2`.
+To get started, let's look at an elementary example.Assume that we want to estimate the probability of observing the head
+in an experiment of tossing a coin. We know that if the coin is not biased, then the likelihood of getting a head is `1/2`. 
+We also know that if I toss the coin two or three times, we may not get exactly `1/2`. We expect that if we keep tossing 
+the coin for a very long time, the average probability of getting heads will converge to `1/2`.
 
 #### Experiment
 So let's run the experiment `1000` times of tossing the coin, and we get `0.49` as the probability of getting head,
@@ -217,11 +218,81 @@ in the state space is used to estimate the measurements of interest.
 
 A Dynamic system is called Ergodic system if the Horizontal mean converges to the Vertical mean.
 
+
+## Simulating M/M/1
+
+Now let's look at the same concepts visited above with example simulations for the M/M/1 queuing system to figure out 
+the average delay. Assume that we have 100K packets to serve; the Poisson process is used to model both packet's arrival
+and service rate. Both arrival and service rates are between 1 to 3 packets per unit of time. 
+
+We know that in a queuing system, the delay will increase if the service rate is lower than the arrival rate 
+(more packets are coming in, and fewer packets are going out).
+
+
+```python
+def average_delay(lamda, mu):
+    NUM_PKTS = 100000 # Number of Packets
+    count = 0 # Count
+    clock = 0 # Clock
+    N = 0 
+
+    ARR_TIME = expovariate(lamda)
+    DEP_TIME = np.inf
+
+    ARR_TIME_DATA = []
+    DEP_TIME_DATA = []
+    DELAY_DATA = []
+
+    while count < NUM_PKTS:
+        if ARR_TIME < DEP_TIME:
+            clock = ARR_TIME
+            ARR_TIME_DATA.append(clock)
+            N = N + 1
+            ARR_TIME = clock + expovariate(lamda)
+            if N == 1:
+                DEP_TIME = clock + expovariate(mu)
+        else:
+            clock = DEP_TIME
+            DEP_TIME_DATA.append(clock)
+            N = N - 1
+            count = count + 1
+            if N > 0 :
+                DEP_TIME = clock + expovariate(mu)
+            else:
+                DEP_TIME = np.inf
+
+    for i in range(NUM_PKTS):
+        d = DEP_TIME_DATA[i] - ARR_TIME_DATA[i]
+        DELAY_DATA.append(d)
+
+    return (round(np.mean(DELAY_DATA), 4))
+
+df = pd.DataFrame(columns=['mu', 'lamda', 'delay'])
+lamda_range = np.arange(1, 3, 0.1)
+mu_range = np.arange(1,3,0.1)
+i = 0
+for mu in mu_range:
+    for lamda in lamda_range:
+        df.loc[i] = [mu, lamda, average_delay(lamda, mu)]
+        i+=1
+```
+
+![Delay vs Service Rate](/images/post9/delay_vs_service_rate.png "Delay vs Service Rate")
+
+If we look at the plot, we can see that the average delay is flat surface indicating low delay wherever packet arrival 
+rate (lambda) is lower than service rate (mu). Delay shoots up whenever the service rate is lower than the Arrival rate,
+as indicated by the rising surface. 
+
+
 ## Conclusion
-In this blog, we looked at few simple toy models simulating SIS/SIR epidemic models. The main idea was to showcase the
-power of Discrete Event Simulation(DES) for validating ideas. In future, we will use this for modeling certain network
-related problems.
+In this blog, we covered some fundamental concepts of Discrete event simulation. Then we applied that to simulate M/M/1 
+queuing model. We will try to cover event graphs and model a simple Automatic Repeat Request(ARQ) protocol in a future post.
+
 
 ## References
-- [A First Course in Network Science](https://www.amazon.com/First-Course-Network-Science/dp/1108471137)
-- [Compartmental models in epidemiology](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology)
+- [A Computer Simulation](https://www.amazon.com/Computer-Simulation-Foundational-Approach-Information/dp/1498726828)
+- [EVALUATION OF METHODS USED TO DETECT WARM-UP
+PERIOD IN STEADY STATE SIMULATION](https://informs-sim.org/wsc04papers/080.pdf)
+- [Introduction to Queueing Theory and
+Stochastic Teletraffic Models](https://arxiv.org/pdf/1307.2968.pdf)
+- [STOCHASTIC MODELING OF TRAFFIC PROCESSES](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.47.1817&rep=rep1&type=pdf)
