@@ -3,228 +3,219 @@ layout: post
 title:  Fundamentals of Discrete Event Simulation(DES)
 ---
 ## Introduction
-In last blog we looked at SIS/SIR epidemic modeling using Discrete event simulation. In this post we will cover some 
-more fundamental concepts of Discrete Event Simulation. 
+In the last blog, we looked at SIS/SIR epidemic modeling using Discrete event simulation. This post will cover some 
+more fundamental concepts of Discrete Event Simulation. To get started, let's look at an elementary example.
 
+Assume that we want to estimate the probability of observing the head in an experiment of tossing a coin. We know that
+if the coin is not biased, then the likelihood of getting a head is `1/2`. We also know that if I toss the coin two 
+or three times, we may not get exactly `1/2`. We expect that if we keep tossing the coin for a very long
+time, the average probability of getting heads will converge to `1/2`.
 
-
-
-### SIS Model
-In case of SIS, the main assumption is that an infected person can get infected again after recovering. The state 
-transition diagram looks like:
-
-![SIS State Transition](/images/post8/sis_model.png "SIS Model")
-
-- $\beta$ is the probability of transitioning from `Susceptible(S)` to `Infected(I)`
-- $\mu$ is the probability of transitioning from `Infected(I)` to `Susceptible(S)`
-
-
-### SIR Model
-In case of SIR, the main assumption is that an infected person can not get infected again. The state transition diagram
-looks like:
-
-![SIR State Transition](/images/post8/sir_model.png "SIR Model")
-
-- $\beta$ is the probability of transitioning from `Susceptible(S)` to `Infected(I)`
-- $\mu$ is the probability of transitioning from `Infected(I)` to `Recovered(R)`
-
-
-## SIS Simulation
-
-We will have a generic [Simulation](https://gist.github.com/Dipsingh/50bcfbacba365c23a5111ec89144c335) class to help model both models, which takes state transition functions as an argument 
-and handles various state transitions as the simulation run.
-
-### Generate the Initial Graph
-
-Here is a random graph of 30 Nodes and 60 edges.
+#### Experiment
+So let's run the experiment `1000` times of tossing the coin, and we get `0.49` as the probability of getting head,
+which is very close to our expectation of `1/2`.
 
 ```python
-import matplotlib.pyplot as plt
-import networkx as nx
 import random
-import simulation as sm
+import numpy as np
+n = 1000
+observed = []
 
-G = nx.gnm_random_graph(30, 60)
-pos=nx.layout.spring_layout(G)
-nx.draw(G, pos=pos)
+for i in range(n):
+    outcome = random.choice(['Head', 'Tail'])
+    if outcome == 'Head':
+        observed.append(1)
+    else:
+        observed.append(0)
+
+print("Prob = ", round(np.mean(observed), 2))
+
+Prob =  0.49 #Output
 ```
-
-![Initial_Graph](/images/post8/initial_graph.png "Initial Graph")
-
-
-### Initial State and State Transition Functions
-
-Initial state function creates a dictionary of nodes with initial state set to `S` for all nodes and one random node is
-set to state `I`. The function returns a dictionary which will be passed to Simulation class to set that as an attribute
-to all the nodes.
+ 
+Let's take a deeper look and see how the running mean was converging as the number of tosses increased.
 
 ```python
-def initial_state(G):
-    state = {}
-    for node in G.nodes:
-        state[node] = 'S'
+n = 1000
+observed = []
+
+for i in range(n):
+    outcome = random.choice(['Head', 'Tail'])
+    if outcome == 'Head':
+        observed.append(1)
+    else:
+        observed.append(0)
+
+cum_observed = np.cumsum(observed)
+moving_avg = []
+for i in range(n):
+    moving_avg.append(cum_observed[i] / (i+1))
     
-    patient_zero = random.choice(list(G.nodes))
-    state[patient_zero] = 'I'
-    return state
-```
+x = np.arange(0, len(moving_avg), 1)
 
-State Transition function assumes probability of 10% for both $\beta$ and $\mu$.
+plt.plot(x, moving_avg)
+plt.axhline(0.5, linewidth=2, color='black')
+plt.title("Running Mean", fontsize=16)
+plt.xlabel("Number of Tosses", fontsize=14)
+plt.ylabel("Probabilty of Heads", fontsize=14)
+```
+![Rnning Mean](/images/post9/running_mean.png "Running Mean of Tosses")
+
+First, we can observe how the mean fluctuated widely around `0.5` but converged as the number of iterations increased. 
+
+So what we have done so far is that we ran a single experiment of tossing coin 1000 times and observed that it converges 
+around 0.5. Now let's repeat the experiment 1000 times with 10000 tosses in each experiment.
 
 ```python
-MU = 0.1
-BETA = 0.1
+for i in range(1000):
+    n = 10000
+    observed = []
 
-def state_transition(G, current_state):
-    next_state = {}
-    for node in G.nodes:
-        if current_state[node] == 'I':
-            if random.random() < MU:
-                next_state[node] = 'S'
-        else: # current_state[node] == 'S'
-            for neighbor in G.neighbors(node):
-                if current_state[neighbor] == 'I':
-                    if random.random() < BETA:
-                        next_state[node] = 'I'
+    for i in range(n):
+        outcome = random.choice(['Head', 'Tail'])
+        if outcome == 'Head':
+            observed.append(1)
+        else:
+            observed.append(0)
 
-    return next_state
+    cum_observed = np.cumsum(observed)
+    moving_avg = []
+    for i in range(n):
+        moving_avg.append(cum_observed[i] / (i+1))
+
+    x = np.arange(0, len(moving_avg), 1)
+
+    plt.plot(x, moving_avg)
+    plt.axhline(0.5, linewidth=2, color='black')
+    plt.title("Running Mean", fontsize=16)
+    plt.xlabel("Number of Tosses", fontsize=14)
+    plt.ylabel("Probabilty of Heads", fontsize=14)
 ```
+![10K Running Mean](/images/post9/10k_running_mean.png "10K Running Mean of Tosses")
 
-Then we pass both functions and initialize our simulation
+We can observe how each experiment in the initial start fluctuated and then later converged, similar to what we observed
+during a single experiment.
+
+### Law of Large Numbers
+
+What we observed is an illustration of the Law of Large numbers. The Law of Large Numbers says that the average of the results
+obtained from a large number of trials should be close to the Expected Value and tends to become closer to the expected
+value as more trials are performed.
+
+
+### Transient and Steady Phase
+
+Based on the above results, we can observe that each experiment goes through two phases, i.e., transient
+and steady. In the transient state, output varied wildly, and later, it converged in the steady phase. So while running
+simulation, it's essential to run the experiments long enough to capture the Steady phase and not end it
+soon while it's in the transient phase. Transient phase is also sometimes referred as the warm up period.
+
+![Transient_Steady Phase](/images/post9/transient_steady.png "Transient and Steady Phases")
+
+This will bring the question, how do we know how long is the transient phase, so we can discard the results observed
+in that state and only capture the steady state results. There are several method's to detect that which you can refer in
+the paper [EVALUATION OF METHODS USED TO DETECT WARM-UP
+PERIOD IN STEADY STATE SIMULATION](https://informs-sim.org/wsc04papers/080.pdf). The simplest and yet an effective method
+is the Welch's method.
+
+#### Welch's Method
+
+In plain English, Welch's method says the following:
+- Do Several Runs of the Experiment.
+- Calculate the average of each observation across the runs.
+- To smooth it further, calculate the moving average.
+- Look at the graph visually and estimate the steady point from the graph.
+
+![Welch's Method](/images/post9/welch_method.png "Welch Method")
+
 
 ```python
-sim = sm.Simulation(G, initial_state, state_transition, name='SIS model')
+n = 1000
+Y = np.zeros(shape = (5, n))
+
+def return_observations():
+    observed = []
+
+    for i in range(n):
+        outcome = random.choice(['Head', 'Tail'])
+        if outcome == 'Head':
+            observed.append(1)
+        else:
+            observed.append(0)
+
+    cum_observed = np.cumsum(observed)
+    moving_avg = []
+    for i in range(n):
+        moving_avg.append(cum_observed[i] / (i+1))
+
+
+    return moving_avg
+
+for i in range(5):
+    Y[i] =  return_observations()
+
+Z = []
+for i in range(n):
+    Z.append(np.sum(Y[:, i])/ 5)
+
+x = np.arange(0, n, 1)
+plt.plot(x, Y[0], 'k--', linewidth=0.5, label="Y0")
+plt.plot(x, Y[1], 'k--', linewidth=0.5, label="Y1")
+plt.plot(x, Y[2], 'k--',  linewidth=0.5,label="Y2")
+plt.plot(x, Y[3],  'k--', linewidth=0.5,label="Y3")
+plt.plot(x, Y[4],  'k--', linewidth=0.5,label="Y4")
+
+plt.plot(x, Z, linewidth=2,color='tab:red', label="Z")
+plt.title("Running Mean", fontsize=16)
+plt.xlabel("Number of Tosses", fontsize=14)
+plt.ylabel("Probabilty of Heads", fontsize=14)
+plt.legend()
 ```
+![Welch's Plot](/images/post9/welch_plot.png "Welch Plot")
 
-### Initial state
+In the above plot, Red line is the average of the five runs at each iteration, and we can see that it's steady somewhere between
+300-400 iterations.
 
-Let's draw the initial state before we kick of the simulation. We can see one node is infected and everyone else is in 
-`S` state.
+### Stochastic Process
 
-```python
-sim.draw()
-```
+Stochastic is a fancy word for Randomness. We observe Randomness every day in our life. The question is, are they random? 
+Or is it because we lack a complete understanding of that process?. Without getting philosophical, to keep math simple, 
+we attribute anything that we don't understand to Randomness. Randomness can be known as different terms in TimeSeries 
+analysis; we called that noise.
 
-![Initial_State](/images/post8/initial_state.png "Initial State")
-
-
-### Simulation Run and Plot
-
-Now let's run the simulation for 30 steps and see what's the final state looks like after that.
-
-```python
-sim.run(30)
-sim.draw()
-```
-![SIS_30_State](/images/post8/sis_30_steps.png "SIS: 30 steps")
-
-We can see we have lot more nodes infected but not every node is infected. If we plot the states, we can see how both 
-states transitioned. It seems like after 16 steps, system is running into a somewhat steady state.
-
-```python
-sim.plot()
-```
-
-![SIS_30_plot](/images/post8/sis_30_steps_plots.png "SIS: 30 steps plot")
+Coming back to the topic, A stochastic process is a collection of random variables whose observations are discrete
+points in time. At every instant of time, the state of the process is random. Since time is fixed, we can think of
+the state of the process as a random variable at that specific instant. At the time $t_{i}$, the state of the process
+is determined by performing a random experiment whose results are from the set of $\omega$. At the time $t_{j}$, the same
+experiment is performed to determine the next state of the process. This is the essence of the stochastic process.
 
 
-### What if we change the infection probability to be a bit higher.
+![Stochastic Process](/images/post9/stochastic_process.png "Stochastic Process")
 
-Let's increase the $\beta$ probability to be 40% this time. So more people should be infected more and less people will 
-be coming into a `S` state. 
+In the above diagram, the Sample space on the left is the set of outcomes that are mapped to a time function. The time
+functions are mixed to get sample reality.
 
-```python
-MU = 0.1
-BETA = 0.40
+If the above seems mouthful, hopefully, the following example will help. The Marvels Multiverse universe is the best 
+analogy that always comes to mind while thinking of the Stochastic Process. Remember this scene from Infinity Wars, 
+where Doctor Strange looked at 14 million different realities, and in only one reality, the outcome of Avengers winning
+was one.   
 
-sim = sm.Simulation(G, initial_state, state_transition, name='SIS model')
-sim.draw()
+![Infinity Wars](/images/post9/infinity_scene.png "Infinity Wars")
 
-```
-![SIS_initial state high](/images/post8/initial_state_sis_high.png "SIS: High Probability")
+So tying this back to Stochastic Process, In this case, The set of outcomes were two, Avengers Winning and 
+Thanos Winning. This is a sample space of outcomes. Each outcome is related to some set of actions performed. Those actions
+are mixed to form a sample reality.
 
+Another key concept is that a Stochastic process can have two means, Vertical mean, also known as Ensemble mean.
+Ensemble mean is calculated vertically over all realities. A horizontal mean is the mean of a single sample reality.
+As you can notice, getting an Ensemble mean requires running all possibilities that may or may not be feasible. But
+the good thing is that a horizontal mean can be used to approximate vertical mean.
 
-After 30 steps, we have lot more nodes infected.
-```python
-sim.run(30)
-sim.draw()
-```
-![SIS_30_State High](/images/post8/sis_30_steps_high.png "SIS: 30 steps High")
+A dynamic system can be viewed as a Stochastic Process. When system is simulated, each simulation run represents an
+evolution of the system along the path in the state space. The data generated and collected along the trajectory
+in the state space is used to estimate the measurements of interest. 
 
-We can see that proportions of Infected nodes rise quickly and the system is staying that way as people are getting
-more infected than the rate of recovery.
-```python
-sim.plot()
-```
-![SIS_30_plot high](/images/post8/sis_30_steps_plots_high.png "SIS: 30 steps plot High")
-
-
-## SIR Simulation
-
-The initial parts of graph initialization etc. will remain the same. So we will skip those steps.
-
-### Initial State and State Transition Functions
-
-The initial state function will remain the same. The main difference will be in the state transition function. If a node
-is Infected, then it will transition to Recovered Sate with probability $\mu$ rather than transitioning back to Susceptible(S)
-state.
-
-```python
-def state_transition(G, current_state):
-    MU = 0.1
-    BETA = 0.1
-    next_state = {}
-    for node in G.nodes:
-        if current_state[node] == 'I':
-            if random.random() < MU:
-                next_state[node] = 'R'
-        elif current_state[node] == 'S':
-            for neighbor in G.neighbors(node):
-                if current_state[neighbor] == 'I':
-                    if random.random() < BETA:
-                        next_state[node] = 'I'
-
-    return next_state
-```
-
-Initializing the simulation.
-
-```python
-sim = sm.Simulation(G, initial_state, state_transition, name='SIR model')
-```
-
-### Initial state
-
-Let's draw the initial state before we kick of the simulation. We can see one node is infected and everyone else is in 
-`S` state.
-
-```python
-sim.draw()
-```
-
-![SIR Initial_State](/images/post8/sir_initial_state.png "SIR: Initial State")
-
-
-### Simulation Run and Plot
-
-Now let's run the simulation for 30 steps and see what's the final state looks like after that.
-
-```python
-sim.run(30)
-sim.draw()
-```
-![SIR_30_State](/images/post8/sir_30_steps.png "SIR: 30 steps")
-
-We can see as the recovered state goes high, infections are coming low as that proportion of population is not getting 
-infected anymore.
-
-```python
-sim.plot()
-```
-
-![SIR_30_plot](/images/post8/sir_30_steps_plots.png "SIR: 30 steps plot")
-
-
+A Dynamic system is called Ergodic system if the Horizontal mean converges to the Vertical mean.
 
 ## Conclusion
 In this blog, we looked at few simple toy models simulating SIS/SIR epidemic models. The main idea was to showcase the
