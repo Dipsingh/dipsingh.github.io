@@ -177,6 +177,10 @@ plt.legend()
 In the above plot, Red line is the average of the five runs at each iteration, and we can see that it's steady somewhere between
 300-400 iterations.
 
+With this many coin tosses, I can't let this go
+
+![Toss a Coin to your Witcher](/images/post9/toss-a-coin-witcher.gif "Toss a Coin to your Witcher")
+
 ### Stochastic Process
 
 Stochastic is a fancy word for Randomness. We observe Randomness every day in our life. The question is, are they random? 
