@@ -121,7 +121,7 @@ is the Welch's method.
 
 #### Welch's Method
 
-In plain English, Welch's method says the following:
+In simple words, Welch's method says the following:
 - Do Several Runs of the Experiment.
 - Calculate the average of each observation across the runs.
 - To smooth it further, calculate the moving average.
