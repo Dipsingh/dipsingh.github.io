@@ -294,7 +294,7 @@ queuing model. We will try to cover event graphs and model a simple Automatic Re
 
 
 ## References
-- [A Computer Simulation](https://www.amazon.com/Computer-Simulation-Foundational-Approach-Information/dp/1498726828)
+- [Computer Simulation: A Foundational Approach Using Python](https://www.amazon.com/Computer-Simulation-Foundational-Approach-Information/dp/1498726828)
 - [EVALUATION OF METHODS USED TO DETECT WARM-UP
 PERIOD IN STEADY STATE SIMULATION](https://informs-sim.org/wsc04papers/080.pdf)
 - [Introduction to Queueing Theory and
