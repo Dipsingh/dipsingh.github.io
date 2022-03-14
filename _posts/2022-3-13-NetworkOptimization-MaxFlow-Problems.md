@@ -12,8 +12,10 @@ Linear Programming and Optimization theory background.
 
 
 ### Problem Setup
-Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management. 
-RSVP-TE allows us to find paths if there is not enough room on the shortest path.
+Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management.  
+RSVP-TE allows us to find paths if there is not enough room on the shortest path, which removes the restriction that the 
+flows need to travel on the shortest path only.
+
  
 In the below picture, we can see the Capacity and IGP cost of the links. From a graph representation perspective, 
 we will use `MultiDigraph`. `Multi` to represent multiple links like between `lax<-->iad`, and `Digraph` for capturing the 
