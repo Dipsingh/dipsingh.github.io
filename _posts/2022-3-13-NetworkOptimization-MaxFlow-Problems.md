@@ -85,7 +85,7 @@ LSP Name: lsp_sea1_iad1_8, Traffic: 5.0Gbps, Path: ['sea1-to-ord1', 'ord1-to-lga
 LSP Name: lsp_sea1_iad1_9, Traffic: 5.0Gbps, Path: ['sea1-to-ord1', 'ord1-to-lga1', 'lga1-to-iad1']
 LSP Name: lsp_sea1_iad1_10, Traffic: 5.0Gbps, Path: ['sea1-to-ord1', 'ord1-to-lga1', 'lga1-to-iad1']
 ```
-At this point we have completed the initial setup of our steady state.
+At this point we have completed the initial setup.
 
 ## Problem Statement
 
