@@ -353,6 +353,8 @@ cost constraint. Then we looked at the application of the Network Simplex algori
 with the Minimum Cost as a constraint. Then we used the results and applied them to a simulation model of an RSVP routed 
 network to validate.
 
+I would love to hear from anyone who has some other ways to solve problems of this nature and what methods they used.
+
 ## References
 - [15.082J Network Optimization, The network simplex algorithm](https://ocw.mit.edu/courses/sloan-school-of-management/15-082j-network-optimization-fall-2010/lecture-notes/MIT15_082JF10_lec16.pdf)
 - [Dinitz Algorithm](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.dinitz.html#networkx.algorithms.flow.dinitz)
