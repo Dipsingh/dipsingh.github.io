@@ -141,7 +141,7 @@ Residual graph showing the amount of bandwidth available for reservation with bl
 is routed.
 ![Residual Graph](/images/post10/residual_graph.png "Residual Graph")
 
-We can see the residual capacity on the links on the graph. 
+We can see the residual capacity of the links on the graph. 
 SEA -> IAD path is 100G links, with 50Gbps getting routed from each SEA router pairs to IAD routers. This leaves us with 
 25Gbps on those paths. Similarity for LAX -> IAD, we have 50Gbps getting routed on each link leaving us with 250Gbps between 
 each router pair (400 * .75 = 300.0, 300 - 50 = 250).
