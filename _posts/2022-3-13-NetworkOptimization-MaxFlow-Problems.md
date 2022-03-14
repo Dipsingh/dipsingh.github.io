@@ -200,7 +200,7 @@ was not connected to the source, we would have terminated at this step. The colo
 We can see the edge with a minimum capacity of 75 between  `sead` and `iadd.` We will use that to augment the path in the 
 next step.
 
-![Level Network](/images/post10/residual_network1.png "Level Network")
+![Level Network](/images/post10/level_network1.png "Level Network")
 
 Augmented Path after applying 75Gbps on the path.
 
