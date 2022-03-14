@@ -176,7 +176,7 @@ Algorithm Steps:
 
     1) Initialize a flow with zero value, fuv=0
     2) Construct a residual network N′ from that flow
-    3) Find the level network L using BFS; if t is not in the level network, then break and output the flow
+    3) Find the level network L using BFS; if destination is not in the level network, then break and output the flow
     4) Find an augmenting path P in level network L
     5) Augment the flow along the edges of path P, which will give a new residual network
     6) Repeat from point 3 with new residual network 
