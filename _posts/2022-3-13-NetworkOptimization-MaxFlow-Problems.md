@@ -251,8 +251,8 @@ Network Simplex requires us to add an attribute called `demand` with an integer 
 means that the node wants to send flow, a positive demand means that the node wants to receive flow. 
 
 Now the problem is that network simplex tries to solve whether a given demand in the network can be satisfied or not. 
-But in our case, we don't know the demand. We will iteratively set demand and keep solving for it until we get an 
-exception that the network can not satisfy the demand. This allows us to get closer to our maximum demand, which can be 
+But in our case, we don't know the demand. So we will iteratively set a demand and keep solving for it until we get an 
+exception that the network can not satisfy the demand anymore. This allows us to get closer to the maximum demand, which can be 
 satisfied using the minimum cost.
 
 ```python
