@@ -337,6 +337,14 @@ model.interfaces.plot_interface_utilization()
 ```
 ![Interface Util 150](/images/post10/interface_util_150.png "Interface Utilization")
 
+We can extend this problem where we may want to find how much more traffic can be sent on a network between various locations.
+
+High level steps:
+
+    1) Solve it from various Src locations to a single Sink location.
+    2) Find the Maximum flow supported.
+    3) Route the demands in the simulation model and then get a new residual graph.
+    4) Repeat the steps for other sink locations.
 
 ## Conclusion
 In this post, we went through some algorithms that can help us find how much more bandwidth we can carry between locations 
