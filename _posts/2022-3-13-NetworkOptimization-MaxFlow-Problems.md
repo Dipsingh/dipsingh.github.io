@@ -36,9 +36,10 @@ sea,iad,100
 iad,sea,100
 ```
 
-Also assume that 75% of the link capacity is available for RSVP, and the maximum size of a given RSVP LSP can not be 
-more than 5Gbps. This means that if the RSVP LSP between, let's say `sea1 - iad1` needs to carry 50Gbps of traffic, 
-we will have at least ten parallel RSVP LSPs between them.
+Also, assume that 75% of the link capacity is available for RSVP, and the maximum size of a given RSVP LSP can not be 
+more than 5Gbps. This means that if the RSVP LSP needs to carry more than 5Gbps, it will be split into multiple LSPs. 
+For instance, Let's say the traffic between `lax-iad` needs to carry 50Gbps of traffic; we will have at least ten parallel 
+RSVP LSPs between them with a max size of LSPs around 5Gbps.
 
 We will need some help with simulation tools to replicate the current state, including the topology and routing the current 
 demands between locations via LSPs.
