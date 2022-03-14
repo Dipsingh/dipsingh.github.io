@@ -57,7 +57,7 @@ creation and deletion of parallel LSPs are dynamic.
 
 ![LSP Behavior](/images/post10/lsp_behav.png "LSP Routing Behavior")
 
-After building the routing state, if I look at the Interface utilization and Routing state, I see that RSVP LSPs between
+After simulating the current state, if I look at the Interface utilization and Routing state, I see that RSVP LSPs between
 `SEA -> IAD` are using the  `SEA -> ORD -> LGA -> IAD` as there is enough bandwidth on the shortest path to satisfy the 
 current demands. The same thing applies to `LAX -> IAD.`
 
