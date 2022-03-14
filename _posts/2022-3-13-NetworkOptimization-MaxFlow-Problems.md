@@ -239,7 +239,7 @@ What if we want to see the demands satisfied with the Minimum Cost path. Also, l
 problem by adding another demand location from ORD -> IAD. We will assume that both ORD and SEA demands are split equally 
 for simplicity. 
 
-Our problem now is finding the Maximum flow that the network can satisfy from both ORD and SEA to IAD.
+Our problem now is to find the Maximum flow that the network can satisfy from both ORD and SEA to IAD.
 
 ### Networkx Simplex
 
