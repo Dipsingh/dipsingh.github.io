@@ -319,8 +319,8 @@ lga1-to-iad1 73.65%
 lga2-to-iad2 73.65%
 ```
 
-let's see the results by Routing 75 per router (150 aggregate vs 175 aggregate). We can see that our interface utilization
-is close to our target thresholds now.
+Let's see the results for Routing 75 per router (150 aggregate vs 175 aggregate). In this case, We can see that our interface utilization
+is close to our target thresholds of 75%.
 
 ```python
 model.demands.decrease_absolute("sea","iad", 25)
