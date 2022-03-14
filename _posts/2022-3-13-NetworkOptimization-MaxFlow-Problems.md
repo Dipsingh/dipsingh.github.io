@@ -211,7 +211,7 @@ edges and create a new Level network running BFS.
 
 ![Level Network 2](/images/post10/bfs_network2.png "Level Network second phase")
 
-We will keep repeating these steps until Dst Node is not reachable from Src Node. I hope the above steps gave some 
+We will keep repeating these steps until Destination Node is not reachable from Source Node. I hope the above steps gave some 
 insights into how the algorithms work.  
 
 Now let's just do the easy way and use the algorithm to see the Max Flow for our case. It turns out that 200Gbps is the 
