@@ -347,7 +347,7 @@ High level steps:
     4) Repeat the steps for other sink locations.
 
 ## Conclusion
-In this post, we went through some algorithms that can help us find how much more bandwidth we can carry between locations 
+In this post, we went through few algorithms that can help us find how much more bandwidth we can carry between locations 
 on top of existing traffic. We looked at Dinitiz's algorithm for the Maximum Flow cost without worrying about the minimum 
 cost constraint. Then we looked at the application of the Network Simplex algorithm, which tries to satisfy all the demands 
 with the Minimum Cost as a constraint. Then we used the results and applied them to a simulation model of an RSVP routed 
