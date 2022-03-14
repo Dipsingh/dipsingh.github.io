@@ -41,7 +41,7 @@ more than 5Gbps. This means that if the RSVP LSP needs to carry more than 5Gbps,
 For instance, Let's say the traffic between `lax-iad` needs to carry 50Gbps of traffic; we will have at least ten parallel 
 RSVP LSPs between them with a max size of LSPs around 5Gbps.
 
-We will need some help with simulation tools to replicate the current state, including the topology and routing the current 
+We will require some help from simulation tools to replicate the current network state, including the topology and routing the current 
 demands between locations via LSPs.
 
 ```python
