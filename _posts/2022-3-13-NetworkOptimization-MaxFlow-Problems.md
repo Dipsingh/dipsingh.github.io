@@ -341,7 +341,7 @@ We can extend this problem where we may want to find how much more traffic can b
 
 High level steps:
 
-    1) Solve it from various Src locations to a single Sink location.
+    1) Solve it for various Source to a single Sink location.
     2) Find the Maximum flow supported.
     3) Route the demands in the simulation model and then get a new residual graph.
     4) Repeat the steps for other sink locations.
