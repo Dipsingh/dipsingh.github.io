@@ -4,17 +4,16 @@ title:  Maximum Flow Problems
 ---
 ## Introduction
 In optimization theory, Maximum Flow problems involve finding the maximum flow (or traffic) that can be sent from 
-one place to another, subject to certain constraints. In this post, we will explore Maximum Flow problems and algorithms 
-applied to Networking and what questions they can help answer. 
+one place to another, subject to certain constraints. In this post, we will look at Maximum Flow algorithms 
+applied to Networking and the questions they can help answer. 
 
-The main focus here will be the applied part, and we will only cover the surface of most algorithms as some require a 
+The main focus here will be the applied part, and we will only cover the surface of most algorithms as many of them requires 
 Linear Programming and Optimization theory background.
 
 
-#### Problem Setup
-Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management, which allows us 
-to find the paths if the shortest paths don't have enough capacity to carry the demands. This means that we are not 
-restricted to using only the shortest path.
+### Problem Setup
+Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management. 
+RSVP-TE allows us to find paths if there is not enough room on the shortest path.
  
 In the below picture, we can see the Capacity and IGP cost of the links. From a graph representation perspective, 
 we will use `MultiDigraph`. `Multi` to represent multiple links like between `lax<-->iad`, and `Digraph` for capturing the 
