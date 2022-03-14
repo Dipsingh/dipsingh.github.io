@@ -157,7 +157,7 @@ looks like below:
 
 ## Dinitz's Algorithm
 
-In this space, we have a variety of algorithms available to find the Maximum Flow. Some of the well-known algorithms are 
+There are variety of algorithms available to find the Maximum Flow. Some of the well-known algorithms are 
 like Ford-Fulkerson and Edmonds-Karp. Another algorithm for finding Max flow is Dinitz's algorithm. It's also known as 
 Dinic's algorithm because [Shimon Even](https://en.wikipedia.org/wiki/Shimon_Even) mispronounces the author's name while 
 popularizing the algorithm.
