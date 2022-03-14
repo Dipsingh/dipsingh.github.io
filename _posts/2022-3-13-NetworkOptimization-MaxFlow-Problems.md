@@ -3,9 +3,9 @@ layout: post
 title:  Maximum Flow Problems
 ---
 ## Introduction
-In optimization theory, Maximum Flow problems involve finding the most amount of flow (or traffic) that can be sent from 
-one place to another, subject to some constraints.  This problem should be familiar to most network engineers.  In this post, 
-we will explore some of the Max Flow problems and algorithms and what questions they can help in answering that. 
+In optimization theory, Maximum Flow problems involve finding the maximum flow (or traffic) that can be sent from 
+one place to another, subject to certain constraints. In this post, we will explore Maximum Flow problems and algorithms 
+applied to Networking and what questions they can help answer. 
 
 The main focus here will be the applied part, and we will only cover the surface of most algorithms as some require a 
 Linear Programming and Optimization theory background.
