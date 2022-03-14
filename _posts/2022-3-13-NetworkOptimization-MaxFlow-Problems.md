@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Network Optimization: Maximum Flow Problems
+title:  Maximum Flow Problems
 ---
 ## Introduction
 In optimization theory, Maximum Flow problems involve finding the most amount of flow (or traffic) that can be sent from 
