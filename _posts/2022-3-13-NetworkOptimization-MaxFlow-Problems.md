@@ -225,8 +225,9 @@ R.graph["flow_value"]
 ##200
 ```
 
-If we plot how the Max flow of 200 was distributed to various edges, we can see that `SEA -> IAD` flows are not on the shortest 
-path. They are taking `SEA -> ORD -> LAX -> IAD` vs taking `SEA -> ORD -> LGA -> IAD`.
+The returned graph R edges have an attribute `flow`, which tells the flow assigned to each edge. If we plot how the 
+Maximum flow of 200 is distributed to various edges, we can see that `SEA -> IAD` flows are not on the shortest path. 
+They are taking `SEA -> ORD -> LAX -> IAD` vs taking `SEA -> ORD -> LGA -> IAD`.
 
 ![Flow assingment](/images/post10/max_flow_graph.png "Max Flow assignment")
 
