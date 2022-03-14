@@ -12,12 +12,12 @@ Linear Programming and Optimization theory background.
 
 
 #### Problem Setup
-Assume that we have a small network connecting a few locations in the US and using RSVP-TE for routing, which allows us 
+Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management, which allows us 
 to find the paths if the shortest paths don't have enough capacity to carry the demands. This means that we are not 
-restricted to strictly using only the shortest path.
+restricted to using only the shortest path.
  
-In the below picture, we can see the Capacity and IGP cost of the links. From a graph representation of this topology, 
-we will use `MultiDigraph`. `Multi` to represent multiple links between `lax` and `iad` and `Digraph` for capturing the 
+In the below picture, we can see the Capacity and IGP cost of the links. From a graph representation perspective, 
+we will use `MultiDigraph`. `Multi` to represent multiple links like between `lax<-->iad`, and `Digraph` for capturing the 
 unidirectional behavior of RSVP LSPs.
 
 ![Backbone Network](/images/post10/backbone_topo.png "Backbone Topology")
@@ -35,7 +35,7 @@ sea,iad,100
 iad,sea,100
 ```
 
-We will assume that 75% of the link capacity is available for RSVP, and the maximum size of a given RSVP LSP can not be 
+Also assume that 75% of the link capacity is available for RSVP, and the maximum size of a given RSVP LSP can not be 
 more than 5Gbps. This means that if the RSVP LSP between, let's say `sea1 - iad1` needs to carry 50Gbps of traffic, 
 we will have at least ten parallel RSVP LSPs between them.
 
