@@ -164,7 +164,8 @@ popularizing the algorithm.
 
 The algorithm has two main constraints which are kind of obvious to any network engineer:
  
-**Capacity Constraint**: The flow on a link shouldn't exceed its capacity. Formally $f_{uv} < c_{uv}$
+**Capacity Constraint**: The flow on a link shouldn't exceed its capacity. Formally $f_{uv} < c_{uv}$.
+
 **Conservation of flow**: The incoming flow sent to a node is the same as an outgoing flow for transit nodes.
 
 The algorithm creates an iterative residual network and finds a level network using Breadth-First Search(BFS). If the 
