@@ -231,10 +231,11 @@ They are taking `SEA -> ORD -> LAX -> IAD` vs taking `SEA -> ORD -> LGA -> IAD`.
 
 ![Flow assingment](/images/post10/max_flow_graph.png "Max Flow assignment")
 
+So we found how much we can send more from SEA to IAD, but the resulting flows are not assigned to the shortest path.
+
 ## Minimum Cost Flow
 
-So we looked at an algorithm to find the Maximum Flow through the network, but the resulting flows were not assigned to 
-the shortest path. Now, what if we want to see the demands satisfied with the Minimum Cost path. Also, let's extend the 
+What if we want to see the demands satisfied with the Minimum Cost path. Also, let's extend the 
 problem by adding another demand location from ORD -> IAD. We will assume that both ORD and SEA demands are split equally 
 for simplicity. 
 
