@@ -14,11 +14,11 @@ Linear Programming and Optimization theory background.
 ### Problem Setup
 Assume that we have a small network connecting a few locations in the US using RSVP-TE for traffic management.  
 RSVP-TE allows us to find paths if there is not enough room on the shortest path, which removes the restriction that the 
-flows need to travel on the shortest path only.
+flows need to travel only on the shortest path.
 
  
 In the below picture, we can see the Capacity and IGP cost of the links. From a graph representation perspective, 
-we will use `MultiDigraph`. `Multi` to represent multiple links like between `lax<-->iad`, and `Digraph` for capturing the 
+we will use `MultiDigraph`. `Multi` to represent multiple links, like between `lax<-->iad`, and `Digraph` for capturing the 
 unidirectional behavior of RSVP LSPs.
 
 ![Backbone Network](/images/post10/backbone_topo.png "Backbone Topology")
@@ -45,16 +45,15 @@ We will require some help from simulation tools to replicate the current network
 demands between locations via LSPs.
 
 ```python
-model = Model.load_model("test_topology.csv")     #Load the topology file
+model = Model.load_model("test_topology.csv")     # Load the topology file
 model.interfaces.initialize_latency()             # Initialize the latency
 model.simulate                                    # Route the Model
 ```
 
-One thing to note is that we will be modeling the proper behavior of LSPs where the LSPs only on the shortest path are 
-carrying the traffic. For example, in this simple square topology, LSPs between 
-`lax1 - iad1` will carry the traffic, and `lax1 - iad2` will remain empty. Also, the creation and deletion of LSPs are dynamic
-based on the traffic being carried between router pairs.
-
+The simulation tool also makes sure it models the behavior of LSPs where only the LSPs with metric equal to the shortest
+path IGP metric carries traffic. For example, LSPs between 
+`lax1 - iad1` will carry the traffic in this simple square topology, and `lax1 - iad2` will remain empty. Also, the 
+creation and deletion of parallel LSPs are dynamic.
 
 ![LSP Behavior](/images/post10/lsp_behav.png "LSP Routing Behavior")
 
