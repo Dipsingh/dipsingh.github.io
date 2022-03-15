@@ -241,7 +241,7 @@ for simplicity.
 
 Our problem now is to find the Maximum flow that the network can satisfy from both ORD and SEA to IAD.
 
-### Networkx Simplex
+### Network Simplex
 
 If you are familiar with linear programming, the first algorithm we learn is Simplex Method. Network Simplex is a 
 restricted version of that applied to graphs. We will skip the details for Network simplex just because we won't do 
