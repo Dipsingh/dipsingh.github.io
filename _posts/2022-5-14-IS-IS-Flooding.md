@@ -191,14 +191,14 @@ We can see that `pdx1-b2-t2-r3` didn't send it back to `pdx1-b2-t1-r1`.
 - T8, T10 - T11: `pdx1-b2-t2-r2` -> `pdx1-b2-t1-r[234]`. We see now `pdx1-b2-t2-r2` sending similar updates to `pdx1-b2-t1-r[234]`
 - T9:  `sea1-b2-t1-r2` -> `pdx1-b2-t1-r2`. Because `pdx1-b2-t1-r2` received the update from `sea1-b2-t1-r2` before it
         gets `pdx1-b2-t2-r2`.`pdx1-b2-t1-r2` will flood this update to T2 Routers.
-- T12: `pdx1-b2-t1-r4` -> `pdx2-b1-t1-r1`
+- T12: `pdx1-b2-t1-r4` -> `sea2-b1-t1-r1`
 
 ![Time events3](/images/post11/ttwo.png "LSP event")  
 
 - T13, T14: `pdx1-b2-t1-r4` -> `pdx1-b2-t2-r[14]`. 
 - T15, T16: `pdx1-b2-t1-r2` -> `pdx1-b2-t2-r[14]`. 
 - T17, T18: `pdx1-b2-t1-r3` -> `pdx1-b2-t2-r[13]`.
-- T19:      `pdx1-b2-t1-r3` -> `pdx2-b1-t1-r2`.
+- T19:      `pdx1-b2-t1-r3` -> `sea2-b1-t1-r2`.
 
 ![Time events3](/images/post11/tthree.png "LSP event")  
 
