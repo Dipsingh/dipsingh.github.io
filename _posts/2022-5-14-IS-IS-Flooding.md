@@ -62,8 +62,8 @@ will need to transmit three fragments. The LSP-IDs of each fragment will be `000
 and `0000.0000.0013-02`. These LSP fragments are treated independently, except there are specific rules around fragment 
 zero that an IS-IS speaker has to obey. For example, IS-IS does not care if any non-zero fragment is lost but if a 
 Fragment Zero is not present, then the entire set of fragments will be declared invalid. There are some other considerations 
-one needs to be aware of how an IS-IS implementation packs the updates across multiple fragments and whether a topology 
-change will cause an unnecessary churn due to how updates get packed across fragments.
+one needs to be aware of, like how an IS-IS implementation packs the updates across multiple fragments and whether a topology 
+change will cause an unnecessary churn due to updates getting packed differently across fragments.
 
 Below is an output of how the LSDB looks like:
 ```
