@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  IS-IS Flooding
+title:  IS-IS Average Flooding Rate
 ---
 ## Introduction
 In recent years, IGPs has become interesting again and lot of work has been done to scale IGPs for dense topologies, 
