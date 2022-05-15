@@ -58,8 +58,8 @@ so it doesn't have a built-in fragmentation function for larger MTU-sized packet
 fragmentation support itself.
 
 So, If an IS-IS router with LSP-ID `0000.0000.0013` has to originate a 4000 byte LSP and its IS-IS MTU is 1492 bytes. It 
-will need to transmit three fragments. The LSP-IDs of each fragment will be `0000.0000.0013.00`, `0000.0000.0013.01`, 
-and `0000.0000.0013.02`. These LSP fragments are treated independently, except there are specific rules around fragment 
+will need to transmit three fragments. The LSP-IDs of each fragment will be `0000.0000.0013-00`, `0000.0000.0013-01`, 
+and `0000.0000.0013-02`. These LSP fragments are treated independently, except there are specific rules around fragment 
 zero that an IS-IS speaker has to obey. For example, IS-IS does not care if any non-zero fragment is lost but if a 
 Fragment Zero is not present, then the entire set of fragments will be declared invalid. There are some other considerations 
 one needs to be aware of how an IS-IS implementation packs the updates across multiple fragments and whether a topology 
