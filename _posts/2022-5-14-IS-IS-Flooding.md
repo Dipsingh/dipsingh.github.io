@@ -280,13 +280,9 @@ df = df[['time', 'lsp_id','sequence']]            ## Capture relevant columns
 df = df.set_index(['time', 'lsp_id'])             ## Set Time and LSP ID as Seq Number
 
 ## Take a groupby by LSP_ID and take a diff on the Seq Nummber. Unstack the columns and Fill NAN with zeros.
-tmp = df.groupby(level=1)['sequence'].diff().unstack(level=1).fillna(0)
+lsp_avg = df.groupby(level=1)['sequence'].diff().unstack(level=1).fillna(0)
 ## Divide it by 300 seconds to get a Average LSP Flooding per second.
-fig, ax = plt.subplots(figsize=(15,8))
-plt.plot(tmp.sum(axis=1).iloc[1:]/300, linestyle='--', marker='o', label='Avg Flooding 5min samples')
-plt.legend()
-fig.autofmt_xdate()
-plt.ylabel("LSP Per Second",fontsize=14)
+lsp_avg = lsp_avg.sum(axis=1).iloc[1:]/300
 ```
 
 The graph has about .5 LSPs per second, which is not a lot, but this is a toy example. Data for real busy networks will 
