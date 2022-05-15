@@ -31,14 +31,14 @@ pdx1-b2-t2-r1 with LSP ID of 0000.0000.0009 is highlighted as t2-r1(09) under pd
 
 Let's do a brief IS-IS refresher. We know that IS-IS Packets are of following types:
 
-1) IS-IS Hello (IIHs)
-    - LAN Level1 IIH
-    - LAN Level2 IIH
-    - P2P IIH
-2) Link state Protocol Data Unit  (LSPs)
-3) Sequence Number Protocol Data Unit (SNPs)
-    - Partial Sequence Number Protocol Data Unit (PSNP)
-    - Complete Sequence Number Protocol Data Unit (CSNP)
+1. IS-IS Hello (IIHs)
+   - LAN Level1 IIH
+   - LAN Level2 IIH
+   - P2P IIH
+2. Link state Protocol Data Unit  (LSPs)
+3. Sequence Number Protocol Data Unit (SNPs)
+   - Partial Sequence Number Protocol Data Unit (PSNP)
+   - Complete Sequence Number Protocol Data Unit (CSNP)
 
 IS-IS hello packets are for IS-IS adjacency management, and we will skip them here.Our focus will be on P2P 
 adjacencies and respective behavior of SNPs PDUs.
@@ -216,7 +216,7 @@ Ack events (PSNPs) for both LSP events.
 </iframe>
 
 
-## Compute Average Flooding Rate
+## Computing Average Flooding Rate
 If you are running IS-IS with dense topologies and worry about Flooding, then the first thing you would want is to measure 
 how much Flooding is happening in the network. This is pretty straightforward to do so. What we have to do is:
 
