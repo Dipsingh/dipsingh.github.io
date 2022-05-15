@@ -183,7 +183,7 @@ t-shark to convert them into CSV for analysis. The captures are taken on the rou
 
 <iframe src="/images/post11/lsp_update.html"
     sandbox="allow-same-origin allow-scripts"
-    width="80%"
+    width="700"
     height="500"
     scrolling="yes"
     seamless="seamless"
