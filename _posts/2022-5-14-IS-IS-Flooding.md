@@ -3,9 +3,9 @@ layout: post
 title:  IS-IS Average Flooding Rate
 ---
 ## Introduction
-In recent years, IGPs has become interesting again and lot of work has been done to scale IGPs for dense topologies, 
-making IGPs an interesting area again. In this blog post, we will look at IS-IS Flooding and how we can measure the 
-flooding rate. 
+In recent years, a lot of work has been done to scale IGPs for dense topologies, making IGPs again an interesting area. 
+In this blog post, we will look at IS-IS Flooding and how we can measure the flooding rate, and in the future post explore 
+Dynamic Flooding and Area Proxy.
 
 
 ### Topology Setup
