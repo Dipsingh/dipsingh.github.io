@@ -29,7 +29,7 @@ pdx1-b2-t2-r1 with LSP ID of 0000.0000.0009 is highlighted as t2-r1(09) under pd
 
 ## IS-IS Refresher
 
-Let's do a brief IS-IS refresher. We know that IS-IS Packets are of following types:
+Let's do a quick IS-IS refresher. We know that IS-IS Packets are of following types:
 
 1. IS-IS Hello (IIHs)
    - LAN Level1 IIH
