@@ -17,8 +17,8 @@ work like IP-Addressing, wiring, and base configs.
 
 ![Flooding Topology](/images/post11/topo1.png "Flooding Topology")
 
-In the above diagram, Labelled nodes will be the primary focus of our deep dive. Label consists of the last 
-prefix of the node name and the IP of the loopback which derives the ISIS LSP IDs. For example:
+In the above diagram, Nodes under `pdx1-b2` will be the primary focus of our deep dive. Node Label consists of the node name
+suffix and the last octet of the loopback IP. For example:
 
 ```text
 pdx1-b2-t1-r1 with LSP ID of 0000.0000.0013 is highlighted as t1-r1(13) under pdx1-b2 block.
