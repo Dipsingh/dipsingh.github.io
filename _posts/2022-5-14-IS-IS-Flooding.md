@@ -167,7 +167,7 @@ local LSDB and flood the LSP further.
 
 ## Microscopic view of an IS-IS Flood event 
 Now that we have covered a bit of background, we will trigger an LSP flooding event by disabling the link between 
-`sea1_b1_t1_r1 <--> sfo1_b2_t1_r1` and then enabling it again. A single link disable event will trigger to LSP updates,
+`sea1_b1_t1_r1 <--> sfo1_b2_t1_r1` and then enable it again. A single link disable event will trigger to LSP updates,
 one from `sea1_b1_t1_r1`,  and other from `sfo1_b2_t1_r1`. Once we enable the link again, both routers will send another
 LSP update about the link comping up.
 
@@ -220,9 +220,9 @@ Ack events (PSNPs) for both LSP events.
 If you are running IS-IS with dense topologies and worry about Flooding, then the first thing you would want is to measure 
 how much Flooding is happening in the network. This is pretty straightforward to do so. What we have to do is:
 
-1) Take LSP snapshots at regular intervals. Let's say every five mins.
-2) Take the difference between the LSP Sequence Numbers to know how many LSP updates each LSP has between snapshots.
-3) Sum all the changes and divide them by the snapshot interval. In our case, 5 mins.
+1. Take LSP snapshots at regular intervals. Let's say every five mins.
+2. Take the difference between the LSP Sequence Numbers to know how many LSP updates each LSP has between snapshots. 
+3. Sum all the changes and divide them by the snapshot interval. In our case, 5 mins.
 
 The above method will explain how much Flooding is happening in the network. In our topology, if I have to measure the 
 average flooding interval, it will be almost a no event which there is no churn like a real network will have. So I am going
