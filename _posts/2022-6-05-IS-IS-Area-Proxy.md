@@ -176,8 +176,9 @@ uin1-b2-t2-r1#show ip route 10.0.0.37 detail
                                 via 10.1.0.101, Ethernet2 uin1_b2_t2_r1 -> uin1_b2_t1_r2
 
 ```
-What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. the reachability of `sea2-b2-t2-r1` is advertised as part of 
-`SEA1.00-00` L2 LSP. The Cost `20` is sum of `uin1 -- SEA1` + `the loopback cost`. The cost via `PDX2` is `30`.
+What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. The reachability of `sea2-b2-t2-r1` is advertised as part of 
+`SEA1.00-00` L2 LSP. The Cost `20` is sum of `uin1 -- SEA1` + `The loopback` cost. The cost via `PDX2` is `30` which is not 
+preferred.
 
 ISIS Cost for reaching the L2 LSPs is via and hence ECMP `uin1-b2-t2-r1 -- uin1_b2_t1_r1` or `uin1_b2_t1_r2`. 
 
