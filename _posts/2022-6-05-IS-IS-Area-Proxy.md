@@ -67,7 +67,8 @@ from an external perspective.
 
 ![Area Proxy Topo2](/images/post12/area_proxy_topo2.png "Area Proxy Topo2")
 
-```commandline
+
+```pycon
 uin1-core1#show isis database
 
 IS-IS Instance: Gandalf VRF: default
