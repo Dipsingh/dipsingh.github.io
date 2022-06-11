@@ -7,6 +7,7 @@ Following up on the last [post](https://dipsingh.github.io/IS-IS-Flooding/), we 
 The main goal of the IS-IS Area proxy is to provide abstraction by hiding the topology. Looking at our toy topology, we see that we have fabrics connected, and 
 the whole network is a single flat level-2 flooding domain. The edge nodes are connected at the ends, transiting 
 multiple fabrics, and view all the nodes in the topology.
+
 ![Flooding Topology](/images/post12/topo1.png "Network")
 
 Now assume we are using a router with a radix of 32x100G and want to deploy a three-level Fat-Tree(32,3). We will have a
@@ -28,6 +29,8 @@ them as Transit, we will have to make L1 only links as L1/L2 like below:
 But with this arrangement, we have not achieved anything compared to running a flat level2 and perhaps made it worse by 
 running both L1 and L2 vs. running a flat L2 domain. However if we can abstract these transit fabrics as a single node, 
 then we can scale level 2 domains a lot more than without it.
+
+![Abstracted L1/L2](/images/post12/abstracted_l1l2.png "Abstracted L1/L2Network")
 
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
