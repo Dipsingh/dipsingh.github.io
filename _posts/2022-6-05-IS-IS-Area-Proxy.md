@@ -34,9 +34,9 @@ fat node to the external world.
 
 ![Abstracted L1/L2](/images/post12/abstracted_l1l2.png "Abstracted L1/L2Network")
 
-Applying the same abstraction to our topology, we are looking at topology of six nodes vs seventy node topology. Similarily,
-In our earlier example of Fat-Trees (32,3), each Fat-Tree instance will look like a single node to the rest of the network 
-by abstracting all the 1280 Nodes in a fabric as a single big node to the rest of the fabric. 
+Applying the same abstraction to our topology, we are looking at the topology of six nodes vs. seventy node topology. Similarly, 
+In our earlier example of Fat-Trees (32,3), every Fat-Tree instance of 1280 Nodes is abstracted as a single node to the 
+rest of the network.
 
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
