@@ -164,8 +164,8 @@ uin1-core1#show ip route 10.0.0.37 (sea1-b2-t2-r1)
 Inside Router ignores their own Area Proxy LSP for SPF computation.  In order to avoid loops and have consistency, the 
 general rule is that 
 
-  1) Path with the lower inter-area proxy metric is preferred, regardless of any Intra-Area proxy cost.
-  2) If the two paths have equal total Inter-area proxy metrics, then Intra area proxy metrics would be used.
+  1. Path with the lower inter-area proxy metric is preferred, regardless of any Intra-Area proxy cost.
+  2. If the two paths have equal total Inter-area proxy metrics, then Intra area proxy metrics would be used.
   
 
 Let's look at an example of uin1-b1-t2-r1's view to reach sea2-b2-t2-r1 (10.0.0.37).
