@@ -36,7 +36,7 @@ fat node to the external world.
 
 Applying the same abstraction to our topology, we are looking at the topology of six nodes vs. seventy node topology. Similarly, 
 In our earlier example of Fat-Trees (32,3), every Fat-Tree instance of 1280 Nodes is abstracted as a single node to the 
-rest of the network.
+rest of the network and reducing the topology from 12800 Nodes to ~10 Nodes from an edge nodes perspective.
 
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
