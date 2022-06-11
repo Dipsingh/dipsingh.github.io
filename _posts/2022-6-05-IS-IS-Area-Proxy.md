@@ -9,20 +9,30 @@ the whole network is a single flat level-2 flooding domain. The edge nodes are c
 multiple fabrics, and view all the nodes in the topology.
 ![Flooding Topology](/images/post12/topo1.png "Network")
 
-Now assume that we are using a router with a radix of 32x100G and want to deploy three-level Fat-Tree(32,3). For a 
-single fabric, we will have 1280 nodes, 512 leaf Nodes, providing a bandwidth of 819T. If we deploy ten instances 
-of this fabric, we are looking at a topology size greater than >12k Nodes. This is a lot for any IGP to handle. This 
-inflation of Nodes (and links) is coming from deploying this sort of dense topology to provide more bandwidth and 
-directly impacts IGP scaling in terms of Flooding, LSDB size,  SPF runtimes, and frequency of SPF run.
+Now assume we are using a router with a radix of 32x100G and want to deploy a three-level Fat-Tree(32,3). We will have a
+total of 1280 with 512 leaf nodes for a single fabric, providing a bisection bandwidth of 819T. If we deploy ten instances
+of this fabric, we are looking at a topology size greater than >12k Nodes. This is a lot for any IGP to handle, and it 
+worsens as the size grows. This inflation of Nodes (and links) comes from deploying this sort of dense topology to provide
+more bandwidth and directly impacts IGP scaling in terms of Flooding, LSDB size, SPF runtimes, and frequency of SPF run.
 
-Referring back to our toy topology, if we look from the edge node's perspective, they use these fabrics as transit, 
-and if we can abstract these transit fabrics as a single node, then we can scale level 2 domains a lot more than without 
-it.
+So one thought would be to make the internal fabric links as L1 only and the links between the fabrics as L2 like below, with red links
+as L1 only and green links as L2 only.
+
+![L1 only](/images/post12/l1_only.png "L1 Only")
+
+However, as you know that L1 is stub only; they can not be Transit. So that's not going to work for us. If we want to use 
+them as Transit, we will have to make L1 only links as L1/L2 like below:
+
+![L1-L2](/images/post12/l1_l2_both.png "L1 and L2")
+
+But with this arrangement, we have not achieved anything compared to running a flat level2 and perhaps made it worse by 
+running both L1 and L2 vs. running a flat L2 domain. However if we can abstract these transit fabrics as a single node, 
+then we can scale level 2 domains a lot more than without it.
+
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
 Similarily, going back to our earlier example of three level Fat-Trees (32,3), each Fat-Tree instance will look like a 
 Single Node to the rest of the network by abstracting 1280 Nodes to a single Node.
-
 
 
 ## Area Proxy Details
