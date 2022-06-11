@@ -27,10 +27,12 @@ them as Transit, we will have to make L1 only links as L1/L2 like below:
 ![L1-L2](/images/post12/l1_l2_both.png "L1 and L2")
 
 But with this arrangement, we have not achieved anything compared to running a flat level2 and perhaps made it worse by 
-running both L1 and L2 vs. running L2 only domain. 
+running both L1 and L2 vs. running L2 only domain.
 
-What if we can abstract these transit fabrics as a single node, in a way that each fabric present themselves as one big 
-fat node to the external world.
+Another thought could be why not just use some sort of tunnel from the edge L2 routers in fabric to other edge routers 
+in the same fabric and make those tunnel interfaces as L2. In this way, there is a contiguous L2 domain. However, we 
+will table this line of thinking and ask, What if we can abstract these transit fabrics as a single node, in a way that 
+each fabric presents itself as one big fat node to the external world.
 
 ![Abstracted L1/L2](/images/post12/abstracted_l1l2.png "Abstracted L1/L2Network")
 
