@@ -29,14 +29,16 @@ them as Transit, we will have to make L1 only links as L1/L2 like below:
 But with this arrangement, we have not achieved anything compared to running a flat level2 and perhaps made it worse by 
 running both L1 and L2 vs. running L2 only domain. 
 
-What if we can abstract these transit fabrics as a single node, then we can scale level 2 domains a lot more than without it.
+What if we can abstract these transit fabrics as a single node, in a way that each fabric present themselves as one big 
+fat node to the external world.
 
 ![Abstracted L1/L2](/images/post12/abstracted_l1l2.png "Abstracted L1/L2Network")
 
-![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
+Applying the same abstraction to our topology, we are looking at topology of six nodes vs seventy node topology. Similarily,
+In our earlier example of Fat-Trees (32,3), each Fat-Tree instance will look like a single node to the rest of the network 
+by abstracting all the 1280 Nodes in a fabric as a single big node to the rest of the fabric. 
 
-Similarily, going back to our earlier example of three level Fat-Trees (32,3), each Fat-Tree instance will look like a 
-Single Node to the rest of the network by abstracting 1280 Nodes to a single Node.
+![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
 
 ## Area Proxy Details
