@@ -91,7 +91,7 @@ topology.
 Below output of the SFO1.00-00 L2 LSP shows the Area leader Loopback listed as the Interface address. You can also see 
 the IS Neighbor for SFO1.00 is listed as SEA1.00.
 
-```commandline
+```shell
 uin1-core1#show isis database SFO1.00-00 detail
 
 IS-IS Instance: Gandalf VRF: default
