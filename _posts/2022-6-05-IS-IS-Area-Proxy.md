@@ -68,7 +68,7 @@ from an external perspective.
 ![Area Proxy Topo2](/images/post12/area_proxy_topo2.png "Area Proxy Topo2")
 
 
-```pycon
+{% highlight %}
 uin1-core1#show isis database
 
 IS-IS Instance: Gandalf VRF: default
@@ -80,7 +80,7 @@ IS-IS Instance: Gandalf VRF: default
     SEA2.00-00                         11   6229   824    355 L2 <>
     SEA1.00-00                         19  59624   847    763 L2 <>
     SFO1.00-00                         20  28620   564    763 L2 <>
-```
+{% endhighlight %}
 Within each area proxy domain, there is an area leader whose job is to generate an L2 LSP representing the abstracted 
 topology. From an outside perspective, All the internal addresses looks like they are attached to this abstracted Node. 
 By default, area leader is the router with the highest IP address in the abstracted topology highlighted in blue in our 
