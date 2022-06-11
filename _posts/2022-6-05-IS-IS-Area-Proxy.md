@@ -40,7 +40,7 @@ rest of the network and reducing the topology from 12800 Nodes to ~10 Nodes from
 
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
-This abstraction is what Area-Proxy provides us.
+This sort of abstraction is what Area-Proxy provides us.
 
 ## Area Proxy Details
 We need to make the following changes to our flat level-2 topology to implement Area Proxy.
@@ -61,6 +61,7 @@ links to the other fabrics tagged as Area proxy boundary.
 
 
 The result is now the edge nodes only see the fabrics as abstracted nodes, and our 70 Nodes topology gets reduced to 6 Node.
+
 ![Area Proxy Topo2](/images/post12/area_proxy_topo2.png "Area Proxy Topo2")
 
 ```commandline
