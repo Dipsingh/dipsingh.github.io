@@ -148,8 +148,8 @@ uin1-core1#show ip route 10.0.0.70
                                 via 10.1.0.93, Ethernet4
 
 ```
-Similarly If the edge wants to reach out to an internal fabric Node, the cost will be the sum of the transit links and 
-doesn’t add the cost of the transiting a fabric.
+Similarly, If the edge wants to reach out to an internal fabric Node, the cost will be the sum of the L2 links between area-proxy 
+domains and does not add the cost of transiting a fabric.
 
 ```shell
 
