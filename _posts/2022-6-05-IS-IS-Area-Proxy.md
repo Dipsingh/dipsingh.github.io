@@ -27,8 +27,9 @@ them as Transit, we will have to make L1 only links as L1/L2 like below:
 ![L1-L2](/images/post12/l1_l2_both.png "L1 and L2")
 
 But with this arrangement, we have not achieved anything compared to running a flat level2 and perhaps made it worse by 
-running both L1 and L2 vs. running a flat L2 domain. However if we can abstract these transit fabrics as a single node, 
-then we can scale level 2 domains a lot more than without it.
+running both L1 and L2 vs. running L2 only domain. 
+
+What if we can abstract these transit fabrics as a single node, then we can scale level 2 domains a lot more than without it.
 
 ![Abstracted L1/L2](/images/post12/abstracted_l1l2.png "Abstracted L1/L2Network")
 
