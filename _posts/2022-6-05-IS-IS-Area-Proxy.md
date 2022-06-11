@@ -40,6 +40,7 @@ rest of the network.
 
 ![Abstracted Topology](/images/post12/topo2.png "Abstracted Network")
 
+This abstraction is what Area-Proxy provides us.
 
 ## Area Proxy Details
 We need to make the following changes to our flat level-2 topology to implement Area Proxy.
