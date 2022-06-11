@@ -57,12 +57,13 @@ In our topology, we have configured Area Proxy on all the fabrics.
 
 This scheme results in two types of routers for a given fabric:
 - Inside Routers: These are the routers inside the fabric, like T2 and T3 routers in our fabric. They are running both 
-Level1 and Leve2 ISIS and have the details of the internal topology.
-- Edge Routers: These routers are the edge nodes for a given Area proxy. Our topology will be the T1 nodes and their 
-links to the other fabrics tagged as Area proxy boundary.
+Level1 and Level2 ISIS and have the details of the internal topology.
+- Edge Routers: These routers are the edge nodes for a given Area proxy. In our topology, it will be the T1 nodes and their 
+links to the other fabrics will be tagged as Area proxy boundary.
 
 
-The result is now the edge nodes only see the fabrics as abstracted nodes, and our 70 Nodes topology gets reduced to 6 Node.
+The result is now the edge nodes only see the fabrics as abstracted nodes, and our 70 Nodes topology gets reduced to 6 Node,
+from an external perspective.
 
 ![Area Proxy Topo2](/images/post12/area_proxy_topo2.png "Area Proxy Topo2")
 
