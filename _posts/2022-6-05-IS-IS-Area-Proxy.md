@@ -68,7 +68,7 @@ from an external perspective.
 ![Area Proxy Topo2](/images/post12/area_proxy_topo2.png "Area Proxy Topo2")
 
 
-{% highlight %}
+```shell
 uin1-core1#show isis database
 
 IS-IS Instance: Gandalf VRF: default
@@ -80,7 +80,7 @@ IS-IS Instance: Gandalf VRF: default
     SEA2.00-00                         11   6229   824    355 L2 <>
     SEA1.00-00                         19  59624   847    763 L2 <>
     SFO1.00-00                         20  28620   564    763 L2 <>
-{% endhighlight %}
+```
 Within each area proxy domain, there is an area leader whose job is to generate an L2 LSP representing the abstracted 
 topology. From an outside perspective, All the internal addresses looks like they are attached to this abstracted Node. 
 By default, area leader is the router with the highest IP address in the abstracted topology highlighted in blue in our 
@@ -141,7 +141,7 @@ The cost of transiting the abstracted Area proxy Node is considered zero. In our
 
 ![Metric Cost](/images/post12/metric_cost.png "Metric Cost")
 
-```commandline
+```shell
 uin1-core1#show ip route 10.0.0.70
 
  I L2     10.0.0.70/32 [115/50] via 10.1.0.81, Ethernet1
@@ -153,7 +153,7 @@ uin1-core1#show ip route 10.0.0.70
 Similarly If the edge wants to reach out to an internal fabric Node, the cost will be the sum of the transit links and 
 doesn’t add the cost of the transiting a fabric.
 
-```commandline
+```shell
 
 uin1-core1#show ip route 10.0.0.37 (sea1-b2-t2-r1)
 
@@ -170,8 +170,9 @@ general rule is that
   2) If the two paths have equal total Inter-area proxy metrics, then Intra area proxy metrics would be used.
   
 
-Let's look at an example of uin1-b1-t2-r1's view to reach sea2-b2-t2-r1 (10.0.0.37). 
-```commandline
+Let's look at an example of uin1-b1-t2-r1's view to reach sea2-b2-t2-r1 (10.0.0.37).
+
+```shell
 uin1-b2-t2-r1#show ip route 10.0.0.37 detail
 
  I L2     10.0.0.37/32 [115/20] via 10.1.0.97, Ethernet1 uin1_b2_t2_r1 -> uin1_b2_t1_r1
@@ -187,7 +188,7 @@ ISIS Cost for reaching the L2 LSPs is via and hence ECMP uin1-b2-t2-r1 -- uin1_b
 
 If I increase the cost on one of the link from 10 to 50, then only ethernet 2 will be used. 
 
-```commandline
+```shell
 uin1-b2-t2-r1(config-if-Et2)#int eth1
 uin1-b2-t2-r1(config-if-Et1)#isis metric 50
 uin1-b2-t2-r1(config-if-Et1)#show ip route 10.0.0.37 detail
@@ -197,7 +198,7 @@ uin1-b2-t2-r1(config-if-Et1)#show ip route 10.0.0.37 detail
 
 ```
 If I increase both to 50, then 
-```commandline
+```shell
 uin1-b2-t2-r1(config-if-Et2)#show ip route 10.0.0.37 detail
 
  I L2     10.0.0.37/32 [115/20] via 10.1.0.105, Ethernet3 uin1_b2_t2_r1 -> uin1_b2_t1_r3
