@@ -88,8 +88,8 @@ topology.
 
 ![Area Leader](/images/post12/area_leader.png "Area Leader")
 
-Below output of the SFO1.00-00 L2 LSP shows the Area leader Loopback listed as the Interface address. You can also see 
-the IS Neighbor for SFO1.00 is listed as SEA1.00.
+Below output of the `SFO1.00-00` L2 LSP shows the Area leader Loopback listed as the Interface address. You can also see 
+the IS Neighbor for `SFO1.00` is listed as `SEA1.00`.
 
 ```shell
 uin1-core1#show isis database SFO1.00-00 detail
@@ -121,9 +121,8 @@ IS-IS Instance: Gandalf VRF: default
 
 ```
 
-One benefit which immediately jumps out is that now because all the internal IP Addresses looks like they are attached 
-to the Abstracted Node, a change in an internal topology (like an adjacency flap), which would have triggered a full SPF 
-is now only a Partial SPF run.
+One benefit immediately jumps out is that a change in an internal topology (like an adjacency flap) that would have triggered 
+a full SPF is now only a Partial SPF run. This is because all the Internal IP addresses are not attached to the Abstracted Node. 
 
 
 All the routers inside a given Area Proxy domain, advertise an L1 LSP and L2 LSP. As part of L2 LSP advertisements, 
