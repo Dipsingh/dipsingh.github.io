@@ -181,7 +181,7 @@ What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. the reachabilit
 
 ISIS Cost for reaching the L2 LSPs is via and hence ECMP `uin1-b2-t2-r1 -- uin1_b2_t1_r1` or `uin1_b2_t1_r2`. 
 
-![Metric external](/images/post12/metric_external.png "Metric External")
+![Metric external](/images/post12/meteric_external.png "Metric External")
 
 If I increase the cost on one of the link from `10` to `50`, then only ethernet 2 will be used. 
 
