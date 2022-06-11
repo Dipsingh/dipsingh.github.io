@@ -173,7 +173,7 @@ Let's look at an example of `uin1-b1-t2-r1` view to reach `sea2-b2-t2-r1 (10.0.0
 uin1-b2-t2-r1#show ip route 10.0.0.37 detail
 
  I L2     10.0.0.37/32 [115/20] via 10.1.0.97, Ethernet1 uin1_b2_t2_r1 -> uin1_b2_t1_r1
-                                                     via 10.1.0.101, Ethernet2 uin1_b2_t2_r1 -> uin1_b2_t1_r2
+                                via 10.1.0.101, Ethernet2 uin1_b2_t2_r1 -> uin1_b2_t1_r2
 
 ```
 What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. the reachability of `sea2-b2-t2-r1` is advertised as part of 
