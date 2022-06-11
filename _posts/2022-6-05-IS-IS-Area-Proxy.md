@@ -161,14 +161,13 @@ uin1-core1#show ip route 10.0.0.37 (sea1-b2-t2-r1)
                                 via 10.1.0.93, Ethernet4
 
 ```
-Inside Router ignores their own Area Proxy LSP for SPF computation.  In order to avoid loops and have consistency, the 
-general rule is that 
+Inside Router ignores their own Area Proxy LSP for SPF computation. In order to avoid loops and have consistency, the 
+general rule is:
 
   1. Path with the lower inter-area proxy metric is preferred, regardless of any Intra-Area proxy cost.
   2. If the two paths have equal total Inter-area proxy metrics, then Intra area proxy metrics would be used.
-  
 
-Let's look at an example of uin1-b1-t2-r1's view to reach sea2-b2-t2-r1 (10.0.0.37).
+Let's look at an example of `uin1-b1-t2-r1` view to reach `sea2-b2-t2-r1 (10.0.0.37)`.
 
 ```shell
 uin1-b2-t2-r1#show ip route 10.0.0.37 detail
@@ -177,14 +176,14 @@ uin1-b2-t2-r1#show ip route 10.0.0.37 detail
                                                      via 10.1.0.101, Ethernet2 uin1_b2_t2_r1 -> uin1_b2_t1_r2
 
 ```
-What we see is that the metric to reach sea2-b2-t2-r1 is 20. the reachability of sea2-b2-t2-r1 is advertised as part of 
-SEA1.00-00 L2 LSP. The Cost 20 is sum of uin1 -- SEA1 + the loopback cost. The cost via PDX2 is 30.
+What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. the reachability of `sea2-b2-t2-r1` is advertised as part of 
+`SEA1.00-00` L2 LSP. The Cost `20` is sum of `uin1 -- SEA1` + `the loopback cost`. The cost via `PDX2` is `30`.
 
-ISIS Cost for reaching the L2 LSPs is via and hence ECMP uin1-b2-t2-r1 -- uin1_b2_t1_r1 or uin1_b2_t1_r2. 
+ISIS Cost for reaching the L2 LSPs is via and hence ECMP `uin1-b2-t2-r1 -- uin1_b2_t1_r1` or `uin1_b2_t1_r2`. 
 
 ![Metric external](/images/post12/metric_external.png "Metric External")
 
-If I increase the cost on one of the link from 10 to 50, then only ethernet 2 will be used. 
+If I increase the cost on one of the link from `10` to `50`, then only ethernet 2 will be used. 
 
 ```shell
 uin1-b2-t2-r1(config-if-Et2)#int eth1
@@ -195,7 +194,7 @@ uin1-b2-t2-r1(config-if-Et1)#show ip route 10.0.0.37 detail
 
 
 ```
-If I increase both to 50, then 
+If I increase both to `50`, then 
 ```shell
 uin1-b2-t2-r1(config-if-Et2)#show ip route 10.0.0.37 detail
 
