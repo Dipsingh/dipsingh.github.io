@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  IS-IS Area proxy (WIP)
+title:  IS-IS Area proxy
 ---
 ## Introduction
 Following up on the last [post](https://dipsingh.github.io/IS-IS-Flooding/), we will explore IS-IS Area Proxy in this post. 
