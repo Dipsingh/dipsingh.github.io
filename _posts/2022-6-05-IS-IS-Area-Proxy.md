@@ -227,11 +227,15 @@ uin1-b2-t2-r2#show ip route 10.0.0.37 detail
 ![Metric external2](/images/post12/meteric_external_2.png "Intra-Area metrics")
 
 ### Flooding
-An internal change in the topology will cause Area Leader to generate a new Proxy LSP with updated reachability and 
-flood to the rest of the network. These L2 LSPs will get flooded to the rest of the network. Because we are running 
-L1/L2 within an area-proxy domain, there will be a natural  increase in the amount of flooding within an area-proxy 
-domain. Personally I think for mature IS-IS stacks, flooding with in an area-proxy domain shouldn't be an issue. 
+An internal change in a given Area-Proxy domain will cause the Internal routers to flood within the fabric via L1 and L2 
+LSPs which will make Area Leader learn about that change. The Area leader then will generate an updated L2 LSP with updated
+reachability info which will get flooded to the rest of the network.
 
+When the neighboring area-proxy domain receives this LSP, it get's flooded like in a similar way like we saw in the previous
+blog post and there are no optimization with area-proxy itself on how flooding is handled.
+
+Also, because we have both L1 and L2 running in an area-proxy domain, there will be a natural increase in the amount of 
+flooding within an area-proxy domain; however, I think this is not an issue, especially with mature IS-IS stacks.
 
 ## Closing Thoughts
 
