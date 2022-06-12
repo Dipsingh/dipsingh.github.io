@@ -177,14 +177,17 @@ uin1-b2-t2-r1#show ip route 10.0.0.37 detail
 
 ```
 What we see is that the metric to reach `sea2-b2-t2-r1` is `20`. The reachability of `sea2-b2-t2-r1` is advertised as part of 
-`SEA1.00-00` L2 LSP. The Cost `20` is sum of `uin1 -- SEA1` + `The loopback` cost. The cost via `PDX2` is `30` which is more
+`SEA1.00-00` L2 LSP. The Cost `20` is sum of `uin1<-->SEA1` + `The loopback` cost. The cost via `PDX2` is `30` which is more
  hence the directly connected path with metric of `20` is preferred.
 
-ISIS Cost for reaching the L2 LSPs is via and hence ECMP `uin1-b2-t2-r1 -- uin1_b2_t1_r1` or `uin1_b2_t1_r2`. 
+Given that `uin1-b1-t2-r1` is an internal router, It chooses the lowest Inter-Area Proxy cost which is 20.Then we look at the 
+Intra-area metric and since the cost is same via `uin1-b2-t1-r1` and `uin1-b2-t1-r2`, it ECMP between them as shown in the
+above output. 
 
 ![Metric external](/images/post12/meteric_external.png "Metric External")
 
-If I increase the cost on one of the link from `10` to `50`, then only ethernet 2 will be used. 
+If I increase the cost on one of the link from `10` to `50`, then only one of the remaining interface will be used to reach the route 
+as shown below.
 
 ```shell
 uin1-b2-t2-r1(config-if-Et2)#int eth1
@@ -193,10 +196,15 @@ uin1-b2-t2-r1(config-if-Et1)#show ip route 10.0.0.37 detail
 
  I L2     10.0.0.37/32 [115/20] via 10.1.0.101, Ethernet2 uin1_b2_t2_r1 -> uin1_b2_t1_r2
 
-
 ```
-If I increase both to `50`, then 
+
+Now If I raise the cost on Ethernet2 as well, you can see now the routes are pointing towards router `uin1_b2_t1_r[34]` 
+with Metric of 20 which is our Inter-Area metric. From `uin1_b2_t1_r[34]` perspective, it's pointing towards
+`uin1_b2_t2_r[234]` to exit via `uin1_b2_t1_r[12]`. Basically now the Intra-area metric to exit `t1-r[12]` is shorter via
+`t1-r[34]` --> `t2-r[234]` --> `t1-r[12]`. This shows how Inter and Intra area metrics are handled differently.
+
 ```shell
+uin1-b2-t2-r1(config-if-Et2)#isis metric 50
 uin1-b2-t2-r1(config-if-Et2)#show ip route 10.0.0.37 detail
 
  I L2     10.0.0.37/32 [115/20] via 10.1.0.105, Ethernet3 uin1_b2_t2_r1 -> uin1_b2_t1_r3
@@ -215,6 +223,8 @@ uin1-b2-t2-r2#show ip route 10.0.0.37 detail
                                 via 10.1.0.121, Ethernet2 uin1_b2_t2_r2 -> uin1_b2_t1_r2
 
 ```
+
+![Metric external2](/images/post12/meteric_external_2.png "Intra-Area metrics")
 
 ### Flooding
 An internal change in the topology will cause Area Leader to generate a new Proxy LSP with updated reachability and 
