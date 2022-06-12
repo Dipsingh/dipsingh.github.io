@@ -260,6 +260,7 @@ state of the fabric and will see them as a single Node.
 - Edge Nodes will have complete understanding of the internal topology bandwidth reservation state and will need a way to track/tie the 
 RSVP reservations signaled by the Headend to the internal topology bandwidth reservation state.
 
+With this, I conclude this post. I hope you found this helpful.
 
 ## References
 [draft-ietf-lsr-isis-flood-reflection](https://datatracker.ietf.org/doc/html/draft-ietf-lsr-isis-flood-reflection)
