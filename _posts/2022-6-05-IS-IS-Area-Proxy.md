@@ -239,21 +239,27 @@ flooding within an area-proxy domain; however, I think this is not an issue, esp
 
 ## Closing Thoughts
 
-- With Area-Proxy we see gains in reduction of LSDB size. 
-- Topology changes within an area-proxy domain will result into Partial SPF runs which is computationally less expensive 
-then a full SPF run.
-- All the internal topology changes will look like PRC rather than a full SPF  (Link Up/Link Down). These changes are 
-still need to be flooded. The LSDB size improvements are there.
+We started with a problem on how the dense topologies, the size of the LSDB can explode and how using Area-Proxy, we can
+abstract these topologies. This abstraction is quite powerful and should help in IGP scaling in few ways:
 
-- I haven't quantified yet but I expect some overall flooding gains globally at an expense of increased local flooding.
+- Reduction of LSDB size. We should expect SPF improvements from the perspective of Edge Nodes(LER), which are generally more CPU 
+taxed than Core Nodes, as from their perspective, the complexity of the graph is simplified. However, this may not be a problem
+for most networks.
+- All the internal topology changes will look like PRC rather than a full SPF (Link Up/Link Down). 
+- Topologies change still needs to be flooded, and there will be redundant flooding, and there is no improvement to reduce 
+the redundant flooding. However, given that the number of LSPs is reducing at the network level, there could be some global 
+flooding improvements (at the expense of an increase in the number of L1/L2 LSP in an area-proxy domain). I could be 
+wrong here, so please don't quote me on this, as I haven't measured it.
 
-Currently, I am not aware of any work happening to integrate this with RSVP-TE extensions.
+I am not aware of any work happening yet to integrate this with RSVP-TE extensions. It would be good to see some work in this area. 
+My thoughts on this are:
+- Flooding the Extended IS Reachability TLV extensions for TE for the links between Area-Proxy domain seems Trivial.
+- The challenge is that because the whole fabric is abstracted as a node, a Headend doing CSPF doesn't know the internal 
+state of the fabric and will see them as a single Node.
+- One can assume that the long-haul links will always be expensive and be the bottleneck before the fabric runs out of capacity.
+- Edge Nodes will have complete understanding of the internal topology bandwidth reservation state and will need a way to track/tie the 
+RSVP reservations signaled by the Headend to the internal topology bandwidth reservation state.
 
-  - Flooding the Extended IS Reachability TLV extensions for TE for the links between Area-Proxy domain is Trivial.
-  - The challenge is that because the whole fabric is extracted away, a Headend doing CSPF doesn't knows internal state of the fabric.
-  - One can make an assumption that the long-haul links which are always going to be expensive and be the bottleneck before the fabric running out of capacity.
-  - We would still need the internal fabric topology awareness on which links to use for new reservations. Edge Nodes receiving RSVP-TE will have full awareness about the internal topology bandwidth reservation state, would need a way to tie the external RSVP reservations to the internal RSVP Reservations. 
-  
 
 ## References
 [draft-ietf-lsr-isis-flood-reflection](https://datatracker.ietf.org/doc/html/draft-ietf-lsr-isis-flood-reflection)
