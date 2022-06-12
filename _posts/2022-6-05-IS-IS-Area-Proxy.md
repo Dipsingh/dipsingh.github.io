@@ -69,7 +69,7 @@ from an external perspective.
 
 
 ```shell
-uin1-core1#show isis database
+uin1-core1#show isis database (70 Nodes to only 6 Nodes)
 
 IS-IS Instance: Gandalf VRF: default
   IS-IS Level 2 Link State Database
