@@ -25,22 +25,20 @@ Congestion Window:
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 ### TCP states: Slow-Start, Congestion Avoidance and Fast-Recovery
-We know that TCP has various phases. They are mentioned here for posterity but won't go in detail as there are so many good
-resources out there on this.
 
-Slow-Start:
+**Slow-Start**:
 TCP begins in Slow Start by sending certain number of segment, called the Initial window(IW). This 
 can be somewhere between 2 and 4 segments based on the size of the MSS. For simplicity if we assume IW = 1 MSS and no 
 packets are lost, an ACK is returned for the first segment, allowing to send another segment. If one segment is ACKed, 
 the cwnd is increased to 2 and two segments are sent. We can represent this as $W = 2^k$ where `k` is the number of 
 RTTs and `W` is the Window size in units of packets.
 
-Congestion Avoidance:
+**Congestion Avoidance**:
 When the congestion window grows above a certain threshold known as `ssthresh`, it transitions to Congestion Avoidance phase,
 where the windows grows linearly. For each ACK packet, the window grows by $\frac{1}{cwnd}$. This is the additive increase
 part of the AIMD strategy where the TCP tries to put packets in the network unless it detects a loss.
 
-Fast-Recovery:
+**Fast-Recovery**:
 If there is a packet loss, the TCP sender will receive duplicate ACK (or BAD ACks, which doesn't return a higher ACK number). 
 Rather than going back to Slow-Start, TCP goes to Fast-Recovery state, where it tries to recover from the Packet loss and, once
 the recovery is complete, moves back to the Congestion Avoidance phase. Reno Fast-Recovery was improved under New-Reno to
