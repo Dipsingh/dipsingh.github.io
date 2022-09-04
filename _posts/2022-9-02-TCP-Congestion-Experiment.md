@@ -17,8 +17,9 @@ arrival as a signal that packets are leaving the network, and therefore it's saf
 By using ACKs for pacing the transmission of packets, TCP is self-clocking. The number of packets which 
 TCP can inject into the network is controlled by Congestion Window(`cwnd`). 
 
+<p align="center">
 ![cwnd](/images/post13/cwnd.png "CWND")
-
+</p>
 Ref: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 TCP sending rate can be approximated by:
