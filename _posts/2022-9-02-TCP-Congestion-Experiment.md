@@ -66,7 +66,7 @@ $$
 
 Padhye Equation for TCP Reno throughput: 
 $$
-\approx min(\frac{W_{max}}{RTT}, \frac{1}{RTT\sqrt{\frac{2bp}{3}}+T_{0}min(1,3\sqrt{\frac{3bp}{8}})p(1+32p^{2})})
+min(\frac{W_{max}}{RTT}, \frac{1}{RTT\sqrt{\frac{2bp}{3}}+T_{0}min(1,3\sqrt{\frac{3bp}{8}})p(1+32p^{2})})
 $$
 
 where `p` is the packet loss probability, $W_{max}$ is the max congestion window size and `b` is the number of packets of that
