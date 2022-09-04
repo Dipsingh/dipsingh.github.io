@@ -56,11 +56,18 @@ Here is the Finite State Machine for the TCP Reno:
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 ### TCP Reno Throughput
-For approximating TCP Reno throughput, we have two equations:
+For modeling TCP Reno throughput, we have two well known equations
 
-Mathis Equation for TCP Reno throughput: $\frac{MSS}{RTT}*\frac{1}{\sqrt{p}}$
+Mathis Equation for TCP Reno throughput: 
 
-Padhye Equation for TCP Reno throughput: $\approx min(\frac{W_{max}}{RTT}, \frac{1}{RTT\sqrt{\frac{2bp}{3}}+T_{0}min(1,3\sqrt{\frac{3bp}{8}})p(1+32p^{2})})$
+$$
+\frac{MSS}{RTT}*\frac{1}{\sqrt{p}}
+$$
+
+Padhye Equation for TCP Reno throughput: 
+$$
+\approx min(\frac{W_{max}}{RTT}, \frac{1}{RTT\sqrt{\frac{2bp}{3}}+T_{0}min(1,3\sqrt{\frac{3bp}{8}})p(1+32p^{2})})
+$$
 
 where `p` is the packet loss probability, $W_{max}$ is the max congestion window size and `b` is the number of packets of that
 are acknowledged by a received ACK.
