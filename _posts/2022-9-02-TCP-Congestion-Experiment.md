@@ -53,7 +53,6 @@ half, which is the Multiplicative decrease of AIMD.
 Here is the Finite State Machine for the TCP Reno:
 ![TCP Reno FSM](/images/post13/tcp_reno_fsm.png "TCP Reno FSM")
 
-{: .center}
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 ### TCP Reno Throughput
