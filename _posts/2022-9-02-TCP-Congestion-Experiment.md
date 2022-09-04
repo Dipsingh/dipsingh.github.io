@@ -64,7 +64,8 @@ $$
 \frac{MSS}{RTT}*\frac{1}{\sqrt{p}}
 $$
 
-Padhye Equation for TCP Reno throughput: 
+Padhye Equation for TCP Reno throughput:
+
 $$
 min(\frac{W_{max}}{RTT}, \frac{1}{RTT\sqrt{\frac{2bp}{3}}+T_{0}min(1,3\sqrt{\frac{3bp}{8}})p(1+32p^{2})})
 $$
