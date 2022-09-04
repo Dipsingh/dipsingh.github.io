@@ -21,16 +21,7 @@ TCP can inject into the network is controlled by Congestion Window(`cwnd`).
 ![Congestion Window(cwnd)](/images/post13/cwnd.png "cwnd")
 
 {: .center}
-Reference:[Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
-
-TCP sending rate can be approximated by:
-
-$$
-TCP Sending Rate\approx \frac{cwnd}{RTT}bytes/sec
-$$
-
-where TCP sender limits transmission: $LastByteSent - LastByteAcked \le cwnd $ and `cwnd` is a dynamically adjusted in
-response to observed network congestion.
+Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 ### Slow-Start, Congestion Avoidance and Fast-Recovery
 We know that TCP has various phases. They are mentioned here for posterity but won't go in detail as there are so many good
