@@ -85,11 +85,12 @@ calculated by aggregating all the bytes transferred within a second and then con
 The below plot shows the results, the top three subplots show: R1 Link Utilization, R1 Output Queue, Packet Drops at R1, and 
 the bottom two subplots show `cwnd`,`ssthresh`, and `RTT` observed.
 
-![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
-
 The graph shows how TCP Reno fills queues, and you can see the corresponding bumps in RTT as the buffer fills up. As the 
 sender experiences packet drops, the TCP receiver slows down by reducing its `cwnd`. You can also see the AIMD sawtooth 
 pattern, which emerges in the link utilization.
+
+![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
+
 
 ### Experimenting Double TCP Reno Session
 Now let's add another host pair and have TCP session between `H1->H3` and `H2-H4` and repeat the experiment.
