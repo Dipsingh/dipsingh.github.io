@@ -74,9 +74,9 @@ where `p` is the packet loss probability, $W_{max}$ is the max congestion window
 are acknowledged by a received ACK.
 
 ### Experimenting Single TCP Reno Session
-Let's start with a simple two host(H1, H2) connected by two routers(R1, R2). Router `R1` has a small buffer of 100packets using FIFO
-queuing discipline. The link between two routers is not a bottleneck link. We will run a single TCP Reno session from
-host `H1` to `H2` for 200seconds and observe the behavior on `R1` and host. 
+Now let's get to the fun part. Let's start with a simple topology of two hosts (H1, H2) connected by two routers(R1, R2). 
+Router `R1` has a small buffer of 100packets using FIFO queuing discipline. The link between two routers is not a bottleneck 
+link. We will run a single TCP Reno session from host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
 
 ![Single Reno Session](/images/post13/single_host.png "Single Reno Session")
 
