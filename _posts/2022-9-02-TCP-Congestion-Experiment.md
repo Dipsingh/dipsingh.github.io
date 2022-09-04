@@ -32,12 +32,16 @@ TCP begins in Slow Start by sending certain number of segment, called the Initia
 can be somewhere between 2 and 4 segments based on the size of the MSS. For simplicity if we assume IW = 1 MSS and no 
 packets are lost, an ACK is returned for the first segment, allowing to send another segment. If one segment is ACKed, 
 the cwnd is increased to 2 and two segments are sent. We can represent this as $W = 2^k$ where `k` is the number of 
-RTTs and `W` is the Window size in units of packets.
+RTTs and `W` is the Window size in units of packets. As we can see this is an exponential function and is highlighted 
+as red in the below graph.
 
 **Congestion Avoidance**:
 When the congestion window grows above a certain threshold known as `ssthresh`, it transitions to Congestion Avoidance phase,
 where the windows grows linearly. For each ACK packet, the window grows by $\frac{1}{cwnd}$. This is the additive increase
 part of the AIMD strategy where the TCP tries to put packets in the network unless it detects a loss.
+
+{: .center}
+![Slow Start and Congestion Avoidance](/images/post13/tcp_aimd.png "AIMD")
 
 **Fast-Recovery**:
 If there is a packet loss, the TCP sender will receive duplicate ACK (or BAD ACks, which doesn't return a higher ACK number). 
