@@ -3,10 +3,10 @@ layout: post
 title:  Experimenting TCP Congestion Control(WIP)
 ---
 ## Introduction
-This blog post will share experiments with various TCP congestion control algorithms. I have always found 
-TCP congestion control algorithms fascinating, and at the same time, I know very little about them. So from time to 
-time, I will try to spend some time with the hope of gaining some new insights. I am using Linux network namespaces to 
-emulate topology for experimentation, making it easier to run experiments than to set up a physical test bed.
+ I have always found TCP congestion control algorithms fascinating, and at the same time, I know very little about them. 
+ So from time to time, I will try to spend some time with the hope of gaining some new insights. This blog post will 
+ share experiments with various TCP congestion control algorithms. I am using Linux network namespaces to emulate topology 
+ for experimentation, making it easier to run experiments than to set up a physical test bed.
 
 ## TCP Reno
 For many years, the main algorithm of congestion control was TCP Reno. The goal of congestion control is to determine 
