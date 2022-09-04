@@ -48,7 +48,7 @@ If there is a packet loss, the TCP sender will receive a duplicate ACK (also cal
 higher ACK number). Rather than going back to Slow-Start, TCP enters the Fast-Recovery state, where it tries to recover 
 from the Packet loss and moves back to the Congestion Avoidance phase once the recovery is complete. Reno Fast-Recovery 
 was improved under New-Reno to handle multiple packet losses. During this state, TCP slows down by cutting `cwnd` by 
-half, which is the Multiplicative decrease of AIMD.
+half, which is the Multiplicative decrease part of AIMD.
 
 Here is the Finite State Machine for the TCP Reno:
 ![TCP Reno FSM](/images/post13/tcp_reno_fsm.png "TCP Reno FSM")
