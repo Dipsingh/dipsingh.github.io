@@ -4,7 +4,7 @@ title:  Experimenting TCP Congestion Control(WIP)
 ---
 ## Introduction
 I have always found TCP congestion control algorithms fascinating, and at the same time, I know very little about them. 
-So from time to time, I will try to spend some time with the hope of gaining some new insights. This blog post will 
+So once in a while, I will spend some time with the hope of gaining some new insights. This blog post will 
 share some of my experiments with various TCP congestion control algorithms. We will start with TCP Reno, then look at
 Cubic and ends with BBR.I am using Linux network namespaces to emulate topology for experimentation, making it easier to 
 run than setting up a physical test bed.
