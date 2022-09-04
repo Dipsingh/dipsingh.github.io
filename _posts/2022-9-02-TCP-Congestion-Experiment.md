@@ -75,15 +75,15 @@ are acknowledged by a received ACK.
 
 ### Experimenting Single TCP Reno Session
 Now let's get to the fun part. Let's start with a simple topology of two hosts (H1, H2) connected by two routers(R1, R2). 
-Router `R1` has a small buffer of 100packets using FIFO queuing discipline. The link between two routers is not a bottleneck 
-link. We will run a single TCP Reno session from host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
+Router `R1` has a small buffer of 100packets using FIFO queuing discipline. We will run a single TCP Reno session from 
+host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
 
 ![Single Reno Session](/images/post13/single_host.png "Single Reno Session")
 
-Stats are collected at every 200ms from `ss` and `tc` which should provide us a good approximation. Link utilization is 
-calculated by aggregating all the bytes transferred within a second and then converting to Mbps. Below is the results of 
+We collect stats at every 200ms from `ss` and `tc`, which should provide a good approximation. Link utilization is 
+calculated by aggregating all the bytes transferred within a second and then converting them to Mbps. Below is the results of 
 the output, and we can see in the top three plots: R1 Link Utilization, R1 Output Queue, Packet Drops at R1, and 
-the bottom two shows `cwnd`,`ssthresh` and `RTT` observed.
+the bottom two shows `cwnd`,`ssthresh`, and `RTT` observed.
 
 ![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
 
