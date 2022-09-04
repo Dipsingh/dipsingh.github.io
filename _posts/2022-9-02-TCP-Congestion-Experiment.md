@@ -23,7 +23,7 @@ TCP can inject into the network is controlled by Congestion Window(`cwnd`).
 {: .center}
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
-### Slow-Start, Congestion Avoidance and Fast-Recovery
+### TCP states: Slow-Start, Congestion Avoidance and Fast-Recovery
 We know that TCP has various phases. They are mentioned here for posterity but won't go in detail as there are so many good
 resources out there on this.
 
