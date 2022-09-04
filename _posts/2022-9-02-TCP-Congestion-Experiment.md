@@ -21,7 +21,7 @@ TCP can inject into the network is controlled by Congestion Window(`cwnd`).
 ![Congestion Window(cwnd)](/images/post13/cwnd.png "cwnd")
 
 
-Ref: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php){: .right}
+[Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php){text-align: center;}
 
 TCP sending rate can be approximated by:
 
