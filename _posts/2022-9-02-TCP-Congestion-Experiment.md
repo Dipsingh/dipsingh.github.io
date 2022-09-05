@@ -206,8 +206,9 @@ scales more aggressively than `C=0.3`.
 ### Experiment
 #### Two TCP Cubic sessions
 
-Below is an output captured for two TCP Cubic session. If you compare this with two reno session output, you can see that the buffer fills
-are more frequent. You can also observe the cubic function growth in the `cwnd` plot.
+Repeating the experiment for two TCP Cubic sessions, below is the observed behavior. If you compare this with reno 
+session output, you can see that the buffer fills are more frequent, which tells that window growth happens more aggressively. 
+You can also observe the cubic function growth in the `cwnd` plot.
 
 {: .center}
 ![Two TCP Cubic sesions](/images/post13/double_cubic_output.png "Double Cubic Output")
