@@ -199,13 +199,22 @@ scales more aggressively than `C=0.3`.
 
 ### Experiment: TCP Cubic Session
 
-Draw the graph showing 
+Below is an output captured for two TCP Cubic session. If you compare this with two reno session output, you can see that the buffer fills
+are more frequent. You can also observe the cubic function growth in the `cwnd` plot.
 
-Fairness
+{: .center}
+![Two TCP Cubic sesions](/images/post13/double_cubic_output.png "Double Cubic Output")
 
-Fairness index.
+If we re-run the experiment with  Host1 (`H1-H3`) running TCP Reno and Host2 (`H2-H4`) Cubic, we observe that TCP Cubic gets
+more bandwidth share. You can clearly see the differences in how the reno and cubic `cwnd` window growths.
 
-### Experiment: Cubic and Reno
+{: .center}
+![Cubic and Reno](/images/post13/double_reno_cubic.png "Cubic and Reno")
+
+If we look at the bandwidth share, we clearly see Cubic taking the major share of the bandwidth.
+
+{: .center}
+![Cubic and Reno fairness](/images/post13/reno_cubic_fairness.png "Cubic and Reno fairness")
 
 
 ## TCP BBR
