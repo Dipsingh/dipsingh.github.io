@@ -244,20 +244,17 @@ is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional a
 {: .center}
 ![Optimal BDP](/images/post13/optimal_bdp.png "Optimal BW Delay Product")
 
-
-BBR operational model is that the sender passes packets into the network at a rate, i.e., not anticipated to encounter queuing 
-at any point within the entire path. 
-
-BBR periodically probes for additional bandwidth by spending one RTT interval deliberately sending at a rate higher than 
-the currently estimated bottleneck bandwidth. It sends data at 125% of the bottleneck bandwidth. If the available bottleneck 
-bandwidth has not changed, then the increased sending rate will cause a queue to form at the bottleneck. This will cause the 
-ACK signaling to reveal an increased RTT, and the sender will subsequently send at a compensating reduced sending rate for an 
+To ensure that the sender adjusts to the increased bandwidth if there is an increase in available network bandwidth, BBR 
+does periodic probing. It does by spending one RTT interval deliberately sending at a rate higher than the currently 
+estimated bottleneck bandwidth. It sends data at 125% of the bottleneck bandwidth. If the available bottleneck bandwidth 
+has not changed, the increased sending rate will cause a queue to form at the bottleneck link. This will cause the ACK 
+signaling to reveal an increased RTT, and the sender will subsequently send at a compensating reduced sending rate for an 
 RTT interval. The reduced rate is set to 75% of the bottleneck bandwidth, allowing the bottleneck queue to drain. 
 
 On the other hand, if the available bottleneck bandwidth estimate has increased because of this probe, then the sender will 
 operate according to this new bottleneck bandwidth estimate. 
 
-Currently, TCP BBRv2 is in beta stage which addresses BBRv1 shortcomings around unfairness to other TCP Cubic flows.
+Currently, TCP BBRv2 is in the beta stage, which addresses some BBRv1 shortcomings, like unfairness to other TCP Cubic flows.
 
 ### Experiment: Two TCP BBR Session
 
