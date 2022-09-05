@@ -257,6 +257,14 @@ duration lasts eight RTTs and is repeated indefinitely in steady state.
 
 
 ## References
-[draft-ietf-lsr-isis-flood-reflection](https://datatracker.ietf.org/doc/html/draft-ietf-lsr-isis-flood-reflection)
+[Towards a Deeper Understanding of TCP BBR Congestion Control](https://www.net.in.tum.de/fileadmin/bibtex/publications/papers/IFIP-Networking-2018-TCP-BBR.pdf)
 
-[Arista Area proxy Config](https://www.arista.com/en/support/toi/eos-4-25-1f/14654-areaproxy)
+[BBR Congestion Control](https://www.ietf.org/proceedings/97/slides/slides-97-iccrg-bbr-congestion-control-02.pdf)
+
+[Modeling BBR’s Interactions With Loss-Based Congestion Control](https://conferences.sigcomm.org/imc/2019/presentations/p282.pdf)
+
+[Modeling BBR’s Interactions with Loss-Based Congestion Control](https://www.cs.cmu.edu/~rware/assets/pdf/ware-imc2019.pdf)
+
+[NeST: Network Stack Tester](https://nest.nitk.ac.in/#/)
+
+[TCP CUBIC: A Transport Protocol for Improving the Performance of TCP in Long Distance High Bandwidth Cyber-Physical System](https://ieeexplore.ieee.org/document/8403545/citations?tabFilter=papers#citations)
