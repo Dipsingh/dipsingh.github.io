@@ -197,7 +197,7 @@ scales more aggressively than `C=0.3`.
 ![Cubic Scaling Constant](/images/post13/cubic_scaling_constant.png "Cubic Scaling Constant")
 
 
-### Experiment: TCP Cubic Session
+### Experiment: Two TCP Cubic sessions and Cubic with Reno
 
 Below is an output captured for two TCP Cubic session. If you compare this with two reno session output, you can see that the buffer fills
 are more frequent. You can also observe the cubic function growth in the `cwnd` plot.
