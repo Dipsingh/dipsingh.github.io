@@ -79,7 +79,9 @@ $$
 where `p` is the packet loss probability, $W_{max}$ is the max congestion window size and `b` is the number of packets of that
 are acknowledged by a received ACK.
 
-### Experiment: Single TCP Reno Session
+### Experiment
+#### Single TCP Reno Session
+
 Now let's get to the fun part. Let's start with a simple topology of two hosts (H1, H2) connected by two routers(R1, R2). 
 Router `R1` has a small buffer of 100packets using FIFO queuing discipline. We will run a single TCP Reno session from 
 host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
@@ -100,7 +102,7 @@ pattern, which emerges in the link utilization.
 ![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
 
 
-### Experiment: Two TCP Reno Session
+#### Two TCP Reno Session
 Now let's add another host pair and have TCP session between `H1->H3` and `H2-H4` and repeat the experiment.
 
 {: .center}
@@ -200,7 +202,8 @@ scales more aggressively than `C=0.3`.
 ![Cubic Scaling Constant](/images/post13/cubic_scaling_constant.png "Cubic Scaling Constant")
 
 
-### Experiment: Two TCP Cubic sessions and Cubic with Reno
+### Experiment
+#### Two TCP Cubic sessions
 
 Below is an output captured for two TCP Cubic session. If you compare this with two reno session output, you can see that the buffer fills
 are more frequent. You can also observe the cubic function growth in the `cwnd` plot.
@@ -208,6 +211,7 @@ are more frequent. You can also observe the cubic function growth in the `cwnd` 
 {: .center}
 ![Two TCP Cubic sesions](/images/post13/double_cubic_output.png "Double Cubic Output")
 
+#### Cubic with Reno
 If we re-run the experiment with  Host1 (`H1-H3`) running TCP Reno and Host2 (`H2-H4`) Cubic, we observe that TCP Cubic gets
 more bandwidth share. You can clearly see the differences in how the reno and cubic `cwnd` window growths.
 
