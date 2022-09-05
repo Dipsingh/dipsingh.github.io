@@ -159,27 +159,30 @@ We can see that fairness index is not as close to 1 like it was in the previous 
 ![Jains Fairness Index](/images/post13/reno_rtt_fairness_index.png "Reno RTT Fairness Index")
 
 ## TCP Cubic
-In order to provide higher throughput for large BDP networks, TCP Cubic which (modified version of BIC-TCP) came into picture. This
-is currently the default congestion control algorithm for large number of Operating systems. It's still a loss-based congestion control
-algorithm which indicates packet-loss as indication of Congestion. $W_{max}$ represents the window size where loss occurs.Cubic
-decreases the `cwnd` by a constant decrease factor $\bar\beta$ and enters into congestion avoidance phase and begins to increase
-`cwnd` size by using an increase factor called $\bar\alpha$ as concave feature of cubic function until the window size becomes 
-$W_{max}$. The congestion window grows very fast after a windo reduction, but as it gets close to $W_{max}$, it slows down it's 
-growth, around $W_{max}$, the window increment becomes almost zero. 
+
+To provide higher throughput for large BDP networks, TCP Cubic (a modified version of BIC-TCP) came into the picture. This
+is currently the default congestion control algorithm for many operating systems. It's still a loss-based congestion control
+algorithm that uses packet loss to indicate Congestion. $W_{max}$ represents the window size where the loss occurs. Cubic
+decreases the `cwnd` by a constant decrease factor $\beta$ and enters into congestion avoidance phase and begins to increase
+`cwnd` size by using an increase factor called $\alpha$ as a concave feature of cubic function until the window size becomes 
+$W_{max}$. The congestion window grows very fast after a window reduction, but as it gets close to $W_{max}$, it slows down its 
+growth; around $W_{max}$, the window increment becomes almost zero. 
 
 
-$W(t) = C(t-\bar{K})^3+W_{max}$
+$$
+W(t) = C(t-K)^3+W_{max}
+$$
 
-$\bar{K} = \sqrt{\frac{W_{max}\bar\beta}{C}}$
+$$
+K = \sqrt{\frac{W_{max}\bar\beta}{C}}
+$$
 
-$\bar\alpha=\frac{3\bar\beta}{2-\beta}$
 
-$\bar\beta=\mu\beta$
+where `C` is the scaling constant factor (default=0.4). `C` controls how fast the window will grow. $\beta$ is the 
+multiplicative decrease factor after packet loss event, it's default value is 0.2.`t` is the elapsed time from the last 
+window reduction and $\bar{K}$ is the time period that the function requires to increase `W` to $W_{max}$. 
 
-where C is the scaling constant factor with default C=0.4. $\bar\beta$ is the multiplicative decrease factor after packet
-loss event, it's default value is 0.2.
 
-(t) is the elapsed time from the last window reduction and $\bar{K}$ is the time period that the function requires to increase W to $W_{max}$. 
 
 TCP Cubic sets the W(t+RTT) as the candidate target value of `cwnd` congestion window parameters $\bar\alpha$ and $\bar\beta$ of
 TCP Cubic
