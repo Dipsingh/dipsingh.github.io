@@ -228,11 +228,15 @@ If we look at the bandwidth share, we clearly see Cubic taking the major share o
 
 ## TCP BBR
 
-The problem with loss-based congestion control algorithms in high latency networks is that due to the `cwnd` growth being 
-proportional to `RTT`, the `cwnd` growth is slow. BBR is a rate-based congestion control algorithm that tries to fix the 
-short-coming. In the case of BBR, at any given time, it sends data at a rate independent of current packet losses. This is a 
-significant shift from how traditional algorithms based on the AIMD rule, which operated by reducing the sending rate 
-when they observed a packet loss.
+The BBR congestion control algorithm takes a different approach and does not assume that packet loss signals congestion. 
+BBR builds a model of the network path to avoid and respond to actual congestion. In the case of BBR, at any given time, 
+it sends data at a rate independent of current packet losses. This is a significant shift from how traditional algorithms 
+based on the AIMD rule, which operated by reducing the sending rate when they observed a packet loss.
+
+BBR uses pacing to set the sending rate to the estimated bottleneck bandwidth. The pacing technique spaces out or paces 
+packets at the sender node, spreading them over time. This approach is a departure from the traditional loss-based algorithms, 
+where the size of the congestion window establishes the sending rate, and the sender node may send packets in bursts up to the 
+maximum rate of the sender’s interface. 
 
 The below figure describes the behavior of BBR, which show that BBR tries to operate at the optimal operating point, which 
 is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional algorithms, which operate at the BDP+Buffer size.
@@ -297,6 +301,10 @@ TCP BBR:
 
 
 ## References
+[TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)
+
+[TCP/IP Illustrated](https://www.amazon.com/TCP-Illustrated-Vol-Addison-Wesley-Professional/dp/0201633469)
+
 [Towards a Deeper Understanding of TCP BBR Congestion Control](https://www.net.in.tum.de/fileadmin/bibtex/publications/papers/IFIP-Networking-2018-TCP-BBR.pdf)
 
 [BBR Congestion Control](https://www.ietf.org/proceedings/97/slides/slides-97-iccrg-bbr-congestion-control-02.pdf)
