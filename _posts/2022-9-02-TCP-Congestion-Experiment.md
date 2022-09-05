@@ -174,17 +174,20 @@ W(t) = C(t-K)^3+W_{max}
 $$
 
 $$
-K = \sqrt{\frac{W_{max}\bar\beta}{C}}
+K = \sqrt{\frac{W_{max}\beta}{C}}
 $$
 
 
 where `C` is the scaling constant factor (default=0.4). `C` controls how fast the window will grow. $\beta$ is the 
 multiplicative decrease factor after packet loss event, it's default value is 0.2.`t` is the elapsed time from the last 
-window reduction and $\bar{K}$ is the time period that the function requires to increase `W` to $W_{max}$. 
+window reduction and `K` is the time period that the function requires to increase `W` to $W_{max}$. 
 
+The below plot shows the TCP Cubic function for scaling constant `C` with `0.3,0.4 and 0.5` values. We can see 
 
+{: .center}
+![Cubic Scaling Constant](/images/post13/cubic_scaling_constant.png "Cubic Scaling Constant")
 
-TCP Cubic sets the W(t+RTT) as the candidate target value of `cwnd` congestion window parameters $\bar\alpha$ and $\bar\beta$ of
+TCP Cubic sets the W(t+RTT) as the candidate target value of `cwnd` congestion window parameters $\alpha$ and $\beta$ of
 TCP Cubic
 
 Cubic behaves linear for low RTT's
