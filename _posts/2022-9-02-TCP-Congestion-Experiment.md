@@ -55,6 +55,7 @@ Here is the Finite State Machine for the TCP Reno:
 {: .center}
 ![TCP Reno FSM](/images/post13/tcp_reno_fsm.png "TCP Reno FSM")
 
+{: .center}
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
 
 ### TCP Reno Throughput
@@ -99,20 +100,23 @@ pattern, which emerges in the link utilization.
 ### Experimenting Double TCP Reno Session
 Now let's add another host pair and have TCP session between `H1->H3` and `H2-H4` and repeat the experiment.
 
+{: .center}
 ![Double Reno Session](/images/post13/double_host.png "Double Host")
 
-Below graph captures the results from the experiment. I have added the TCP sending rate in this graph as well.In this case,
-the Router queue is now shared by two TCP sessions. We can see the buffer fills are more frequent now which should make sense,
-due to the `R1-R2` link being the bottleneck link now and both TCP senders combined trying to push the maximum.
+The below graph captures the results of the experiment. I have added the TCP sending rate in this graph as well. In this 
+case, both TCP sessions share the Router queue. We can see the buffer fills more frequently now, which should make sense 
+due to the `R1-R2` link being the bottleneck and both TCP senders collectively trying to push the maximum they can.
 
-Also looking at the TCP sending rate graph, we can see how both TCP sessions are regulating each other.
+Also, looking at the TCP sending rate graph, we can see how both TCP sessions regulate each other.
 
+{: .center}
 ![Double Reno Output](/images/post13/double_reno_output.png "Double Reno Output")
 
 This brings the question on whether Reno TCP flows are fair to each other. We can look at the sum of the sending rate and 
 see how much percentage each flow is contributing to that. We can see both TCP sessions are fluctuating around ~50% and the
 average percentage for both flows is near 50%.
 
+{: .center}
 ![Two Reno Flow Fairness](/images/post13/reno_fairness.png "Reno Fairness")
 
 Formally we could also look at Jain's index for measuring fairness which has the following properties
