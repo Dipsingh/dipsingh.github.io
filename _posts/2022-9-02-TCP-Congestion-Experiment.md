@@ -244,6 +244,8 @@ RTT interval. The reduced rate is set to 75% of the bottleneck bandwidth, allowi
 On the other hand, if the available bottleneck bandwidth estimate has increased because of this probe, then the sender will 
 operate according to this new bottleneck bandwidth estimate. 
 
+Currently, TCP BBRv2 is in beta stage which addresses BBRv1 shortcomings around unfairness to other TCP Cubic flows.
+
 ### Experiment: Two TCP BBR Session
 
 Let's start with looking at two BBR sessions first. The things which stand out are
@@ -262,13 +264,24 @@ and ending up getting starved.
 
 ![BBR with Cubic Small Buffer](/images/post13/bbr_cubic_output.png "BBR with Cubic")
 
-Now I change the buffer size on the router to 1000 Packets. Now we see a better resource sharing between BBR and Cubic as more buffers 
+Changing the buffer size on the router to 1000 Packets. Now we see a better resource sharing between BBR and Cubic as more buffers 
 are providing 
 
 ![BBR with Cubic large Buffer](/images/post13/bbr_cubic_output_buffer.png "BBR with Cubic with large buffer")
 
 ## Conclusion
 
+We started with looking at TCP Reno and observed that 
+- TCP Reno sessions are fair to each other when RTTs are similar but unfair if the RTTs are not same.
+- TCP Reno behavior on the Queues and `cwnd` AIMD behavior.
+
+Then we looked at the TCP Cubic and observed that
+- TCP Cubic window growth behavior.
+- TCP Cubic fairness compared to other Cubic flows and TCP Reno.
+
+We ended with TCP BBR which is a rate based congestion control algorithm and observed that
+- It doesn't slows it sending pace when it observes packet loss.
+- It's unfair to TCP Cubic for smaller buffers but fairness improves with larger buffers.
 
 
 ## References
@@ -278,8 +291,8 @@ are providing
 
 [Modeling BBR’s Interactions With Loss-Based Congestion Control](https://conferences.sigcomm.org/imc/2019/presentations/p282.pdf)
 
-[Modeling BBR’s Interactions with Loss-Based Congestion Control](https://www.cs.cmu.edu/~rware/assets/pdf/ware-imc2019.pdf)
-
-[NeST: Network Stack Tester](https://nest.nitk.ac.in/#/)
-
 [TCP CUBIC: A Transport Protocol for Improving the Performance of TCP in Long Distance High Bandwidth Cyber-Physical System](https://ieeexplore.ieee.org/document/8403545/citations?tabFilter=papers#citations)
+
+[Fairness Measure](https://en.wikipedia.org/wiki/Fairness_measure)
+
+[BBRv2](https://www.ietf.org/proceedings/106/slides/slides-106-iccrg-update-on-bbrv2-00)
