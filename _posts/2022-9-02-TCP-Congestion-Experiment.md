@@ -246,14 +246,29 @@ operate according to this new bottleneck bandwidth estimate.
 
 ### Experiment: Two TCP BBR Session
 
+Let's start with looking at two BBR sessions first. The things which stand out are
+- Buffers are almost full. Please recall that our buffer here is 100 which is very shallow compared to buffer required for BDP.
+- Due to the shallow buffers and them being always full, we also observe more packet loss. However impact on throughput due to packet loss is not there.
+- RTT is constant.
+- Sending rate between both hosts seems to be approximately equal.
+
 ![BBR Sessions](/images/post13/double_bbr_output.png "BBR Sessions")
 
 ### Experiment: TCP BBR and Cubic Session
 
+Now if we change one of the session (`H1-H3`) from previous experiment to TCP Cubic, we observe that TCP Cubic takes the fair share 
+of the network bandwidth. I suspect this is due to buffers being shallow and TCP BBR not reacting to Loss while Cubic scaling it's rate 
+and ending up getting starved.
+
 ![BBR with Cubic Small Buffer](/images/post13/bbr_cubic_output.png "BBR with Cubic")
 
+Now I change the buffer size on the router to 1000 Packets. Now we see a better resource sharing between BBR and Cubic as more buffers 
+are providing 
 
 ![BBR with Cubic large Buffer](/images/post13/bbr_cubic_output_buffer.png "BBR with Cubic with large buffer")
+
+## Conclusion
+
 
 
 ## References
