@@ -269,9 +269,9 @@ Let's start by looking at two BBR sessions first. Some observations:
 
 #### TCP BBR and Cubic Session
 
-Now if we change one of the session (`H1-H3`) from previous experiment to TCP Cubic, we observe that TCP Cubic takes the fair share 
-of the network bandwidth. I suspect this is due to buffers being shallow and TCP BBR not reacting to Loss while Cubic scaling it's rate 
-and ending up getting starved.
+Now, if we change one session (`H1-H3`) from the previous experiment to TCP Cubic, we observe that BBR takes a fair share 
+of the network bandwidth. This is due to buffers being shallow and TCP BBR not reacting to Loss while Cubic reacting to the 
+packet loss and reducing its rate and thus ending up starved.
 
 ![BBR with Cubic Small Buffer](/images/post13/bbr_cubic_output.png "BBR with Cubic")
 
