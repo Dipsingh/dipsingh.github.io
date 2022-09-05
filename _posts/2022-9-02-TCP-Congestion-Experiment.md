@@ -103,8 +103,8 @@ Now let's add another host pair and have TCP session between `H1->H3` and `H2-H4
 {: .center}
 ![Double Reno Session](/images/post13/double_host.png "Double Host")
 
-The below graph captures the results of the experiment. I have added the TCP sending rate in this graph as well. In this 
-case, both TCP sessions share the Router queue. We can see the buffer fills more frequently now, which should make sense 
+The below graph captures the results of the experiment. I have added the TCP sending rate for both hosts in this graph as well. 
+In this case, both TCP sessions share the Router queue. We can see that buffer fills more frequently now, which should make sense 
 due to the `R1-R2` link being the bottleneck and both TCP senders collectively trying to push the maximum they can.
 
 Also, looking at the TCP sending rate graph, we can see how both TCP sessions regulate each other.
@@ -129,13 +129,14 @@ index of 1 and a totally unfair system has an index of 0.
 4. Continuity: the index is continuous. Any change in allocation is reflected in the
 fairness index. 
 
-$
+$$
 I = \frac{(\sum^{n}_{i=1}T_{i})^2}{n\sum^{n}_{i=1}T_{i})^2}
-$
+$$
+
 where
-• 𝐼 is the fairness index, with values between 0 and 1.
-• 𝑛 is the total number of flows.
-• 𝑇1, 𝑇2, . . . , 𝑇𝑛 are the measured throughput of individual flows.
+- I is the fairness index, with values between 0 and 1.
+- n is the total number of flows.
+- $T_{1}$, $𝑇_{2}$, . . . , $T_{n}$ are the measured throughput of individual flows.
 
 Plotting this for our two flows we see that how it fluctuates around 1 which is the perfect score.
 
