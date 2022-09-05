@@ -244,6 +244,9 @@ is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional a
 {: .center}
 ![Optimal BDP](/images/post13/optimal_bdp.png "Optimal BW Delay Product")
 
+{: .center}
+Reference: [High-Speed Networks](https://link.springer.com/book/10.1007/978-3-030-88841-1)
+
 To ensure that the sender adjusts to the increased bandwidth if there is an increase in available network bandwidth, BBR 
 does periodic probing. It does by spending one RTT interval deliberately sending at a rate higher than the currently 
 estimated bottleneck bandwidth. It sends data at 125% of the bottleneck bandwidth. If the available bottleneck bandwidth 
@@ -298,3 +301,4 @@ buffers.
 - [Modeling BBR’s Interactions With Loss-Based Congestion Control](https://conferences.sigcomm.org/imc/2019/presentations/p282.pdf)  
 - [BBRv2](https://www.ietf.org/proceedings/106/slides/slides-106-iccrg-update-on-bbrv2-00)  
 - [Fairness Measure](https://en.wikipedia.org/wiki/Fairness_measure)
+- [High-Speed Networks](https://link.springer.com/book/10.1007/978-3-030-88841-1)  
