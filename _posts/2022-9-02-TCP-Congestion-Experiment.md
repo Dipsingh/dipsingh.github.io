@@ -76,7 +76,7 @@ $$
 where `p` is the packet loss probability, $W_{max}$ is the max congestion window size and `b` is the number of packets of that
 are acknowledged by a received ACK.
 
-### Experimenting Single TCP Reno Session
+### Experiment: Single TCP Reno Session
 Now let's get to the fun part. Let's start with a simple topology of two hosts (H1, H2) connected by two routers(R1, R2). 
 Router `R1` has a small buffer of 100packets using FIFO queuing discipline. We will run a single TCP Reno session from 
 host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
@@ -97,7 +97,7 @@ pattern, which emerges in the link utilization.
 ![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
 
 
-### Experimenting Double TCP Reno Session
+### Experiment: Two TCP Reno Session
 Now let's add another host pair and have TCP session between `H1->H3` and `H2-H4` and repeat the experiment.
 
 {: .center}
@@ -112,9 +112,9 @@ Also, looking at the TCP sending rate graph, we can see how both TCP sessions re
 {: .center}
 ![Double Reno Output](/images/post13/double_reno_output.png "Double Reno Output")
 
-This brings the question on whether Reno TCP flows are fair to each other. We can look at the sum of the sending rate and 
-see how much percentage each flow is contributing to that. We can see both TCP sessions are fluctuating around ~50% and the
-average percentage for both flows is near 50%.
+This brings the question of whether Reno TCP flows are fair to each other. Looking at the sum of sending rate for both 
+hosts and each flow percentage contribution, We can see both TCP sessions fluctuate around ~50%, and the average percentage 
+for both flows is near 50%.
 
 {: .center}
 ![Two Reno Flow Fairness](/images/post13/reno_fairness.png "Reno Fairness")
