@@ -88,9 +88,9 @@ host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
 ![Single Reno Session](/images/post13/single_host.png "Single Reno Session")
 
 We collect stats at every 200ms from `ss` and `tc`, which should provide a good approximation. Link utilization is 
-calculated by aggregating all the bytes transferred within a second and then converting them to Mbps. Then we plot the results.
-The below plot shows the results, the top three subplots show: R1 Link Utilization, R1 Output Queue, Packet Drops at R1, and 
-the bottom two subplots show `cwnd`,`ssthresh`, and `RTT` observed.
+calculated by aggregating all the bytes transferred within a second and then converting them to Mbps. The below plot shows 
+the results; the top three subplots show: R1 Link Utilization, R1 Output Queue, Packet Drops at R1, and the bottom two 
+subplots show `cwnd`, `ssthresh`, and `RTT` observed.
 
 The graph shows how TCP Reno fills queues, and you can see the corresponding bumps in RTT as the buffer fills up. As the 
 sender experiences packet drops, the TCP receiver slows down by reducing its `cwnd`. You can also see the AIMD sawtooth 
