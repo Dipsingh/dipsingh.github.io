@@ -140,16 +140,20 @@ where
 
 Plotting this for our two flows we see that how it fluctuates around 1 which is the perfect score.
 
+{: .center}
 ![Jains Fairness Index](/images/post13/reno_fairness_index.png "Reno Fairness Index")
 
-However Because TCP Reno's cwnd growth is proportional to RTT, a shorter RTT flow will be unfair to a longer RTT flow because of 
-cwnd of the longer RTT flow will grow slowly. which we can see by modifying the RTT for `H2-H4`. This will result in the flow `H1-H3`
-taking more bandwidth share.
+However, Because TCP Reno's `cwnd` growth is proportional to `RTT`, a shorter `RTT` flow will be unfair to a longer `RTT` 
+flow because of `cwnd` of the longer `RTT` flow will grow slowly. We can observe this by modifying the RTT for `H2-H4`. 
+This will result in the flow `H1-H3` taking more bandwidth share.
 
-![Double Reno Session](/images/post13/double_host.png "Double Host")
+{: .center}
+![RTT Unfairness](/images/post13/double_host_higher_latency.png "RTT Unfairness")
 
+{: .center}
 ![Two Reno Flow Fairness](/images/post13/reno_rtt_fairness.png "Reno RTT Fairness")
 
+{: .center}
 ![Jains Fairness Index](/images/post13/reno_rtt_fairness_index.png "Reno RTT Fairness Index")
 
 ## TCP Cubic
