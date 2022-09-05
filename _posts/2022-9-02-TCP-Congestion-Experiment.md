@@ -122,7 +122,7 @@ for both flows is near 50%.
 {: .center}
 ![Two Reno Flow Fairness](/images/post13/reno_fairness.png "Reno Fairness")
 
-Formally we could also look at Jain's index for measuring fairness which has the following properties
+Formally we could also look at Jain's index for measuring fairness which has the following properties:
 
 1. Population size independence: the index is applicable to any number of flows.
 2. Scale and metric independence: the index is independent of scale, i.e., the unit of
