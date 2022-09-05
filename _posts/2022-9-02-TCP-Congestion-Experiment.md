@@ -167,6 +167,9 @@ algorithm that uses packet loss to indicate Congestion.
 {: .center}
 ![Cubic Function](/images/post13/cubic_function.png "Cubic Function")
 
+{: .center}
+Reference: [TCP CUBIC: A Transport Protocol for Improving the Performance of TCP in Long Distance High Bandwidth Cyber-Physical System](https://ieeexplore.ieee.org/document/8403545/citations?tabFilter=papers#citations)
+
 
 $W_{max}$ represents the window size where the loss occurs. Cubic decreases the `cwnd` by a constant decrease factor $\beta$ and enters into congestion avoidance phase and begins to increase
 `cwnd` size by using an increase factor called $\alpha$ as a concave feature of cubic function until the window size becomes 
