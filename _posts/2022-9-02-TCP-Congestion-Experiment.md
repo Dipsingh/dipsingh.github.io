@@ -133,7 +133,7 @@ index of 1 and a totally unfair system has an index of 0.
 fairness index. 
 
 $$
-I = \frac{(\sum^{n}_{i=1}T_{i})^2}{n\sum^{n}_{i=1}T_{i})^2}
+I = \frac{(\sum^{n}_{i=1}T_{i})^2}{n\sum^{n}_{i=1}T_{i}^2}
 $$
 
 where
