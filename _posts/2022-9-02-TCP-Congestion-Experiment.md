@@ -218,14 +218,14 @@ If we look at the bandwidth share, we clearly see Cubic taking the major share o
 
 
 ## TCP BBR
-The problem with loss-based congestion control algorithms in high latency networks is that due to the cwnd growth being 
-proportional to RTT, the cwnd growth is slow. BBR is a rate-based congestion control algorithm, i.e., at any given time, 
+
+The problem with loss-based congestion control algorithms in high latency networks is that due to the `cwnd` growth being 
+proportional to `RTT`, the `cwnd` growth is slow. BBR is a rate-based congestion control algorithm, i.e., at any given time, 
 it sends data at a rate independent of current packet losses. This is a significant shift from how traditional algorithms 
 based on the AIMD rule, which operated by reducing the sending rate when they observed a packet loss.
 
-The behavior of BBR can be described in the below figure, which show that BBR tries to operate at the optimal operating 
-point which is the Bandwidth delay product (BDP) highlighted in green vs the traditional algorithms which operated at the
-BDP+Buffer size.
+The below figure describes the behavior of BBR, which show that BBR tries to operate at the optimal operating point, which 
+is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional algorithms, which operate at the BDP+Buffer size.
 
 {: .center}
 ![Optimal BDP](/images/post13/optimal_bdp.png "Optimal BW Delay Product")
@@ -244,11 +244,16 @@ bandwidth, allowing the bottleneck queue to drain. On the other hand, if the ava
 because of this probe, then the sender will operate according to this new bottleneck bandwidth estimate. The entire cycle 
 duration lasts eight RTTs and is repeated indefinitely in steady state. 
 
-### Experimenting Double TCP BBR Session
+### Experiment: Two TCP BBR Session
 
-### Experimenting TCP BBR and Cubic Session
+![BBR Sessions](/images/post13/double_bbr_output.png "BBR Sessions")
 
-### Experimenting TCP BBR and Cubic Session with buffer
+### Experiment: TCP BBR and Cubic Session
+
+![BBR with Cubic Small Buffer](/images/post13/bbr_cubic_output.png "BBR with Cubic")
+
+
+![BBR with Cubic large Buffer](/images/post13/bbr_cubic_output_buffer.png "BBR with Cubic with large buffer")
 
 
 ## References
