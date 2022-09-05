@@ -196,14 +196,8 @@ scales more aggressively than `C=0.3`.
 {: .center}
 ![Cubic Scaling Constant](/images/post13/cubic_scaling_constant.png "Cubic Scaling Constant")
 
-TCP Cubic sets the W(t+RTT) as the candidate target value of `cwnd` congestion window parameters $\alpha$ and $\beta$ of
-TCP Cubic
 
-Cubic behaves linear for low RTT's
-
-Draw the graph.
-
-### Experimenting Double TCP Cubic Session
+### Experiment: TCP Cubic Session
 
 Draw the graph showing 
 
@@ -211,7 +205,8 @@ Fairness
 
 Fairness index.
 
-### Experimenting Cubic and Reno
+### Experiment: Cubic and Reno
+
 
 ## TCP BBR
 One of the problems with loss bases congestion control algorithms in high latency networks is that due to the 
