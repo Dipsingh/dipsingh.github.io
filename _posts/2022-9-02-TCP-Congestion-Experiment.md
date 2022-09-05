@@ -294,11 +294,12 @@ buffers.
 
 ## References
 - [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)  
-- [TCP CUBIC: A Transport Protocol for Improving the Performance of TCP in Long Distance High Bandwidth Cyber-Physical System](https://ieeexplore.ieee.org/document/8403545/citations?tabFilter=papers#citations)  
-- [TCP/IP Illustrated](https://www.amazon.com/TCP-Illustrated-Vol-Addison-Wesley-Professional/dp/0201633469)  
+- [TCP CUBIC: A Transport Protocol for Improving the Performance of TCP in Long Distance High Bandwidth Cyber-Physical System](https://ieeexplore.ieee.org/document/8403545/citations?tabFilter=papers#citations)   
 - [Towards a Deeper Understanding of TCP BBR Congestion Control](https://www.net.in.tum.de/fileadmin/bibtex/publications/papers/IFIP-Networking-2018-TCP-BBR.pdf)  
 - [BBR Congestion Control](https://www.ietf.org/proceedings/97/slides/slides-97-iccrg-bbr-congestion-control-02.pdf)  
 - [Modeling BBR’s Interactions With Loss-Based Congestion Control](https://conferences.sigcomm.org/imc/2019/presentations/p282.pdf)  
 - [BBRv2](https://www.ietf.org/proceedings/106/slides/slides-106-iccrg-update-on-bbrv2-00)  
 - [Fairness Measure](https://en.wikipedia.org/wiki/Fairness_measure)
 - [High-Speed Networks](https://link.springer.com/book/10.1007/978-3-030-88841-1)  
+- [TCP/IP Illustrated](https://www.amazon.com/TCP-Illustrated-Vol-Addison-Wesley-Professional/dp/0201633469) 
+- [TCP Congestion Control: A Systems Approach](https://tcpcc.systemsapproach.org/)  
