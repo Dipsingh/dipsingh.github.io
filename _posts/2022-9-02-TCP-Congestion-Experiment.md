@@ -162,8 +162,13 @@ We can see that fairness index is not as close to 1 like it was in the previous 
 
 To provide higher throughput for large BDP networks, TCP Cubic (a modified version of BIC-TCP) came into the picture. This
 is currently the default congestion control algorithm for many operating systems. It's still a loss-based congestion control
-algorithm that uses packet loss to indicate Congestion. $W_{max}$ represents the window size where the loss occurs. Cubic
-decreases the `cwnd` by a constant decrease factor $\beta$ and enters into congestion avoidance phase and begins to increase
+algorithm that uses packet loss to indicate Congestion. 
+
+{: .center}
+![Cubic Function](/images/post13/cubic_function.png "Cubic Function")
+
+
+$W_{max}$ represents the window size where the loss occurs. Cubic decreases the `cwnd` by a constant decrease factor $\beta$ and enters into congestion avoidance phase and begins to increase
 `cwnd` size by using an increase factor called $\alpha$ as a concave feature of cubic function until the window size becomes 
 $W_{max}$. The congestion window grows very fast after a window reduction, but as it gets close to $W_{max}$, it slows down its 
 growth; around $W_{max}$, the window increment becomes almost zero. 
@@ -182,7 +187,8 @@ where `C` is the scaling constant factor (default=0.4). `C` controls how fast th
 multiplicative decrease factor after packet loss event, it's default value is 0.2.`t` is the elapsed time from the last 
 window reduction and `K` is the time period that the function requires to increase `W` to $W_{max}$. 
 
-The below plot shows the TCP Cubic function for scaling constant `C` with `0.3,0.4 and 0.5` values. We can see 
+The below plot shows the TCP Cubic function for scaling constant `C` with `0.3,0.4 and 0.5` values. We can see how for `C=0.5`,
+scales more aggressively than `C=0.3`.
 
 {: .center}
 ![Cubic Scaling Constant](/images/post13/cubic_scaling_constant.png "Cubic Scaling Constant")
