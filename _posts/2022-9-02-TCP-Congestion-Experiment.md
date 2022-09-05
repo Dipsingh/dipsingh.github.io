@@ -230,7 +230,7 @@ If we look at the bandwidth share, we clearly see Cubic taking the major share o
 
 The BBR congestion control algorithm takes a different approach and does not assume that packet loss signals congestion. 
 BBR builds a model of the network path to avoid and respond to actual congestion. In the case of BBR, at any given time, 
-it sends data at a rate independent of current packet losses. This is a significant shift from how traditional algorithms 
+it sends data at a rate independent of current packet losses. This is a significant shift from traditional algorithms 
 based on the AIMD rule, which operated by reducing the sending rate when they observed a packet loss.
 
 BBR uses pacing to set the sending rate to the estimated bottleneck bandwidth. The pacing technique spaces out or paces 
