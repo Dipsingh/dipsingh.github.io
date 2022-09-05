@@ -148,6 +148,7 @@ Plotting this for our two flows we see that how it fluctuates around 1 which is 
 {: .center}
 ![Jains Fairness Index](/images/post13/reno_fairness_index.png "Reno Fairness Index")
 
+#### RTT Unfairness
 However, Because TCP Reno's `cwnd` growth is proportional to `RTT`, a shorter `RTT` flow will be unfair to a longer `RTT` 
 flow because of `cwnd` of the longer `RTT` flow will grow slowly. We can observe this by modifying the RTT for `H2-H4`. 
 This will result in the flow `H1-H3` taking more bandwidth share.
