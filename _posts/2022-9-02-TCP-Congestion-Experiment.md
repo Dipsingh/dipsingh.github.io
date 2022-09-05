@@ -220,9 +220,10 @@ If we look at the bandwidth share, we clearly see Cubic taking the major share o
 ## TCP BBR
 
 The problem with loss-based congestion control algorithms in high latency networks is that due to the `cwnd` growth being 
-proportional to `RTT`, the `cwnd` growth is slow. BBR is a rate-based congestion control algorithm, i.e., at any given time, 
-it sends data at a rate independent of current packet losses. This is a significant shift from how traditional algorithms 
-based on the AIMD rule, which operated by reducing the sending rate when they observed a packet loss.
+proportional to `RTT`, the `cwnd` growth is slow. BBR is a rate-based congestion control algorithm that tries to fix the 
+short-coming. In the case of BBR, at any given time, it sends data at a rate independent of current packet losses. This is a 
+significant shift from how traditional algorithms based on the AIMD rule, which operated by reducing the sending rate 
+when they observed a packet loss.
 
 The below figure describes the behavior of BBR, which show that BBR tries to operate at the optimal operating point, which 
 is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional algorithms, which operate at the BDP+Buffer size.
@@ -231,18 +232,17 @@ is the Bandwidth delay product (BDP) highlighted in green, vs. the traditional a
 ![Optimal BDP](/images/post13/optimal_bdp.png "Optimal BW Delay Product")
 
 
-The intended operational model here is that the sender is passing packets into the network at
-a rate that is not anticipated to encounter queuing at any point within the entire path. BBR also periodically probes 
-for additional bandwidth. 
+BBR operational model is that the sender passes packets into the network at a rate, i.e., not anticipated to encounter queuing 
+at any point within the entire path. 
 
-It spends one RTT interval deliberately sending at a rate that is higher than the current estimate bottleneck bandwidth. 
-Specifically, it sends data at 125% the bottleneck bandwidth. If the available bottleneck bandwidth has not changed, 
-then the increased sending rate will cause a queue to form at the bottleneck. This will cause the ACK signaling to reveal 
-an increased RTT, but the bottleneck bandwidth estimate will be unaltered. If this is the case, then the sender will 
-subsequently send at a compensating reduced sending rate for an RTT interval. The reduced rate is set to 75% the bottleneck 
-bandwidth, allowing the bottleneck queue to drain. On the other hand, if the available bottleneck bandwidth estimate has increased
-because of this probe, then the sender will operate according to this new bottleneck bandwidth estimate. The entire cycle 
-duration lasts eight RTTs and is repeated indefinitely in steady state. 
+BBR periodically probes for additional bandwidth by spending one RTT interval deliberately sending at a rate higher than 
+the currently estimated bottleneck bandwidth. It sends data at 125% of the bottleneck bandwidth. If the available bottleneck 
+bandwidth has not changed, then the increased sending rate will cause a queue to form at the bottleneck. This will cause the 
+ACK signaling to reveal an increased RTT, and the sender will subsequently send at a compensating reduced sending rate for an 
+RTT interval. The reduced rate is set to 75% of the bottleneck bandwidth, allowing the bottleneck queue to drain. 
+
+On the other hand, if the available bottleneck bandwidth estimate has increased because of this probe, then the sender will 
+operate according to this new bottleneck bandwidth estimate. 
 
 ### Experiment: Two TCP BBR Session
 
