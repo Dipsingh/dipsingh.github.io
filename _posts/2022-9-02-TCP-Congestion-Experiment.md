@@ -185,12 +185,12 @@ W(t) = C(t-K)^3+W_{max}
 $$
 
 $$
-K = \sqrt[3]{\frac{W_{max}\beta}{C}}
+K = \sqrt[3]{\frac{W_{max}(1-\beta)}{C}}
 $$
 
 
 where `C` is the scaling constant factor (default=0.4). `C` controls how fast the window will grow. $\beta$ is the 
-multiplicative decrease factor after packet loss event, it's default value is 0.2.`t` is the elapsed time from the last 
+multiplicative decrease factor after packet loss event, it's default value is 0.7.`t` is the elapsed time from the last 
 window reduction and `K` is the time period that the function requires to increase `W` to $W_{max}$. 
 
 The below plot shows the TCP Cubic function for scaling constant `C` with `0.3,0.4 and 0.5` values. We can see how for `C=0.5`,
