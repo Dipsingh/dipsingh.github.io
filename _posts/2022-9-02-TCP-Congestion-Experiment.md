@@ -233,8 +233,8 @@ BBR builds a model of the network path to avoid and respond to actual congestion
 it sends data at a rate independent of current packet losses. This is a significant shift from traditional algorithms 
 based on the AIMD rule, which operated by reducing the sending rate when they observed a packet loss.
 
-BBR uses pacing to set the sending rate to the estimated bottleneck bandwidth. The pacing technique spaces out or paces 
-packets at the sender node, spreading them over time. This approach is a departure from the traditional loss-based algorithms, 
+BBR uses pacing to set the sending rate to the estimated bottleneck bandwidth. The pacing technique spaces out packets at the 
+sender node, spreading them over time. This approach is a departure from the traditional loss-based algorithms, 
 where the size of the congestion window establishes the sending rate, and the sender node may send packets in bursts up to the 
 maximum rate of the sender’s interface. 
 
