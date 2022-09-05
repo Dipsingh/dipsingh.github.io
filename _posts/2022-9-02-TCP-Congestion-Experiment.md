@@ -116,7 +116,7 @@ Also, looking at the TCP sending rate graph, we can see how both TCP sessions re
 ![Double Reno Output](/images/post13/double_reno_output.png "Double Reno Output")
 
 This brings the question of whether Reno TCP flows are fair to each other. Looking at the sum of sending rate for both 
-hosts and each flow percentage contribution, We can see both TCP sessions fluctuate around ~50%, and the average percentage 
+hosts and percentage contribution of individual flows, We can see both TCP sessions fluctuate around ~50% and the average percentage 
 for both flows is near 50%.
 
 {: .center}
