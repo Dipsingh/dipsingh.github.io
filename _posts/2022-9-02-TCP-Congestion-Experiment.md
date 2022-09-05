@@ -284,21 +284,10 @@ sharing between BBR and Cubic. as more buffers are providing
 
 ## Conclusion
 
-In this blog post we looked at TCP Reno, Cubic and BBR. We 
-
-TCP Reno:
-- TCP Reno sessions are fair to each other when RTTs are similar but unfair if the RTTs are not same.
-- TCP Reno behavior on the Queues and `cwnd` AIMD behavior.
-
-TCP Cubic:
-- TCP Cubic window growth behavior.
-- TCP Cubic fairness compared to other Cubic flows and TCP Reno.
-
-TCP BBR:
-- It's as rate based congestion control algorithm.
-- It doesn't slows it sending pace when it observes packet loss.
-- It's unfair to TCP Cubic for smaller buffers but fairness improves with larger buffers.
-
+In this blog post, we started with TCP Reno and looked at how Reno sessions are fair to each other and their bias towards RTT. Then
+we looked at TCP Cubic, differences in Reno vs. Cubic `cwnd` growth behavior, and how Cubic fairness compared to Reno.
+Then we finished with BBR and saw how the sending pace doesn't slow with packet loss, and it's unfairness towards Cubic with smaller 
+buffers.
 
 ## References
 [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)
