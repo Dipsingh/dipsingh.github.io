@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Experimenting TCP Congestion Control(WIP)
+title:  Experimenting with TCP Congestion control
 ---
 ## Introduction
 I have always found TCP congestion control algorithms fascinating, and at the same time, I know very little about them. 
