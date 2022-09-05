@@ -4,10 +4,13 @@ title:  Experimenting TCP Congestion Control(WIP)
 ---
 ## Introduction
 I have always found TCP congestion control algorithms fascinating, and at the same time, I know very little about them. 
-So once in a while, I will spend some time with the hope of gaining some new insights. This blog post will 
-share some of my experiments with various TCP congestion control algorithms. We will start with TCP Reno, then look at
-Cubic and ends with BBR.I am using Linux network namespaces to emulate topology for experimentation, making it easier to 
-run than setting up a physical test bed.
+As an engineer working on the roads, it's essential to understand the traffic requirement and service levels. Similarly, 
+It's good to understand the transport behavior riding our networks. Once in a while, I will feel guilty about it and 
+spend time on the topic with the hope of gaining some new insights. 
+
+This blog post will share some of my experiments with various TCP congestion control algorithms. We will start with TCP 
+Reno, then look at Cubic, and ends with BBR. I am using Linux network namespaces to emulate topology for experimentation, 
+making it easier to run than setting up a physical test bed.
 
 ## TCP Reno
 For many years, the main algorithm of congestion control was TCP Reno. The goal of congestion control is to determine 
@@ -271,15 +274,18 @@ are providing
 
 ## Conclusion
 
-We started with looking at TCP Reno and observed that 
+In this blog post we looked at TCP Reno, Cubic and BBR. We 
+
+TCP Reno:
 - TCP Reno sessions are fair to each other when RTTs are similar but unfair if the RTTs are not same.
 - TCP Reno behavior on the Queues and `cwnd` AIMD behavior.
 
-Then we looked at the TCP Cubic and observed that
+TCP Cubic:
 - TCP Cubic window growth behavior.
 - TCP Cubic fairness compared to other Cubic flows and TCP Reno.
 
-We ended with TCP BBR which is a rate based congestion control algorithm and observed that
+TCP BBR:
+- It's as rate based congestion control algorithm.
 - It doesn't slows it sending pace when it observes packet loss.
 - It's unfair to TCP Cubic for smaller buffers but fairness improves with larger buffers.
 
