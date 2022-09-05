@@ -51,6 +51,8 @@ was improved under New-Reno to handle multiple packet losses. During this state,
 half, which is the Multiplicative decrease part of AIMD.
 
 Here is the Finite State Machine for the TCP Reno:
+
+: .center}
 ![TCP Reno FSM](/images/post13/tcp_reno_fsm.png "TCP Reno FSM")
 
 Reference: [Computer Networking: A Top Down Approach](http://gaia.cs.umass.edu/kurose_ross/index.php)
@@ -78,6 +80,7 @@ Now let's get to the fun part. Let's start with a simple topology of two hosts (
 Router `R1` has a small buffer of 100packets using FIFO queuing discipline. We will run a single TCP Reno session from 
 host `H1` to `H2` for 200sec and observe the behavior on `R1` and the host.
 
+: .center}
 ![Single Reno Session](/images/post13/single_host.png "Single Reno Session")
 
 We collect stats at every 200ms from `ss` and `tc`, which should provide a good approximation. Link utilization is 
@@ -89,6 +92,7 @@ The graph shows how TCP Reno fills queues, and you can see the corresponding bum
 sender experiences packet drops, the TCP receiver slows down by reducing its `cwnd`. You can also see the AIMD sawtooth 
 pattern, which emerges in the link utilization.
 
+: .center}
 ![Single Reno Output](/images/post13/single_reno_output.png "Single Reno Output")
 
 
