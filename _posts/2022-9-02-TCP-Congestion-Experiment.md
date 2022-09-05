@@ -259,7 +259,7 @@ Currently, TCP BBRv2 is in the beta stage, which addresses some BBRv1 shortcomin
 ### Experiment
 #### Two TCP BBR Session
 
-Let's start by looking at two BBR sessions first. The things which stand out are:
+Let's start by looking at two BBR sessions first. Some observations:
 - Buffers are almost full. Please recall that our buffer here is 100 packets which are very shallow compared to the buffer required for BDP.
 - Due to the shallow buffers and them always being full, we also observe more packet loss. However, the impact on throughput due to packet loss is not visible.
 - Sender RTT estimates are pretty constant.
@@ -267,7 +267,7 @@ Let's start by looking at two BBR sessions first. The things which stand out are
 
 ![BBR Sessions](/images/post13/double_bbr_output.png "BBR Sessions")
 
-### Experiment: TCP BBR and Cubic Session
+#### TCP BBR and Cubic Session
 
 Now if we change one of the session (`H1-H3`) from previous experiment to TCP Cubic, we observe that TCP Cubic takes the fair share 
 of the network bandwidth. I suspect this is due to buffers being shallow and TCP BBR not reacting to Loss while Cubic scaling it's rate 
