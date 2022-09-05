@@ -185,7 +185,7 @@ W(t) = C(t-K)^3+W_{max}
 $$
 
 $$
-K = \sqrt{\frac{W_{max}\beta}{C}}
+K = \sqrt[3]{\frac{W_{max}\beta}{C}}
 $$
 
 
