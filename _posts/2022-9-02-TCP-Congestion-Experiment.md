@@ -259,9 +259,9 @@ Currently, TCP BBRv2 is in the beta stage, which addresses some BBRv1 shortcomin
 ### Experiment
 #### Two TCP BBR Session
 
-Let's start with looking at two BBR sessions first. The things which stand out are
-- Buffers are almost full. Please recall that our buffer here is 100 packets which is very shallow compared to buffer required for BDP.
-- Due to the shallow buffers and them being always full, we also observe more packet loss. However, impact on throughput due to packet loss is not visible.
+Let's start by looking at two BBR sessions first. The things which stand out are:
+- Buffers are almost full. Please recall that our buffer here is 100 packets which are very shallow compared to the buffer required for BDP.
+- Due to the shallow buffers and them always being full, we also observe more packet loss. However, the impact on throughput due to packet loss is not visible.
 - Sender RTT estimates are pretty constant.
 - Sending rate between both hosts seems to be approximately equal.
 
