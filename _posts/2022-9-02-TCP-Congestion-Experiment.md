@@ -256,7 +256,8 @@ operate according to this new bottleneck bandwidth estimate.
 
 Currently, TCP BBRv2 is in the beta stage, which addresses some BBRv1 shortcomings, like unfairness to other TCP Cubic flows.
 
-### Experiment: Two TCP BBR Session
+### Experiment
+#### Two TCP BBR Session
 
 Let's start with looking at two BBR sessions first. The things which stand out are
 - Buffers are almost full. Please recall that our buffer here is 100 which is very shallow compared to buffer required for BDP.
