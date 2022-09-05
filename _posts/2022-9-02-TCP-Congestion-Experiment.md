@@ -153,6 +153,8 @@ This will result in the flow `H1-H3` taking more bandwidth share.
 {: .center}
 ![Two Reno Flow Fairness](/images/post13/reno_rtt_fairness.png "Reno RTT Fairness")
 
+We can see that fairness index is not as close to 1 like it was in the previous case.
+
 {: .center}
 ![Jains Fairness Index](/images/post13/reno_rtt_fairness_index.png "Reno RTT Fairness Index")
 
