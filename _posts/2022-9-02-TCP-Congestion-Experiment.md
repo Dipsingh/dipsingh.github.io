@@ -175,13 +175,13 @@ Reference: [TCP CUBIC: A Transport Protocol for Improving the Performance of TCP
 
 
 $W_{max}$ represents the window size where the loss occurs. Cubic decreases the `cwnd` by a constant decrease factor $\beta$ and enters into congestion avoidance phase and begins to increase
-`cwnd` size by using an increase factor called $\alpha$ as a concave feature of cubic function until the window size becomes 
+`cwnd` size by using Eq. 1 as a concave feature of cubic function until the window size becomes 
 $W_{max}$. The congestion window grows very fast after a window reduction, but as it gets close to $W_{max}$, it slows down its 
 growth; around $W_{max}$, the window increment becomes almost zero. 
 
 
 $$
-W(t) = C(t-K)^3+W_{max}
+W(t) = C(t-K)^3+W_{max} \qquad (Eq. 1)
 $$
 
 $$
