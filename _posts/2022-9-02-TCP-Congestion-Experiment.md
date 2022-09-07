@@ -281,7 +281,7 @@ packet loss and reducing its rate and thus ending up starved.
 #### TCP BBR and Cubic Session with ~1xBDP
 
 Let's repeat the above experiment after increasing the buffer size on the router to 1000 Packets. Now we see a better resource 
-sharing between BBR and Cubic. as more buffers are providing 
+sharing between BBR and Cubic.
 
 ![BBR with Cubic large Buffer](/images/post13/bbr_cubic_output_buffer.png "BBR with Cubic with large buffer")
 
