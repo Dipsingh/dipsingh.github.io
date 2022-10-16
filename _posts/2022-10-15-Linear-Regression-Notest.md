@@ -3,6 +3,7 @@ layout: post
 title:  Linear Regression Notes
 ---
 ## Introduction
+
 {: .center}
 ![xkcd](/images/post14/xkcd1.png "Indiana Jones")
 
