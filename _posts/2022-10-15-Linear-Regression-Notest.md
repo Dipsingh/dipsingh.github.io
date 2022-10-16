@@ -2,11 +2,10 @@
 layout: post
 title:  Linear Regression Notes
 ---
-
+## Introduction
 {: .center}
 ![xkcd](/images/post14/xkcd1.png "Indiana Jones")
 
-## Introduction
 When it comes to stats, one of the first topics we learn is linear regression. But most people don't realize how deep 
 the linear regression topic is, and observing bad applications in day-to-day life makes me cringe. This post is not 
 about virtue-signaling(as I know some areas I haven't explored), but to share my notes which may be helpful to others.
