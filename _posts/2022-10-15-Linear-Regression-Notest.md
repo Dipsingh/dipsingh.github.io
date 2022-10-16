@@ -645,6 +645,47 @@ fig= sm.graphics.plot_regress_exog(fitdc,'climb',fig=plt.figure(figsize=(15, 8))
 ![reg plot distance](/images/post14/reg_plot_distance.png "Reg Plot Distance")
 ![reg plot climb](/images/post14/reg_plot_climb.png "Reg Plot Climb")
 
+## Multicollinearity
+
+Many times explanatory variables overlap considerably. Each variable may be nearly redundant because it can be predicted 
+well using the others. So the effects in the multiple regression model may not be statistically significant even if 
+highly significant marginally. Multicollinearity causes issues with the interpretation of the coefficients. You can 
+interpret a coefficient as “an increase of 1 in this predictor results in a change of (coefficient) in the response 
+variable, holding all other predictors constant.” This becomes problematic when multicollinearity is present because we 
+can’t hold correlated predictors constant. Additionally, it increases the standard error of the coefficients, which 
+results in them potentially showing as statistically insignificant when they might be significant.
+
+Let $R_{j}^2$ denote $R^2$ from regressing $x_{j}$ on the other explanatory variables from the model. Then the estimated 
+variance of $\hat\beta_{j}$ can be expressed as
+
+$
+var(\hat\beta_{j}) = (se_{j})^2 = \frac{1}{(1-R_{j}^2)}\left[\frac{s^2}{(n-1)s^2_{x_{j}}}\right]
+$
+
+where $s^2_{x_{j}}$ denotes the sample variance of ${x_{j}}$. The variance inflation factor $VIF_{j} = \frac{1}{(1-R^2_{j})}$ 
+represents the multiplicative increase in $var(\hat\beta_{j})$ due to ${x_{j}}$ being correlated with the other explanatory 
+variables.
+
+Multicollinearity can be fixed by other removing predictors with a high variance inflation factor (VIF) or performing 
+dimensionality reduction.
+
+VIF starts at one and has no upper limit. A value of 1 indicates there is no correlation. A value between 1 and 5 
+suggests a moderate correlation, but not severe enough. VIFs greater than 5 represent severe multicollinearity where 
+the coefficients are poorly estimated.
+
+```python
+X = Races2[['distance', 'climb']]
+# VIF dataframe
+vif_data = pd.DataFrame()
+vif_data["feature"] = X.columns
+# calculating VIF for each feature
+vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(len(X.columns))]
+print(vif_data)
+
+    feature       VIF
+0  distance  6.205809
+1     climb  6.205809
+```
 
 ## R-squared
 
@@ -719,47 +760,7 @@ the two models to our data. That is, we take the general linear test approach:
 - Obtain the least squares estimate of .
 - Determine the error sum of squares, which we denote as "SSE(R)."
 
-## Multicollinearity
 
-Many times explanatory variables overlap considerably. Each variable may be nearly redundant because it can be predicted 
-well using the others. So the effects in the multiple regression model may not be statistically significant even if 
-highly significant marginally. Multicollinearity causes issues with the interpretation of the coefficients. You can 
-interpret a coefficient as “an increase of 1 in this predictor results in a change of (coefficient) in the response 
-variable, holding all other predictors constant.” This becomes problematic when multicollinearity is present because we 
-can’t hold correlated predictors constant. Additionally, it increases the standard error of the coefficients, which 
-results in them potentially showing as statistically insignificant when they might be significant.
-
-Let $R_{j}^2$ denote $R^2$ from regressing $x_{j}$ on the other explanatory variables from the model. Then the estimated 
-variance of $\hat\beta_{j}$ can be expressed as 
-
-$
-var(\hat\beta_{j}) = (se_{j})^2 = \frac{1}{(1-R_{j}^2)}[\frac{s^2}{(n-1)s^2_{x_{j}}}]
-$
-
-where $s^2_{x_{j}}$ denotes the sample variance of ${x_{j}}$. The variance inflation factor $VIF_{j} = \frac{1}{(1-R^2_{j})}$ 
-represents the multiplicative increase in $var(\hat\beta_{j})$ due to ${x_{j}}$ being correlated with the other explanatory 
-variables.
-
-Multicollinearity can be fixed by other removing predictors with a high variance inflation factor (VIF) or performing 
-dimensionality reduction.
-
-VIF starts at one and has no upper limit. A value of 1 indicates there is no correlation. A value between 1 and 5 
-suggests a moderate correlation, but not severe enough. VIFs greater than 5 represent severe multicollinearity where 
-the coefficients are poorly estimated.
-
-```python
-X = Races2[['distance', 'climb']]
-# VIF dataframe
-vif_data = pd.DataFrame()
-vif_data["feature"] = X.columns
-# calculating VIF for each feature
-vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(len(X.columns))]
-print(vif_data)
-
-    feature       VIF
-0  distance  6.205809
-1     climb  6.205809
-```
 
 ## References
 - [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)  
