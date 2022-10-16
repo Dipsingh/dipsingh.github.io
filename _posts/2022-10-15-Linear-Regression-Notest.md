@@ -472,6 +472,48 @@ fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 {: .center}
 ![qqplot](/images/post14/qq.png "QQPlot")
 
+**Jarque-Bera test**
+The JB test is a goodness-of-fit test of whether sample data have the skewness and kurtosis matching a normal distribution.
+
+The null hypothesis is a joint hypothesis of:
+
+- the skewness being zero
+- the kurtosis being 3
+
+Samples from a normal distribution have an:
+- an expected skewness of 0 
+- an expected excess kurtosis of 0 (which is the same as a kurtosis of 3).
+
+Any deviation from this assumptions increases the JB statistic.
+
+```python
+name = ['Jarque-Bera', 'Chi^2 two-tail prob.', 'Skew', 'Kurtosis']
+test = sm.stats.jarque_bera(residuals)
+lzip(name, test)
+
+[('Jarque-Bera', 1.0429853552942074),
+ ('Chi^2 two-tail prob.', 0.5936337824296948),
+ ('Skew', -0.15821546700650482),
+ ('Kurtosis', 3.5176716549501106)]
+```
+The p-value is above 0.05 and we can accept $H_{0}$. Therefore, the test gives us an indication that the errors are 
+normally distributed.
+
+**Omnibus normtest**
+Another test for normal distribution of residuals is the Omnibus normtest. The test allows us to check whether or not 
+the model residuals follow an approximately normal distribution.
+
+Our null hypothesis is that the residuals are from a normal distribution.
+
+```python
+name = ['Chi^2', 'Two-tail probability']
+test = sm.stats.omni_normtest(residuals)
+lzip(name, test)
+[('Chi^2', 1.738548720752564), ('Two-tail probability', 0.4192556674189445)]
+```
+The p-value is above 0.05 and we can accept $H_{0}$. Therefore, the test gives us an indication that the errors are from 
+a normal distribution.
+
 ### No AutoCorrelation among error terms 
 
 No Autocorrelation of the Error TermsPermalink
