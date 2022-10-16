@@ -659,7 +659,7 @@ Let $R_{j}^2$ denote $R^2$ from regressing $x_{j}$ on the other explanatory vari
 variance of $\hat\beta_{j}$ can be expressed as:
 
 $
-var(\hat\beta_{j}) = (se_{j})^2  = \frac{1}{(1-R_{j}^2)}
+var(\hat\beta_{j}) = (se_{j})^2  = \frac{1}{(1-R_{j}^2)}(\frac{s^2}{(n-1)s^2_{x_{j}}})
 $
 
 where $s^2_{x_{j}}$  denotes the sample variance of ${x_{j}}$. The variance inflation factor $VIF_{j}=\frac{1}{(1-R^2_{j})}$ 
