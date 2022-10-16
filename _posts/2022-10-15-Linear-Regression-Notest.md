@@ -694,7 +694,8 @@ print(vif_data)
 
 $TSS = SSR + SSE$ which in simple term means $Total Variablity = Explained Variability + Unexplained Variability$.
 
-mathematically we can express the above as:
+Mathematically we can express the above as:
+
 $
 \sum_{i}(y_{i} - \bar{y})^2= \sum_{i}(\hat\mu_{i} - \bar{y})^2 + \sum_{i}(y_{i} - \hat\mu_{i})^2
 $
