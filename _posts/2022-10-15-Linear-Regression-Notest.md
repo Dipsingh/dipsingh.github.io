@@ -499,12 +499,17 @@ Why it can happen: Our model may be giving too much weight to a subset of the da
 What it will affect: Significance tests for coefficients due to the standard errors being biased. Additionally, the 
 confidence intervals will be either too wide or too narrow.
 
-How to detect it: Plot the residuals and see if the variance appears to be uniform.
-
 How to fix it: Heteroscedasticity (can you tell I like the scedasticity words?) can be solved either by using weighted 
 least squares regression instead of the standard OLS or transforming either the dependent or highly skewed variables. 
 Performing a log transformation on the dependent variable is not a bad place to start.
 
+### Non-linearity 
+
+One crucial assumption of the linear regression model is the linear relationship between the response and the dependent 
+variables. We can identify non-linear relationships in the regression model residuals if the residuals are not equally 
+spread around the horizontal line (where the residuals are zero) but instead show a pattern, then this gives us an 
+indication for a non-linear relationship. We can deal with non-linear relationships via basis expansions 
+(e.g. polynomial regression) or regression splines.
 
 ```python
 index = list(range(1, len(residuals) + 1))
@@ -514,15 +519,30 @@ plt.xlabel('Index'); plt.ylabel('Residuals')
 ```
 ![resid](/images/post14/resid.png "Residual")
 
+
+### Heteroscedasticity
+
+Another important assumption is that the error terms have a constant variance (homoscedasticity). For instance, the 
+variances of the error terms may increase with the value of the response. One can identify non-constant variances in the 
+errors, or heteroscedasticity by plotting the residuals and see if the variance appears to be uniform.
+
+Heteroscedasticity can be solved either by using weighted least squares regression instead of the standard OLS or 
+transforming either the dependent or highly skewed variables. WLS assigns a weight to each data point based on the 
+variance of its fitted value. Essentially, this gives small weights to data points that have higher variances, which 
+shrinks their squared residuals. When the proper weights are used, this can eliminate the problem of heteroscedasticity.
+
+
 ```python
 plt.scatter(fitted, residuals)
 plt.title(' ')
 plt.xlabel('Fitted values'); plt.ylabel('Residuals')
 ```
-![fitted_resid](/images/post14/fitvresid.png "Fitted vs Residual")
+![fitted_resid](/images/post14/fitvsresid.png "Fitted vs Residual")
 
 Residuals plotted against each explanatory variable can highlight possible nonlinearity in
-an effect or severely nonconstant variance. A partial regression plot displays the relationship
+an effect or severely nonconstant variance. 
+
+A partial regression plot displays the relationship
 between a response variable and an explanatory variable after removing the effects of the
 other explanatory variables that are in the model. It does this by plotting the residuals
 from models using these two variables as responses and the other explanatory variable(s)
