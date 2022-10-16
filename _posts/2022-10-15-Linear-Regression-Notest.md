@@ -121,7 +121,7 @@ We can see correlation between `timeW and distance`, and `timeW and climb`. We a
 {: .center}
 ![pairplot](/images/post14/pairplot.png "PairPlot")
 
-Let's perform OLS between `timeW and distance`.
+Performing OLS between `timeW and distance`.
 
 ```python
 fitd = smf.ols(formula='timeW ~ distance', data=Races2).fit()
@@ -180,7 +180,7 @@ $
 $
 
 ### Example
-Let's expand the previous example and now perform OLS between `timeW vs distance and climb`.
+expanding on the previous example by performing OLS between `timeW vs distance and climb`.
 
 ```python
 fitdc = smf.ols(formula="timeW ~ distance + climb", data=Races).fit()
@@ -220,8 +220,62 @@ The estimated conditional distance effect of 5.04 differs from the estimated mar
 the sole explanatory variable because distance and climb are +ve correlated. With the climb in elevation fixed, distance 
 has less of an effect than when the model ignores climb so that it also tends to increase as distance increases.
 
+#### Leverage 
 
-Let's repeat the OLS after removing the outlier.
+The leverage is a measure of an observation potential influence on the fit. Observations for which explanatory 
+variables are far from their means have greater potential influence on the least square estimates.
+
+For an observation to actually be influential, it must have boths relatively large leverage and a relatively large residual. 
+Cook's distance uses both based on the change in $\beta_{j}$ when the observation is removed from the data set. For the 
+residual $e_{i}$ and leverage $h_{i}$ for observation i, cook's distance is 
+
+$
+D_{i} = \frac{e_{i}^2h_{i}}{(p+1)s^2(1-h_{i})^2}
+$
+where $s^2$ is an estimate of the conditional variance $\sigma^2$. 
+
+Cook’s distance is large when an observation has a large residual and a large leverage. The following code requests a plot of
+squared normalized residuals against the leverage:
+
+
+```python
+sm.graphics.plot_leverage_resid2(fitdc)
+```
+![leverage](/images/post14/leverage.png "leverage")
+
+```python
+influence = fitdc.get_influence()
+leverage = influence.hat_matrix_diag
+cooks_d = influence.cooks_distance
+cooks_df = pd.DataFrame(cooks_d,index=['CooksDist','p-value'])
+cooks_df = pd.DataFrame.transpose(cooks_df)
+cooks_df.head(3)
+
+	CooksDist	p-value
+0	0.007997	0.999008
+1	0.216293	0.884759
+2	0.004241	0.999615
+
+```
+```python
+from yellowbrick.regressor import CooksDistance
+X = Races.drop(['race', 'timeM', 'timeW'], axis=1)
+y = Races['timeW']
+visualizer = CooksDistance()
+visualizer.fit(X, y)
+```
+![Cooks Distance with outlier](/images/post14/cookdist_outlier.png "Cook's distance with outlier")
+
+```python
+X1 = X.loc[X.index != 40]
+y1 = y.loc[y.index != 40]
+visualizer = CooksDistance()
+visualizer.fit(X1, y1)
+```
+![Cooks Distance no outlier](/images/post14/cookdist_no_outlier.png "Cook's distance with no outlier")
+
+
+Repeating the OLS after removing the outlier.
 ```python
 Races2 = Races2.loc[~Races2.race.str.contains('Highland')]
 fitdc2 = smf.ols(formula="timeW ~ distance + climb", data=Races2).fit()
@@ -408,7 +462,6 @@ fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 {: .center}
 ![qqplot](/images/post14/qq.png "QQPlot")
 
-
 ### No AutoCorrelation among error terms 
 
 No Autocorrelation of the Error TermsPermalink
@@ -495,64 +548,6 @@ fig_dis = sm.graphics.plot_partregress('timeW','distance', ['climb'],data = Race
 fig_climb = sm.graphics.plot_partregress('timeW','climb', ['distance'],data = Races, obs_labels = False)
 ```
 
-Another way to check a model is to inspect numerical measures that detect observations that highly influence the model 
-fit. The leverage is a measure of an observation potential influence on the fit. Observations for which explanatory 
-variables are far from their means have greater potential influence on the least square estimates.
-
-For an observation to actually be influential, it must have boths relatively large leverage and a relatively large residual. 
-Cook's distance uses both based on the change in $\beta_{j}$ when the observation is removed from the data set. For the 
-residual $e_{i}$ and leverage $h_{i}$ for observation i, cook's distance is 
-
-$
-D_{i} = \frac{e_{i}^2h_{i}}{(p+1)s^2(1-h_{i})^2}
-$
-where $s^2$ is an estimate of the conditional variance $\sigma^2$. 
-
-
-We next repeat with Python the analysis performed with R in Section 6.2.8 to use Cook’s
-distances to detect potentially influential observations. Cook’s distance is large when an
-observation has a large residual and a large leverage. The following code requests a plot of
-squared normalized residuals against the leverage:
-
-Figure B6.5 shows the plot. We’ve seen in Figure B6.3 that observation 41 (index 40 in
-Python) has a large residual, and Figure B6.5 shows it also has a large leverage, highlighting
-it as potentially problematic.
-
-```python
-sm.graphics.plot_leverage_resid2(fitdc)
-```
-![leverage](/images/post14/leverage.png "leverage")
-
-```python
-influence = fitdc.get_influence()
-leverage = influence.hat_matrix_diag
-cooks_d = influence.cooks_distance
-cooks_df = pd.DataFrame(cooks_d,index=['CooksDist','p-value'])
-cooks_df = pd.DataFrame.transpose(cooks_df)
-cooks_df.head(3)
-
-	CooksDist	p-value
-0	0.007997	0.999008
-1	0.216293	0.884759
-2	0.004241	0.999615
-
-```
-```python
-from yellowbrick.regressor import CooksDistance
-X = Races.drop(['race', 'timeM', 'timeW'], axis=1)
-y = Races['timeW']
-visualizer = CooksDistance()
-visualizer.fit(X, y)
-```
-![Cooks Distance with outlier](/images/post14/cookdist_outlier.png "Cook's distance with outlier")
-
-```python
-X1 = X.loc[X.index != 40]
-y1 = y.loc[y.index != 40]
-visualizer = CooksDistance()
-visualizer.fit(X1, y1)
-```
-![Cooks Distance no outlier](/images/post14/cookdist_no_outlier.png "Cook's distance with no outlier")
 
 ## R-squared
 
