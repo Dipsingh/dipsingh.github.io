@@ -760,7 +760,7 @@ the two models to our data. That is, we take the general linear test approach:
 - Determine the error sum of squares, which we denote as $SSE_{R}$.
 
 $
-F^* = (\frac{SSE_{R}-SSE_{F}}{df_{R}-df{F}})
+F^* = \frac{SSE_{R}-SSE_{F}}{df_{R}-df_{F}}/(\frac{SSE_{F}}{df_{F}})
 $
 
 ## References
