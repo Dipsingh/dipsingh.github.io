@@ -257,6 +257,16 @@ cooks_df.head(3)
 2	0.004241	0.999615
 
 ```
+
+To identify values with high influence, we look for observations with:
+- big blue points (high Cook’s distance) and
+- high leverage (X-axis) which additionally have high or low studentized residuals (Y-axis).
+```python
+fig = sm.graphics.influence_plot(fitdc, criterion="cooks")
+fig.tight_layout(pad=1.0)
+```
+![influence plot](/images/post14/influence_plot.png "Influence Plot")
+
 ```python
 from yellowbrick.regressor import CooksDistance
 X = Races.drop(['race', 'timeM', 'timeW'], axis=1)
