@@ -550,21 +550,21 @@ lzip(name, test)
  ('f-value', 21.211902245960705),
  ('f p-value', 8.108058864393248e-08)]
 ```
-P value is less than 0.05, means indication of no hetroscedasity.
+P value is less than 0.05, means indication of hetroscedasity.
 
 #### Partial Regression Plots
 
-They are also called as Added-Variable Plots, where both the response variable `Y` and the predictor variable under the
+They are also called as Added-Variable Plots, where both the response variable $Y$ and the predictor variable under the
 investigation (like $X_{i}$) are both regressed against other predictor variables already in the regression model and the
-residuals are obtained for each. These two sets of residuals reflect the part of each (`Y` and $X_{i}$) that is not 
+residuals are obtained for each. These two sets of residuals reflect the part of each ($Y$ and $X_{i}$) that is not 
 linearly assosciated with the other predictor variables. 
 
 The plot of one set of residuals against the other set would show the marginal contribution of the candidate predictor in
 reducing variability as well as the information about the nature of its marginal distribution. For example, if we already 
-have a regression model of `Y` on predictor variable $X_{1}$ and is now considering if we should add $X_{2}$ into the 
-model. In order to decide, we investigate 1) The regression of `Y` on $X_{1}$ 2) The regression of $X_{2}$ on $X_{1}$ and
-obtain 2 sets of residuals. Then we do a regression of e(Y|$X_{1}$)- as new dependent varibale on e($X_{2}$|$X_{1}$)- as 
-independent variable. This gives us if the part of $X_{2}$ not contained in $X_{1}$ can further explained the part of `Y` 
+have a regression model of $Y$ on predictor variable $X_{1}$ and is now considering if we should add $X_{2}$ into the 
+model. In order to decide, we investigate 1) The regression of $Y$ on $X_{1}$ 2) The regression of $X_{2}$ on $X_{1}$ and
+obtain 2 sets of residuals. Then we do a regression of $e(Y|X_{1})$- as new dependent varibale on $e(X_{2}|X_{1})$- as 
+independent variable. This gives us if the part of $X_{2}$ not contained in $X_{1}$ can further explained the part of $Y$ 
 not explained in $X_{1}$.
 
 #### CCPR PLOTS
