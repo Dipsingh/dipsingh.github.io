@@ -490,18 +490,6 @@ Alternatively, you could create plots of residual autocorrelations.
 How to fix it: A simple fix of adding lag variables can fix this problem. Alternatively, interaction terms, additional 
 variables, or additional transformations may fix this
 
-### Homoscedasity
-This assumes homoscedasticity, which is the same variance within our error terms. Heteroscedasticity, the violation of 
-homoscedasticity, occurs when we don’t have an even variance across the error terms.
-
-Why it can happen: Our model may be giving too much weight to a subset of the data, particularly where the error variance was the largest.
-
-What it will affect: Significance tests for coefficients due to the standard errors being biased. Additionally, the 
-confidence intervals will be either too wide or too narrow.
-
-How to fix it: Heteroscedasticity (can you tell I like the scedasticity words?) can be solved either by using weighted 
-least squares regression instead of the standard OLS or transforming either the dependent or highly skewed variables. 
-Performing a log transformation on the dependent variable is not a bad place to start.
 
 ### Non-linearity 
 
