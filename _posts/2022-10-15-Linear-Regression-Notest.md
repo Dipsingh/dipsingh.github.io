@@ -8,8 +8,7 @@ title:  Linear Regression Rough Notes
 ![xkcd](/images/post14/xkcd1.png "Indiana Jones")
 
 When it comes to stats, one of the first topics we learn is linear regression. But many people don't realize how deep 
-the linear regression topic is, and then you start meeting Indiana Jones. The intent is to dump my notes which may be 
-helpful to others.
+the linear regression topic is. Below are my partial notes on Linear Regression for anyone who may find this helpful.
 
 ## Linear Model 
 
@@ -767,6 +766,9 @@ We use the general linear F-statistics to decide whether to
 - Reject the null hypothesis: The reduced model
 - In favor of the alternate hypothesis: The full model.
 
+## Conclusion
+Don't be Indiana Jones.
 
 ## References
-- [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)  
+- [An Introduction to Statistical learning](https://www.statlearning.com/)
+- [Foundation of Statistics for Data Scientists](https://www.amazon.com/Foundations-Statistics-Data-Scientists-Statistical/dp/0367748452)
