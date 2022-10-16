@@ -763,5 +763,10 @@ $
 F^* = \frac{SSE_{R}-SSE_{F}}{df_{R}-df_{F}}/(\frac{SSE_{F}}{df_{F}})
 $
 
+We use the general linear F-statistics to decide whether to 
+- Reject the null hypothesis: The reduced model
+- In favor of the alternate hypothesis: The full model.
+
+
 ## References
 - [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)  
