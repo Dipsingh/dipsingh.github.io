@@ -708,8 +708,7 @@ $
 
 The least square fit minimizes SSE. When we add an explanatory variable to a model, SSE can not increase, because we 
 could at worst obtain the same SSE value by setting $\hat\beta_{j}=0$ to a particular data set. SSR = TSS - SSE is 
-montone increasing as the set of explanatory variable grows. Thus, when explanatory variables are added to the model, 
-$R^2$ ad $R$ are montone increasing.
+montone increasing as the set of explanatory variable grows.
 
 When n is not large and a model has several explantory variables, $R^2$ tends to overestimate the corresponding 
 population value, which compares the marginal and conditional varinaces by the proportional reduction in variance. 
@@ -718,7 +717,7 @@ An adjusted $R^2$ is designed to reduce this bias. It is proportional reduction 
 estimates, $s^2_{y}$ for $var(Y)$ in the marginal distribution and $s^2$ for the variance in the conditional distributions; i.e.
 
 $
-Adjusted R^2 = \frac{s^2_{y}-s^2}{s^2_{y}} = 1-\frac{s^2}{s^2_{y}} = 1 - \frac{SSE/[n-(p+1)])}{TSS/(n-1)}=1- \frac{n-1}{n-(p+1)}(\frac{TSS}{SSE}) = 1 - \frac{n-1}{n-(p+1)}(1-R^2)
+Adjusted R^2 = \frac{s^2_{y}-s^2}{s^2_{y}} = 1-\frac{s^2}{s^2_{y}} = 1 - \frac{SSE/[n-(p+1)])}{TSS/(n-1)} = 1- \frac{n-1}{n-(p+1)}(\frac{TSS}{SSE}) = 1 - \frac{n-1}{n-(p+1)}(1-R^2)
 $
 
 It is slightly smaller than ordinary $R^2$, and it need not monotonically increase as explanatory variables are added to the model.
