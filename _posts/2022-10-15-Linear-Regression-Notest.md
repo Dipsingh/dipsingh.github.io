@@ -656,12 +656,11 @@ can’t hold correlated predictors constant. Additionally, it increases the stan
 results in them potentially showing as statistically insignificant when they might be significant.
 
 Let $R_{j}^2$ denote $R^2$ from regressing $x_{j}$ on the other explanatory variables from the model. Then the estimated 
-variance of $\hat\beta_{j}$ can be expressed as
+variance of $\hat\beta_{j}$ can be expressed as:
 
 $
 var(\hat\beta_{j}) = (se_{j})^2 = \frac{1}{(1-R_{j}^2)}\left[\frac{s^2}{(n-1)s^2_{x_{j}}}\right]
 $
-
 
 where $s^2_{x_{j}}$ denotes the sample variance of ${x_{j}}$. The variance inflation factor $VIF_{j} = \frac{1}{(1-R^2_{j})}$ 
 represents the multiplicative increase in $var(\hat\beta_{j})$ due to ${x_{j}}$ being correlated with the other explanatory 
