@@ -404,6 +404,7 @@ plt.xlabel('residuals'); plt.ylabel('frequencies')
 ```python
 fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 ```
+
 {: .center}
 ![qqplot](/images/post14/qq.png "QQPlot")
 
