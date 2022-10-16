@@ -754,6 +754,7 @@ the two models to our data. That is, we take the general linear test approach:
 "Fit the full model" to the data.
 - Obtain the least squares estimates of  and .
 - Determine the error sum of squares, which we denote as $SSE_{F}$.
+
 "Fit the reduced model" to the data.
 - Obtain the least squares estimate of .
 - Determine the error sum of squares, which we denote as $SSE_{R}$.
