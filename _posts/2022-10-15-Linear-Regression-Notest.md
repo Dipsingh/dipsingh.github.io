@@ -376,31 +376,42 @@ Notes:
 ```
 
 ## Residuals
+Some of the OLS requirements are that residuals needs to be:
 
-To check for normality assumptions for residuals, use QQ and Histogram. 
+- normally distributed.
+- no AutoCorrelation.
+- Homoscedasity (Constant Variance)
 
-Here, you can check that the histogram of the residuals is approximately bell-shaped and that the normal quantile plot 
-shows a few outliers at the low and high ends, suggesting that the conditional distribution of timeW is approximately 
-normal for this model. 
+### Error terms being normally distributed
+OLS requires error terms to follow normal distribution if we want to perform statistical hypothesis and generate reliable
+confidence and prediction intervals. To check for normality assumptions for residuals, use QQ and Histogram.
 
-It doesnt require that the error term follows a normal distribution to produce unbiased estimates. Its requires if we 
-want to perform statistical hypothesis testing and generate reliable confidence intervals and prediction interval.
+```python
+fitdc = smf.ols(formula="timeW ~ distance + climb", data=Races).fit()
+fitted = fitdc.predict()
+residuals = fitdc.resid
 
-### Error being normal distribution
-More specifically, this assumes that the error terms of the model are normally distributed. Linear regressions other than 
-Ordinary Least Squares (OLS) may also assume normality of the predictors or the label, but that is not the case here.
+residuals.head()
+0    13.170403
+1    25.378848
+2    11.371690
+3     6.504777
+4     4.410875
+dtype: float64
 
-Why it can happen: This can actually happen if either the predictors or the label are significantly non-normal. Other 
-potential reasons could include the linearity assumption being violated or outliers affecting our model.
+plt.hist(residuals, density=False)
+plt.xlabel('residuals'); plt.ylabel('frequencies')
+```
 
-What it will affect: A violation of this assumption could cause issues with either shrinking or inflating our 
-confidence intervals.
+{: .center}
+![histplot](/images/post14/hist.png "HistPlot")
 
-How to detect it: There are a variety of ways to do so, but we’ll look at both a histogram and the p-value from the 
-Anderson-Darling test for normality.
+```python
+fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
+```
+{: .center}
+![qqplot](/images/post14/qq.png "QQPlot")
 
-How to fix it: It depends on the root cause, but there are a few options. Nonlinear transformations of the variables, 
-excluding specific variables (such as long-tailed variables), or removing outliers may solve this problem.
 
 ### No AutoCorrelation among error terms 
 
@@ -435,31 +446,6 @@ How to fix it: Heteroscedasticity (can you tell I like the scedasticity words?) 
 least squares regression instead of the standard OLS or transforming either the dependent or highly skewed variables. 
 Performing a log transformation on the dependent variable is not a bad place to start.
 
-```python
-fitdc = smf.ols(formula="timeW ~ distance + climb", data=Races).fit()
-fitted = fitdc.predict()
-residuals = fitdc.resid
-
-residuals.head()
-0    13.170403
-1    25.378848
-2    11.371690
-3     6.504777
-4     4.410875
-dtype: float64
-
-plt.hist(residuals, density=False)
-plt.xlabel('residuals'); plt.ylabel('frequencies')
-```
-
-{: .center}
-![histplot](/images/post14/hist.png "HistPlot")
-
-```python
-fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
-```
-{: .center}
-![qqplot](/images/post14/qq.png "QQPlot")
 
 ```python
 index = list(range(1, len(residuals) + 1))
