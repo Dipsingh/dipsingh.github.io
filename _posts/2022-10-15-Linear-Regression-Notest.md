@@ -7,13 +7,13 @@ title:  Linear Regression Notes
 {: .center}
 ![xkcd](/images/post14/xkcd1.png "Indiana Jones")
 
-When it comes to stats, one of the first topics we learn is linear regression. But most people don't realize how deep 
-the linear regression topic is, and observing blind applications in day-to-day life makes me cringe. This post is not 
-about virtue-signaling(as I know some areas I haven't explored myself), but to share my notes which may be helpful to others.
+When it comes to stats, one of the first topics we learn is linear regression. But many people don't realize how deep 
+the linear regression topic is, and then you start meeting Indiana Jones. The intent is to dump my notes which may be 
+helpful to others.
 
 ## Linear Model 
 
-A basic stastical model with single explanatory variable has equation describing the relation between `x` and the mean 
+A basic statistical model with single explanatory variable has equation describing the relation between `x` and the mean 
 $\mu$ of the conditional distribution of Y at each value of x.
 
 $
@@ -220,7 +220,7 @@ The estimated conditional distance effect of 5.04 differs from the estimated mar
 the sole explanatory variable because distance and climb are +ve correlated. With the climb in elevation fixed, distance 
 has less of an effect than when the model ignores climb so that it also tends to increase as distance increases.
 
-#### Leverage 
+### Leverage 
 
 The leverage is a measure of an observation potential influence on the fit. Observations for which explanatory 
 variables are far from their means have greater potential influence on the least square estimates.
@@ -399,7 +399,7 @@ Kurtosis:                       4.045   Cond. No.                         196.
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 ```
-It predeicted negative time when `distance=climb=0`. We can make this fit a bit more realistic by constraining the 
+It predicted negative time when `distance=climb=0`. We can make this fit a bit more realistic by constraining the 
 intercept term to equal 0. For a fixed climb value, the coefficient of distance in the prediction equation is 
 4.090 + 0.912(climb). Between the min climb of 0.185km and the max climb of 2.4km, the effect on record time of a 1km 
 increase in distance from 4.09+ 0.912(0.185)  = 4.26 min to 4.09+0.912(2.4) = 6.28min.
@@ -514,11 +514,13 @@ Another important assumption is that the error terms have a constant variance (h
 variances of the error terms may increase with the value of the response. One can identify non-constant variances in the 
 errors, or heteroscedasticity by plotting the residuals and see if the variance appears to be uniform.
 
-Heteroscedasticity can be solved either by using weighted least squares regression instead of the standard OLS or 
-transforming either the dependent or highly skewed variables. WLS assigns a weight to each data point based on the 
-variance of its fitted value. Essentially, this gives small weights to data points that have higher variances, which 
-shrinks their squared residuals. When the proper weights are used, this can eliminate the problem of heteroscedasticity.
+Heteroscedasticity can be solved either by using weighted least squares regression  or transforming either the dependent or 
+highly skewed variables. WLS assigns a weight to each data point based on the variance of its fitted value. Essentially, 
+this gives small weights to data points that have higher variances, which shrinks their squared residuals. When the 
+proper weights are used, this can eliminate the problem of heteroscedasticity.
 
+Residual plots are a useful graphical tool for identifying non-linearity as well as heteroscedasticity. The residuals of 
+this plot are those of the regression fit with all predictors.
 
 ```python
 plt.scatter(fitted, residuals)
@@ -527,32 +529,56 @@ plt.xlabel('Fitted values'); plt.ylabel('Residuals')
 ```
 ![fitted_resid](/images/post14/fitvsresid.png "Fitted vs Residual")
 
-Residuals plotted against each explanatory variable can highlight possible nonlinearity in
-an effect or severely nonconstant variance. 
 
-A partial regression plot displays the relationship
-between a response variable and an explanatory variable after removing the effects of the
-other explanatory variables that are in the model. It does this by plotting the residuals
-from models using these two variables as responses and the other explanatory variable(s)
-as predictors. The least squares slope for the points in this plot is necessarily the same as
-the estimated partial slope for the multiple regression model. A further diagnostic plot is
-that of the partial residuals, also known as Component-Component plus Residual (CCPR)
-plot. This plot, for a specific explanatory variable, say X1 =distance, plots the residuals plus
-the linear estimated effect of X1 against X1. It shows the relationship between X1 and the
-response variable accounting for the remaining explanatory variables in the model. Partial
-residual plots should be used with caution, since in case X1 is highly correlated with any
-of the other independent variables, then the variance shown in the partial residual plot is
-underestimated. The following code plots for each explanatory variable (i) observed and
-fitted response values against the explanatory variable, including prediction intervals, (ii)
-residuals against the explanatory variable, (iii) partial regression plots, and (iv) the CCPR
-plot:
+Breusch-Pagan Lagrange Multiplier test
+The Breusch-Pagan Lagrange Multiplier test can be used to identify heteroscedasticity. The test assumes 
+homoscedasticity (this is the null hypothesis H0) which means that the residual variance does not depend on the values 
+of the variables in x.
 
-The derived residuals against explanatory variables plots (see upper right plots in Figure
-B6.4 (a) and (b)) reveal that the residuals tend to be small in absolute values at low values
-of distance and climb, suggesting (not surprisingly) that timeW tends to vary less at those
-low values. The partial regression plots, shown for distance and climb in the lower left
-plots in Figure B6.4 (a) and (b), suggest that the partial effects of distance and climb are
-approximately linear and positive.
+Note that this test may exaggerate the significance of results in small or moderately large samples. In this case the 
+F-statistic is preferable.
+
+If one of the test statistics is significant (i.e., p <= 0.05), then you have indication of heteroscedasticity.
+
+```python
+name = ['Lagrange multiplier statistic', 'p-value', 'f-value', 'f p-value']
+test = sm.stats.het_breuschpagan(fitdc.resid, fitdc.model.exog)
+lzip(name, test)
+
+[('Lagrange multiplier statistic', 26.85455722867833),
+ ('p-value', 1.474371715752706e-06),
+ ('f-value', 21.211902245960705),
+ ('f p-value', 8.108058864393248e-08)]
+```
+P value is less than 0.05, means indication of no hetroscedasity.
+
+#### Partial Regression Plots
+
+They are also called as Added-Variable Plots, where both the response variable `Y` and the predictor variable under the
+investigation (like $X_{i}$) are both regressed against other predictor variables already in the regression model and the
+residuals are obtained for each. These two sets of residuals reflect the part of each (`Y` and $X_{i}$) that is not 
+linearly assosciated with the other predictor variables. 
+
+The plot of one set of residuals against the other set would show the marginal contribution of the candidate predictor in
+reducing variability as well as the information about the nature of its marginal distribution. For example, if we already 
+have a regression model of `Y` on predictor variable $X_{1}$ and is now considering if we should add $X_{2}$ into the 
+model. In order to decide, we investigate 1) The regression of `Y` on $X_{1}$ 2) The regression of $X_{2}$ on $X_{1}$ and
+obtain 2 sets of residuals. Then we do a regression of e(Y|$X_{1}$)- as new dependent varibale on e($X_{2}$|$X_{1}$)- as 
+independent variable. This gives us if the part of $X_{2}$ not contained in $X_{1}$ can further explained the part of `Y` 
+not explained in $X_{1}$.
+
+#### CCPR PLOTS
+The Component-Component plus Residual (CCPR) provides another way to judge the effect of one regressor on the response 
+variable by considering the impact of the other independent variables. They are also a good way to see if the predictor 
+has a linear relationship with the dependent variable. This plot, for a specific explanatory variable, 
+say $X_{1}$=distance, plots the residuals plus the estimated linear effect of $X_{1}$ against $X_{1}$. It shows the 
+relationship between $X_{1}$ and the response variable accounting for the remaining explanatory variables in the model.
+
+The following code plots for each explanatory variable:
+- Observed and fitted response values against the explanatory variable, including prediction intervals.
+- residuals against the explanatory variable
+- partial regression plots.
+- CCPR plot.
 
 ```python
 sm.graphics.plot_regress_exog(fitdc, 'distance', fig=plt.figure(figsize=(15, 8)))
@@ -560,11 +586,6 @@ fig= sm.graphics.plot_regress_exog(fitdc,'climb',fig=plt.figure(figsize=(15, 8))
 ```
 ![reg plot distance](/images/post14/reg_plot_distance.png "Reg Plot Distance")
 ![reg plot climb](/images/post14/reg_plot_climb.png "Reg Plot Climb")
-
-```python
-fig_dis = sm.graphics.plot_partregress('timeW','distance', ['climb'],data = Races, obs_labels = False)
-fig_climb = sm.graphics.plot_partregress('timeW','climb', ['distance'],data = Races, obs_labels = False)
-```
 
 
 ## R-squared
