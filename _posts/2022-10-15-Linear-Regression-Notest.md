@@ -758,7 +758,9 @@ the two models to our data. That is, we take the general linear test approach:
 - Obtain the least squares estimate of .
 - Determine the error sum of squares, which we denote as $SSE_{R}$.
 
-
+$
+F^* = (\frac{SSE_{R}-SSE_{F}}{df_{R}-df{F}}})
+$
 
 ## References
 - [TCP Cubic RFC8312](https://www.rfc-editor.org/rfc/rfc8312)  
