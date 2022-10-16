@@ -731,25 +731,19 @@ $
 Y_{i} = (\beta_{0} + \beta_{1}x_{i}) + \epsilon_{i}
 $
 
-
-Here's a plot of a hypothesized full model for a set of data:
-
-
-In each plot, the solid line represents what the hypothesized population regression line might look like for the full model. The question we have to answer in each case is "does the full model describe the data well?" Here, we might think that the full model does well in summarizing the trend in the second plot but not the first.
+The question we have to answer is "does the full model describe the data well?".
 
 #### Residual Model
 
-The "reduced model," which is sometimes also referred to as the "restricted model," is the model described by the null hypothesis . For simple linear regression, a common null hypothesis is . In this case, the reduced model is obtained by "zeroing out" the slope  that appears in the full model. That is, the reduced model is:
+The "reduced model," which is sometimes also referred to as the "restricted model," is the model described by the null 
+hypothesis. For simple linear regression, a common null hypothesis is. In this case, the reduced model is obtained 
+by "zeroing out" the slope that appears in the full model. That is, the reduced model is:
 
 $
 Y_{i} = \beta_{0} + \epsilon_{i}
 $
 
-
-This reduced model suggests that each response  is a function only of some overall mean, , and some error .
-
-Let's take another look at the plot of student grade point average against height, but this time with a line representing 
-what the hypothesized population regression line might look like for the reduced model:
+This reduced model suggests that each response  is a function only of some overall mean and some error.
 
 ### F-Test 
 
@@ -759,10 +753,10 @@ the two models to our data. That is, we take the general linear test approach:
 
 "Fit the full model" to the data.
 - Obtain the least squares estimates of  and .
-- Determine the error sum of squares, which we denote as "SSE(F)."
+- Determine the error sum of squares, which we denote as $SSE_{F}$.
 "Fit the reduced model" to the data.
 - Obtain the least squares estimate of .
-- Determine the error sum of squares, which we denote as "SSE(R)."
+- Determine the error sum of squares, which we denote as $SSE_{R}$.
 
 
 
