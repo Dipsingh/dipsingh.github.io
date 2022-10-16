@@ -499,15 +499,6 @@ spread around the horizontal line (where the residuals are zero) but instead sho
 indication for a non-linear relationship. We can deal with non-linear relationships via basis expansions 
 (e.g. polynomial regression) or regression splines.
 
-```python
-index = list(range(1, len(residuals) + 1))
-plt.scatter(index, residuals)
-plt.title(' ')
-plt.xlabel('Index'); plt.ylabel('Residuals')
-```
-![resid](/images/post14/resid.png "Residual")
-
-
 ### Heteroscedasticity
 
 Another important assumption is that the error terms have a constant variance (homoscedasticity). For instance, the 
@@ -523,6 +514,14 @@ Residual plots are a useful graphical tool for identifying non-linearity as well
 this plot are those of the regression fit with all predictors.
 
 ```python
+index = list(range(1, len(residuals) + 1))
+plt.scatter(index, residuals)
+plt.title(' ')
+plt.xlabel('Index'); plt.ylabel('Residuals')
+```
+![resid](/images/post14/resid.png "Residual")
+
+```python
 plt.scatter(fitted, residuals)
 plt.title(' ')
 plt.xlabel('Fitted values'); plt.ylabel('Residuals')
@@ -530,7 +529,7 @@ plt.xlabel('Fitted values'); plt.ylabel('Residuals')
 ![fitted_resid](/images/post14/fitvsresid.png "Fitted vs Residual")
 
 
-Breusch-Pagan Lagrange Multiplier test
+**Breusch-Pagan Lagrange Multiplier test**
 The Breusch-Pagan Lagrange Multiplier test can be used to identify heteroscedasticity. The test assumes 
 homoscedasticity (this is the null hypothesis H0) which means that the residual variance does not depend on the values 
 of the variables in x.
