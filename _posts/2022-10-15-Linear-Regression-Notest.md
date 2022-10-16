@@ -717,7 +717,7 @@ An adjusted $R^2$ is designed to reduce this bias. It is proportional reduction 
 estimates, $s^2_{y}$ for $var(Y)$ in the marginal distribution and $s^2$ for the variance in the conditional distributions; i.e.
 
 $
-Adjusted R^2 = \frac{s^2_{y}-s^2}{s^2_{y}} = 1-\frac{s^2}{s^2_{y}} = 1 - \frac{SSE/[n-(p+1)])}{TSS/(n-1)} = 1- \frac{n-1}{n-(p+1)}(\frac{TSS}{SSE}) = 1 - \frac{n-1}{n-(p+1)}(1-R^2)
+Adjusted R^2 = \frac{s^2_{y}-s^2}{s^2_{y}} = 1-\frac{s^2}{s^2_{y}} = 1 - \frac{SSE/[n-(p+1)])}{TSS/(n-1)} 
 $
 
 It is slightly smaller than ordinary $R^2$, and it need not monotonically increase as explanatory variables are added to the model.
