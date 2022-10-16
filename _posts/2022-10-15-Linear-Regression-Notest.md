@@ -8,9 +8,8 @@ title:  Linear Regression Notes
 ![xkcd](/images/post14/xkcd1.png "Indiana Jones")
 
 When it comes to stats, one of the first topics we learn is linear regression. But most people don't realize how deep 
-the linear regression topic is, and observing bad applications in day-to-day life makes me cringe. This post is not 
-about virtue-signaling(as I know some areas I haven't explored), but to share my notes which may be helpful to others.
-
+the linear regression topic is, and observing blind applications in day-to-day life makes me cringe. This post is not 
+about virtue-signaling(as I know some areas I haven't explored myself), but to share my notes which may be helpful to others.
 
 ## Linear Model 
 
@@ -85,7 +84,7 @@ $
 $s_{x}$ is the sample standard deviation of x values and $s_{xy}$ is the sample covariance between  `x` and `y`.
 
 ### Example
-Below is the Scottish Hill Runners Race data(https://scottishhillrunners.uk/) with Distance and Climb being explanatory 
+Below is the Scottish Hill Runners Race [data](https://scottishhillrunners.uk/) with `distance` and `climb` being explanatory 
 variable and record times being the response variable for Men and Women.
 
 ```python
@@ -113,13 +112,16 @@ Races.head()
 3	BeinnLee	10.2	0.260	41.58	52.52
 4	BeinnRatha	12.0	0.240	47.75	58.78
 
+## Filtering Men times and plotting distance, climb and women times.
 Races2 = Races.drop(['timeM'], axis=1)
 sns.pairplot(Races2)
-
 ```
+We can see correlation between `timeW and distance`, and `timeW and climb`. We also see some outlier.
 
 {: .center}
 ![pairplot](/images/post14/pairplot.png "PairPlot")
+
+Let's perform OLS between `timeW and distance`.
 
 ```python
 fitd = smf.ols(formula='timeW ~ distance', data=Races2).fit()
@@ -152,7 +154,7 @@ Intercept    3.107563
 distance     5.868443
 dtype: float64
 ```
-The model fit $\hat\mu$ = 3.11 + 5.87x indicates the predicted women's record time increase by 5.87 minutes for every 
+The model fit $\hat\mu$ = 3.11 + 5.87(distance) indicates the predicted women's record time increase by 5.87 minutes for every 
 additional km of distance.
 
 ## Multiple Linear Regression
@@ -178,6 +180,7 @@ $
 $
 
 ### Example
+Let's expand the previous example and now perform OLS between `timeW vs distance and climb`.
 
 ```python
 fitdc = smf.ols(formula="timeW ~ distance + climb", data=Races).fit()
@@ -214,12 +217,11 @@ time increases by 5.04mins for every additional km of distance. adjusted for dis
 increases by 35.56mins for every additional km of climb. 
 
 The estimated conditional distance effect of 5.04 differs from the estimated marginal effect of 5.87 with distance as 
-the sole explnatory variable because distance and climb are +ve correlated. With the climb in elevantion fixed, distance 
+the sole explanatory variable because distance and climb are +ve correlated. With the climb in elevation fixed, distance 
 has less of an effect than when the model ignores climb so that it also tends to increase as distance increases.
 
 
-Removing the outliers
-
+Let's repeat the OLS after removing the outlier.
 ```python
 Races2 = Races2.loc[~Races2.race.str.contains('Highland')]
 fitdc2 = smf.ols(formula="timeW ~ distance + climb", data=Races2).fit()
@@ -248,8 +250,8 @@ Skew:                           0.174   Prob(JB):                        0.647
 Kurtosis:                       3.437   Cond. No.                         46.9
 ==============================================================================
 
-print ('R-Squared:', fitdc.rsquared, fitdc2.rsquared)
-print ('Adjusted-Squared:', fitdc.rsquared_adj, fitdc2.rsquared_adj)
+print ('R-Squared:', fitdc2.rsquared)
+print ('Adjusted-Squared:', fitdc2.rsquared_adj)
 fitted = fitdc2.predict()
 print('Correlation between Time vs Fitted',np.corrcoef(Races2.timeW, fitted)[0,1])
 residuals = fitdc2.resid
@@ -259,8 +261,8 @@ print ('residual standard error:', res_se)
 print ('residual standard error**2:', res_se**2)
 print ('Variance:',  np.var(Races2.timeW)*n/(n-1)) #estimated marginal variance
 
-R-Squared: 0.9640942203774802 0.9519750513925197
-Adjusted-Squared: 0.9629894271583257 0.9504742717485359
+R-Squared: 0.9519750513925197
+Adjusted-Squared:  0.9504742717485359
 Correlation between Time vs Fitted 0.9756920884134089
 residual standard error: 12.225327029914546
 residual standard error**2: 149.4586209883592
@@ -283,10 +285,10 @@ E(Y_{i}) = \beta_{0} + \beta_{1}x_{i1} + \beta_{2}x_{i2} + \beta_{3}x_{i1}x_{i2}
 $
 
 To analyze how $E(Y_{i})$ relates to $x_{1}$, at different values for $x_{2}$, we rewrite the above equation in terms 
-of $x_{1}$ as 
+of $x_{1}$ as
 
 $
-E(Y_{i}) = (\beta_{0} + \beta_{2}x_{i2}) +(\beta_{1} + \beta_{3}x_{i2})x_{i1} = \beta_{0}^*+\beta_{1}^*x_{i1}
+E(Y_{i}) = (\beta_{0} + \beta_{2}x_{i2}) +(\beta_{1} + \beta_{3}x_{i2})x_{i1} = \beta_{0}^* + \beta_{1}^*x_{i1}
 $
 
 where $\beta_{0}^* = \beta_{0} + \beta_{2}x_{i2}$ and $\beta_{1}^* = \beta_{1} + \beta_{3}x_{i2}$
