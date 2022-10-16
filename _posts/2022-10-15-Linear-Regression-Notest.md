@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Linear Regression Notes
+title:  Linear Regression Rough Notes
 ---
 ## Introduction
 
@@ -692,12 +692,13 @@ print(vif_data)
 
 ## R-squared
 
-TSS = SSR + SSE
-Total Variablity = Explained Variability + Unexplained Variability.
+$TSS = SSR + SSE$ which in simple term means $Total Variablity = Explained Variability + Unexplained Variability$.
 
+mathematically we can express the above as:
 $
 \sum_{i}(y_{i} - \bar{y})^2= \sum_{i}(\hat\mu_{i} - \bar{y})^2 + \sum_{i}(y_{i} - \hat\mu_{i})^2
 $
+
 $R^2$ measures the proportional reduction in error which falls between 0 and 1.
 
 $
