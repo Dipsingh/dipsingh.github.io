@@ -376,11 +376,6 @@ Notes:
 ```
 
 ## Residuals
-Some of the OLS requirements are that residuals needs to be:
-
-- normally distributed.
-- no AutoCorrelation.
-- Homoscedasity (Constant Variance)
 
 ### Error terms being normally distributed
 OLS requires error terms to follow normal distribution if we want to perform statistical hypothesis and generate reliable
