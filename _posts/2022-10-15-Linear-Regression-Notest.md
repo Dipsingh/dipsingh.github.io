@@ -515,23 +515,36 @@ The p-value is above 0.05 and we can accept $H_{0}$. Therefore, the test gives u
 a normal distribution.
 
 ### No AutoCorrelation among error terms 
+Another critical assumption of the linear regression model is that the error terms are uncorrelated. If they are not, 
+then p-values associated with the model will be lower than they should be, and confidence intervals are unreliable.
 
-No Autocorrelation of the Error TermsPermalink
-This assumes no autocorrelation of the error terms. Autocorrelation being present typically indicates that we are missing
-some information that should be captured by the model.
+Correlated errors mainly occur in the context of time series data. To determine if this is the case for a given data set, we 
+can plot the residuals from our model as a function of time. If the errors are uncorrelated, then there should be no evident 
+pattern. If the errors are uncorrelated, then the fact that $e_{i}$ is positive provides little or no information about the 
+sign of $e_{i+1}$.
 
-Why it can happen: In a time series scenario, there could be information about the past that we aren’t capturing. In a 
-non-time series scenario, our model could be systematically biased by either under or over predicting in certain conditions. 
-Lastly, this could be a result of a violation of the linearity assumption.
+Correlation among the error terms can also occur outside of time series data. For instance, consider a study in which 
+individuals' heights are predicted from their weights. The assumption of uncorrelated errors could be violated if some of 
+the individuals in the study are members of the same family, eat the same diet, or have been exposed to the same environmental 
+factors.
 
-What it will affect: This will impact our model estimates.
 
-How to detect it: We will perform a Durbin-Watson test to determine if either positive or negative correlation is present. 
-Alternatively, you could create plots of residual autocorrelations.
+**Durbin-Watson test**
+A test of autocorrelation that is designed to take account of the regression model is the Durbin-Watson test. It is used to 
+test the hypothesis that there is no lag one autocorrelation in the residuals. This means if there is no lag one 
+autocorrelation, then information about  $e_{i}$ provides little or no information about $e_{i+1}$. A small p-value indicates 
+there is significant autocorrelation remaining in the residuals. If there is no autocorrelation, the Durbin-Watson 
+distribution is symmetric around 2.
 
-How to fix it: A simple fix of adding lag variables can fix this problem. Alternatively, interaction terms, additional 
-variables, or additional transformations may fix this
+As a rough rule of thumb:
+- If Durbin–Watson is less than 1.0, there may be cause for concern.
+- Small values of d indicate successive error terms are positively correlated.
+- If d > 2, successive error terms are negatively correlated.
 
+```python
+sm.stats.durbin_watson(residuals)
+1.8045813026284943
+```
 
 ### Non-linearity 
 
