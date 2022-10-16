@@ -662,7 +662,7 @@ $
 var(\hat\beta_{j}) = (se_{j})^2  = \frac{1}{(1-R_{j}^2)}\left[\frac{s^2}{(n-1)s^2_{xj}})\right]
 $
 
-where $s^2_{xj}$ denotes the sample variance of $xj}$ . The variance inflation factor 
+where $s^2_{xj}$ denotes the sample variance of $xj$ . The variance inflation factor 
 
 $
 VIF_{j} = \frac{1}{(1-R^2_{j})}
