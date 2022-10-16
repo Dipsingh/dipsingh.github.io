@@ -562,8 +562,10 @@ The plot of one set of residuals against the other set would show the marginal c
 reducing variability as well as the information about the nature of its marginal distribution. For example, if we already 
 have a regression model of $Y$ on predictor variable $X_{1}$ and is now considering if we should add $X_{2}$ into the 
 model. In order to decide, we investigate 
+
 1) The regression of $Y$ on $X_{1}$ 
 2) The regression of $X_{2}$ on $X_{1}$ 
+
 This gives us two sets of residuals. Then we do a regression of $e(Y|X_{1})$- as new dependent varibale on $e(X_{2}|X_{1})$- as 
 independent variable. This gives us if the part of $X_{2}$ not contained in $X_{1}$ can further explained the part of $Y$ 
 not explained in $X_{1}$.
