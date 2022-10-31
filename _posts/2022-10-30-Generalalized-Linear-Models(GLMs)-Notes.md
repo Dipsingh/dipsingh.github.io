@@ -412,10 +412,10 @@ $
 
 The slope is steepest, and equals $\beta_{1}/4$ when P(Y=1) = 1/2. The slop decreases towards 0 as P(Y=1) moves towards 0 or 1.
 
-An alternate inrerpretation for $\beta_{1}$ uses the odds of success,
+An alternate interpretation for $\beta_{1}$ uses the odds of success,
 
 $
-\ odds = \frac{P(Y=1)}{P(Y=0)}
+odds = \frac{P(Y=1)}{P(Y=0)}
 $
 
 The odds can take any non-negative value. With an odds of 3, we expect 3 success for every failure. with an odds of 
@@ -423,7 +423,7 @@ The odds can take any non-negative value. With an odds of 3, we expect 3 success
 for P(Y=1) and P(Y=0), the odds with this model are
 
 $
-\frac{P(Y=1)}{P(Y=0)} = \frac{{\exp(\beta_{0}+\beta_{1}x)}/({ 1+ \exp(\beta_{0}+\beta_{1}x)})}{1/({ 1+ \exp(\beta_{0}+\beta_{1}x)})} = \exp(\beta_{0}+\beta_{1}x) = \exp^{\beta_{0}}(\exp^{\beta_{1}})^x
+\frac{P(Y=1)}{P(Y=0)} = \frac{{\exp(\beta_{0}+\beta_{1}x)}/({1+ \exp(\beta_{0}+\beta_{1}x)})}{1/({1+ \exp(\beta_{0}+\beta_{1}x)})} = \exp(\beta_{0}+\beta_{1}x) = \exp^{\beta_{0}}(\exp^{\beta_{1}})^x
 $
 
 The odds have exponential relationship with $x$. A 1-unit increase in $x$ has a multiplicative impact of $\exp^{\beta_{1}}$. The odds at x = u+1 equals the odds at x = u multiplied by $\exp^{\beta_{1}}$. Equivalently, $\exp^{\beta_{1}}$ is the ratio of the odds at x+1 divided by the odds at x, which is called an odds ratio. 
