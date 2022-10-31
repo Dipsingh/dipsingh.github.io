@@ -397,10 +397,9 @@ $
 P(Y=1) = \frac{\ \exp(\beta_{0}+\beta_{1}x)}{1+\ exp(\beta_{0}+\beta_{1}x)} \ and \ P(Y=0) = 1-P(Y=1)= \frac{1}{1+\ exp(\beta_{0}+\beta_{1}x)}
 $
 
-the curve for P(Y=1) is monotone in x: when $\beta_{1} > 0, P(Y=1)$ increases as `x` increases. When $\beta_{1} < 0, P(Y=1)$ decreases as `x` increases.
-
-when $\beta_{1}=0$, the logistic curve flattens to a horizontal line. As `x` changes, P(Y=1) approaches 1 at the same 
-rate that it approaches 0. The model has P(Y=1) = 0.50 when logit[P(Y=1)] = log(.50/.50) = log(1) = 0 = $\beta_{0}+\beta_{1}x$ which occurs at $x = \frac{-\beta_{0}}{\beta_{1}}$. 
+the curve for P(Y=1) is monotone in x: when $\beta_{1} > 0, P(Y=1)$ increases as `x` increases. When $\beta_{1} < 0, P(Y=1)$ 
+decreases as `x` increases.When $\beta_{1}=0$, the logistic curve flattens to a horizontal line. As `x` changes, P(Y=1) 
+approaches 1 at the same rate that it approaches 0. The model has P(Y=1) = 0.50 when logit(P(Y=1)) = log(.50/.50) = log(1) = 0 = $\beta_{0}+\beta_{1}x$ which occurs at $x = \frac{-\beta_{0}}{\beta_{1}}$. 
 
 With multiple explanatory variables, P(Y=1) is monotone in each explanatory variable according to the sign of its coefficients.
 
