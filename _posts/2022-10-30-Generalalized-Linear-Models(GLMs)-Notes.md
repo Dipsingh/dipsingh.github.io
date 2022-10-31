@@ -25,7 +25,7 @@ functions of the mean. The fundamental preimise is that
 2) Predictor is linked to the fitted response variable value of $Y_{i}, \mu_{i}$ 
 
 3) The linking is done by the link function, such that $g(\mu_{i}) = \eta_{i} $. For example, for a linear function 
-4) $\mu_{i} = \eta_{i}$, for an exponential function, $log(\mu_{i}) = \eta_{i}$
+$\mu_{i} = \eta_{i}$, for an exponential function, $log(\mu_{i}) = \eta_{i}$
 
 $
 g(\mu_{i}) = \beta_{0} + \beta_{1}x_{i1} + ... + \beta_{p}x_{ip}
