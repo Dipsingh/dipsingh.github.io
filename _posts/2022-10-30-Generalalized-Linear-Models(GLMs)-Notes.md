@@ -2,15 +2,10 @@
 layout: post
 title:  Generalized Linear Models(GLMs) Rough Notes
 ---
-## Introduction
+## Generalized Linear Model
 
 {: .center}
 ![xkcd _linear ](/images/post15/xkcd_linear.jpeg "Linear Regression")
-
-When it comes to stats, one of the first topics we learn is linear regression. But many people don't realize how deep 
-the linear regression topic is. Below are my partial notes on Linear Regression for anyone who may find this helpful.
-
-## Generalized Linear Model
 
 In case of Linear Models, we assume a linear relationship between the mean of the response variable and a set of 
 explanatory variables with inference assuming that response variable has a Normal conditional distribution with constant 
