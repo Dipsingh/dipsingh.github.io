@@ -423,7 +423,7 @@ The odds can take any non-negative value. With an odds of 3, we expect 3 success
 for P(Y=1) and P(Y=0), the odds with this model are
 
 $
-\frac{P(Y=1)}{P(Y=0)} = \frac{{e^{\beta_{0}+\beta_{1}x}}/({1+ e^{\beta_{0}+\beta_{1}x})}}{1/({ 1+ e^{\beta_{0}+\beta_{1}x}})}
+\frac{P(Y=1)}{P(Y=0)} = \frac{e^{\beta_{0}+\beta_{1}x}/(1+e^{\beta_{0}+\beta_{1}x})}{1/{ (1+ e^{\beta_{0}+\beta_{1}x}})}
 $
 
 The odds have exponential relationship with $x$. A 1-unit increase in $x$ has a multiplicative impact of $\exp^{\beta_{1}}$. The odds at x = u+1 equals the odds at x = u multiplied by $\exp^{\beta_{1}}$. Equivalently, $\exp^{\beta_{1}}$ is the ratio of the odds at x+1 divided by the odds at x, which is called an odds ratio. 
