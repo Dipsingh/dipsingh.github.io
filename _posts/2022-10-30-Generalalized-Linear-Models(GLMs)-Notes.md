@@ -483,6 +483,7 @@ plt.plot(t1, f(t1),'tab:blue')
 plt.scatter(logdose, y_prop, s=10, color='tab:red')
 ax.set(xlabel='x', ylabel='P(Y=1)')
 ```
+
 {: .center}
 ![Covid Logistic](/images/post15/covid_logistic.png "Covid Logistic Fit")
 
