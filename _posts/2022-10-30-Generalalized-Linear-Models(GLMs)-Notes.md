@@ -157,6 +157,7 @@ _= sns.pairplot(x_vars=['size'], y_vars=['price'], data=Houses, hue='house', hei
 3     4  300.00  2068    0   1608         3      2   old
 4     5  239.85  1477    0   1454         3      3   old
 ```
+
 {: .center}
 ![House Scatter Plot](/images/post15/house_scatter_plot.png "House Scatter Plot")
 
