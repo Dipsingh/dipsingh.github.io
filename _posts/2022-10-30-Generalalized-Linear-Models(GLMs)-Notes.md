@@ -726,6 +726,7 @@ print(round(np.mean(Crabs.sat), 4), round(np.var(Crabs.sat), 4))
 plt.hist(Crabs['sat'], density=True, bins=16, edgecolor='k')
 plt.ylabel('Proportion'); plt.xlabel('Satellites');
 ```
+
 {: .center}
 ![histplot](/images/post15/hist_plot.png "Hist Plot")
 
