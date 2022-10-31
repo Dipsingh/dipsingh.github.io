@@ -287,6 +287,7 @@ Covid-19 cases in the US in march 2020. Covid-19 data set using normal and gamma
 Covid = pd.read_csv('data/Covid19.dat', sep='\s+')
 sns.pairplot(x_vars=['day'], y_vars=['cases'], data=Covid,  height=5)
 ```
+
 {: .center}
 ![Covid](/images/post15/covid.png "Covid")
 
