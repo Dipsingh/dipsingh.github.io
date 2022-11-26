@@ -5,8 +5,7 @@ title:  Linear Discriminant Analysis Rough Notes
 ## Linear Discriminant Analysis (LDA)
 
 {: .center}
-![stats_meme ](/images/post16/stats_meme.png "Statistics")
-
+![stats_meme ](/images/post16/stats_meme.jpeg "Statistics")
 
 LDA is an alternative way to predict $Y$, based on partitioning the explanatory variable into two sets: one set prediction
 is $\hat{Y}=1$ or $\hat{Y}=0$ in the other set. Approach here is to model the distribution of $X$ in each of the classes 
