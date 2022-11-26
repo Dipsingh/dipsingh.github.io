@@ -23,7 +23,15 @@ E(Y|x) = P(Y=1|x) = \beta_{0}+\beta_{1}x_{1}+...+\beta_{p}x_{p}
 $
 
 
-We can rewrite the below Bayes Theorem: $P(Y=1|x) = \frac{P(x|y=1).P(Y=1)}{P(x)}$ as  $P(Y=1|x) = \frac{\hat{f}(x|y=1)P(Y=1)}{\hat{f}(x|y=1)P(Y=1)+\hat{f}(x|y=0)P(Y=0)}$.
+We can rewrite the below Bayes Theorem: 
+$
+P(Y=1|x) = \frac{P(x|y=1).P(Y=1)}{P(x)}
+$ 
+
+as  
+$
+P(Y=1|x) = \frac{\hat{f}(x|y=1)P(Y=1)}{\hat{f}(x|y=1)P(Y=1)+\hat{f}(x|y=0)P(Y=0)}
+$
 
 Discriminant Analysis is useful for:
 
