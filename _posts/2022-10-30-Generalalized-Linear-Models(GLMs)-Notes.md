@@ -4,16 +4,13 @@ title:  Generalized Linear Models(GLMs) Rough Notes
 ---
 ## Generalized Linear Model
 
-{: .center}
-![xkcd _linear ](/images/post15/xkcd_linear.jpeg "Linear Regression")
-
 In case of Linear Models, we assume a linear relationship between the mean of the response variable and a set of 
 explanatory variables with inference assuming that response variable has a Normal conditional distribution with constant 
 variance. The Generalized Linear Model permits the distribution for the Response Variable other than the normal and 
 permits modeling of non-linear functions of the mean. Linear models are special case of GLM.
 
 GLM extends normal linear models to encompass non-normal distributions and equating linear predictors to nonlinear 
-functions of the mean. The fundamental preimise is that
+functions of the mean. The fundamental premise is that
 
 1) We have a linear predictor. $\eta_{i} = a + Bx$.
 

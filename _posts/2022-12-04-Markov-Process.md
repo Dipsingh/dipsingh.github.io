@@ -7,6 +7,10 @@ A Markov chain or Markov process is a stochastic model describing a sequence of 
 
 Markov chains help model many real-word processes, such as queues of customers arriving at the airport, queues of packets arriving at a Router, population dynamics. Please refer to this [link](https://setosa.io/ev/markov-chains/) for a quick intro to Markov chains.
 
+{: .center}
+![markov meme](/images/post16/img.png "Markov Process")
+
+
 ## Problem
 
 Let's use a simple example to illustrate the use of Markov Chains. Assume that you own a barber shop, and You notice that Customers don't wait if there is no room in the waiting room and will take their business elsewhere. You want to invest to avoid this, and you have the following info in hand:
