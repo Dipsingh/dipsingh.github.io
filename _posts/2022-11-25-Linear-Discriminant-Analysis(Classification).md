@@ -2,7 +2,6 @@
 layout: post
 title:  Linear Discriminant Analysis Rough Notes
 ---
-## Linear Discriminant Analysis (LDA)
 
 {: .center}
 ![stats_meme ](/images/post16/stats_meme.jpeg "Statistics")
