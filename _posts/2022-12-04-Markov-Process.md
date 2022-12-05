@@ -171,23 +171,23 @@ The above shows that in the current scenario, shop is expected to be empty ~3.4%
 ### Algebaric Approach
 The above steady state was obtained by doing multiple iterations, and we can do that better using the algebaric approach. we already know the below conditions for steady state:
 
-$
+$$
 \pi Q = 0  \\
 \sum_{i=1}\pi_{i} = 1
-$
+$$
 
 We augment the matrix $Q$ with $\tilde{Q}$ to include the extra equation:
 
-$
+$$
 M = \begin{pmatrix}
 \tilde{Q}^T \\
 1,1,1,1,1,1,1
 \end{pmatrix}
-$
+$$
 
 and define $b$ by:
 
-$
+$$
 b = \begin{pmatrix}
 0 \\
 0\\
@@ -196,7 +196,7 @@ b = \begin{pmatrix}
 0 \\
 1 \\
 \end{pmatrix}
-$
+$$
 
 $\tilde{Q}$ is the matrix $Q$ with a column removed. This is because to solve our linear system we need $M$ to be a square matrix. In practice below we remove the last column.
 
