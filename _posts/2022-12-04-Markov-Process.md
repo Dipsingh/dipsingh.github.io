@@ -35,7 +35,7 @@ As people arrive, the state increase. This happens at 10 per unit of time. The s
 
 Markov Chain assumes the transition rates to be exponential distribution. We can represent these states using a transition matrix $Q$ where $Q_{ij}$ represents the rate of going from state $i$ to state $j$. 
 
-$
+$$
  Q = \begin{pmatrix}
 -10 & 10 & 0 & 0 & 0  & 0 & 0 \\
 4 & -14 & 10 & 0 & 0  & 0 & 0  \\
@@ -45,7 +45,7 @@ $
 0 & 0 & 0 & 0 & 8  & -18 & 10  \\
 0 & 0 & 0 & 0 & 0  & 8 & -8 
 \end{pmatrix}
-$
+$$
 
 You will see that diagonal elements $Q_{ii}$ are negative and that is to ensure the rows of $Q$ sum to 0. The matrix $Q$ can be generally expressed as 
 
