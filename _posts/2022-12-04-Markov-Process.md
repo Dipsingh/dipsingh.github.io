@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Quick Intro to Markov Process
+title:  Steady State Markov Process
 ---
 
 A Markov chain or Markov process is a stochastic model describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event. It is named after the Russian mathematician Andrey Markov.
