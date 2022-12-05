@@ -30,9 +30,6 @@ We can denote the states as: $S = \{0,1,2,3,4,5,6\}$
 
 As people arrive, the state increase. This happens at 10 per unit of time. The state decreases as people get their hair cut which happens at the rate of 4 per unit of time. Below diagram represents the state space and the transition rates between the states.
 
-{: .center}
-![Markov Chain](/images/post17/markov_chain.png "Markov Chain")
-
 Markov Chain assumes the transition rates to be exponential distribution. We can represent these states using a transition matrix $Q$ where $Q_{ij}$ represents the rate of going from state $i$ to state $j$. 
 
 $$
@@ -49,14 +46,14 @@ $$
 
 You will see that diagonal elements $Q_{ii}$ are negative and that is to ensure the rows of $Q$ sum to 0. The matrix $Q$ can be generally expressed as 
 
-$
+$$
 Q= \begin{pmatrix}
 -\lambda & \lambda & 0 & 0 \\
 \mu & -(\lambda+\mu) & \lambda  &  0\\
 0 & \mu & -(\lambda+\mu) & \mu \\
 0 & 0 & 0 & -\mu 
 \end{pmatrix}
-$
+$$
 
 The rate at which the system goes from 1 to 2 is $\lambda$ and the rate of which it goes from 2 to 1 is $\mu$. In the barber example, our $\lambda = 10$ and $\mu = 8$.
 
