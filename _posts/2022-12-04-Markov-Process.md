@@ -47,7 +47,7 @@ $$
 Q= \begin{pmatrix}
 -\lambda & \lambda & 0 & 0 \\
 \mu & -(\lambda+\mu) & \lambda  &  0\\
-0 & \mu & -(\lambda+\mu) & \mu \\
+0 & \mu & -(\lambda+\mu) & \lambda \\
 0 & 0 & 0 & -\mu 
 \end{pmatrix}
 $$
