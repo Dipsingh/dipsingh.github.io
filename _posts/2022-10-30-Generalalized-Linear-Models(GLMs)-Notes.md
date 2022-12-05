@@ -2,7 +2,6 @@
 layout: post
 title:  Generalized Linear Models(GLMs) Rough Notes
 ---
-## Generalized Linear Model
 
 In case of Linear Models, we assume a linear relationship between the mean of the response variable and a set of 
 explanatory variables with inference assuming that response variable has a Normal conditional distribution with constant 
