@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Fat-Trees Routing Protocol Evaluation
+title:  Routing Protocol Evaluation in Fat-Trees
 ---
 
 Network design discussions often involve anecdotal evidence, and the arguments for preferring something follow up with 
@@ -19,7 +19,7 @@ start at 90%, your ego will have a much easier time with a reversal than if you 
  
 Now we aren't going to fix human behavior anytime soon. However, purely from an analytical perspective, for us to be able 
 to quantify things, many times, we need to rely on modeling and simulation. But often, those frameworks don't exist. One 
-such area was quantifying routing protocol implementation behavior for a given topology until [Sibyl Framework]( https://compunet.ing.uniroma3.it/assets/publications/Caiazzi-Scazzariello-Sibyl.pdf) 
+such area was quantifying routing protocol implementation behavior for a given topology until [Sibyl]( https://compunet.ing.uniroma3.it/assets/publications/Caiazzi-Scazzariello-Sibyl.pdf) 
 came out to help us. At a high level, It proposes various metrics to measure routing protocol implementation, allows you 
 to spin up the topology of a given size with a given protocol implementation, and then measures those metrics for a given failure.
 
@@ -94,7 +94,7 @@ Withdraw sent
 
 # Framework Methodology
 
-The Sibly framework methodology includes failure and recovery tests. Failure tests include common faults like a node or link failure and 
+The Sibly methodology includes failure and recovery tests. Failure tests include common faults like a node or link failure and 
 measure how a routing protocol implementation reacts to those failures. For a given test, it verifies that the fabric 
 has converged, measures the messaging load induced as part of the event, the blast radius (locality) of the messaging 
 load, and the Number of rounds it took for the implementation to converge.
