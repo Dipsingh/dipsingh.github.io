@@ -184,12 +184,12 @@ various protocols.
 {: .center}
 ![Messaging Load](/images/post18/msg_load.png "Messaging Load")
 
-## Blast Radius
+## Blast Radius Comparison
 
 {: .center}
 ![Blast Radius](/images/post18/blast_radius.png "Blast Radius")
 
-## Amount of State changes
+## Amount of State changes Comparison
 
 The below plot shows the total number of state changes observed as part of a failure event. This is the total number of 
 vertexes in the Node-State graph.
@@ -197,7 +197,7 @@ vertexes in the Node-State graph.
 {: .center}
 ![Amount of State Changes](/images/post18/amnt_state_change.png "Amount of State Changes")
 
-## State Rounds
+## State Rounds Comparison
 This measures how many cycles of waves and backwashes happened before the network converged. BGP held pretty steady in 
 this regard, and IS-IS/Openfabric was chatty.
 
