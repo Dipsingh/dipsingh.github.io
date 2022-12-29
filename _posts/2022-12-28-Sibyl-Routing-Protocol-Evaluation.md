@@ -155,8 +155,8 @@ the arrows represent the packets being sent from one node to another.
 ![Node State Timeline](/images/post18/fig_3.png "Node State Timeline")
 
 From the above Node-State timeline, it builds a Node state graph G, in which the edge captures how the Nodes transition 
-between states. We can see how Node 111(spine_1_1_1) sends the packet to tof_1_2_1, which then sends the withdraw back to 
-spine_1_1_1 in the Node-State timeline. This is also represented in the Node-State graph. From the Node-State graph, we can 
+between states. In the Node-State timeline, We can see how Node 111(spine_1_1_1) sends the packet to tof_1_2_1, which then 
+sends the withdraw back to spine_1_1_1. This is also represented in the Node-State graph. From the Node-State graph, we can 
 count the maximum number of edges, which is 4. This tells us that the convergence event takes four rounds to complete. 
 This is fascinating, as graph depth gives us a metric for the number of waves it takes for a protocol in a given 
 topology to converge. The number of vertices in the graph indicates the overall amount of state changes induced by an event.
