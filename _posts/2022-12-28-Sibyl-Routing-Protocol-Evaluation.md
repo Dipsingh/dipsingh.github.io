@@ -77,7 +77,8 @@ R2# show ip bgp neighbors 10.1.0.1 advertised-routes
 *> 10.0.0.3/32      0.0.0.0                                0 65002 I
 ```
 
-When the prefix is unreachable on R1, R3 receives a withdrawal from R2 and then sends another withdrawal back to R2.
+If we look at the BGP events at R3, When the prefix is unreachable on R1, R3 receives a withdrawal from R2 and then 
+sends another withdrawal back to R2.
 
 ```textmate
 Withdraw Received:
@@ -91,18 +92,18 @@ Withdraw sent
 ```
 
 
-# Methodology
+# Framework Methodology
 
-The methodology includes failure and recovery tests. Failure tests include common faults like a node or link failure and 
+The Sibly framework methodology includes failure and recovery tests. Failure tests include common faults like a node or link failure and 
 measure how a routing protocol implementation reacts to those failures. For a given test, it verifies that the fabric 
 has converged, measures the messaging load induced as part of the event, the blast radius (locality) of the messaging 
 load, and the Number of rounds it took for the implementation to converge.
  
 The framework avoids time synchronization issues by using a logical clock and only counts the relevant PDUs to the event.
 
-## Metrics:
+## Metrics
 
-### Messaging Load: 
+### Messaging Load
 
 Sibyl measures the messaging load by counting the number of packets originated by a test and computes the aggregate size. 
 In our example, when an NLRI is withdrawn as part of the Leaf failure, each eBGP adjacency will send two withdraws, 
