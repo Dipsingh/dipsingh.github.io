@@ -158,13 +158,13 @@ From the above Node-State timeline, it builds a Node state graph G, in which the
 between states. We can see how Node 111(spine_1_1_1) sends the packet to tof_1_2_1, which then sends the withdraw back to 
 spine_1_1_1. From this graph, we can count the maximum number of edges, which is 4, I.e., it takes four rounds for the 
 convergence event to be complete. 
-This is fascinating as graph depth gives us a metric for the number of waves it takes for a protocol in a given 
+This is fascinating, as graph depth gives us a metric for the number of waves it takes for a protocol in a given 
 topology to converge. The number of vertices in the graph indicates the state changes induced by an event.
 
 {: .center}
 ![Node State Graph](/images/post18/fig_4.png "Node State Graph")
 
-This is super useful as we can measure flooding events in topology, the impact of any flooding improvements claimed by a 
+I think this is super useful as we can measure flooding events in topology, the impact of any flooding improvements claimed by a 
 protocol, compare various protocols and see how noisy they are, etc.
 
 # Protocol Comparisons
