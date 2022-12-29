@@ -129,9 +129,15 @@ We can use this to measure the blast radius impact for a routing protocol and se
 
 In our example, each link observes two withdraws. This gives us a Blast Radius score of 12.
 
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
 | Topop Distance   | 1   | 2   | 3   |
 |------------------|-----|-----|-----|
 | Packets Injected | 2   | 2   | 2   |
+{: .tablelines}
 
 Blast Radius score: 1x2 + 2x2 + 3x2 = 12 
 
