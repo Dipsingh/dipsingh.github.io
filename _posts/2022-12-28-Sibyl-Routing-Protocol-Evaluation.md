@@ -5,10 +5,11 @@ title:  Routing Protocol Implementation Evaluation in Fat-Trees
 
 Network design discussions often involve anecdotal evidence, and the arguments for preferring something follow up with 
 *"We should do X because at Y place, we did this."*. This is alright in itself as we want to bring the experience to avoid 
-repeating past mistakes in the future. Still, more often than not, it feels like we have memorized the answers and 
-without reading the question properly, we want to write down the answer vs. learning the problem and solution space, putting that into the current context we are trying to 
-solve with discussions about various tradeoffs and picking the best solution in the given context. Our best solution 
-for the same problem may change as the context changes. Also, this problem is everywhere. For example: Take a look at this [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
+repeating past mistakes in the future. Still, more often than not, it feels like we have memorized the answers, and without 
+reading and understanding the question properly, we want to write down the answer. Ideally, we want to understand the 
+problem and solution space and put that into the current context, discussing various tradeoffs and picking the best 
+solution in the given context. Our best solution for the same problem may change as the context changes. Also, this 
+problem is everywhere.  For example: Take a look at this [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
  
 Maybe one way to approach on how to think is to adopt [stochastic 
 thinking](https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
