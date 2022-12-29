@@ -106,8 +106,8 @@ The framework avoids time synchronization issues by using a logical clock and on
 ### Messaging Load
 
 Sibyl measures the messaging load by counting the number of packets originated by a test and computes the aggregate size. 
-In our example, when an NLRI is withdrawn as part of the Leaf failure, each eBGP adjacency will send two withdraws, 
-resulting aggregate packet count of 6. We can use this to observe as the topology size increases, how the messaging load 
+In our example, when an NLRI is withdrawn as part of the Leaf failure, we will see two withdraws between each eBGP adjacency, 
+resulting in an aggregate packet count of 6. We can use this to observe as the topology size increases, how the messaging load 
 increases, and compare routing protocols on how the messaging load looks like for a given topology.
 
 {: .center}
