@@ -144,17 +144,17 @@ Blast Radius score: 1x2 + 2x2 + 3x2 = 12
 ### State Rounds
 
 One problem with just counting aggregate packet counts is that it doesn’t provide insight into how much back and forth 
-happens as part of the convergence event. Rounds try to capture these waves of packets transmitted as part of a convergence 
+happens as part of the convergence event. State Rounds try to capture these waves of packets transmitted as part of a convergence 
 event. First, it builds a Node State timeline, a timeline of packets sent or received by each node during the failure 
 event. An arrow represents the packets being sent from one node to another node.
  
-Node-state timeline for our topology. The horizontal axis is the timeline, the vertical axis is the fabric nodes, and 
+Below is the Node-state timeline for our topology. The horizontal axis is the timeline, the vertical axis is the fabric nodes, and 
 the arrows represent the packets being sent from one node to another.
 
 {: .center}
 ![Node State Timeline](/images/post18/fig_3.png "Node State Timeline")
 
-From the above Node-State timeline,  it builds a Node state graph G, in which the edge captures how the Nodes transition 
+From the above Node-State timeline, it builds a Node state graph G, in which the edge captures how the Nodes transition 
 between states. We can see how Node 111(spine_1_1_1) sends the packet to tof_1_2_1, which then sends the withdraw back to 
 spine_1_1_1. From this graph, we can count the maximum number of edges, which is 4, I.e., it takes four rounds for the 
 convergence event to be complete. 
@@ -162,7 +162,7 @@ This is fascinating as graph depth gives us a metric for the number of waves it 
 topology to converge. The number of vertices in the graph indicates the state changes induced by an event.
 
 {: .center}
-![Node State Graph](/images/post18/fig_3.png "Node State Graph")
+![Node State Graph](/images/post18/fig_4.png "Node State Graph")
 
 This is super useful as we can measure flooding events in topology, the impact of any flooding improvements claimed by a 
 protocol, compare various protocols and see how noisy they are, etc.
