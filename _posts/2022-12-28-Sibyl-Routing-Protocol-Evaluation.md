@@ -4,11 +4,11 @@ title:  Fat-Trees Routing Protocol Evaluation
 ---
 
 Network design discussions often involve anecdotal evidence, and the arguments for preferring something follow up with 
-"We should do X because at Y place, we did this.". This is alright in itself as we want to bring the experience to avoid 
+*"We should do X because at Y place, we did this."*. This is alright in itself as we want to bring the experience to avoid 
 repeating past mistakes in the future. Still, more often than not, discussions become more about patterns we have memorized and 
 repeating those vs. learning the problem and solution space, putting that into the current context we are trying to 
 solve with discussions about various tradeoffs and picking the best solution in the given context. Our best solution 
-for the same problem may change as the context changes. Also, this problem is everywhere. For example: [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
+for the same problem may change as the context changes. Also, this problem is everywhere. For example: Take a look at this [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
  
 Maybe one way to approach how to think is to adopt [stochastic 
 thinking]( https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
@@ -20,9 +20,8 @@ start at 90%, your ego will have a much easier time with a reversal than if you 
 Now we aren't going to fix human behavior anytime soon. However, purely from an analytical perspective, for us to be able 
 to quantify things, many times, we need to rely on modeling and simulation. But often, those frameworks don't exist. One 
 such area was quantifying routing protocol implementation behavior for a given topology until [Sibyl Framework]( https://compunet.ing.uniroma3.it/assets/publications/Caiazzi-Scazzariello-Sibyl.pdf) 
-came out to help us. At a high level, it allows you to spin up the topology of a given size with a given protocol and then, for a 
-given failure, measure the injected messaging load and locality to verify how local the changes are, and the number 
-of rounds takes to converge.
+came out to help us. At a high level, It proposes various metrics to measure routing protocol implementation, allows you 
+to spin up the topology of a given size with a given protocol implementation, and then measures those metrics for a given failure.
 
 
 # Sample Topology
