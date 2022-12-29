@@ -26,24 +26,24 @@ to spin up the topology of a given size with a given protocol implementation, an
 
 # Sample Topology
 
-We will use a simple topology to understand various metrics for a convergence event using Node Failure as a trigger event. 
-In the below example, we have a simple 3-level Fat-Tree with a radix of 2 switches. We will assume eBGP for routing. One 
-thing to note is that Sibyl refers to T3 switches as the Top of the fabric (tof). For failure test, we will assume Node 
+We will start with the most basic topology to understand various metrics for a convergence event using Node Failure as a trigger event. 
+In the below example, we have a simple 3-level Fat-Tree with a radix of 2. We will use FRR based eBGP for routing. One 
+thing to note is that Sibyl refers to T3 switches as the Top of the fabric (tof). For type of failure test, we will assume Node 
 failure and fail leaf_1_0_1.
 
 {: .center}
 ![Sample Topology](/images/post18/fig_1.png "Sample Topology")
 
 The routing stack is FRR. One behavior to remember with FRR/eBGP is that an ebgp neighbor advertises the routes back to its 
-neighbor, which will eventually get rejected due to the AS-Path loop. This is important because it impacts the number of 
+neighbor from whom it learned, which will eventually get rejected due to the AS-Path loop. This is important because it impacts the number of 
 packets getting injected as part of a convergence event.
  
-For example,  if we have three routers  R1 - R2 - R3 using eBGP. You can see how R2 in the below output is advertising the 
+For example,  if we have three routers  `R1 - R2 - R3` using eBGP peering. You can see in the below output how R2 is advertising the 
 R1 learned route back to R1. when R1 stops advertising its 10.0.0.1/32 to R2, we will see two BGP withdraws between R1 - R2.  
 R1 will send one BGP withdraw to R2, and R2 will send a BGP withdraw to R1. If you are curious about why that behavior is, 
 refer to this [thread](https://github.com/FRRouting/frr/discussions/10052).
 
-```text
+```textmate
 ### R2 has eBGP session to R1 and R3.
 
 R2# show ip bgp summary                                              
@@ -52,7 +52,7 @@ Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down Sta
 R1(eth1)        4      65000        62        61        0    0    0 00:02:21            1        3 R1
 R3(eth2)        4      65002        62        61        0    0    0 00:02:21            1        3 R3
 
-### R2 is  10.0.0.1/32 from R1 in the BGP RIB.
+### R2 has 10.0.0.1/32 from R1 in the BGP RIB.
 R2# show ip bgp                                                      
 
    Network          Next Hop            Metric LocPrf Weight Path
