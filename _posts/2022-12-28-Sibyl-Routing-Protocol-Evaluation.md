@@ -11,7 +11,7 @@ solve with discussions about various tradeoffs and picking the best solution in 
 for the same problem may change as the context changes. Also, this problem is everywhere. For example: Take a look at this [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
  
 Maybe one way to approach on how to think is to adopt [stochastic 
-thinking]( https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
+thinking](https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
 and add qualifications while making a case if we don't have all the facts. The best engineers I have seen do apply similar 
 thought processes. As world-class poker player Annie Duke points 
 out in [Thinking in Bets](  https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216355), even if you 
@@ -219,3 +219,5 @@ team for creating Sibyl.
 - [Sibly](https://compunet.ing.uniroma3.it/assets/publications/Caiazzi-Scazzariello-Sibyl.pdf)
 - [Distoptflood](https://datatracker.ietf.org/doc/draft-white-lsr-distoptflood/)
 - [OpenFabric](https://datatracker.ietf.org/doc/draft-white-openfabric/)
+- [Thinking in Bets](https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216355)
+- [MIT OCW: Computational Thinking and Data Science](https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
