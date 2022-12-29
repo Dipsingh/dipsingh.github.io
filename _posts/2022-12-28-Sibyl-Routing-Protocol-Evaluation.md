@@ -113,6 +113,9 @@ size increases. This will also allow us to compare routing protocols on how the 
 {: .center}
 ![Sample Topology](/images/post18/fig_2.png "Sample Topology")
 
+In the above diagram, we can see `2` for each link as a result of `2` withdraws between each eBGP adjacency giving us a 
+total score of `6` for messaging load.
+
 ### Locality (Blast Radius)
 
 Sibyl measures the blast radius of a failure or recovery event by applying the following steps:
@@ -127,6 +130,7 @@ We can use this to measure the blast radius impact for a routing protocol and se
 In our example, each link observes two withdraws. This gives us a Blast Radius score of 12.
 
 Topo Distance     1  2  3
+
 Packets Injected  2  2  2
 
 Blast Radius score: 1x2 + 2x2 + 3x2 = 12 
