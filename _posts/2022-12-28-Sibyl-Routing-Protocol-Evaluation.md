@@ -134,9 +134,9 @@ In our example, each link observes two withdraws. This gives us a Blast Radius s
         border: 1px solid black;
         }
 </style>
-| Topop Distance   | 1   | 2   | 3   |
-|------------------|-----|-----|-----|
-| Packets Injected | 2   | 2   | 2   |
+|   Topo Distance   |   1   |   2   |   3   |
+|:-----------------:|:-----:|:-----:|:-----:|
+| Packets Injected  |   2   |   2   |   2   |
 {: .tablelines}
 
 Blast Radius score: 1x2 + 2x2 + 3x2 = 12 
