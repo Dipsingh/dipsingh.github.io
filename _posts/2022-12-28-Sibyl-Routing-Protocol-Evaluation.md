@@ -170,14 +170,14 @@ protocol, compare various protocols and see how noisy they are, etc.
 # Protocol Comparisons
 
 Now, let's do some comparisons. We will use following Fat-Tree topology sizes : (2,2,1), (2,2,2), (3,3,1),(3,3,3),(4,4,1) and (4,4,2) with 
-FRRs BGP, IS-IS, and Openfabric implementation. A single-leaf device is used for the failure test. We should expect 
+FRRs implementation of BGP, IS-IS, and Openfabric. A single-leaf device is used for the failure test. We should expect 
 OpenFabric to perform better than vanilla IS-IS due to the flooding optimization it contains.
 
 
 ## Messaging Load Comparison
 
 The below plot shows the Messaging load (Number of packets induced) due to single leaf device failure. The X-axis contains 
-the fat-tree type and the number of nodes in that fat tree. For example, a 2_2_2_(10) is a fat-tree with 10 Nodes.
+the fat-tree type and the number of nodes in that fat tree. For example, a `2_2_2_(10)` is a fat-tree with `10` Nodes.
 It is expected that messaging load will increase as the size of the fat tree grows, but you can see how that differs among 
 various protocols.
 
