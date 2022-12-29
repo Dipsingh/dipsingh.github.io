@@ -120,7 +120,7 @@ Sibyl measures the blast radius of a failure or recovery event by applying the f
 - For each link of the network, the number of packets received by the interfaces of that link is computed. Only relevant PDUs which were triggered as part of the event are counted.
 - Compute the topological distance of the links from the event. Basically, how far away the link is from the event. If an event is like a Node failure, all the links attached to the node have a topological distance of 0.
 - Then you combine the above two in a Vector $L[i]$ where $i$ represents the topological distance = 0,1,2, .. n and $L[i]$ represents the number of packets received by the link at that topological distance.
-- A scalar value representing a metric for blast radius can be computed, which is a sum of the product of L[i] * (i+1). This inherently gives more weight to values with higher topological distance. 
+- A scalar value representing a metric for blast radius can be computed, which is a sum of the product of $L[i] * (i+1)$. This inherently gives more weight to values with higher topological distance. 
  
 We can use this to measure the blast radius impact for a given topology and routing protocol and also compare how the size 
 of the topology grows and how various routing protocol behaves. This helps us quantify the impact.
