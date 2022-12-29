@@ -5,12 +5,12 @@ title:  Fat-Trees Routing Protocol Evaluation
 
 Network design discussions often involve anecdotal evidence, and the arguments for preferring something follow up with 
 *"We should do X because at Y place, we did this."*. This is alright in itself as we want to bring the experience to avoid 
-repeating past mistakes in the future. Still, more often than not, discussions become more about patterns we have memorized and 
-repeating those vs. learning the problem and solution space, putting that into the current context we are trying to 
+repeating past mistakes in the future. Still, more often than not, it feels like we have memorized the answers and 
+without reading the question properly, we want to write down the answer vs. learning the problem and solution space, putting that into the current context we are trying to 
 solve with discussions about various tradeoffs and picking the best solution in the given context. Our best solution 
 for the same problem may change as the context changes. Also, this problem is everywhere. For example: Take a look at this [twitter thread]( https://twitter.com/rakyll/status/1542583543187943425 )
  
-Maybe one way to approach how to think is to adopt [stochastic 
+Maybe one way to approach on how to think is to adopt [stochastic 
 thinking]( https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/resources/lecture-4-stochastic-thinking/) 
 and add qualifications while making a case if we don't have all the facts. The best engineers I have seen do apply similar 
 thought processes. As world-class poker player Annie Duke points 
@@ -107,7 +107,7 @@ The framework avoids time synchronization issues by using a logical clock and on
 
 Sibyl measures the messaging load by counting the number of packets originated by a test and computes the aggregate size. 
 In our example, when an NLRI is withdrawn as part of the Leaf failure, we will see two withdraws between each eBGP adjacency, 
-resulting in an aggregate packet count of 6. We can use this to observe how the messaging load increases as the topology 
+resulting in an aggregate packet count of 6 (messaging load). We can use this to observe how the messaging load increases as the topology 
 size increases. This will also allow us to compare routing protocols on how the messaging load differs on a given topology.
 
 {: .center}
