@@ -205,7 +205,7 @@ this regard, and IS-IS/Openfabric was chatty.
 ![State Rounds](/images/post18/state_rounds.png "State Rounds")
 
 
-# Conclusion
+# Closing thoughts
 
 We looked at how Sibyl introduces metrics that introduce measures for comparing routing protocol implementation on Fat-Trees
 and allow us to compare various routing protocol implementations. This post only looked at how FRR's BGP, IS-IS, and 
