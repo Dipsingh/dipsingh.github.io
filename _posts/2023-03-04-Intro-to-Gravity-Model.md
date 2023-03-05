@@ -59,38 +59,38 @@ associated with "leaving" from $i$ and the attractive force $A_{j}$ associated w
 represents the friction factor, which describes the weakening of the forces.
 
 
-$
+$$
 X_{i,j} = \frac{R_{i}A_{j}}{f_{i,j}}
-$
+$$
  
 For  IP traffic matrix modeling, the friction factors are typically considered constant. This translates to below where 
 $X_{i}^{in}$ is the total traffic entering the network through $i$. $X_{j}^{out}$ is the total traffic exiting the network 
 through $j$ and $X^{total}$ is the total traffic across the network.
 
 
-$
+$$
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{X^{total}}
-$
+$$
 
 The gravity model captures the Spatial structure of the traffic, and the key assumption is the independence between each 
 source $i$ and destination $j$. With this assumption it comes down to $ X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out} $
 
 
-$
+$$
 X_{i,j} = X^{total}p_{i}^{in}p_{j}^{out},
-$
+$$
 
 Where
 
-$
+$$
 p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} 
 
 p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}}
-$
+$$
 
 Which gives us 
 
-$
+$$
 X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out}  \newline
 p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \newline
 p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \newline
@@ -98,7 +98,7 @@ p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \newline
 X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}}, \newline
 
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in I}{X_{k}^{in}}}
-$
+$$
 
 There are two important properties of Gravity model:
 1. Independence between source and destination traffic holds for any randomly chosen submatrix of the model. 
@@ -129,7 +129,6 @@ While going through the proof, some steps were missing, So I had to reach out to
 this here in case someone else finds it useful.
 
 $$
-
 c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \newline
 b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \newline
 c_{iv} - \sum_{j\in V\smallsetminus{i,v}}b_{ij} \newline
