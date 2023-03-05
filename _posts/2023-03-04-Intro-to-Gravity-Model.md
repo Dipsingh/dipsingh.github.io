@@ -91,9 +91,7 @@ $$
 Which gives us 
 
 $$
-X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out}
-$$
-$$
+X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out} \\
 p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} 
 $$
 $$
