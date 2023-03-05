@@ -4,7 +4,6 @@ title:  Intro to Gravity Model
 ---
 
 # Motivation
-
 I recently read Google's latest sigcomm paper: [Jupiter Evolving](https://dl.acm.org/doi/pdf/10.1145/3544216.3544265) on 
 their Datacenter fabric evolution. It is an excellent paper with tons of good information, and the depth and width show 
 what an engineering thought process should look like. The central theme talks about the challenges faced with 
@@ -32,7 +31,6 @@ examples of generating synthetic traffic which follows the Gravity Model.
 
 
 # Introduction
-
 We can divide Traffic Matrix Models into broadly three categories:  temporal modelling, spatial Modelling and spatio-temporal modelling. 
 
 1. Temporal modelling: In Temporal models, we focus on the time series properties of the traffic matrix.
