@@ -94,9 +94,7 @@ $$
 X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out}  \newline
 p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \newline
 p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \newline
-
-X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}}, \newline
-
+X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \newline
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in I}{X_{k}^{in}}}
 $$
 
