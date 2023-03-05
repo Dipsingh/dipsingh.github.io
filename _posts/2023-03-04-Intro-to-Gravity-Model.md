@@ -136,8 +136,9 @@ c_{iv} - \sum_{j\in V\smallsetminus{i,v}}b_{ij} \newline
 - \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\smallsetminus{i,v}}D_{j}) \newline
 
 = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\smallsetminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \newline -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\smallsetminus{i,v}}D_{j})]
+$$
 
-
+$$
 = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\smallsetminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \newline -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\smallsetminus{i,v}}D_{j})] \newline
 where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}
 
@@ -153,7 +154,9 @@ where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k
 =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\smallsetminus{i,v}}D_{j} )- (\sum_{j\in V\smallsetminus{i,v}}D_{j}D_{v})] \newline
 
 this \sum_{k\in V}D_{k} - \sum_{j\in V\smallsetminus{i,v}}D_{j} is the sum over all nodes in V minus the sum over all nodes in V except i and v. This is equivalent to D_{i}+D_{v}
+$$
 
+$$
 =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\smallsetminus{i,v}}D_{j}D_{v})] \newline
 =\alpha[(D_{v}\sum_{k \in V}D_{k})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\smallsetminus{i,v}}D_{j}D_{v})] \newline
 =\alpha[(D_{v}\sum_{k \in V}D_{k})- (\sum_{j\in V\smallsetminus{i,v}}D_{j}D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \newline
