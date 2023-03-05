@@ -91,10 +91,14 @@ $$
 Which gives us 
 
 $$
-X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out} 
+X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out}
+
 p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} 
+
 p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} 
+
 X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} 
+
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in I}{X_{k}^{in}}}
 $$
 
