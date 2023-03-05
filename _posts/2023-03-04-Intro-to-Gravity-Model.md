@@ -129,9 +129,9 @@ this here in case someone else finds it useful.
 $$
 c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
 b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \\
+c_{iv} - \sum_{j\in V{\smallsetminus}{i,v}}b_{ij} \\
 $$
 $$
-c_{iv} - \sum_{j\in V\smallsetminus{i,v}}b_{ij} \\
 = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
 - \sum_{j\in V\smallsetminus{i,v}} \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \\
 = \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\smallsetminus{i,v}}D_{j}) \\
