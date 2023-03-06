@@ -64,8 +64,8 @@ $$
  
 For  IP traffic matrix modeling, the friction factors are typically considered constant. This translates to below where 
 $X_{i}^{in}$ is the total traffic entering the network through $i$. $X_{j}^{out}$ is the total traffic exiting the network 
-through $j$ and $X^{total}$ is the total traffic across the network.
-
+through $j$ and $X^{total}$ is the total traffic across the network. With that, we get the following for estimating traffic 
+between $i$ and $j$.
 
 $$
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{X^{total}}
