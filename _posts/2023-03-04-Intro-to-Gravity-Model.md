@@ -59,7 +59,7 @@ represents the friction factor, which describes the weakening of the forces.
 
 
 $$
-X_{i,j} = \frac{R_{i}A_{j}}{f_{i,j}}
+\hspace{5cm} X_{i,j} = \frac{R_{i}A_{j}}{f_{i,j}}
 $$
  
 For  IP traffic matrix modeling, the friction factors are typically considered constant. This translates to below where 
@@ -68,20 +68,20 @@ through $j$ and $X^{total}$ is the total traffic across the network. With that, 
 between $i$ and $j$.
 
 $$
-X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{X^{total}}
+\hspace{5cm} X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{X^{total}}
 $$
 
 The gravity model captures the Spatial structure of the traffic, and the key assumption is the independence between each 
 source $i$ and destination $j$. This gives us $X_{i,j}$ i.e. traffic from $i$ to $j$ as:
 
 $$
-X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{in}}} \\
+\hspace{5cm} X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{in}}} \\
 $$
 
 or
 
 $$
-X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{out}}} \\
+\hspace{5cm} X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{out}}} \\
 $$
 
 Where  
@@ -124,13 +124,13 @@ Assuming Gravity model, the traffic demand from $i$ to $j$ is given by $D_{ij} =
 the aggregate demand at $u$ decreases from $D_{u}$ to $D'_{u}$, the demand From $i$ to $u$ reduces by:
 
 $$
-c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}
+\hspace{5cm} c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}
 $$
 
 In simple words, it's saying $c_{iv} = OriginalTrafficDemand - ReducedTrafficDemand$. The demand from $i$ to $j$ increases by:
 
 $$
-b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}
+\hspace{5cm} b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}
 $$
 
 if $c_{iv} \gt \sum_{j\in V\setminus{i,v}}b_{ij}$, then the increased demand from $i$ to all other nodes except $v$ can transit
