@@ -165,24 +165,24 @@ $\sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j}$ is the sum over all node
 Substituting $\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j} = D_{i}+D_{v}$
 
 $$
-=\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
-=\alpha[(D_{v}\sum_{k \in V}D_{k})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
-=\alpha[(D_{v}\sum_{k \in V}D_{k})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
-=\alpha[(D_{v}(\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
+\hspace{8mm} =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
+\hspace{8mm} =\alpha[(D_{v}\sum_{k \in V}D_{k})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
+\hspace{8mm} =\alpha[(D_{v}\sum_{k \in V}D_{k})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
+\hspace{8mm} =\alpha[(D_{v}(\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
 $$
 
 substituting $\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j} = D_{i}+D_{v}$
 
 $$
-=\alpha[(D_{v}(D_{i}+D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
-=\alpha[D_{v}D_{i}+D_{v}D_{v}+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
-=\alpha[D_{v}D_{i}+D_{v}D'_{v}-D'_{v}(D_{i}+D_{v})] \\
-=\alpha[D_{v}D_{i}+D_{v}D'_{v}-D'_{v}D_{i}-D'_{v}D_{v}] \\
-=\alpha[D_{v}D_{i}-D'_{v}D_{i}] \\
-=\alpha[D_{i}(D_{v}-D'_{v})] \ge 0\\
+\hspace{8mm} =\alpha[(D_{v}(D_{i}+D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
+\hspace{8mm} =\alpha[D_{v}D_{i}+D_{v}D_{v}+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
+\hspace{8mm} =\alpha[D_{v}D_{i}+D_{v}D'_{v}-D'_{v}(D_{i}+D_{v})] \\
+\hspace{8mm} =\alpha[D_{v}D_{i}+D_{v}D'_{v}-D'_{v}D_{i}-D'_{v}D_{v}] \\
+\hspace{8mm} =\alpha[D_{v}D_{i}-D'_{v}D_{i}] \\
+\hspace{8mm} =\alpha[D_{i}(D_{v}-D'_{v})] \ge 0\\
 $$
 
-We knew that demand at v reduced from $D_{v}$ -> $D'_{v}$, so $D_{v}-D'_{v} \ge 0$. Rest of the terms are also positive. So 
+We know that demand at $v$ reduced from $D_{v} \hspace{4mm}  to \hspace{4mm}  D'_{v}$, so $D_{v}-D'_{v} \ge 0$. Rest of the terms are also positive. So 
 we prove that $c_{iv} \ge b_{ij}$
 
 # Conclusion
