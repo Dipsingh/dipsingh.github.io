@@ -138,7 +138,7 @@ through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv}
 to hold true. Below is the proof for that.
 
 $$
-\begin{alignat*}{1}
+\begin{alignat*}{8}
 &c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \\
 &= \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} 
 - \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \\
