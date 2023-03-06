@@ -82,6 +82,9 @@ $$
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{out}}} \\
 $$
 
+Where
+$X_{i}^{in}$ is the total amount of traffic originating from node i;
+$X_{j}^{out}$ is the total amount of traffic destined for node j.
 
 With this assumption it comes down to $X^{total} = \sum_{j=1}^{n}X_{j}^{in} = \sum_{l = 1}^{n}X_{l}^{out}$.
 
