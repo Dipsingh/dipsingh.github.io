@@ -130,9 +130,7 @@ $$
 In simple words, it's saying $c_{iv} = OriginalTrafficDemand - ReducedTrafficDemand$. The demand from $i$ to $j$ increases by:
 
 $$
-\begin{align}
-b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \hspace{100cm}
-\end{align}
+b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}
 $$
 
 if $c_{iv} \gt \sum_{j\in V\setminus{i,v}}b_{ij}$, then the increased demand from $i$ to all other nodes except $v$ can transit
@@ -140,13 +138,13 @@ through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv}
 to hold true. Below is the proof for that.
 
 $$
-\begin{aligned}
-c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \\
+\begin{align} 
+c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \hspace{100cm} \\
 = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} 
-- \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \\
+- \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \hspace{100cm} \\
 
-- = \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j}) \\
-- \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j}) \\
+- = \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j}) \hspace{100cm} \\
+- \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j}) \hspace{100cm} \\
 
 = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \\ -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \\
 
@@ -163,7 +161,7 @@ where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k
 
 =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}D'_{v}) - (\sum_{k\in V}D_{k}D'_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j} )- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
-\end{aligned}
+\end{align}
 $$
 
 this $\sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j}$ is the sum over all nodes in $V$ minus the sum over all nodes in $V$ except $i$ and $v$. This is equivalent to $D_{i}+D_{v}$.
