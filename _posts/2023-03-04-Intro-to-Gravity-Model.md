@@ -161,16 +161,18 @@ where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k
 \hspace{8mm} = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j} )- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 $$
 
-this $\sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j}$ is the sum over all nodes in $V$ minus the sum over all nodes in $V$ except $i$ and $v$. This is equivalent to $D_{i}+D_{v}$.
-
+$\sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j}$ is the sum over all nodes in $V$ minus the sum over all nodes in $V$ except $i$ and $v$. This is equivalent to $D_{i}+D_{v}$.
 
 $$
 =\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 =\alpha[(D_{v}\sum_{k \in V}D_{k})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 =\alpha[(D_{v}\sum_{k \in V}D_{k})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
 =\alpha[(D_{v}(\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
+$$
 
-\sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j} = D_{i}+D_{v} \\
+substituting \sum_{k \in V}D_{k}- \sum_{j\in V\setminus{i,v}}D_{j} = D_{i}+D_{v} 
+
+$$
 =\alpha[(D_{v}(D_{i}+D_{v})+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
 =\alpha[D_{v}D_{i}+D_{v}D_{v}+(D_{v}D'_{v})-(D_{v}D_{v})-D'_{v}(D_{i}+D_{v})] \\
 =\alpha[D_{v}D_{i}+D_{v}D'_{v}-D'_{v}(D_{i}+D_{v})] \\
