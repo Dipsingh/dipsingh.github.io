@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Intro to Gravity Model
+title:  Gravity Model
 ---
 
 # Motivation
