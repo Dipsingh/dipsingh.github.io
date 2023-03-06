@@ -100,8 +100,8 @@ There are two important properties of Gravity model:
 We can use synthetic traffic if we need access to real-world traffic. Below is a sample of synthetic traffic matrix 
 generation conforming to the Gravity model. There are multiple ways to generate synthetic traffic, from independent 
 exponential random variables to more complicated ways using sampling algorithms like MCMC (Markov Chain Monte Carlo). 
-Below is an example of Synthetic traffic that follows the Gravity model using exponential random variables. Code details 
-are in the Appendix.
+Below is an example of Synthetic traffic that follows the Gravity model using exponential random variables. The sample code is
+available in the Appendix.
 
 {: .center}
 ![Estimated vs Measured](/images/post19/fig_3.png "Estimated vs Measured")
@@ -109,14 +109,14 @@ are in the Appendix.
 
 # Expanded appendix Proof
 
-In Appendix section C of [Jupiter Evolving](https://dl.acm.org/doi/pdf/10.1145/3544216.3544265), a lemma is presented with
-a proof, i.e., if a network can support a gravity-model traffic matrix where aggregate egress and ingress traffic demands are 
+In appendix section C of [Jupiter Evolving](https://dl.acm.org/doi/pdf/10.1145/3544216.3544265), a lemma is presented with
+proof, i.e., if a network can support a gravity-model traffic matrix where aggregate egress and ingress traffic demands are 
 the same, then the network can support the demand after the aggregate demand at one node decreases. So this means that given 
 that aggregate demands are the same, a reduction of demand at a node $v$ will lead to an increase in demand from node $i$ 
 to other nodes excluding $v$. Still, that increase in demand can be re-routed via $v$ because there is enough room available. 
 
-While going through the proof, some steps were missing, So I had to reach out to Jupiters team for clarity, and I am writing 
-this here in case someone else finds it useful.
+While going through the proof, I had to reach out to the Jupiter Evolving team for some clarity, and I am writing the expanded 
+proof below in case someone else finds it useful.
 
 $$
 c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
