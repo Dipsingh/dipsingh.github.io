@@ -183,14 +183,14 @@ $$
 $$
 
 We know that demand at $v$ reduced from $$D_{v} \hspace{1mm}  to \hspace{1mm}  D'_{v}$$, so $$D_{v}-D'_{v} \ge 0$$. Rest of the terms are also positive. So 
-we prove that $c_{iv} \ge b_{ij}$.
+we proved that $c_{iv} \ge b_{ij}$.
 
 # Conclusion
-We presented model classification into three categories: purely temporal, purely spatial and spatio-temporal models. Gravity 
-model is spatial model and we presented a brief intro of Gravity model and how it applies to IP traffic matrix. Gravity model 
-usefulness comes from it's simplicity and google's latest sigcom paper suggest that there inter-block traffic follows Gravity 
-model, so there is certainly real life example of Gravity model. We looked at sample code for generating Gravity model traffic
-and then expanded the proof given in the appendix.
+We presented model classification into three categories: purely temporal, purely spatial, and spatio-temporal models. The gravity 
+model is a spatial model, and we presented a brief intro to the Gravity model and how it applies to the IP traffic matrix. The gravity model 
+usefulness comes from its simplicity, and google's latest sigcom paper suggests that their inter-block traffic follows the Gravity 
+model, so there is undoubtedly a real-life example of the Gravity model. We looked at a sample code for generating Gravity model traffic
+and then an expanded proof for the Gravity model.
 
 # Appendix
 
