@@ -77,7 +77,9 @@ source $i$ and destination $j$. This gives us $X_{i,j}$ i.e. traffic from $i$ to
 $$
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{in}}} \\
 $$
+
 or
+
 $$
 X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{out}}} \\
 $$
@@ -86,7 +88,7 @@ Where
 $X_{i}^{in}$ is the total amount of traffic originating from node i;
 $X_{j}^{out}$ is the total amount of traffic destined for node j.
 
-In an ideal network we assume $X^{total} = \sum_{j=1}^{n}X_{j}^{in} = \sum_{l = 1}^{n}X_{l}^{out}$.
+In an ideal network we assume $X^{total} = \sum_{k=1}^{n}X_{j}^{in} = \sum_{k = 1}^{n}X_{l}^{out}$.
 
 There are two important properties of Gravity model:
 1. Independence between source and destination traffic holds for any randomly chosen submatrix of the model. 
