@@ -119,7 +119,7 @@ capacity.
 While going through the proof, I had to reach out to the Jupiter Evolving team for some clarity, and I am writing the expanded 
 proof below in case someone else finds it useful.
 
-*Proof*
+*Proof* 
 Assuming Gravity model, the traffic demand from $i$ to $j$ is given by $D_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}$. If 
 the aggregate demand at $u$ decreases from $D_{u}$ to $D'_{u}$, the demand From $i$ to $u$ reduces by:
 
@@ -134,7 +134,8 @@ b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\s
 $$
 
 if $c_{iv} \gt \sum_{j\in V\setminus{i,v}}b_{ij}$, then the increased demand from $i$ to all other nodes except $v$ can transit
-through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \gt 0$.
+through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \gt 0$ needs 
+to hold true. Below is the proof for that.
 
 $$
 = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
