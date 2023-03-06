@@ -152,15 +152,15 @@ c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \hspace{10cm} \\
 where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})} \hspace{10cm} \\
 
 
-= \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \\ -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \\
+& = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \\ -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \\
 
-=\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+\sum_{j\in V\setminus{i,v}}D_{j}(D'_{v}- D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}\sum_{k \in V}D_{k}) -(\sum_{k\in V}D_{k}D'_{v}- \\ (\sum_{j\in V\setminus{i,v}}D_{j}\sum_{k \in V}D_{k})]  \\
+& = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+\sum_{j\in V\setminus{i,v}}D_{j}(D'_{v}- D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}\sum_{k \in V}D_{k}) -(\sum_{k\in V}D_{k}D'_{v}- \\ (\sum_{j\in V\setminus{i,v}}D_{j}\sum_{k \in V}D_{k})]  \\
 
-=\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+\sum_{j\in V\setminus{i,v}}D_{j}(D'_{v}- D_{v})-(\sum_{k\in V}D_{k}D'_{v})]  \\
+& = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+\sum_{j\in V\setminus{i,v}}D_{j}(D'_{v}- D_{v})-(\sum_{k\in V}D_{k}D'_{v})]  \\
 
 
-=\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}D'_{v}) - (\sum_{k\in V}D_{k}D'_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
-=\alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j} )- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
+& = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}D'_{v}) - (\sum_{k\in V}D_{k}D'_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
+& = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j} )- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 \end{align}
 $$
 
