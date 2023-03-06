@@ -113,15 +113,30 @@ In appendix section C of [Jupiter Evolving](https://dl.acm.org/doi/pdf/10.1145/3
 proof, i.e., if a network can support a gravity-model traffic matrix where aggregate egress and ingress traffic demands are 
 the same, then the network can support the demand after the aggregate demand at one node decreases. So this means that given 
 that aggregate demands are the same, a reduction of demand at a node $v$ will lead to an increase in demand from node $i$ 
-to other nodes excluding $v$. Still, that increase in demand can be re-routed via $v$ because there is enough room available. 
+to other nodes excluding $v$. Still, that increase in demand can be re-routed via $v$ because reduction at $v$ frees up sufficient
+capacity.
 
 While going through the proof, I had to reach out to the Jupiter Evolving team for some clarity, and I am writing the expanded 
 proof below in case someone else finds it useful.
 
+*Proof*
+Assuming Gravity model, the traffic demand from $i$ to $j$ is given by $D_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}$. If 
+the aggregate demand at $u$ decreases from $D_{u}$ to $D'_{u}$, the demand From $i$ to $u$ reduces by:
+
 $$
-c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
-b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \\
-c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \\
+c_{iv} = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}
+$$
+
+In simple words, it's saying $c_{iv} = OriginalTrafficDemand - ReducedTrafficDemand$. The demand from $i$ to $j$ increases by:
+
+$$
+b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}
+$$
+
+if $c_{iv} \gt \sum_{j\in V\setminus{i,v}}b_{ij}$, then the increased demand from $i$ to all other nodes except $v$ can transit
+through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \gt 0$.
+
+$$
 = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} \\
 - \sum_{j\in V\setminus{i,v}} \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \\
 = \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j}) \\
