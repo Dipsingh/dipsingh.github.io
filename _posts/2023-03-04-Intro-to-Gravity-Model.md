@@ -146,8 +146,9 @@ $$
 \hspace{8mm} = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v})  -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})]  \\
 
 \hspace{8mm} = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})]  \\
+\\
 where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})} \\
-
+\\
 
 \hspace{8mm} = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v})  -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \\
 
