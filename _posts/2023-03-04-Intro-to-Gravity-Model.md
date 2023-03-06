@@ -130,7 +130,9 @@ $$
 In simple words, it's saying $c_{iv} = OriginalTrafficDemand - ReducedTrafficDemand$. The demand from $i$ to $j$ increases by:
 
 $$
-b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}
+\begin{align}
+b_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}} \hspace{100cm}
+\end{align}
 $$
 
 if $c_{iv} \gt \sum_{j\in V\setminus{i,v}}b_{ij}$, then the increased demand from $i$ to all other nodes except $v$ can transit
