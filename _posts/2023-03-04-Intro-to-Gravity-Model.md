@@ -45,7 +45,7 @@ retail industry. A few examples are like predicting the movement of people, good
 locations by considering the population and distance factors. In the case of the retail industry, an example is Reilly's 
 law of retail gravitation.
  
-An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.[4](https://roughan.info/papers/imw_2002_abstract.pdf) 
+An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.[(4)](https://roughan.info/papers/imw_2002_abstract.pdf) 
 is based on the total amount of traffic entering and leaving each node in the network and the total traffic in the network. Here, traffic 
 from the source to the destination is modeled as a random process. In its simplest form, it assumes any packet originating 
 from a source to a destination nodes are independent of other packets. Depending on the context, this could be the origin, 
