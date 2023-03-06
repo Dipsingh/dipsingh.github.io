@@ -139,11 +139,11 @@ to hold true. Below is the proof for that.
 
 $$
 \begin{align} 
-c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \hspace{100cm} \\
+c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \hspace{1000cm} \\
 = \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} 
 - \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \hspace{100cm} \\
 
-- = \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j}) \hspace{100cm} \\
+= \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j}) \hspace{100cm} \\
 - \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j}) \hspace{100cm} \\
 
 = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \\ -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \\
