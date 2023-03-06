@@ -8,26 +8,25 @@ I recently read Google's latest sigcomm paper: [Jupiter Evolving](https://dl.acm
 their Datacenter fabric evolution. It is an excellent paper with tons of good information, and the depth and width show 
 what an engineering thought process should look like. The central theme talks about the challenges faced with 
 deploying and scaling Clos fabrics and how they have evolved by replacing the spine layer with OCS that allows the blocks to 
-be directly connected, called Direct connect topology.
+be directly connected, calling it Direct connect topology.
 
 {: .center}
 ![Clos and Direct Connect](/images/post19/fig_1.png "Clos and Direct Connect Topology")
 
-If you pay attention, the Direct Connect topology resembles Dragonfly+, where you have directly connected blocks.
+If you look closely, the Direct Connect topology resembles Dragonfly+, where you have directly connected blocks.
 
 {: .center}
 ![Dragonfly+](/images/post19/fig_2.png "Dragonfly+")
 
-The paper has many interesting topics, including Traffic and Topology Engineering and Traffic aware routing. The most 
-exciting part to me, which will be understandably missing, is the formulation of Traffic engineering problems as 
-Optimization problems. I would love to see some real-world code examples.
+The paper has many interesting topics, including Traffic and Topology Engineering and Traffic aware routing. One of the 
+most exciting parts to me, which will be understandably missing, is the formulation of Traffic engineering problems as 
+Optimization problems. I would love to see some pseudo-real-world code examples.
  
-However, one thing that surprised me the most was from a Traffic characteristics perspective, a Gravity model best 
-describes Inter-Block traffic. When I studied Gravity Model, I thought this was such a simplistic model that I would 
-never see that in real life, but it turns out I was wrong, and it still has practical applicability. For many Network 
-engineers' knowledge of Traffic Matrix models is limited to collecting LSP Stats and building a traffic matrix. But now 
-that I have seen an instance of the Gravity model in use,  I had enough motivation to write about it and provide some 
-examples of generating synthetic traffic which follows the Gravity Model.
+However, one thing that surprised me the most was from a Traffic characteristics perspective, a Gravity model best described 
+Google's Inter-Block traffic. When I studied Gravity Model, I thought this was such a simplistic model that I would never 
+see that in real life, but it turns out I was wrong, and it still has practical applicability. This blog will look at the 
+Gravity Model and synthetic traffic generation that follows the gravity model. We will end with an expanded proof given 
+Jupiter Evolving in Appendix C.
 
 
 # Introduction
@@ -46,7 +45,7 @@ retail industry. A few examples are like predicting the movement of people, good
 locations by considering the population and distance factors. In the case of the retail industry, an example is Reilly's 
 law of retail gravitation.
  
-An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.[4] is based on 
+An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.\[4] is based on 
 the total amount of traffic entering and leaving each node in the network and the total traffic in the network. Here, traffic 
 from the source to the destination is modeled as a random process. In its simplest form, it assumes any packet originating 
 from a source to a destination nodes are independent of other packets. Depending on the context, this could be the origin, 
