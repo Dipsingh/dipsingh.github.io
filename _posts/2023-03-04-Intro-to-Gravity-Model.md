@@ -86,7 +86,7 @@ p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \\
 p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}}
 $$
 
-Which gives us
+Which gives us $X_{i,j}$ i.e. traffic from $i$ to $j$ as:
 
 $$
 X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \\
