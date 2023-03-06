@@ -119,7 +119,7 @@ capacity.
 While going through the proof, I had to reach out to the Jupiter Evolving team for some clarity, and I am writing the expanded 
 proof below in case someone else finds it useful.
 
-*Proof* 
+##### Proof 
 Assuming Gravity model, the traffic demand from $i$ to $j$ is given by $D_{ij} = \frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}$. If 
 the aggregate demand at $u$ decreases from $D_{u}$ to $D'_{u}$, the demand From $i$ to $u$ reduces by:
 
