@@ -183,7 +183,7 @@ $$
 $$
 
 We know that demand at $v$ reduced from $$D_{v} \hspace{1mm}  to \hspace{1mm}  D'_{v}$$, so $$D_{v}-D'_{v} \ge 0$$. Rest of the terms are also positive. So 
-we prove that $c_{iv} \ge b_{ij}$
+we prove that $c_{iv} \ge b_{ij}$.
 
 # Conclusion
 We presented model classification into three categories: purely temporal, purely spatial and spatio-temporal models. Gravity 
