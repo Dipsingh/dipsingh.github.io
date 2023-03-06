@@ -88,7 +88,7 @@ Where
 $X_{i}^{in}$ is the total amount of traffic originating from node i;  
 $X_{j}^{out}$ is the total amount of traffic destined for node j.
 
-In an ideal network we assume $X^{total} = \sum_{k=1}^{n}X_{j}^{in} = \sum_{k = 1}^{n}X_{l}^{out}$.
+In an ideal network we assume $X^{total} = \sum_{k=1}^{n}X_{k}^{in} = \sum_{k = 1}^{n}X_{k}^{out}$.
 
 There are two important properties of Gravity model:
 1. Independence between source and destination traffic holds for any randomly chosen submatrix of the model. 
