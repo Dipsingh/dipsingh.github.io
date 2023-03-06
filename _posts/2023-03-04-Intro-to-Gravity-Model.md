@@ -182,7 +182,7 @@ $$
 \hspace{8mm} =\alpha[D_{i}(D_{v}-D'_{v})] \ge 0\\
 $$
 
-We know that demand at $v$ reduced from $$D_{v} \hspace{4mm}  to \hspace{4mm}  D'_{v}$$, so $$D_{v}-D'_{v} \ge 0$$. Rest of the terms are also positive. So 
+We know that demand at $v$ reduced from $$D_{v} \hspace{1mm}  to \hspace{1mm}  D'_{v}$$, so $$D_{v}-D'_{v} \ge 0$$. Rest of the terms are also positive. So 
 we prove that $c_{iv} \ge b_{ij}$
 
 # Conclusion
