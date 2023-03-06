@@ -20,13 +20,13 @@ If you look closely, the Direct Connect topology resembles Dragonfly+, where you
 
 The paper has many interesting topics, including Traffic and Topology Engineering and Traffic aware routing. One of the 
 most exciting parts to me, which will be understandably missing, is the formulation of Traffic engineering problems as 
-Optimization problems. I would love to see some pseudo-real-world code examples.
+Optimization problems. I would love to see some pseudo-real-world code examples made publicly available.
  
 However, one thing that surprised me the most was from a Traffic characteristics perspective, a Gravity model best described 
 Google's Inter-Block traffic. When I studied Gravity Model, I thought this was such a simplistic model that I would never 
 see that in real life, but it turns out I was wrong, and it still has practical applicability. This blog will look at the 
 Gravity Model and synthetic traffic generation that follows the gravity model. We will end with an expanded proof given 
-Jupiter Evolving in Appendix C.
+in the appendix section C of [Jupiter Evolving](https://dl.acm.org/doi/pdf/10.1145/3544216.3544265).
 
 
 # Introduction
@@ -45,7 +45,7 @@ retail industry. A few examples are like predicting the movement of people, good
 locations by considering the population and distance factors. In the case of the retail industry, an example is Reilly's 
 law of retail gravitation.
  
-An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.\[4] is based on 
+An application of the Gravity Model for IP Traffic matrix estimation was first proposed by Roughan et al.\[4\] is based on 
 the total amount of traffic entering and leaving each node in the network and the total traffic in the network. Here, traffic 
 from the source to the destination is modeled as a random process. In its simplest form, it assumes any packet originating 
 from a source to a destination nodes are independent of other packets. Depending on the context, this could be the origin, 
