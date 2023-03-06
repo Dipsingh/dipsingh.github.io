@@ -74,24 +74,15 @@ $$
 The gravity model captures the Spatial structure of the traffic, and the key assumption is the independence between each 
 source $i$ and destination $j$. With this assumption it comes down to $ X^{total} = \sum_{k\in I}X_{j}^{in} = \sum_{k\in e}X_{l}^{out}$.
 
-$$
-X_{i,j} = X^{total}p_{i}^{in}p_{j}^{out},
-$$
-
-Where,
-
-$$
-p_{i}^{in} = \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \\
-
-p_{j}^{out} = \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}}
-$$
-
 Which gives us $X_{i,j}$ i.e. traffic from $i$ to $j$ as:
 
 $$
-X_{i,j} = \sum_{k\in e}X_{l}^{out} \frac{X_{i}^{in}}{\sum_{k\in I}{X_{k}^{in}}} \frac{X_{j}^{out}}{\sum_{l\in \epsilon}{X_{l}^{out}}} \\
-X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in I}{X_{k}^{in}}}
+X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in n}{X_{k}^{in}}} \\
+or \\
+X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k\in n}{X_{k}^{out}}} \\
 $$
+
+
 
 There are two important properties of Gravity model:
 1. Independence between source and destination traffic holds for any randomly chosen submatrix of the model. 
