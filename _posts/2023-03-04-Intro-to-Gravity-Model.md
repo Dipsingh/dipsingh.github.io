@@ -85,7 +85,7 @@ X_{i,j} = \frac{X_{i}^{in}X_{j}^{out}}{\sum_{k=1}^{n}{X_{k}^{out}}} \\
 $$
 
 Where
-$X_{i}^{in}$ is the total amount of traffic originating from node i;
+$X_{i}^{in}$ is the total amount of traffic originating from node i;  
 $X_{j}^{out}$ is the total amount of traffic destined for node j.
 
 In an ideal network we assume $X^{total} = \sum_{k=1}^{n}X_{j}^{in} = \sum_{k = 1}^{n}X_{l}^{out}$.
