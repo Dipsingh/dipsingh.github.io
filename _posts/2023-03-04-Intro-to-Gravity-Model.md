@@ -138,19 +138,19 @@ through $v$ as it frees sufficient capacity. In order to hold this true, $c_{iv}
 to hold true. Below is the proof for that.
 
 $$
-\begin{align} 
-&c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \hspace{1cm} \\
+\begin{alignat*}{4}
+&c_{iv} - \sum_{j\in V\setminus{i,v}}b_{ij} \\
 &= \frac{D_{i}D_{v}}{\sum_{k\in V}D_{k}}-\frac{D_{i}D'_{v}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}} 
-- \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \hspace{1cm} \\
+- \sum_{j\in V\setminus{i,v}} (\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}+D'_{v}-D_{v}}-\frac{D_{i}D_{j}}{\sum_{k\in V}D_{k}}) \\
 
 &= \frac{D_{i}}{\sum_{k\in V}D_{k}}(D_{v}+ \sum_{j\in V\setminus{i,v}}D_{j})
-- \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j}) \hspace{1cm} \\
+- \frac{D_{i}}{\sum_{k \in V}D_{k}+D'_{v}-D_{v}}(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})  \\
 
-&= \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) \hspace{30cm} \hspace{1cm} \\
-&+ \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v})  -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \hspace{1cm} \\
+&= \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})}[D_{u}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) \hspace{30cm} \\
+&+ \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v})  -(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})]  \\
 
-&= \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v}) \hspace{10cm} \\
-&-(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})] \hspace{1cm} \\
+&= \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v}) + \sum_{j\in V\setminus{i,v}}D_{j}(\sum_{k \in V}D_{k}+D'_{v}- D_{v})  \\
+&-(\sum_{k\in V}D_{k})(D'_{v}+\sum_{j\in V\setminus{i,v}}D_{j})]  \\
 where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k}+D'_{v}-D_{v})} \hspace{5cm} \\
 
 
@@ -163,7 +163,7 @@ where \hspace{4mm} \alpha = \frac{D_{i}}{(\sum_{k\in V}D_{k})(\sum_{k \in V}D_{k
 
 & = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})+(\sum_{j\in V\setminus{i,v}}D_{j}D'_{v}) - (\sum_{k\in V}D_{k}D'_{v})- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
 & = \alpha[D_{v}(\sum_{k \in V}D_{k}+D'_{v}-D_{v})-D'_{v}( \sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j} )- (\sum_{j\in V\setminus{i,v}}D_{j}D_{v})]  \\
-\end{align}
+\end{alignat*}
 $$
 
 this $\sum_{k\in V}D_{k} - \sum_{j\in V\setminus{i,v}}D_{j}$ is the sum over all nodes in $V$ minus the sum over all nodes in $V$ except $i$ and $v$. This is equivalent to $D_{i}+D_{v}$.
