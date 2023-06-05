@@ -170,14 +170,16 @@ plot showing the amplitude and frequencies of the signals.
 
 {: .center}
 ![Fourier Series](/images/post20/fourier_series-011.png "Fourier Series")
-[ref](https://tikz.net/fourier_series/)
+
+[ref: https://tikz.net/fourier_series/](https://tikz.net/fourier_series/)
 
 Another illustration of the fourier composition of square wave plotted in the frequency domain. As the signal becomes more 
 square, the number of frequencies involved increases, as shown in the frequency domain.
 
 {: .center}
 ![Fourier Series Wave](/images/post20/fourier_square_wave_plot.gif "Fourier Series Wave")
-[ref](https://tikz.net/fourier_series/)
+
+[ref: https://tikz.net/fourier_series/](https://tikz.net/fourier_series/)
 
 A perfect square wave consists of infinite frequencies, which means in real life, there is no such thing as a perfect square wave. All 
 square waves we observe in real life are approximations of a square wave.
