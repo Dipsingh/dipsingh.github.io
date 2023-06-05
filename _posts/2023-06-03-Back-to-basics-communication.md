@@ -106,6 +106,7 @@ In Phase addition of sine waves
 ![Superposition](/images/post20/superposition_wave1.png "SuperPosition")
 
 Out of phase addition of two sine waves
+
 {: .center}
 ![Superposition](/images/post20/superposition_wave2.png "SuperPosition")
 
