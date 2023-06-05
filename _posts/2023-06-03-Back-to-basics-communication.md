@@ -298,7 +298,7 @@ resistance of the medium which is converted to heat. To compensate the loss, amp
 ## Distortion
 
 Distortion means that signal changes its form or shape. Distortion can occure in a composite signal made of different 
-frequencies. Each signal component has it's own propogation speed and therefore its own delay in arriving at the final 
+frequencies. Each signal component has its own propagation speed and therefore its own delay in arriving at the final 
 destination. Differences in delay may create a difference in phase, means signal components at the receiver have phases 
 different from they had at the sender.
 
@@ -364,7 +364,8 @@ known as guard bands, between the lanes to prevent collisions and interference.
 
 {: .center}
 ![Highway](/images/post20/highway.png "Highway")
-[ref](http://complextoreal.com/tutorials/)
+
+[ref: http://complextoreal.com/tutorials/](http://complextoreal.com/tutorials/)
 
 So, our goal is to transport the signal smoothly by fitting it within the allocated bandwidth, just like a truck fitting 
 within its designated lane on the highway, while also maintaining guard bands to ensure signal integrity.
