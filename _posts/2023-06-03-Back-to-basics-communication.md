@@ -538,7 +538,7 @@ at different voltage levels or waveforms. We also need a receiver sensitive enou
 NRZ, also called PAM-2, is the encoding type where the bit rate and symbol rate are the same. In PAM-4 encoding scheme, we 
 double the bit rate for the same symbol rate by encoding two bits per level and having four levels. 
 
-### Power Efficiency $E_{b}/N_0{}$
+### Power Efficiency: $E_{b}/N_0{}$
 
 One of the goals in designing a communication system is to send information reliably using the lowest practical power level, 
 aka power efficient. $\frac{E_{b}}{N_{0}}$ is a metric to measure the efficiency of a communication system in terms of how 
@@ -697,15 +697,19 @@ evaluate the performance and suitability of different modulation schemes for spe
 Let's do a comparison of various PAM modulation like PAM2 (NRZ), PAM4 (4 levels). The factors to consider while comparison 
 should include data rate, spectral efficiency, complexity, Noise tolerance etc.
 
-PSD Plot comparison of NRZ(PAM2) and PAM4.
+PSD Plot comparison of NRZ(PAM2) and PAM4:
+
 {: .center}
 ![NRZ vs PAM4 ](/images/post20/psd_nrz_pam4_2.png "NRZ vs PAM4")
-[ref](https://www.xilinx.com/content/dam/xilinx/publications/events/designcon/2017/112gbps-serial-transmission-over-copperpam4-vs-pam8-slides.pdf)
 
-PSD Plot comparison of NRZ (PAM2) and PAM8.
+[ref: Pam4 vs Pam8](https://www.xilinx.com/content/dam/xilinx/publications/events/designcon/2017/112gbps-serial-transmission-over-copperpam4-vs-pam8-slides.pdf)
+
+PSD Plot comparison of NRZ (PAM2) and PAM8:
+
 {: .center}
 ![PAM4 vs PAM8](/images/post20/pam8_nrz_psd.png "PAM4 vs PAM8")
-[ref](https://www.xilinx.com/content/dam/xilinx/publications/events/designcon/2017/112gbps-serial-transmission-over-copperpam4-vs-pam8-slides.pdf)
+
+[ref: Pam4 vs Pam8](https://www.xilinx.com/content/dam/xilinx/publications/events/designcon/2017/112gbps-serial-transmission-over-copperpam4-vs-pam8-slides.pdf)
 
 
 ### Data Rate
