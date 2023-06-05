@@ -58,11 +58,8 @@ shorter. This brings us to the relation that wavelength is inversely proportiona
 {: .center}
 ![Wave length](/images/post20/sine_wave_7_wavelength.png "Sine Wave Wavelength")
 
-The relationship between wavelength, frequency and Velocity (the speed at which the wave propagates through a medium) can be expressed as 
-
-$$
-\lambda = \frac{v}{f} 
-$$
+The relationship between wavelength, frequency and Velocity (the speed at which the wave propagates through a medium) can be 
+expressed as $\lambda = \frac{v}{f}$.
 
 You can explore and interact with this simple animation to gain a better understanding, which will help you develop your 
 intuition [Wavelength and Wave Speed](https://www.geogebra.org/calculator/rggee2zr).
