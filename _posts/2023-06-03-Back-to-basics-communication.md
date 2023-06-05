@@ -61,14 +61,6 @@ shorter. This brings us to the relation that wavelength is inversely proportiona
 The relationship between wavelength, frequency and Velocity (the speed at which the wave propagates through a medium) can be expressed as 
 
 $$
-\lambda(Distance) = v(speed) * T(Time)
-$$
-
-$$
-T = \frac{1}{f}
-$$
-
-$$
 \lambda = \frac{v}{f} 
 $$
 
