@@ -456,7 +456,9 @@ Data rate depends on three factors:
 
 **Noiseless Channel: Nyquist Bit Rate**
 
-       $Bit Rate = 2 * B * log_{2}L$ 
+$$
+\hspace{5cm} Bit Rate = 2 * B * log_{2}L
+$$
 
 Where B is the bandwidth of the channel. The number of signal levels (L) refers to the different levels that can be used 
 to represent data. The bit rate is the speed at which bits are transmitted, measured in bits per second.
@@ -473,7 +475,9 @@ the signals and minimize errors correctly.
 
 **Noisy Channel: Shannon Capacity Law**
 
-    $Capacity = B * log_{2}(1+SNR)$.
+$$
+\hspace{5cm} Capacity = B * log_{2}(1+SNR)
+$$
 
 In reality, it's not possible to have a completely noise-free channel for communication. Shannon's law provides a way to 
 determine the maximum capacity of a transmission system by  $C = BW * log_2(1 + SNR)$, where C represents the channel 
@@ -484,30 +488,36 @@ method. Consider an extremely noisy channel in which the value of the signal-to-
 the noise is so strong that the signal is faint. This means that the capacity of this channel is zero regardless of the 
 bandwidth. In other words, we cannot receive any data through this channel.
 
-  $C = B*log_{2}(1+SNR) = B* log_{2}(1+0) = B*log_{2}(1) = B * 0 = 0$ 
+$$
+\hspace{5cm} C = B*log_{2}(1+SNR) = B* log_{2}(1+0) = B*log_{2}(1) = B * 0 = 0 
+$$
 
 The signal-to-noise ratio is often given in decibels and can be calculated as:
 
 $$
-SNR_{dB} = 10*log_{10}(SNR) 
+\hspace{5cm} SNR_{dB} = 10*log_{10}(SNR) 
 $$
 
 where SNR is calculated by
 
 $$
-SNR = \frac{P_{s}}{P_{n}}
+\hspace{5cm} SNR = \frac{P_{s}}{P_{n}}
 $$
 
 For example, if we have a channel with a 1 MHz bandwidth and SNR for this channel is 63, we can calcuate the appropriate bit 
 rate and signal level. First, we use the Shannon formula to find the upper limit.
 
-    $C = B*log_{2}(1+SNR) = 10^6*log_{2}(1+63) = 10^6*log_{2}64 = 6Mbps$ 
+$$
+\hspace{5cm} C = B*log_{2}(1+SNR) = 10^6*log_{2}(1+63) = 10^6*log_{2}64 = 6Mbps 
+$$
 
 The Shannon formula gives us an upper limit of 6 Mbps (megabits per second) for the transmission capacity. However, we might 
 choose a lower rate, such as 4 Mbps, for improved performance. Once we have determined the desired bit rate, we can use the 
 Nyquist formula to calculate the signal levels needed for the transmission.
 
-     $4Mbps = 2 * 1 MHz * log_{2} L = 4$
+$$
+\hspace{5cm} 4Mbps = 2 * 1 MHz * log_{2} L = 4
+$$
 
 We observed that the Shannon capacity gives us the upper capacity limit; the Nyquist formula tells us how many signal levels we need.
 
