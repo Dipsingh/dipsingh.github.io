@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Back to Basics: A Primer on Communication Fundamentals
+title:  Back to Basics &#58; A Primer on Communication Fundamentals
 ---
 
 # Motivation
