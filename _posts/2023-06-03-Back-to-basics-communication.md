@@ -4,13 +4,10 @@ title:  Back to Basics&#58; A Primer on Communication Fundamentals
 ---
 
 # Motivation
-
 In our rapidly advancing world, communication speeds are increasing at a fast pace. Transceiver speeds have evolved from 100G 
 to 400G, 800G, and soon even 1.6T. Similarly, Optical systems are evolving to keep up with the pace. If we dig deeper, we will 
 discover that many concepts are shared across various domains, such as Wi-Fi, optical communications, transceivers, etc. Still, 
-without the necessary background, It's not easy to identify the patterns. 
-
-If we have the essential knowledge, it becomes easier to understand the developments happening in the respective areas, and we 
+without the necessary background, It's not easy to identify the patterns. If we have the essential knowledge, it becomes easier to understand the developments happening in the respective areas, and we 
 can better understand the trade-offs made by the designers while designing a particular system. And that's the motivation 
 behind writing this post is to cover fundamental concepts which form the basis for our modern communication system and how 
 they all relate to each other.
