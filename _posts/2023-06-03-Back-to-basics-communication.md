@@ -82,14 +82,16 @@ the same phase angle of $\frac{\pi}{2}$ radians. Here is a visualization that sh
 
 {: .center}
 ![Phase](/images/post20/phase.gif "Phase")
-[ref](https://www.nist.gov/image/phasegif)
+
+[ref: https://www.nist.gov/image/phasegif](https://www.nist.gov/image/phasegif)
 
 We are often interested in the phase difference between two waves. Two waves of the same frequency are said to be in phase 
 if they have the same phase angle, and if different, then called out of phase.
 
 {: .center}
 ![Phase Difference](/images/post20/phase-difference.gif "Phase difference")
-[ref](https://www.nist.gov/image/phase-differencegif)
+
+[ref: https://www.nist.gov/image/phase-differencegif](https://www.nist.gov/image/phase-differencegif)
 
 By convention, the phase difference between two waves of the same frequency is expressed as a value in the range $-\pi$ to $\pi$. 
 This means the first wave can lead the second wave by anything up to $\pi$ radians when two signals differ in phase exactly 
