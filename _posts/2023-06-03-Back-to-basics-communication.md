@@ -34,10 +34,8 @@ equals one cycle per second.
 Period ($T$) is the time for a wave to complete one repetition. The relationship between Period and Frequency can be given as $T = \frac{1}{f}$. 
 
 If a wave has a frequency of 1 GigaHertz ($10^9$ Hz), it has  $10^9$ cycles per second and the period, i.e., the time it 
-takes to finish one repetition, is one nanosecond ($\frac{1}{10^9}$). 
-
-The plot below displays two waves, the first oscillating at 2 Hz (i.e., two cycles per second) and the second at a frequency
-of 4 Hz (i.e., four cycles per second).
+takes to finish one repetition, is one nanosecond ($\frac{1}{10^9}$). The plot below displays two waves, the first oscillating 
+at 2 Hz (i.e., two cycles per second) and the second at a frequency of 4 Hz (i.e., four cycles per second).
 
 {: .center}
 ![Sine Wave](/images/post20/sine_wave_7_freq.png "Sine Wave")
@@ -59,10 +57,8 @@ shorter. This brings us to the relation that wavelength is inversely proportiona
 ![Wave length](/images/post20/sine_wave_7_wavelength.png "Sine Wave Wavelength")
 
 The relationship between wavelength, frequency and Velocity (the speed at which the wave propagates through a medium) can be 
-expressed as $\lambda = \frac{v}{f}$.
-
-You can explore and interact with this simple animation to gain a better understanding, which will help you develop your 
-intuition [Wavelength and Wave Speed](https://www.geogebra.org/calculator/rggee2zr).
+expressed as $\lambda = \frac{v}{f}$. You can explore and interact with this simple animation to gain a better understanding, which 
+will help you develop your intuition [Wavelength and Wave Speed](https://www.geogebra.org/calculator/rggee2zr).
 
 **Phase**
 
@@ -100,12 +96,12 @@ by exactly $\pi$ radians, they are said to be in phase opposition.
 
 You can see how adding two sine waves in phase gives us a bigger sine wave, and if they are out of phase, they cancel out each other.
 
-In Phase addition of sine waves
+In Phase addition of sine waves:
 
 {: .center}
 ![Superposition](/images/post20/superposition_wave1.png "SuperPosition")
 
-Out of phase addition of two sine waves
+Out of phase addition of two sine waves:
 
 {: .center}
 ![Superposition](/images/post20/superposition_wave2.png "SuperPosition")
