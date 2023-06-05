@@ -27,6 +27,7 @@ and matter. Examples of electromagnetic waves include light, radio waves, and mi
 Some fundamental properties of Electro magnetic waves are:
 
 **Frequency and Period**
+
 Frequency ($f$) describes the number of cycles per second of a wave. The unit of frequency is Hertz (Hz), and one hertz 
 equals one cycle per second. 
 
@@ -42,12 +43,14 @@ of 4 Hz (i.e., four cycles per second).
 ![Sine Wave](/images/post20/sine_wave_7_freq.png "Sine Wave")
 
 **Amplitude**
+
 In the context of waves, amplitude denotes the highest signal strength level, typically expressed in Volts.
 
 {: .center}
 ![Wave Amplitude](/images/post20/wave_energy.gif "Wave Energy")
 
 **Wavelength**
+
 A wave's wavelength ($\lambda$) is the distance between consecutive peaks measured in meters. If you look at the below 
 picture, the wavelength of the Sine wave with less frequency is higher, and the wavelength for the higher frequency is 
 shorter. This brings us to the relation that wavelength is inversely proportional to frequency.
@@ -58,11 +61,11 @@ shorter. This brings us to the relation that wavelength is inversely proportiona
 The relationship between wavelength, frequency and Velocity (the speed at which the wave propagates through a medium) can be expressed as 
 
 $$
-\lambda(Distance) = v(speed) * T(Time)\newline
+\lambda(Distance) = v(speed) * T(Time)
 $$
 
 $$
-T = \frac{1}{f}\newline
+T = \frac{1}{f}
 $$
 
 $$
