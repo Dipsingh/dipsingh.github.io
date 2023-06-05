@@ -13,12 +13,10 @@ behind writing this post is to cover fundamental concepts which form the basis f
 they all relate to each other.
 
 # Waves
-
 So let's start with the most fundamental thing, i.e., wave. A wave is a disturbance that carries energy from one 
 location to another without displacing matter. Waves transfer energy from their source and do not cause any permanent 
-displacement of matter in the medium they pass through.
+displacement of matter in the medium they pass through. The following animation demonstrates this concept.
 
-The following animation demonstrates this concept.
 {: .center}
 ![Wave](/images/post20/wav_orig.gif "wave")
 
@@ -28,8 +26,7 @@ and matter. Examples of electromagnetic waves include light, radio waves, and mi
 
 Some fundamental properties of Electro magnetic waves are:
 
-## Frequency and Period
-
+**Frequency and Period**
 Frequency ($f$) describes the number of cycles per second of a wave. The unit of frequency is Hertz (Hz), and one hertz 
 equals one cycle per second. 
 
@@ -40,17 +37,17 @@ takes to finish one repetition, is one nanosecond ($\frac{1}{10^9}$).
 
 The plot below displays two waves, the first oscillating at 2 Hz (i.e., two cycles per second) and the second at a frequency
 of 4 Hz (i.e., four cycles per second).
+
 {: .center}
 ![Sine Wave](/images/post20/sine_wave_7_freq.png "Sine Wave")
 
-## Amplitude
-
+**Amplitude**
 In the context of waves, amplitude denotes the highest signal strength level, typically expressed in Volts.
+
 {: .center}
 ![Wave Amplitude](/images/post20/wave_energy.gif "Wave Energy")
 
-## Wavelength 
-
+**Wavelength**
 A wave's wavelength ($\lambda$) is the distance between consecutive peaks measured in meters. If you look at the below 
 picture, the wavelength of the Sine wave with less frequency is higher, and the wavelength for the higher frequency is 
 shorter. This brings us to the relation that wavelength is inversely proportional to frequency.
@@ -63,9 +60,11 @@ The relationship between wavelength, frequency and Velocity (the speed at which 
 $$
 \lambda(Distance) = v(speed) * T(Time)\newline
 $$
+
 $$
 T = \frac{1}{f}\newline
 $$
+
 $$
 \lambda = \frac{v}{f} 
 $$
@@ -73,13 +72,11 @@ $$
 You can explore and interact with this simple animation to gain a better understanding, which will help you develop your 
 intuition [Wavelength and Wave Speed](https://www.geogebra.org/calculator/rggee2zr).
 
-## Phase
+**Phase**
 
 A phase refers to the particular point in the cycle of repeating waveform, measured as an angle in degrees or radians. One 
 complete waveform cycle is $2\pi$ radians; the half cycle is $\pi$ radians. The concept of phase helps to describe a 
-specific point within a given cycle of periodic waves. 
-
-The diagram below illustrates the point:
+specific point within a given cycle of periodic waves. The diagram below illustrates the point:
 
 {: .center}
 ![Phase](/images/post20/sine_wave_phase.png "Sine Wave Phase")
@@ -110,6 +107,7 @@ by exactly $\pi$ radians, they are said to be in phase opposition.
 You can see how adding two sine waves in phase gives us a bigger sine wave, and if they are out of phase, they cancel out each other.
 
 In Phase addition of sine waves
+
 {: .center}
 ![Superposition](/images/post20/superposition_wave1.png "SuperPosition")
 
