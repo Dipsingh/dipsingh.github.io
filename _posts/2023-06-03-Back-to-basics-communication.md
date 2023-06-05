@@ -751,7 +751,8 @@ than 9.5dB in Signal to Noise Ratio (SNR) for PAM-4 compared to NRZ. The smaller
 to impairments like reflection and crosstalk. As a result, PAM-4 has a higher inherent Bit Error Rate (BER) than an NRZ signal 
 with the same baud rate.
 
-Eye diagram comparison for NRZ and PAM4.
+Eye diagram comparison for NRZ and PAM4:
+
 {: .center}
 ![NRZ vs PAM4 Eye](/images/post20/nrz_vs_pam_eye.png "NRZ vs PAM4 Eye")
 
