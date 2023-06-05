@@ -397,20 +397,20 @@ In 1927 Harry Nyquist, came up with this renowned formula which states that the 
 transmission link bandwidth (BW). It noted that the bit rate can not exceed twice the transmission link bandwidth.
 
 $$
-BR \le 2*BW
+\hspace{5cm} BR \le 2*BW
 $$
 
 Later the above was further developed by Ralph Hartley to the multilevel binary coding.It said that the bit-rate is 
 
 $$
-R = 2*BW*log_{2}L
+\hspace{5cm} R = 2*BW*log_{2}L
 $$
 
 where $L$ is the number of discrete levels carrying information. If we subsitutde bitrate ($R$) with maximum channel capacity ($C$), 
 we obtain
 
 $$
-C = 2*BW*log_{2}L
+\hspace{5cm} C = 2*BW*log_{2}L
 $$
 
 The above is also known was **Hartley’s capacity law,** and it helps in determining the transmitting capacity of a channel, 
@@ -418,7 +418,7 @@ depending on its bandwidth. However, it does not take into account the influence
 developed this idea and came up wth his famous formula:
 
 $$
-C = BW * log_2(1 + SNR)
+\hspace{5cm} C = BW * log_2(1 + SNR)
 $$
 
 where $C$ is the maximum transmission rate that a communication channel can reliabily provie, $BW(HZ)$ is the available 
@@ -430,7 +430,7 @@ exceed channel capacity to support error free transmission.
 SNR is defined as the ratio of signal's power to noise's power i.e.
 
 $$
-SNR = \frac{P_{s}(W)}{P_{n}(W)}
+\hspace{5cm} SNR = \frac{P_{s}(W)}{P_{n}(W)}
 $$
 
 A high SNR means the signal is less corrupted by noise and Low SNR means the signal more corrupted by noise.
