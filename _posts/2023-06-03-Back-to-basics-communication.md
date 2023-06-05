@@ -710,7 +710,7 @@ should include data rate, spectral efficiency, complexity, Noise tolerance etc.
 PSD Plot comparison of NRZ(PAM2) and PAM4:
 
 {: .center}
-![NRZ vs PAM4 ](/images/post20/psd_nrz_pam4_2.png "NRZ vs PAM4")
+![NRZ vs PAM4 ](/images/post20/psd_nrz_pam4_3.png "NRZ vs PAM4")
 
 [ref: Pam4 vs Pam8](https://www.xilinx.com/content/dam/xilinx/publications/events/designcon/2017/112gbps-serial-transmission-over-copperpam4-vs-pam8-slides.pdf)
 
