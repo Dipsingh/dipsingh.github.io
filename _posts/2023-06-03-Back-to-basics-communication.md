@@ -586,7 +586,7 @@ accommodating more users within the same frequency spectrum.
 If we refactor the shannon's equation, we can get the theoretical maximum spectral efficiency using Equation  
 
 $$  
-\frac{C}{B} = log_2(1+SNR)  
+\hspace{5cm} \frac{C}{B} = log_2(1+SNR)  
 $$
 
 $\frac{C}{B}$ has the dimensions $bps/Hz$.
@@ -845,7 +845,7 @@ signal with four phase angles and two different amplitudes (2 and 1). This signa
 ![QAM Table](/images/post20/qam_table.png "QAM Table")
 
 {: .center}
-![QAM Signal](/images/post20/qam8_example.png.png "QAM Signal")
+![QAM Signal](/images/post20/qam8_example.png "QAM Signal")
 
 Another way to represent the different amplitudes and phases is through a constellation pattern. This pattern helps visualize 
 the different states and their corresponding combinations of amplitude and phase.
@@ -867,9 +867,9 @@ If you come across any mistakes or have any further questions, please don't hesi
 and greatly appreciated.
 
 # References
-[Data and Computer Communications](https://www.amazon.com/Computer-Communications-William-Stallings-Books/dp/0133506487)
-[Essentials of Modern Communications](https://www.amazon.com/Essentials-Modern-Communication-Djafar-Mynbaev/dp/1119521491)
-[Digital Modulations using Python](https://www.amazon.com/Digital-Modulations-using-Python-Color/dp/1712321633)
-[Ricketts lab design lectures](https://rickettslab.org/radio-system-design/lectures/lecture/)
-[Tutorials on Digital Communications Engineering](http://complextoreal.com/tutorials/)
-[Data Communications and Networking](https://www.amazon.com/Data-Communications-Networking-Behrouz-Forouzan/dp/0073376221)
+[Data and Computer Communications](https://www.amazon.com/Computer-Communications-William-Stallings-Books/dp/0133506487)  
+[Essentials of Modern Communications](https://www.amazon.com/Essentials-Modern-Communication-Djafar-Mynbaev/dp/1119521491)  
+[Digital Modulations using Python](https://www.amazon.com/Digital-Modulations-using-Python-Color/dp/1712321633)  
+[Ricketts lab design lectures](https://rickettslab.org/radio-system-design/lectures/lecture/)  
+[Tutorials on Digital Communications Engineering](http://complextoreal.com/tutorials/)  
+[Data Communications and Networking](https://www.amazon.com/Data-Communications-Networking-Behrouz-Forouzan/dp/0073376221)  
