@@ -245,9 +245,9 @@ starvation and unfairness that might arise with static thresholds.
 
 For example, with $\alpha=2$, the algorithm aims to maintain each queue's length at approximately twice the spare buffer 
 capacity. If there is only one active queue, denoted as $S=1$, then using equation (2), the active queue will be 
-allocated $\frac{2}{1+2*1}* Buffer\_Space$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
+allocated $\frac{2}{1+2 \times 1} \times \text{BufferSpace}$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
 
-In the case of two active queues, each queue will receive $\frac{2}{1+2*2}* Buffer\_Space$, which equals 2/5 of the 
+In the case of two active queues, each queue will receive $\frac{2}{1+2 \times 2} \times \text{BufferSpace}$, which equals 2/5 of the 
 free buffer space for each queue. The remaining 1/5 is reserved and remains unallocated.
 
 The key observation is that as the number of active queues increases, the amount of reserved space decreases. This dynamic 
