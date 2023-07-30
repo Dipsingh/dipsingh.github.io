@@ -18,7 +18,7 @@ would be to give the child who doesn't like pizza a one-tenth portion and split 
 The approach mentioned in the second scenario represents a principle of fairness known as "max-min fairness," where you allocate 
 resources starting with the least demanding user, then the following least demanding user, and so on.
 
-More broadly, some overarching goals of fairness include:
+More broadly, some overarching goals of fairness in the context of networking include:
 - Distributing available resources in an equitable manner
 - Isolating badly-behaved users who abuse the system
 - Achieving statistical multiplexing, meaning links are divided efficiently.
