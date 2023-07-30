@@ -92,10 +92,12 @@ In the below example, we iterate in 2 rounds till no residual bandwidth is left.
 resource to get the fair share unit per weight and then allocate to the flows.
 
 Iteration 1:
+
 {: .center}
 ![Iteration 1](/images/post21/weighted_iteration1.gif "Iteration 1")
 
 Iteration 2:
+
 {: .center}
 ![Iteration 2](/images/post21/weighted_iteration2.gif "Iteration 2")
 
