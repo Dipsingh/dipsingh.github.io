@@ -299,7 +299,7 @@ consistently show that Queues 2, 3, and 4 are indeed experiencing starvation, le
 ### Buffer Occupancy with Dynamic Threshold
 
 Let's replicate the experiment with dynamic threshold. We will add this condition to our code which checks if the current 
-queue length is less than the $\alpha *(buffer\_size - buffer\_occupied)$  with $\alpha=2$.
+queue length is less than the $\alpha \times (\text{buffersize} - \text{buffer\_occupied}))$  with $\alpha=2$.
 
 ```python
 if self.queue_packets[packet.source] < packet.alpha * (self.limit - len(self.packets)):
