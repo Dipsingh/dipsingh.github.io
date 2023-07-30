@@ -271,7 +271,7 @@ the arrival rate, we can expect the queues to become backlogged. Once the buffer
 {: .center}
 ![Buff Occupancy 1](/images/post21/buff_occpy1.png "Buffer Usage")
 
-```text
+```textmate
 Total packets generated: 4943
 Total packets dropped: 2145
 Queue1: Total packets generated 1255,dropped 157,pct_dropped 12.51%
