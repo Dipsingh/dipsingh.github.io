@@ -53,14 +53,17 @@ flows exceeds 10 Gbps. To allocate the 10 Gbps fairly, we'll go through three it
 residual bandwidth to the unsatisfied flows.
 
 Iteration1:
+
 {: .center}
 ![Iteration 1](/images/post21/iteration1.gif "Iteration 1")
 
 Iteration2:
+
 {: .center}
 ![Iteration 2](/images/post21/iteration2.gif "Iteration 2")
 
 Iteration3:
+
 {: .center}
 ![Iteration 3](/images/post21/iteration3.gif "Iteration 3")
 
