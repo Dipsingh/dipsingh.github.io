@@ -201,7 +201,7 @@ In the case of the DT (Dynamic Threshold) scheme, the threshold or maximum queue
 unused buffer space. Specifically, the threshold is set to $\alpha$ times the remaining buffer space, where $\alpha$ is a configurable proportionality constant.
 
 $$
-\hspace{5cm} T(t) = \alpha*Unused\:Buffer\:Space = \alpha*(B - Q(t)) \tag{eq.1} \\
+\hspace{3cm} T(t) = \alpha*Unused\:Buffer\:Space = \alpha*(B - Q(t)) \tag{eq.1} \\
 $$
 
 where,
@@ -215,23 +215,23 @@ threshold $T$ and $\Omega$ is the space occupied by the uncontrolled queues whic
 this in $eq.1$ we can find the steady state length $Q^{i}$ of each controlled queue.
 
 $$
-\hspace{5cm} T = \alpha * (B - (S*T+\Omega)) \\
+\hspace{3cm} T = \alpha * (B - (S*T+\Omega)) \\
 $$
 
 $$
-\hspace{5cm} T = \alpha * B - \alpha*S*T - \alpha * \Omega \\
+\hspace{3cm} T = \alpha * B - \alpha*S*T - \alpha * \Omega \\
 $$
 
 $$
-\hspace{5cm} T+\alpha*S*T = \alpha*B-\alpha*\Omega \\
+\hspace{3cm} T+\alpha*S*T = \alpha*B-\alpha*\Omega \\
 $$
 
 $$
-\hspace{5cm} T(1+\alpha*S) = \alpha*(B-\Omega) \\
+\hspace{3cm} T(1+\alpha*S) = \alpha*(B-\Omega) \\
 $$
 
 $$
-\hspace{5cm} T = \frac{\alpha*(B-\Omega)}{1+\alpha*S} = Q^{i} \tag{eq.2} \\
+\hspace{3cm} T = \frac{\alpha*(B-\Omega)}{1+\alpha*S} = Q^{i} \tag{eq.2} \\
 $$
 
 When the buffer utilization is low, the thresholds will be higher, allowing longer queues. Conversely, when the buffer 
@@ -302,7 +302,8 @@ Let's replicate the experiment with dynamic threshold. We will add this conditio
 queue length is less than the $\alpha \times (\text{buffersize} - \text{buffer\_occupied}))$  with $\alpha=2$.
 
 ```python
-if self.queue_packets[packet.source] < packet.alpha * (self.limit - len(self.packets)):
+if self.queue_packets[packet.source] < 
+	packet.alpha * (self.limit - len(self.packets)):
 ```
 The plot below showcases the results of our simulation, and we can derive several observations from it:
 1. In contrast to the previous experiment, the buffer utilization does not reach its maximum capacity. This behavior is associated with the dynamic threshold mechanism, which deliberately reserves some buffer space.
