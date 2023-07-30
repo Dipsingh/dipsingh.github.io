@@ -215,23 +215,23 @@ threshold $T$ and $\Omega$ is the space occupied by the uncontrolled queues whic
 this in $eq.1$ we can find the steady state length $Q^{i}$ of each controlled queue.
 
 $$
-T = \alpha * (B - (S*T+\Omega))
+\hspace{5cm} T = \alpha * (B - (S*T+\Omega)) \\
 $$
 
 $$
-T = \alpha * B - \alpha*S*T - \alpha * \Omega
+\hspace{5cm} T = \alpha * B - \alpha*S*T - \alpha * \Omega \\
 $$
 
 $$
-T+\alpha*S*T = \alpha*B-\alpha*\Omega
+\hspace{5cm} T+\alpha*S*T = \alpha*B-\alpha*\Omega \\
 $$
 
 $$
-T(1+\alpha*S) = \alpha*(B-\Omega)
+\hspace{5cm} T(1+\alpha*S) = \alpha*(B-\Omega) \\
 $$
 
 $$
-T = \frac{\alpha*(B-\Omega)}{1+\alpha*S} = Q^{i} \tag{eq.2} 
+\hspace{5cm} T = \frac{\alpha*(B-\Omega)}{1+\alpha*S} = Q^{i} \tag{eq.2} \\
 $$
 
 When the buffer utilization is low, the thresholds will be higher, allowing longer queues. Conversely, when the buffer 
@@ -245,9 +245,9 @@ starvation and unfairness that might arise with static thresholds.
 
 For example, with $\alpha=2$, the algorithm aims to maintain each queue's length at approximately twice the spare buffer 
 capacity. If there is only one active queue, denoted as $S=1$, then using equation (2), the active queue will be 
-allocated $\frac{2}{1+2*1}*Free\_Buffer\_Space$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
+allocated $\frac{2}{1+2*1}* Buffer\_Space$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
 
-In the case of two active queues, each queue will receive $\frac{2}{1+2*2}*Buffer\_Space$, which equals 2/5 of the 
+In the case of two active queues, each queue will receive $\frac{2}{1+2*2}* Buffer\_Space$, which equals 2/5 of the 
 free buffer space for each queue. The remaining 1/5 is reserved and remains unallocated.
 
 The key observation is that as the number of active queues increases, the amount of reserved space decreases. This dynamic 
