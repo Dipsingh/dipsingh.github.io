@@ -271,7 +271,7 @@ the arrival rate, we can expect the queues to become backlogged. Once the buffer
 {: .center}
 ![Buff Occupancy 1](/images/post21/buff_occpy1.png "Buffer Usage")
 
-```
+```text
 Total packets generated: 4943
 Total packets dropped: 2145
 Queue1: Total packets generated 1255,dropped 157,pct_dropped 12.51%
@@ -301,7 +301,7 @@ consistently show that Queues 2, 3, and 4 are indeed experiencing starvation, le
 Let's replicate the experiment with dynamic threshold. We will add this condition to our code which checks if the current 
 queue length is less than the $\alpha *(buffer\_size - buffer\_occupied)$  with $\alpha=2$.
 
-```
+```python
 if self.queue_packets[packet.source] < packet.alpha * (self.limit - len(self.packets)):
 ```
 The plot below showcases the results of our simulation, and we can derive several observations from it:
@@ -312,7 +312,7 @@ The plot below showcases the results of our simulation, and we can derive severa
 {: .center}
 ![Buff Occupancy 2](/images/post21/buff_occpy2.png "Buffer Usage")
 
-```
+```text
 Total packets generated: 4831
 Total packets dropped: 759
 Queue1: Total packets generated 1250,dropped 243,pct_dropped 19.44%
@@ -345,7 +345,7 @@ priority, share similar buffer occupancy.
 {: .center}
 ![Buff Occupancy 3](/images/post21/buff_occpy3.png "Buffer Usage")
 
-```
+```text
 Total packets generated: 4709
 Total packets dropped: 459
 Total packets dropped from Queue 1: 128
@@ -383,7 +383,7 @@ also notice that Queue 4 experiences now some packet drops which we didn't see e
 {: .center}
 ![Buff Occupancy 4](/images/post21/buff_occpy4.png "Buffer Usage")
 
-```
+```text
 Total packets generated: 4990
 Total packets dropped: 631
 Total packets dropped from Queue 1: 257
@@ -394,7 +394,7 @@ Total packets added to buffer: 4359
 ```
 
 Repeating the experiment multiple times and analyzing the mean results, we find that on average, there are 1.37% packet drops for Queue 4:
-```
+```text
 queue drops
 1    19.95%
 2    12.54%
@@ -410,7 +410,7 @@ be allocated a larger portion of the buffer compared to the other queues. The ai
 the packet drops for Queue 4. However, upon analyzing the statistics, we observe that although the packet drops have decreased, they have 
 not been completely eliminated.
 
-```
+```text
 Total packets generated: 4981
 Total packets dropped: 637
 Total packets dropped from Queue 1: 57
