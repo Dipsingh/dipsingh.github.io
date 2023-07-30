@@ -158,7 +158,7 @@ nature of the traffic. This way, the buffer resources are distributed fairly amo
 
 So, the question that arises now is: how does this dynamic threshold algorithm actually work? In many cases, these details 
 may not be publicly disclosed and may be protected by Non-Disclosure Agreements (NDA). However, for our purposes, we will 
-primarily refer to the research presented in ["Dynamic Queue Length Thresholds for Shared-Memory Packet Switches"](https://dl.acm.org/doi/pdf/10.1109/90.664262) which 
+primarily refer to the work published in ["Dynamic Queue Length Thresholds for Shared-Memory Packet Switches"](https://dl.acm.org/doi/pdf/10.1109/90.664262) which 
 I believe is the most commonly deployed algorithm. Once we understand this then it becomes easier to explore how other implementation 
 approaches tackle similar challenges and enables us to ask the right questions.
 
