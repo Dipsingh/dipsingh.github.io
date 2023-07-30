@@ -245,9 +245,9 @@ starvation and unfairness that might arise with static thresholds.
 
 For example, with $\alpha=2$, the algorithm aims to maintain each queue's length at approximately twice the spare buffer 
 capacity. If there is only one active queue, denoted as $S=1$, then using equation (2), the active queue will be 
-allocated $\frac{2}{1+2*1}*(Free Buffer Space)$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
+allocated $\frac{2}{1+2*1}*Free\_Buffer\_Space$, which amounts to 2/3 of the available buffer space, while the remaining 1/3 is kept reserved and unallocated.
 
-In the case of two active queues, each queue will receive $\frac{2}{1+2*2}*(Buffer Space)$, which equals 2/5 of the 
+In the case of two active queues, each queue will receive $\frac{2}{1+2*2}*Buffer\_Space$, which equals 2/5 of the 
 free buffer space for each queue. The remaining 1/5 is reserved and remains unallocated.
 
 The key observation is that as the number of active queues increases, the amount of reserved space decreases. This dynamic 
@@ -492,7 +492,7 @@ fashion. However, the DRR scheduler sends more packets from Flow 1 in each itera
 buffer draining achieved by the DRR algorithm.
 
 {: .center}
-![WRR vs DRR](/images/post21/wrr_dwrr_sched.png.png "WRR vs DRR")
+![WRR vs DRR](/images/post21/wrr_dwrr_sched.png "WRR vs DRR")
 
 # Conclusion
 
