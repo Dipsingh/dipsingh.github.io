@@ -201,7 +201,7 @@ In the case of the DT (Dynamic Threshold) scheme, the threshold or maximum queue
 unused buffer space. Specifically, the threshold is set to $\alpha$ times the remaining buffer space, where $\alpha$ is a configurable proportionality constant.
 
 $$
-T(t) = \alpha*Unused\:Buffer\:Space = \alpha*(B - Q(t)) \tag{eq.1} 
+\hspace{5cm} T(t) = \alpha*Unused\:Buffer\:Space = \alpha*(B - Q(t)) \tag{eq.1} \\
 $$
 
 where,
