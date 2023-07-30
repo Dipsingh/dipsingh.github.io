@@ -126,7 +126,6 @@ So, the condition for weighted fairness can be stated as $|\frac{S_{a}(t_{1}, t_
 the difference between the normalized services, the more fair the method is, and if the difference is 0, then the method is perfectly fair.
 
 # Buffer Management
-
 ## Background
 
 Before diving into the details, let's get a high-level understanding of the architecture involved. In most network platforms, buffering 
