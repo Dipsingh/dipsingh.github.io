@@ -467,13 +467,13 @@ varying sizes across different queues. This approach promotes more efficient and
 As an example, consider two iterations with a quantum size of 1000 bytes:
 
 First Iteration:
-	A's count = 1000 (No packet is served since 1500 > 1000 deficit counter)
-	B's count = 200 (both packets are served.)
-	C's count = 1000 (No packet is served since 1200 > 1000 deficit counter)
+- A's count = 1000 (No packet is served since 1500 > 1000 deficit counter)
+- B's count = 200 (both packets are served.) 
+- count = 1000 (No packet is served since 1200 > 1000 deficit counter)
 Second Iteration:
-	A's count = 500 (Packet is served: 2000 - 1500 = 500)
-	B's count = 0
-	C's count = 800 (Packet is served: 2000 - 1200 = 800)
+- A's count = 500 (Packet is served: 2000 - 1500 = 500)	
+- B's count = 0	
+- C's count = 800 (Packet is served: 2000 - 1200 = 800)
 
 {: .center}
 ![DRR](/images/post21/drr.png "DRR")
