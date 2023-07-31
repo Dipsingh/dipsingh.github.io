@@ -470,6 +470,7 @@ First Iteration:
 - A's count = 1000 (No packet is served since 1500 > 1000 deficit counter)
 - B's count = 200 (both packets are served.) 
 - count = 1000 (No packet is served since 1200 > 1000 deficit counter)
+
 Second Iteration:
 - A's count = 500 (Packet is served: 2000 - 1500 = 500)	
 - B's count = 0	
