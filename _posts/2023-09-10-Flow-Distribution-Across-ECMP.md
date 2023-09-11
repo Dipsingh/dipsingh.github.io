@@ -256,7 +256,7 @@ $$
 \hspace{3cm} P(k) = \mathrm{C}_{k}^{m}\left( \frac{1}{n} \right)^k\left( 1-\frac{1}{n} \right)^{m-k}
 $$
 
-Here, $\mathrm{C}_{k}^{m}}$ represents the number of combinations of $m$ flows taken $k$ at a time, and $P(k)$ is the probability 
+Here, $\mathrm{C}_{k}^{m}$ represents the number of combinations of $m$ flows taken $k$ at a time, and $P(k)$ is the probability 
 of $k$ flows being assigned to a specific link.
 
 This plot shows the probabilities of $k$ flows out of 64 flows landing on 16 links. We can see the highest probability is 
