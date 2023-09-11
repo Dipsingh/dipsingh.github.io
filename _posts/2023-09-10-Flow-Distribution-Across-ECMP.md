@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Flow Distribution Across ECMP Paths&#58; Theoretical Insights and Practical Implication
+title: Flow Distribution Across ECMP Paths
 ---
 
 ECMP is crucial for reliability and performance in modern data centers and wide-area networks, which rely on hash-based 
@@ -51,7 +51,7 @@ A polynomial is a single-variable function made up of addition, multiplication, 
 expressed in the form:
 
 $$
-c_{n}x^n+c_{n-1}x^{n-1}+c_{n-2}x^{n-2}+...+c_{2}x^{2}+c_{1}x^1+c_{0}
+\hspace{3cm} c_{n}x^n+c_{n-1}x^{n-1}+c_{n-2}x^{n-2}+...+c_{2}x^{2}+c_{1}x^1+c_{0}
 $$
 
 Here, $c_{n}$ are the coefficients, and each power of $x$ marks a different term. For example, $x^5 + 3x^2 + 2x + 5$ is a 
@@ -59,7 +59,7 @@ polynomial. You can easily add or subtract polynomials by combining the coeffici
 one polynomial, it's treated as if it has a coefficient of zero. Example of addition: 
 
 $$
-(3x^2+2x+5)+(4x^3+5x^2+9x+12)=(4x^3+8x^2+11x+17)
+\hspace{3cm} (3x^2+2x+5)+(4x^3+5x^2+9x+12)=(4x^3+8x^2+11x+17)
 $$
 
 If you plug in $x=3$, both expressions will give you 192.
@@ -67,7 +67,7 @@ If you plug in $x=3$, both expressions will give you 192.
 Multiplying polynomials involves multiplying each term in one polynomial with every term in the other and then combining like terms. Example:
 
 $$
-(4x^3+5x^2+9x+12)\times(3x^2+2x+5) = 12x^5+23x^4+57x^3+79x^2+69x+60
+\hspace{3cm} (4x^3+5x^2+9x+12)\times(3x^2+2x+5) = 12x^5+23x^4+57x^3+79x^2+69x+60
 $$
 
 Polynomial division can also be carried out, even using bits for simpler calculations. You convert the polynomials to binary 
@@ -295,78 +295,15 @@ narrower, converging towards its expected value. This is a manifestation of the 
 
 Here are some additional resources which I wasn't able to delve into but are worth exploring for those interested in going further.
 
-1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem)
-2) [Hashing Design in Modern Networks: Challenges and Mitigation Techniques](https://www.usenix.org/system/files/atc22-xu.pdf). Google recent paper around there proposal of using different hash algorithms and coloring.
-3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf)
+1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem) 
+2) [Google recent paper around there proposal of using different hash algorithms and coloring](https://www.usenix.org/system/files/atc22-xu.pdf) 
+3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf) 
 
 # References
-1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem)
-2) [Hashing Design in Modern Networks: Challenges and Mitigation Techniques](https://www.usenix.org/system/files/atc22-xu.pdf). 
-3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf)
-4) [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
-5) [Law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)
-6) [Coefficient of Variation](https://en.wikipedia.org/wiki/Coefficient_of_variation)
-7) [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)
-
-
-
-
-
-
-
-
-
-
-
-
-### Dynamic Threshold
-
-In the case of the DT (Dynamic Threshold) scheme, the threshold or maximum queue length is dynamically adjusted based on the 
-unused buffer space. Specifically, the threshold is set to $\alpha$ times the remaining buffer space, where $\alpha$ is a configurable proportionality constant.
-
-$$
-\hspace{3cm} T(t) = \alpha*Unused\:Buffer\:Space = \alpha*(B - Q(t)) \tag{eq.1} \\
-$$
-
-where,
-$T(t)$ is the dynamic queue threshold of port.
-$\alpha$ is the power of two (positive or negative)
-$B$ is the total Buffer space.
-$Q(t)$ Total buffer occupied at time t. Sum of all Queue lengths.
-
-{: .center}
-![Buff Occupancy 1](/images/post21/buff_occpy1.png "Buffer Usage")
-
-```textmate
-Total packets generated: 4943
-Total packets dropped: 2145
-Queue1: Total packets generated 1255,dropped 157,pct_dropped 12.51%
-Queue2: Total packets generated 1235,dropped 466,pct_dropped 37.73%
-Queue3: Total packets generated 1176,dropped 649,pct_dropped 55.19%
-Queue4: Total packets generated 1277,dropped 873,pct_dropped 68.36%
-```
-
-# Conclusion
-
-In this post, we explored fairness in buffer allocation and packet scheduling techniques. We identified the limitations of 
-fixed thresholds and introduced dynamic thresholds to adapt buffer sharing based on available capacity, promoting fairness and preventing starvation.
-
-The deficit round-robin (DRR) scheduling algorithm addressed fairness concerns with varying packet sizes, ensuring equitable 
-buffer utilization. Bursty traffic simulations showed the importance of alpha values in improving fairness and reducing packet 
-drops, though complete elimination of drops was not achieved.
-
-While our exploration did not consider packet size distribution and congestion control, it highlighted the significance of 
-fair buffer allocation and efficient scheduling for network performance. 
-
-I hope you find this helpful, and if you have any ideas or suggestions, please don't hesitate to contact me.
-
-# References
-
-- [Dynamic Queue Length Thresholds for Shared-Memory Packet Switches](https://dl.acm.org/doi/pdf/10.1109/90.664262)
-- [Modeling IP traffic using the batch Markovian arrival process](https://www.sciencedirect.com/science/article/abs/pii/S0166531603000671)
-- [Efficient Fair Queuing Using Deficit Round-Robin](https://pages.cs.wisc.edu/~akella/CS740/S15/740-Papers/DRR.pdf)
-- [a self-clocked fair queueing scheme for broadband applications](http://www.cs.emory.edu/~cheung/Courses/558/Syllabus/Papers/1994-Golestani-SCFQ.pdf)
-- [CS558 Course Page. A huge fan of Dr. Shun Yan Cheung](https://www.cs.emory.edu/~cheung/Courses/558/index.html)
-- [A Microscopic View of Bursts, Buffer Contention, and Loss in Data Centers](https://dl.acm.org/doi/pdf/10.1145/3517745.3561430)
-- [ABM: Active Buffer Management in Datacenters](https://people.csail.mit.edu/ghobadi/papers/abm_sigcomm_2022.pdf)
-
+1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem) 
+2) [Hashing Design in Modern Networks: Challenges and Mitigation Techniques](https://www.usenix.org/system/files/atc22-xu.pdf) 
+3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf) 
+4) [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) 
+5) [Law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) 
+6) [Coefficient of Variation](https://en.wikipedia.org/wiki/Coefficient_of_variation) 
+7) [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) 
