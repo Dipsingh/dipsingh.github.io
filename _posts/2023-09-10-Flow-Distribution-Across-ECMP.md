@@ -295,15 +295,16 @@ narrower, converging towards its expected value. This is a manifestation of the 
 
 Here are some additional resources which I wasn't able to delve into but are worth exploring for those interested in going further.
 
-1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem) 
-2) [Google recent paper around there proposal of using different hash algorithms and coloring](https://www.usenix.org/system/files/atc22-xu.pdf) 
-3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf) 
+1. [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem)
+2. [Google recent paper around there proposal of using different hash algorithms and coloring](https://www.usenix.org/system/files/atc22-xu.pdf)
+3. [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf) 
 
 # References
-1) [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem) 
-2) [Hashing Design in Modern Networks: Challenges and Mitigation Techniques](https://www.usenix.org/system/files/atc22-xu.pdf) 
-3) [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf) 
-4) [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) 
-5) [Law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) 
-6) [Coefficient of Variation](https://en.wikipedia.org/wiki/Coefficient_of_variation) 
-7) [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) 
+
+1. [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem)
+2. [Hashing Design in Modern Networks: Challenges and Mitigation Techniques](https://www.usenix.org/system/files/atc22-xu.pdf)
+3. [Hashing Linearity Enables Relative Path Control in Data Centers](https://www.usenix.org/system/files/atc21-zhang-zhehui.pdf)
+4. [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
+5. [Law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)
+6. [Coefficient of Variation](https://en.wikipedia.org/wiki/Coefficient_of_variation)
+7. [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) 
