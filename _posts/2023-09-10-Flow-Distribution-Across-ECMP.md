@@ -25,6 +25,7 @@ hash function takes Packet fields i.e. our typical five tuple (Source and Destin
 and a seed (to avoid Hash polarization) as an Input and produces a Hash $H$. If there are $n$ members in an ECMP group, a specific 
 member within an ECMP member set is selected using $H \mod{n}$.
 
+
 {: .center}
 ![ECMP Groups](/images/post22/ecmp_group.png "ECMP Groups")
 
