@@ -3,19 +3,17 @@ layout: post
 title: Flow Distribution Across ECMP Paths
 ---
 
-ECMP is crucial for reliability and performance in modern data centers and wide-area networks, which rely on hash-based 
-path selection based on packet headers in the switch hardware. ECMP's variant Weighted-Cost MultiPath (WCMP) enables 
-specifying custom path weights. Both leverage abundant path diversity and keep a flow's packets on the same path, 
-preventing reordering. With useful properties like stateless operation and no reordering, ECMP/WCMP has become the 
-standard for load balancing in large IP networks.
+ECMP is crucial for scaling and performance in modern data centers and wide-area networks, which rely on hash-based 
+path selection based on packet headers in the switch hardware. It leverages path diversity and keeps a flow's packets on the same path, 
+preventing reordering with useful properties like stateless operation and no reordering.
 
 While simple and widely used, ECMP has some limitations. For example, it does not always distribute traffic evenly across 
 all available paths. However, due to its ease of hardware implementation, ECMP remains the predominant approach. The core 
 enabler for ECMP is hashing technology, which allows packet-by-packet path selection in a distributed manner across 
 switches. ECMP limitations have also started getting more attention with the surge in building fat-tree clusters in response 
-to the GPU boom, where ECMP is the core, but due to lack of flow entropy, fabrics suffer from Poor hashing.
+to the GPU boom, but due to a lack of flow entropy, fabrics suffer from Poor hashing.
 
-In this post, we'll dive into ECMP and use some statistical analysis to understand the limitations better.
+In this post, we'll dive into ECMP and use statistical analysis to better understand the limitations.
 
 # Introduction
 
