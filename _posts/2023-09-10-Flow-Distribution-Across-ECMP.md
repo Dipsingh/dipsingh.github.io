@@ -15,7 +15,7 @@ enabler for ECMP is hashing technology, which allows packet-by-packet path selec
 switches. ECMP limitations have also started getting more attention with the surge in building fat-tree clusters in response 
 to the GPU boom, where ECMP is the core, but due to lack of flow entropy, fabrics suffer from Poor hashing.
 
-In this article, we'll dive into ECMP, discuss its limitations, and use some statistical analysis to understand it better.
+In this post, we'll dive into ECMP and use some statistical analysis to understand the limitations better.
 
 # Introduction
 
@@ -253,10 +253,10 @@ to each ECMP path (i.e., $1/n$ where $n$ is the number of ECMP Paths). Given $n$
 can calculate the probability of $k$ flows being assigned to ECMP path is:
 
 $$
-\hspace{3cm} P(k) = \binom{m}{k}\left( \frac{1}{n} \right)^k\left( 1-\frac{1}{n} \right)^{m-k}
+\hspace{3cm} P(k) = \mathrm{C}_{k}^{m}\left( \frac{1}{n} \right)^k\left( 1-\frac{1}{n} \right)^{m-k}
 $$
 
-Here, $\binom{m}{k}$ represents the number of combinations of $m$ flows taken $k$ at a time, and $P(k)$ is the probability 
+Here, $\mathrm{C}_{k}^{m}}$ represents the number of combinations of $m$ flows taken $k$ at a time, and $P(k)$ is the probability 
 of $k$ flows being assigned to a specific link.
 
 This plot shows the probabilities of $k$ flows out of 64 flows landing on 16 links. We can see the highest probability is 
