@@ -78,7 +78,7 @@ As a refresher, the famous Little's law says that the average number of customer
 the (arrival rate of the customers) x (total turnaround time which includes waiting and service time ). I hope this result is obvious and formally we denote this as:
 
 $$
-N = \lambda \times T(\rho)
+\hspace{3cm} N = \lambda \times T(\rho)
 $$
 
 where $\lambda$ = Arrival rate and $T(\rho)$ is the average waiting time or also called as average response time.
@@ -89,15 +89,15 @@ system($\rho$) $\le$ 1. This means service rate is equal or greater than the arr
 should come as obvious. Doing some basic algebra, we get the average number of customers in a system ($N$):
 
 $$
-\rho = \frac{\lambda}{\mu}
+\hspace{3cm} \rho = \frac{\lambda}{\mu}
 $$
 
 $$
-\lambda = \rho \times \mu
+\hspace{3cm} \lambda = \rho \times \mu
 $$
 
 $$
-N = (\rho\mu)\times T(\rho)
+\hspace{3cm} N = (\rho\mu)\times T(\rho)
 $$
 
 Where:
@@ -122,14 +122,14 @@ less delays.
 Power metric quantifies the tradeoff between Goodness and Badness from earlier. Specially, Power is defined as: 
 
 $$
-Power = \frac{Goodness}{Badness}
+\hspace{3cm} Power = \frac{Goodness}{Badness}
 $$
 
 For data networks, we measure Goodness via throughput i.e. traffic flowing through. Badness is captured by delays from 
 congestion and bottlenecks. So,
 
 $$
-Power = \frac{Throughput}{Delay}
+\hspace{3cm} Power = \frac{Throughput}{Delay}
 $$
 
 Power balances utilization to maximize throughput subject to delay constraints. The optimal operating point is where a 
@@ -175,7 +175,7 @@ No-Load Delay ($D$): This captures the base latency without any congestion. For 
 served without having to wait - which is the fixed service time $\frac{1}{\mu}$.
 
 $$
-BDP = B \times D = \mu \times (\frac{1}{\mu}) = 1
+\hspace{3cm} BDP = B \times D = \mu \times (\frac{1}{\mu}) = 1
 $$
 
 However, when $\rho \gt 1$:
@@ -241,7 +241,7 @@ delays $(T(\rho))$, we use the Power function $P(G)$ which we know is the ratio 
 Here, G is the goodput and $B(G)$ is the badput. Assuming the function $B(G)$ is differentiable, we can differentiate to find the maximum power point.
 
 $$
-P(G) = \frac{G}{B(G)}
+\hspace{3cm} P(G) = \frac{G}{B(G)}
 $$
 
 Assuming $B(G)$ is differentiable and convex, the tangent is where we maximize the Goodput over Badput.
@@ -249,37 +249,37 @@ Assuming $B(G)$ is differentiable and convex, the tangent is where we maximize t
 Differentiating  P(G) with respect to G:
 
 $$
-\frac{dP(G)}{dG} = \frac{d}{dG}\left(\frac{G}{B(G)}\right)
+\hspace{3cm} \frac{dP(G)}{dG} = \frac{d}{dG}\left(\frac{G}{B(G)}\right)
 $$
 
 Use the quotient rule for differentiation:
 
 $$
-\frac{dP(G)}{dG} = \frac{B(G)\frac{dG}{dG} - G\frac{dB(G)}{dG}}{B(G)^2}
+\hspace{3cm} \frac{dP(G)}{dG} = \frac{B(G)\frac{dG}{dG} - G\frac{dB(G)}{dG}}{B(G)^2}
 $$
 
 Simplify the derivative of P(G) knowing that $\frac{dG}{dG} = 1$:
 
 $$
-\frac{dP(G)}{dG} = \frac{B(G) - G\frac{dB(G)}{dG}}{B(G)^2}
+\hspace{3cm} \frac{dP(G)}{dG} = \frac{B(G) - G\frac{dB(G)}{dG}}{B(G)^2}
 $$
 
 For $P(G)$ to be maximized, the derivative $\frac{dP(G)}{dG}$ must be equal to zero:
 
 $$
-0 = \frac{B(G) - G\frac{dB(G)}{dG}}{B(G)^2}
+\hspace{3cm} 0 = \frac{B(G) - G\frac{dB(G)}{dG}}{B(G)^2}
 $$
 
 $$
-0 = B(G) - G\frac{dB(G)}{dG}
+\hspace{3cm} 0 = B(G) - G\frac{dB(G)}{dG}
 $$
 
 $$
-G\frac{dB(G)}{dG} = B(G)
+\hspace{3cm} G\frac{dB(G)}{dG} = B(G)
 $$
 
 $$
-\frac{dB(G)}{dG} = \frac{B(G)}{G}
+\hspace{3cm} \frac{dB(G)}{dG} = \frac{B(G)}{G}
 $$
 
 For queueing systems specifically:
@@ -324,7 +324,7 @@ derivation [Average Network Delay and Queuing Theory basics](https://packetpushe
 This gives $\mu T(\rho) = \frac{1}{1-\rho}$. Applying the Power function: 
 
 $$
-P(\rho) = \frac{\rho}{\mu T(\rho)} = \rho(1-\rho)
+\hspace{3cm} P(\rho) = \frac{\rho}{\mu T(\rho)} = \rho(1-\rho)
 $$
 
 Optimizing the power function $P(\rho)$:
@@ -355,13 +355,13 @@ This allows arbitrary service time distributions while keeping arrivals memoryle
 Normalized response time formula:  
 
 $$
-\mu T(\rho) = 1 + \frac{\rho(1+C_{b}^2)}{2(1-\rho)}
+\hspace{3cm} \mu T(\rho) = 1 + \frac{\rho(1+C_{b}^2)}{2(1-\rho)}
 $$
 
 Applying Power function:
 
 $$
-P(\rho) = \frac{\rho}{\mu T(\rho)}
+\hspace{3cm} P(\rho) = \frac{\rho}{\mu T(\rho)}
 $$
 
 Optimizing $P(\rho)$:
@@ -371,7 +371,7 @@ Optimizing $P(\rho)$:
 Plugging optimal $\rho^*$ into Little's law:
 
 $$
-N^* = \rho^*\mu T(\rho^*) = 1
+\hspace{3cm} N^* = \rho^*\mu T(\rho^*) = 1
 $$
 
 So the optimal number in system remains 1, same as simpler M/M/1 case, even for general service distributions.  The key 
