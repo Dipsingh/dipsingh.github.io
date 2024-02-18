@@ -4,7 +4,7 @@ title: Keeping the Pipe Just Full
 ---
 In this post, I will be discussing a paper published by the Internet pioneer Leonard Kleinrock, 
 titled ["Keep the Pipe Just Full, But No Fuller"](https://www.lk.cs.ucla.edu/data/files/Kleinrock/Internet%20Congestion%20Control%20Using%20the%20Power%20Metric-Keep%20the%20Pipe%20Just%20Full,%20But%20No%20Fuller%20July%202018.pdf). 
-The paper's conclusion is that it is best to keep the internet "pipe" full, without overloading it. This idea is similar to 
+The paper's conclusion is that it is best to keep the internet "pipe" full, without overloading it. This idea is a take on 
 Einstein's famous quote, "Make everything as simple as possible, but not simpler."
 
 # Introduction
