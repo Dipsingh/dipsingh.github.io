@@ -195,7 +195,7 @@ becomes slower than the arrival rate i.e  $\gt 1$, then we see the queue starts 
 {: .center}
 ![D/D/1](/images/post23/queue_animation1.gif "D/D/1 Queue")
 
-There is a nice interactive visualization and simulation of a deterministic system: https://garydmg.github.io/
+There is a nice interactive visualization and simulation of a deterministic system: [https://garydmg.github.io/](https://garydmg.github.io/)
 
 ## D/D/K System
 
@@ -448,7 +448,7 @@ available, while allowing modulation across capacities and randomness sources.
     - $N^* \le Number Of Resources (Servers)$
 3. For single server queues, optimization keeps average number in system $N^* = 1$.
     - Allocates spare capacity to absorb stochastic variability
-4. For parallel server farms, total $N^* \approx TotalNumberOfServers\\K$.
+4. For parallel server farms, total $N^* \approx TotalNumberOfServers K$.
 6. As randomness and dynamics increase, optimization adjusts operating point along this trajectory to tradeoff between efficiency and delays.
 7. But the fundamental principle remains matching intuitive saturation levels in balance with stochastic fluctuations.
 
