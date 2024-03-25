@@ -120,9 +120,9 @@ Below is the mathematical formulation.
 Let:
 - $D$ be the set of demands.
 - $I$ is the set of interfaces.
-- $T_{d}$​ be the traffic associated with demand d.
-- $C_{i}$​ be the capacity of interface i.
-- $L_{i}$​ be the traffic load on interface i.
+- $T_{d}$ be the traffic associated with demand d.
+- $C_{i}$ be the capacity of interface i.
+- $L_{i}$ be the traffic load on interface i.
 - $\text{Total BW}$ be the total bandwidth being carried by all demands.
 - $\text{Total Delay}$ be the sum of delays across all utilized interfaces.
 
@@ -130,8 +130,8 @@ Let:
 
 1. **Calculate Total Bandwidth:** $\text{Total BW} = \sum_{d \in D}T_{d}$
 3. **Calculate Total Delay:** For each unique interface $i$ , calculate the delay if $L_{i} < C_{i}$: $\text{Total delay} = \sum_{i \in I}\frac{L_{i}}{C_{i}-L_{i}}$  
-4. **Calculate Average Delay:** If $\text{Total BW} > 0$, calculate the average delay as: $avg\_delay = \frac{\text{Total Delay}}{\text{Total Bw}} * 1000$ ​ else, 
-set $avg\_delay=0$.
+4. **Calculate Average Delay:** If $\text{Total BW} > 0$, calculate the average delay as: $avg\_delay = \frac{\text{Total Delay}}{\text{Total Bw}} * 1000$ else, 
+set $\text{avg_delay=0}$.
 
 Calculating this score for the paths routed over the shortest paths, we get `29.1`
 
@@ -165,15 +165,16 @@ with the problem, and  certain constraints which you want to meet. Once the prob
 
 ## LP Formulation 
 
-**Objective Function**: So the objective we have in hand is to minimize the maximum utilization across all links in the network.
+**Objective Function**: 
+So the objective we have in hand is to minimize the maximum utilization across all links in the network.
 
 $$
 \hspace{3cm} \text{min U}
 $$
 
 Subject to:
-
-**Flow Variables**: For each link $(i,j)$ in the network graph $G$, we have a flow variable representing the amount of traffic flow 
+**Flow Variables**: 
+For each link $(i,j)$ in the network graph $G$, we have a flow variable representing the amount of traffic flow 
 on that link. This tracks the flow for that given link.
 
 $$
@@ -183,13 +184,15 @@ $$
 This scary looking notation in simple words is that the flow variable for a given link $(i,j)$ is either 0 or greater, for all 
 (expressed as $\forall$) links which are part of graph $G$.
 
-**Max Util Variable**: We put a constraint that Maximum Utilization can be greater or equal to 0.
+**Max Util Variable**: 
+We put a constraint that Maximum Utilization can be greater or equal to 0.
 
 $$ 
 \hspace{3cm} U \ge 0
 $$
 
-**Flow Conservation Constraints for each node**: For network flow problems with LP formulation, we generally have flow 
+**Flow Conservation Constraints for each node**: 
+For network flow problems with LP formulation, we generally have flow 
 conservation constraint which says, except the source and destination nodes of the demands, the amount of traffic entering 
 is equal to the traffic leaving the node for a transit node.
 
@@ -200,7 +203,8 @@ $$
 The above equation $E$ is the set of edges, $f_{i,j}$ is the flow on each edge $(i,j)$ and $n$ is the transit node. $b_{n}$ is the 
 net flow at node $n$ (+ve for sources, negative for sinks, and zero for transit nodes).
 
-**Capacity and Utilization Constraints**: For each link, the flow must not exceed the link's capacity, and the link's utilization must not exceed the $U$ variable.
+**Capacity and Utilization Constraints**: 
+For each link, the flow must not exceed the link's capacity, and the link's utilization must not exceed the $U$ variable.
 
 $$
 \hspace{3cm} f_{ij} \le C_{ij}, \forall(i,j) \in G
