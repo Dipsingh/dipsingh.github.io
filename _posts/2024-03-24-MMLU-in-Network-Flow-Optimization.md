@@ -34,9 +34,10 @@ in the picture.
 {: .center}
 ![WAN Topo](/images/post24/wan_topo_1.png "Wan Topology")
 
-We will start with a trivial case that we have `sea, lax, ord, den, atl` all sending $20 Gbps$ to `iad`.
+We will start with a trivial case that we have `sea, lax, ord, den, atl` all sending $\text{20 Gbps}$ to `iad`.
 
 $$
+\hspace{3cm}
 \begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
@@ -54,14 +55,16 @@ routing from `sea, den, ord`  to `iad` and `atl -> iad` link is getting used by 
 
 Here is the path for each demand the shortest path costs for each paths.
 
-$$\begin{align*}
+$$
+\begin{align*}
 (src,dst) &: Path &: IGP \hspace{2pt} Cost \\
 (sea, iad) &: sea -> ord -> iad &: 70\\
 (lax, iad) &: lax -> atl -> iad &: 68 \\
 (ord, iad) &: ord -> iad &: 20\\
 (den, iad) &: den -> ord -> iad &: 55\\
 (atl, iad) &: atl -> iad &: 18\\
-\end{align*}$$
+\end{align*}
+$$
 
 So the `ord -> iad` $\text{100 Gbps}$ link is carrying a total of $\text{60 Gbps}$ i.e. `60%` utilized and `atl -> iad` link 
 is carrying a total of $40 \hspace{2pt} Gbps$ i.e. `40%` utilized, while `lga -> iad` link being `0%` utilized. In this case, 
