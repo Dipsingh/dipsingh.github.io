@@ -75,18 +75,18 @@ the end. If you solved this problem, then try solving for this traffic demand.
 
 $$
 \hspace{4cm}
-\begin{tabular}{lclcl}
+\begin{array}{@{\extracolsep{1cm}}lclcl@{}}
 (sea, iad) &:& 20 & (iad, sea) &:& 20 \\
 (lax, iad) &:& 20 & (iad, lax) &:& 20 \\
 (ord, iad) &:& 20 & (iad, ord) &:& 20 \\
 (den, iad) &:& 20 & (iad, den) &:& 20 \\
 (atl, iad) &:& 20 & (iad, atl) &:& 20 \\
-(sea, lga) &:& 20 & \multicolumn{3}{l}{}    \\
-(lax, lga) &:& 20 & \multicolumn{3}{l}{}    \\
-(ord, lga) &:& 20 & \multicolumn{3}{l}{}    \\
-(iad, lga) &:& 20 & \multicolumn{3}{l}{}    \\
-(atl, lga) &:& 20 & \multicolumn{3}{l}{}    \\
-\end{tabular}
+(sea, lga) &:& 20 &            &:&    \\
+(lax, lga) &:& 20 &            &:&    \\
+(ord, lga) &:& 20 &            &:&    \\
+(iad, lga) &:& 20 &            &:&    \\
+(atl, lga) &:& 20 &            &:&    \\
+\end{array}
 $$
 
 # Metrics to Measure Maximum Link Utilization
