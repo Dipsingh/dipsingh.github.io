@@ -35,13 +35,17 @@ in the picture.
 ![WAN Topo](/images/post24/wan_topo_1.png "Wan Topology")
 
 We will start with a trivial case that we have `sea, lax, ord, den, atl` all sending $20 Gbps$ to `iad`.
-$$\begin{align*}
+
+$$
+\begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
 (ord, iad) &: 20 \\
 (den, iad) &: 20 \\
 (atl, iad) &: 20 \\
-\end{align*}$$
+\end{align*}
+$$
+
 If we route these demands just via shortest paths, highlighted below, we see that `ord -> iad` link is getting used by demands 
 routing from `sea, den, ord`  to `iad` and `atl -> iad` link is getting used by demands routing from `lax, atl` to `iad`.
 
@@ -65,7 +69,8 @@ we have the maximum link utilization of `60%` and our goal here is can we do bet
 order to appreciate the problem, try solving this in your head before you read it further and see if your answer matches at 
 the end. If you solved this problem, then try solving for this traffic demand.
 
-$$\begin{align*}
+$$
+\begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
 (ord, iad) &: 20 \\
@@ -81,7 +86,8 @@ $$\begin{align*}
 (ord, lga) &: 20 \\
 (iad, lga) &: 20 \\
 (atl, lga) &: 20 \\
-\end{align*}$$
+\end{align*}
+$$
 
 # Metrics to Measure Maximum Link Utilization
 
@@ -486,6 +492,7 @@ and `den -> ord -> iad` carrying $6.66$ of the total $20$. So to program the tra
 of weighted ECMP support. If we are using SR-TE, then each Path-List can have different weights to carry the appropriate amount of traffic.
 
 Solving for the more involved demand set
+
 $$
 \begin{align*}
 (sea, iad) &: 20 \\
@@ -508,7 +515,8 @@ $$
 
 The answer we get is  $60$%. Is it the most optimal or not is left as an exercise for the reader.
 
-```Maximum link utilization: 0.6
+```
+Maximum link utilization: 0.6
 Demand from sea to iad:
   Flow on edge (sea, ord): 20.0
   Flow on edge (ord, iad): 20.0
