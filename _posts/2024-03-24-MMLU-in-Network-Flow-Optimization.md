@@ -74,7 +74,7 @@ order to appreciate the problem, try solving this in your head before you read i
 the end. If you solved this problem, then try solving for this traffic demand.
 
 $$
-\hspace{4cm}
+\hspace{6cm}
 \begin{array}{@{\extracolsep{1cm}}lclcl@{}}
 (sea, iad) &:& 20 & (iad, sea) &:& 20 \\
 (lax, iad) &:& 20 & (iad, lax) &:& 20 \\
@@ -506,26 +506,17 @@ Because some of the demands like `den -> iad` is split into two paths, i..e `den
 and `den -> ord -> iad` carrying $6.66$ of the total $20$. So to program the traffic engineering tunnels, we would need some sort 
 of weighted ECMP support. If we are using SR-TE, then each Path-List can have different weights to carry the appropriate amount of traffic.
 
-Solving for the more involved demand set
+Solving for the bigger demand set
 
 $$
-\hspace{9cm}
+\hspace{6cm}
 \begin{align*}
-(sea, iad) &: 20 \\
-(lax, iad) &: 20 \\
-(ord, iad) &: 20 \\
-(den, iad) &: 20 \\
-(atl, iad) &: 20 \\
-(iad, sea) &: 20 \\
-(iad, lax) &: 20 \\
-(iad, ord) &: 20 \\
-(iad, den) &: 20 \\
-(iad, atl) &: 20 \\
-(sea, lga) &: 20 \\
-(lax, lga) &: 20 \\
-(ord, lga) &: 20 \\
-(iad, lga) &: 20 \\
-(atl, lga) &: 20 \\
+(src,dst) &: Path &: IGP \hspace{2pt} Cost \\
+(sea, iad) &: sea -> ord -> iad &: 70\\
+(lax, iad) &: lax -> atl -> iad &: 68 \\
+(ord, iad) &: ord -> iad &: 20\\
+(den, iad) &: den -> ord -> iad &: 55\\
+(atl, iad) &: atl -> iad &: 18\\
 \end{align*}
 $$
 
