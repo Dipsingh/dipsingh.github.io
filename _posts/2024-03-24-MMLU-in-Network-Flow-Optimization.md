@@ -510,14 +510,18 @@ Solving for the bigger demand set
 
 $$
 \hspace{6cm}
-\begin{align*}
-(src,dst) &: Path &: IGP \hspace{2pt} Cost \\
-(sea, iad) &: sea -> ord -> iad &: 70\\
-(lax, iad) &: lax -> atl -> iad &: 68 \\
-(ord, iad) &: ord -> iad &: 20\\
-(den, iad) &: den -> ord -> iad &: 55\\
-(atl, iad) &: atl -> iad &: 18\\
-\end{align*}
+\begin{array}{@{\extracolsep{1cm}}lclcl@{}}
+(sea, iad) &:& 20 & (iad, sea) &:& 20 \\
+(lax, iad) &:& 20 & (iad, lax) &:& 20 \\
+(ord, iad) &:& 20 & (iad, ord) &:& 20 \\
+(den, iad) &:& 20 & (iad, den) &:& 20 \\
+(atl, iad) &:& 20 & (iad, atl) &:& 20 \\
+(sea, lga) &:& 20 &            &:&    \\
+(lax, lga) &:& 20 &            &:&    \\
+(ord, lga) &:& 20 &            &:&    \\
+(iad, lga) &:& 20 &            &:&    \\
+(atl, lga) &:& 20 &            &:&    \\
+\end{array}
 $$
 
 The answer we get is  $60$%. Is it the most optimal or not is left as an exercise for the reader.
