@@ -56,6 +56,7 @@ routing from `sea, den, ord`  to `iad` and `atl -> iad` link is getting used by 
 Here is the path for each demand the shortest path costs for each paths.
 
 $$
+\hspace{6cm}
 \begin{align*}
 (src,dst) &: Path &: IGP \hspace{2pt} Cost \\
 (sea, iad) &: sea -> ord -> iad &: 70\\
@@ -73,6 +74,7 @@ order to appreciate the problem, try solving this in your head before you read i
 the end. If you solved this problem, then try solving for this traffic demand.
 
 $$
+\hspace{9cm}
 \begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
@@ -497,6 +499,7 @@ of weighted ECMP support. If we are using SR-TE, then each Path-List can have di
 Solving for the more involved demand set
 
 $$
+\hspace{9cm}
 \begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
