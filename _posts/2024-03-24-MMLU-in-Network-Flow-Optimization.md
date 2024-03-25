@@ -130,7 +130,7 @@ Let:
 
 1. **Calculate Total Bandwidth:** $\text{Total BW} = \sum_{d \in D}T_{d}$
 3. **Calculate Total Delay:** For each unique interface $i$ , calculate the delay if $L_{i} < C_{i}$: $\text{Total delay} = \sum_{i \in I}\frac{L_{i}}{C_{i}-L_{i}}$  
-4. **Calculate Average Delay:** If $\text{Total BW} > 0$, calculate the average delay as: $avg\_delay = \frac{\text{Total Delay}}{\text{Total Bw}} * 1000$ else, 
+4. **Calculate Average Delay:** If $\text{Total BW} > 0$, calculate the average delay as: $\text{avg_delay} = \frac{\text{Total Delay}}{\text{Total Bw}} * 1000$ else, 
 set $\text{avg_delay=0}$.
 
 Calculating this score for the paths routed over the shortest paths, we get `29.1`
@@ -165,7 +165,8 @@ with the problem, and  certain constraints which you want to meet. Once the prob
 
 ## LP Formulation 
 
-**Objective Function**: 
+**Objective Function**:
+
 So the objective we have in hand is to minimize the maximum utilization across all links in the network.
 
 $$
@@ -173,7 +174,9 @@ $$
 $$
 
 Subject to:
-**Flow Variables**: 
+
+**Flow Variables**:
+
 For each link $(i,j)$ in the network graph $G$, we have a flow variable representing the amount of traffic flow 
 on that link. This tracks the flow for that given link.
 
@@ -184,14 +187,16 @@ $$
 This scary looking notation in simple words is that the flow variable for a given link $(i,j)$ is either 0 or greater, for all 
 (expressed as $\forall$) links which are part of graph $G$.
 
-**Max Util Variable**: 
+**Max Util Variable**:
+
 We put a constraint that Maximum Utilization can be greater or equal to 0.
 
 $$ 
 \hspace{3cm} U \ge 0
 $$
 
-**Flow Conservation Constraints for each node**: 
+**Flow Conservation Constraints for each node**:
+
 For network flow problems with LP formulation, we generally have flow 
 conservation constraint which says, except the source and destination nodes of the demands, the amount of traffic entering 
 is equal to the traffic leaving the node for a transit node.
@@ -203,7 +208,8 @@ $$
 The above equation $E$ is the set of edges, $f_{i,j}$ is the flow on each edge $(i,j)$ and $n$ is the transit node. $b_{n}$ is the 
 net flow at node $n$ (+ve for sources, negative for sinks, and zero for transit nodes).
 
-**Capacity and Utilization Constraints**: 
+**Capacity and Utilization Constraints**:
+
 For each link, the flow must not exceed the link's capacity, and the link's utilization must not exceed the $U$ variable.
 
 $$
@@ -220,7 +226,7 @@ $$
 
 We convert this constraint to $f_{ij} \le U \times C_{ij}$.
 
-**Demand constraints for each demand pair (s,t,d)**: 
+**Demand constraints for each demand pair (s,t,d)**:
 
 For source $s$ of the demand:
 
@@ -336,7 +342,7 @@ want to program our network using explicit Traffic Engineering (TE) tunnels, we 
 each source-destination pair should be allocated to each tunnel. Without this detailed information, it becomes challenging 
 to configure the TE tunnels effectively and ensure that the desired traffic distribution is achieved.
 
-## Modified LP Formulation 
+## Modified LP Formulation
 
 In order to track which demand is contributing how much for a given interface, we will create flow variables per demand. In 
 that way we can keep track of the demands.  Let's look at the modified LP formulation
@@ -347,7 +353,7 @@ $$
 \hspace{3cm} \text{min U}
 $$
 
-**Flow Conservation for Each Demand:** 
+**Flow Conservation for Each Demand:**
 
 For each demand $d=(s_{d},t_{d},A_{d})$ and each node $n \in V$,
 - $s_{d}$  is the source node of demand $d$.
@@ -357,6 +363,7 @@ For each demand $d=(s_{d},t_{d},A_{d})$ and each node $n \in V$,
 We define $F_{sd,td,i,j}$ as the flow variable representing the flow of demand $d$ through edge $(i,j)$.
 
 **For Non-Source and Non-Destination Nodes**:
+
 For any intermediate node $n$ (i.e., a node that is neither the source nor the destination of the demand), the total incoming flow 
 must equal the total outgoing flow.
 
@@ -368,6 +375,7 @@ The sum of flows on all edges leading into node $n$ minus the sum of flows on al
 ensures that whatever flow enters the node also leaves it, maintaining flow continuity.
  
 **For the Source Node ($s_{d}$)**:
+
 For the source node of demand $d$, the total outgoing flow minus any incoming flow must equal the demand amount $A_{d}$.
 
 $$
@@ -377,6 +385,7 @@ $$
 The net flow out of the source node must match the demand amount. This ensures the demand is fully routed out of the source.
 
 **For the Destination Node ($t_{d}$)**:
+
 For the destination node of demand $d$, the total incoming flow minus any outgoing flow must equal the demand amount $A_{d}$.
 
 $$
@@ -385,14 +394,16 @@ $$
 
 The net flow into the destination node must match the demand amount. This ensures the demand is fully delivered to the destination.
 
-**Capacity Constraints for Each Edge:** 
+**Capacity Constraints for Each Edge:**
+
 For each edge $(i,j) \in E$, the sum of flows for all demands through this edge must not exceed its capacity.
 
 $$
 \hspace{3cm} \sum_{d \in D} F_{sd,td,i,j} \le C_{ij}, \forall (i,j) \in E
 $$  
 
-**Utilization Constraints for Each Edge:** 
+**Utilization Constraints for Each Edge:**
+
 For each edge $(i,j) \in E$, the sum of flows for all demands through this edge, divided by the edge's capacity, must not 
 exceed the maximum utilization $U$.
 
