@@ -37,7 +37,7 @@ in the picture.
 We will start with a trivial case that we have `sea, lax, ord, den, atl` all sending $\text{20 Gbps}$ to `iad`.
 
 $$
-\hspace{6cm}
+\hspace{9cm}
 \begin{align*}
 (sea, iad) &: 20 \\
 (lax, iad) &: 20 \\
