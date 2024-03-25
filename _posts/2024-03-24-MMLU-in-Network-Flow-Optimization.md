@@ -2,7 +2,6 @@
 layout: post
 title: MMLU in Network Flow Optimization
 ---
-
 # Introduction
 
 In a previous post, I discussed how [Maximum Flow problems](https://dipsingh.github.io/NetworkOptimization-MaxFlow-Problems/) can be 
