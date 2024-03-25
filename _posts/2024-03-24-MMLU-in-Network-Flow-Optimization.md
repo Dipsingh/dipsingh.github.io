@@ -73,25 +73,51 @@ we have the maximum link utilization of `60%` and our goal here is can we do bet
 order to appreciate the problem, try solving this in your head before you read it further and see if your answer matches at 
 the end. If you solved this problem, then try solving for this traffic demand.
 
+To arrange the LaTeX table in a more compact and visually appealing way, you can use multiple columns. Here's an example of how you can modify the code to achieve a better layout:
+
+latex
+
+
+Copy code
 $$
-\hspace{9cm}
-\begin{align*}
-(sea, iad) &: 20 \\
-(lax, iad) &: 20 \\
-(ord, iad) &: 20 \\
-(den, iad) &: 20 \\
-(atl, iad) &: 20 \\
-(iad, sea) &: 20 \\
-(iad, lax) &: 20 \\
-(iad, ord) &: 20 \\
-(iad, den) &: 20 \\
-(iad, atl) &: 20 \\
-(sea, lga) &: 20 \\
-(lax, lga) &: 20 \\
-(ord, lga) &: 20 \\
-(iad, lga) &: 20 \\
-(atl, lga) &: 20 \\
-\end{align*}
+\hspace{4cm}
+\begin{array}{lclcl}
+(sea, iad) &:& 20 & (iad, sea) &:& 20 \\
+(lax, iad) &:& 20 & (iad, lax) &:& 20 \\
+(ord, iad) &:& 20 & (iad, ord) &:& 20 \\
+(den, iad) &:& 20 & (iad, den) &:& 20 \\
+(atl, iad) &:& 20 & (iad, atl) &:& 20 \\
+(sea, lga) &:& 20 & \multicolumn{3}{l}{}    \\
+(lax, lga) &:& 20 & \multicolumn{3}{l}{}    \\
+(ord, lga) &:& 20 & \multicolumn{3}{l}{}    \\
+(iad, lga) &:& 20 & \multicolumn{3}{l}{}    \\
+(atl, lga) &:& 20 & \multicolumn{3}{l}{}    \\
+\end{array}
+$$
+In this modified code:
+
+The align* environment is replaced with an array environment, which allows for more flexible formatting.
+The array environment is defined with six columns: lclcl. This means that the first, third, and fifth columns are left-aligned, while the second, fourth, and sixth columns are center-aligned.
+The demand pairs are arranged in two columns, with the first column containing the (source, destination) pairs and the second column containing the corresponding values.
+The & symbol is used to separate the columns, and \\ is used to start a new row.
+The \multicolumn{3}{l}{} command is used to create empty cells in the second column for the last five rows, ensuring that the table remains balanced.
+The \hspace{4cm} command is used to add horizontal space before the table, shifting it to the right. Adjust the value as needed.
+The resulting output will be a more compact and visually appealing table:
+
+$$
+\hspace{4cm}
+\begin{array}{lclcl}
+(sea, iad) &:& 20 & (iad, sea) &:& 20 \
+(lax, iad) &:& 20 & (iad, lax) &:& 20 \
+(ord, iad) &:& 20 & (iad, ord) &:& 20 \
+(den, iad) &:& 20 & (iad, den) &:& 20 \
+(atl, iad) &:& 20 & (iad, atl) &:& 20 \
+(sea, lga) &:& 20 & \multicolumn{3}{l}{}    \
+(lax, lga) &:& 20 & \multicolumn{3}{l}{}    \
+(ord, lga) &:& 20 & \multicolumn{3}{l}{}    \
+(iad, lga) &:& 20 & \multicolumn{3}{l}{}    \
+(atl, lga) &:& 20 & \multicolumn{3}{l}{}    \
+\end{array}
 $$
 
 # Metrics to Measure Maximum Link Utilization
