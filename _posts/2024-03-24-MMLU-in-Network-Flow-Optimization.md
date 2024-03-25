@@ -2,7 +2,6 @@
 layout: post
 title: MMLU in Network Flow Optimization
 ---
-# Introduction
 
 In a previous post, I discussed how [Maximum Flow problems](https://dipsingh.github.io/NetworkOptimization-MaxFlow-Problems/) can be 
 used for network optimization. We focused on a scenario where demands were already routed in the network, and our objective was to 
