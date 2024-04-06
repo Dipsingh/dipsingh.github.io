@@ -423,10 +423,9 @@ for src, tgt, amt in demands:
 
 ```
 
-The solver has provided us with a result, which is displayed below. The maximum link utilization remains at `33%`. However, we can 
-see a significant difference where the demand is now being carried on the shortest path for the demands that have been split to 
-minimize the maximum link utilization. This approach appears to be a better trade-off as we can keep the link utilization low 
-while still having the majority of the flows on the shortest path.
+The results from the solver are displayed below. The maximum link utilization remains at `33%`. However, we can 
+see a significant difference i.e. for the demands that are split, the majority of the demand is on the shortest path. This approach 
+appears to be a better trade-off as we can keep the link utilization low while still having the majority of the flows on the shortest path.
 
 ```
 ## Normalized Output
