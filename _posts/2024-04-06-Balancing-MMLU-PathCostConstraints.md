@@ -403,7 +403,7 @@ We modify the object function from just minimizing the max utilization, we also 
 with a penalty factor, which kind of provides a variation scale on how much the solver should give a weight the slack variable.
 
 $$
-\hspace{3cm} \text{min U} + \sum_{}P\times S_{s_{d},t_{d}}
+\hspace{3cm} \text{min (U} + \sum_{}P\times S_{s_{d},t_{d}})
 $$
 
 The relevant code modification looks like this. 
