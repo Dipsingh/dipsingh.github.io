@@ -451,6 +451,10 @@ Demand from atl to iad:
 atl -> iad            :   20.0 (Cost 20)
 ```
 
+One aspect, which I didn't show was that although we introduced slack variables, LP Solver ultimately does not end up using them. However, formulating 
+the problem in this way still encourages the solver to examine the solution space we are aiming for. I would be interested to 
+hear a more detailed explanation from someone with greater familiarity in Operations Research.
+
 # Conclusion
 
 In this post we revisited the original minimizing maximum link utilization. We improvised the problem by adding additional 
