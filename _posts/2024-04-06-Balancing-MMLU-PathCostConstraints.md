@@ -391,7 +391,7 @@ $$
 \hspace{3cm}  \sum_{d \in D} (F_{s_{d},t_{d},i,j} \times C_{ij}) \leq 1.2 \times A_{d} \times C_{shortest,s_{d},t_{d}} + S_{s_{d},t_{d}},\forall (i,j) \in E
 $$
 
-We can move the $S_{s_{d},t_{d}}$ on the left hand and is the negative slack variable. 
+We can move the $S_{s_{d},t_{d}}$ on the left hand and that is a familiar notation we saw earlier. 
 
 $$
 \hspace{3cm} \sum_{d \in D}(F_{s_{d},t_{d},i,j} \times C_{ij}) - S_{s_{d},t_{d}} \leq 1.2 \times A_{d} \times C_{shortest,s_{d},t_{d}} ,\forall (i,j) \in E
