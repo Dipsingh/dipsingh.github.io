@@ -80,11 +80,13 @@ and looking for solutions that fit the constraint may not be feasible. This is b
 entities in how LP problems are formulated. Instead, flows are typically represented through variables associated with edges. The 
 pattern of these flow variables across the network implicitly determines the decision of which path a flow takes.
 
-One alternative is to find like 'K' shortest paths, then use binary variables to indicate whether a particular path is chosen 
+One alternative is to find like `K` shortest paths, then use binary variables to indicate whether a particular path is chosen 
 for a flow. However, this formulation of problems increases the number of variables and constraints, especially for large 
-networks with many possible paths. So instead, what we will do is add the following constraint $sum(flow[f,i,j] \times cost[i,j]) \le (X \times \text{shortestPathCost} \times \text{demand})$. The 
-reason to multiply with the flow demand value on the right hand side is to make sure the both left and right hand side comparisons 
-are done on the similar scale. We can express this constraint mathematically as follows:
+networks with many possible paths. So instead, what we will do is add the following constraint $sum(flow[f,i,j] \times cost[i,j]) \le (X \times \text{shortestPathCost} \times \text{demand[a,b]})$. The 
+reason to have `demand[a,b]`, the amount of demand between the source and destination pair on the right-hand side, is to make sure both 
+left and right-hand side comparisons are done on a similar scale. 
+
+We can express this constraint as follows:
 
 ```
 For each flow f:
@@ -136,7 +138,7 @@ kept on the shortest path while the exact maximum link utilization was maintaine
 latency deviation from the shortest path was kept under the `20%` constraint.
 
 The path from `den` to `iad` remained unchanged, but the longest path for that demand had a `22%` higher latency than the shortest 
-path, which is just slightly over our constraint. The problem is unfeasible if the constraint is not being met, but this was not the case 
+path, which is just slightly over our constraint. The problem would have been unfeasible if the constraint was not met, but this was not the case 
 here. Our constraint is represented as `amount of flow × edge cost ≤ 1.2 × 20(shortest path cost) × 45 (demand)`. The left-hand 
 side evaluates to `13.3 × 55`, which satisfies the constraint (`731.5 < 1080`).
 
@@ -360,6 +362,9 @@ Here is a visual representation of a simple two-dimensional problem for Slack Co
  * Constraint 1: $2x + y \leq 10$
  * Constraint 2: $x + 2y \leq 8$
 
+{: .center}
+![Slack](/images/post25/slack.png "Slack Variable")
+
 The blue-shaded area shows the feasible region, where all the constraints are satisfied. The red dot represents a sample point `(3, 2)` within 
 the feasible region. 
 
@@ -371,15 +376,10 @@ On the other hand, the dashed blue line represents the slack variable for the co
 distance between the example point and the constraint line. In this case, the slack variable for Constraint 2 is 1, indicating an unused 
 capacity of 1 unit in Constraint 2 at the example point.
 
-{: .center}
-![Slack](/images/post25/slack.png "Slack Variable")
-
-
 # Adding Slack To Our Problem
 
-let's define some notation first. 
+let's define some notation first.  For each demand $d=(s_{d},t_{d},A_{d})$ and each node $n \in V$, 
 
-For each demand $d=(s_{d},t_{d},A_{d})$ and each node $n \in V$, 
 - $s_{d}$ is the source node of demand $d$.
 - $t_{d}$ is the target (destination) node of demand $d$.
 - $A_{d}$ is the amount of demand (flow) that needs to be routed from $s_{d}$ to $t_{d}$.
