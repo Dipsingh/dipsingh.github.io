@@ -24,17 +24,6 @@ chosen paths stay within the optimal routes in terms of latency.
 
 We had demands from `sea, lax, ord, den, atl` all sending $20 \text{Gbps}$ to `iad`.
 
-$$
-\hspace{9cm}
-\begin{align*}
-(sea, iad) &: 20 \\
-(lax, iad) &: 20 \\
-(ord, iad) &: 20 \\
-(den, iad) &: 20 \\
-(atl, iad) &: 20 \\
-\end{align*}
-$$
-
 {: .center}
 ![WAN Topo](/images/post25/wan_topo_1.png "Wan Topology")
 
