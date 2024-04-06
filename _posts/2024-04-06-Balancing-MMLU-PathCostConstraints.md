@@ -4,7 +4,7 @@ title: Balancing MMLU With The Shortest Path Cost Constraints
 ---
 
 {: .center}
-![TSP](/images/post25/tsp.png "Travelling Salesman Problem")
+![og:image](/images/post25/tsp.png "Travelling Salesman Problem")
 
 > *It is almost impossible for someone coming from a purely mathematical background with little exposure to applications to understand 
 > how to go about formulating a real-world problem in mathematical terms. - Dantzig.*
