@@ -104,9 +104,8 @@ For the disjointness constraint, example link disjoint constraint we need to mak
 $x_{ij}^{k1} + x_{ij}^{k2} \le 1$ for all links $(i,j)$ and all pairs of paths $(k1, k2)$, $k1 \ne k2$. If a link is used by one 
 path, $x_{ij}^k$, for that path and link will be `1`, forcing to be `0` for all other paths.
 
-The variables $x_{ij}^k$ are binary integers`(0 or 1)`. This defines the problem as an integer linear programming problem. 
-
-Now let's convert this problem into code. Here is the relevant snippet which converts our original graph problem 
+The variables $x_{ij}^k$ are binary integers`(0 or 1)`. This defines the problem as an integer linear programming problem. Now let's convert this problem into 
+code. Here is the relevant snippet which converts our original graph problem 
 
 ```
 # Define the source and destination nodes
@@ -298,9 +297,7 @@ needed for the MIN-SUM problem with SRLG constraints in large networks. The WSRL
 find disjoint paths by taking into account the SRLG constraints while aiming to minimize the sum of the path costs.
 
 The core idea of WSRLG is to adjust the cost of each link in the network based on the number of SRLG groups to which the 
-link belongs. This cost is then used in a k-shortest paths algorithm to find disjoint paths.
-
-Here's a step-by-step breakdown of the WSRLG algorithm:
+link belongs. This cost is then used in a k-shortest paths algorithm to find disjoint paths. Here's a step-by-step breakdown of the WSRLG algorithm:
 
 **Calculate Adjusted Link Cost( $C_{comp}(i,j)$):**  The algorithm introduces a new composite cost for each link in the network, which 
 is a weighted combination of the original link cost and the SRLG factor. The composite cost calculation aims to increase the 
