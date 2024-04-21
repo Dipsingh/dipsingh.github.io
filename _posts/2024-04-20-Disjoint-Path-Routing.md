@@ -240,8 +240,8 @@ Disjoint Path 1: sea -> lax -> atl -> iad
 Disjoint Path 2: sea -> den -> ord -> iad
 ```
 
-It will always be more efficient if we have an algorithm to solve the problem vs. using ILP. In case of Disjoint path 
-problem we do have **Suurballe's algorithm** which gives a way to find the disjoint path.
+It will always be more efficient if we have an algorithm to solve the problem vs. solving via ILP. In case of Disjoint path 
+problem, luckily we do have **Suurballe's algorithm** which provides a way to find disjoint paths.
 
 # SRLG Constraint
 
