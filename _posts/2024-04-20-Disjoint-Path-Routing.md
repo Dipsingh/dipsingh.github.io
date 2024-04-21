@@ -63,15 +63,16 @@ If we plot the above graphically, we can see the feasible region of the problem 
 ![LP Plot](/images/post26/fig3.png "LP Plot")
 
 The plot below shows the 2D view with the feasible region of the problem space shaded in gray. If we wanted an the LP solution 
-then the green dot would have been our optimal solution i.e. $x_{1} = 1.5, x_{2} =3$. All the square dots on the plot are 
-the possible solutions for the ILP solution. You can see they are either on the boundaries or inside the feasible region. 
+then the green dot would have been our optimal solution i.e. $x_{1} = 1.5, x_{2} =3$. This gives us $5 \times 1.5 + 4 
+\times 3 = 19.5$ as the answer for objective function.
 
-From the plot a subset of the feasible region of the LP will satisfy the constraints of the integer program. All the dots 
-inside the shaded region form the feasible region for the ILP. The optimal solution of ILP  $\le$   optimal solution of LP. In 
-this specific problem, the optimal ILP solution will be $x_{1}=0,x_{2}=4$. 
+All the square dots shown on the plot represent the potential solutions for the ILP solution. You'll notice that they are located 
+either on the boundaries or inside the feasible region. In 
+this specific problem, the optimal ILP solution is at $x_{1}=0,x_{2}=4$. This gives us $5 \times 0 + 4 \times 4 = 16$
+for the objective function using ILP. The optimal solution of ILP  $\le$   optimal solution of LP.
 
 The ILP problems are hard to solve and also known as NP-hard problem. We solve ILP problems using heuristics and commonly 
-used heuristic techniques are Branch and Bound and Cutting planes.
+used techniques are Branch and Bound and Cutting planes.
 
 {: .center}
 ![Feasible Region](/images/post26/fig4.png "Feasible region")
@@ -156,7 +157,7 @@ The disjoint paths we get are `1->2->5->6` and `1->4->3->6` and the total cost f
 {: .center}
 ![Disjoint Path](/images/post26/fig5.png "Disjoint Path")
 
-Now let's use our toy graph which we have been using to find disjoint paths from `sea` to `iad`.  One thing we do is also 
+Now let's use our toy graph which we have been using to find disjoint paths from `sea` to `iad`.  We will also 
 add a capacity constraint such that the links traversed by the paths also meets the capacity constraint. 
 
 {: .center}
@@ -305,7 +306,7 @@ cost of using links that are part of larger SRLGs, thereby discouraging their se
 failures. The composite cost, which is a combination of the original link cost and the weighted SRLG factor. The formula for $C_{comp}(i,j)$ is:
 
 $$
-\hspace{3cm} C_{comp}(i,j) = C_{comp}(i,j) = (1 - \alpha) \times \frac{d_{ij}}{d_{ij}^{max}} + \alpha \times \frac{SRLG(i,j)}{SRLG^{max}}
+\hspace{3cm} C_{comp}(i,j) = (1 - \alpha) \times \frac{d_{ij}}{d_{ij}^{max}} + \alpha \times \frac{SRLG(i,j)}{SRLG^{max}}
 $$
 
 where $d_{ij}$ is the original cost of the link, $d_{ij}^{max}$ is the maximum link cost in the network, $SRLG(i,j)$ is the number of SRLGs to which link `(i,j)` belongs, $SRLG^{max}$ is the maximum number of SRLGs that any link belongs to, and $\alpha$ is a weight factor for SRLG. By adjusting $\alpha$, the algorithm can be tuned to emphasize either cost efficiency or SRLG-disjointness. 
