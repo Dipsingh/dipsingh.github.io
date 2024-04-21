@@ -308,7 +308,7 @@ cost of using links that are part of larger SRLGs, thereby discouraging their se
 failures. The composite cost, which is a combination of the original link cost and the weighted SRLG factor. The formula for $C_{comp}(i,j)$ is:
 
 $$
-\hspace{3cm} C_{comp}(i,j)=(1−\alpha) \times \frac{{d_{ij}}}{d_{ij}^{max}}+ \alpha \times \frac{SRLG(i,j)}{SRLG^{max}}
+\hspace{3cm} C_{comp}(i,j)=(1−\alpha) \times \frac{{d_{ij}}}{d_{ij}^{max}}
 $$
 
 where $d_{ij}$ is the original cost of the link, $d_{ij}^{max}$ is the maximum link cost in the network, $SRLG(i,j)$ is the number of SRLGs to which link `(i,j)` belongs, $SRLG^{max}$ is the maximum number of SRLGs that any link belongs to, and $\alpha$ is a weight factor for SRLG. By adjusting $\alpha$, the algorithm can be tuned to emphasize either cost efficiency or SRLG-disjointness. 
