@@ -3,9 +3,6 @@ layout: post
 title: Optimal and Heuristic Approaches to Disjoint Path Routing
 ---
 
-{: .center}
-![og:image](/images/post25/tsp.png "Travelling Salesman Problem")
-
 > *To doubt everything or to believe everything are two equally convenient solutions; both dispense with the necessity 
 > of reflection. - Henri Poincaré*
 
