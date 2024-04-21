@@ -3,8 +3,7 @@ layout: post
 title: Optimal and Heuristic Approaches to Disjoint Path Routing
 ---
 
-> *To doubt everything or to believe everything are two equally convenient solutions; both dispense with the necessity 
-> of reflection. - Henri Poincaré*
+> *Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.- Robert Frost*
 
 Disjoint Path routing problems involve finding multiple paths between a source and a destination pair without any shared components. There 
 are different types of disjoint paths, each with specific requirements. For example, link disjoint paths ensure that the paths do not 
