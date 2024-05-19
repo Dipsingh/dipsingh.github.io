@@ -167,7 +167,7 @@ Let's apply quantile regression and calculate 5th quantile (lower price range) a
 ![Quantile Regression](/images/post27/fig10.png "Quantile Regression")
 
 If we calculate the estimated price for 2500 sq. ft from the derived coefficients for the 5th and 95th percentiles, we 
-get ~156K\$ on the lower end and ~464K\$ on the higher end. This is much better than having an average estimate of 300K\$.
+get $~156K\$$ on the lower end and $~464K\$$ on the higher end. This is much better than having an average estimate of $300K\$$.
 
 If we want, we can look at the whole distribution by generating various quantiles.
 
