@@ -5,7 +5,6 @@ title: Quantile Regression
 
 >*The Median Isn't the Message - Stephen Jay Gould*
 
-
 When we think of regression, the most common one, which we all know, is linear regression. It is a fairly popular and simple technique for
 estimating the mean of some variable conditional on the values of independent variables. 
 
