@@ -98,10 +98,11 @@ $$
 $$
 
 This process finds the values of $\beta_{0}$ and $\beta_{1}$ that makes the sum as small as possible. The Mean squared loss function is 
-convex and differentiable at each point. 
+convex and differentiable at each point as shown below.
 
 {: .center}
 ![MSE Loss Function](/images/post27/fig8.png "MSE Loss Function")
+
 
 ## Quantile Regression
 
