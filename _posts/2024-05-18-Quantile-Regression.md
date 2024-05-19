@@ -156,7 +156,7 @@ easy to see that quantile loss function is not differentiable at every point. Th
 absolute residuals and is solved using optimization techniques like linear programming.
 
 $$
-\hspace{3cm} \sum_{i=1}^{n}\rho_{\tau}(y_{i}-(\beta_{0}(\tau)+\beta_{1}(\tau)x_{i}))
+\hspace{5cm} \sum_{i=1}^{n}\rho_{\tau}(y_{i}-(\beta_{0}(\tau)+\beta_{1}(\tau)x_{i}))
 $$
 
 # Revisiting the Housing Sales Price Example
