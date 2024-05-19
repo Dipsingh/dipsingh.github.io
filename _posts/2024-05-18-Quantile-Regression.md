@@ -213,3 +213,4 @@ quantile levels, while still controlling for other covariates.
 - [How Instacart delivers on time](https://tech.instacart.com/how-instacart-delivers-on-time-using-quantile-regression-2383e2e03edb)
 - [Analyzing Experiment Outcomes: Beyond Average Treatment effects](https://www.uber.com/blog/analyzing-experiment-outcomes)
 - [Quantile Regression](https://ethen8181.github.io/machine-learning/ab_tests/quantile_regression/quantile_regression.html)
+- [Median isn't the message](https://journalofethics.ama-assn.org/article/median-isnt-message/2013-01)
