@@ -75,7 +75,7 @@ In linear regression, the goal is to find the best-fitting line through a set of
 the value of a dependent variable $y$ based on an independent variable $x$. It is typically expressed as 
 
 $$
-\hspace{3cm} y = \beta_{0}+\beta_{1}x+\epsilon
+\hspace{5cm} y = \beta_{0}+\beta_{1}x+\epsilon
 $$
 
 Here:
@@ -89,13 +89,13 @@ To find the best-fitting line, we minimize the sum of squared differences (resid
 This is called the method of least squares. The residual for each point is:
 
 $$
-\hspace{3cm} \text{residual}_{i} = y_{i}-{\beta_{0}+\beta_{1}x_{i}}
+\hspace{5cm} \text{residual}_{i} = y_{i}-{\beta_{0}+\beta_{1}x_{i}}
 $$
 
 we minimize the sum of the squared residuals:
 
 $$
-\hspace{3cm} \sum_{i=1}^{n}(y_{i}-(\beta_{0}+\beta_{1}x))^2
+\hspace{5cm} \sum_{i=1}^{n}(y_{i}-(\beta_{0}+\beta_{1}x))^2
 $$
 
 This process finds the values of $\beta_{0}$ and $\beta_{1}$ that makes the sum as small as possible. The Mean squared loss function is 
@@ -111,7 +111,7 @@ specific quantiles of $y$ for a given $x$. For instance, the median (50th percen
 regression model for the $\tau^{th}$ quantile is:
 
 $$
-\hspace{3cm}  y = \beta_{0}(\tau)+\beta_{1}(\tau)x+\epsilon
+\hspace{5cm}  y = \beta_{0}(\tau)+\beta_{1}(\tau)x+\epsilon
 $$
 
 Here, $\tau$ represents the quantile of interest (e.g. $\tau =0.5$ for the median, $\tau=0.9$ for the 90th percentile).
@@ -120,7 +120,7 @@ To find the best fitting line for a specific quantile, we use a different approa
 weighted absolute difference between the observed $y$ values and predicted $y$ values.For the $\tau^{th}$ quantile, the loss function is:
 
 $$
-\hspace{3cm} \rho_{\tau}(u)=u(\tau-I(u<0))
+\hspace{5cm} \rho_{\tau}(u)=u(\tau-I(u<0))
 $$
 
 where:
@@ -132,9 +132,9 @@ This loss function gives different weights to positive and negative residuals ba
 
 $$
 \hspace{3cm} \rho_{0.5}(u)= \left\{ \begin{array}{cl}
-\hspace{3cm} 0.5u & : u \geq 0 \\
-\hspace{3cm} 0.5u - u  = -0.5u&: u < 0
-\hspace{3cm} \end{array} \right.
+ 0.5u & : u \geq 0 \\
+ 0.5u - u  = -0.5u&: u < 0
+ \end{array} \right.
 $$
 
 This essentially treats positive and negative results equally, but for quantiles other than median, the weights differ.
@@ -167,7 +167,7 @@ Let's apply quantile regression and calculate 5th quantile (lower price range) a
 ![Quantile Regression](/images/post27/fig10.png "Quantile Regression")
 
 If we calculate the estimated price for 2500 sq. ft from the derived coefficients for the 5th and 95th percentiles, we 
-get ~156K$ on the lower end and ~464K on the higher end. This is much better than having an average estimate of $300K.
+get ~156K\$ on the lower end and ~464K\$ on the higher end. This is much better than having an average estimate of 300K\$.
 
 If we want, we can look at the whole distribution by generating various quantiles.
 
