@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Network Traffic Modeling Approaches from Basics to Self-Similar Patterns
+title: Network Traffic Modeling Approaches
 ---
 
 > The greatest value of a picture is when it forces us to notice what we never expected to see. - John Tukey
