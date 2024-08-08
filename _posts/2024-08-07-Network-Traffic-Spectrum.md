@@ -7,13 +7,13 @@ title: Network Traffic Modeling Approaches from Basics to Self-Similar Patterns
 
 When a city contemplates constructing a new highway or major roadway, it doesn't simply break ground and start paving. Instead, 
 an extensive feasibility study is conducted to evaluate various aspects including environmental impacts, traffic patterns, 
-and potential congestion relief or creation, example:[US 277 Sonora Safety Route Study](https://ftp.txdot.gov/pub/txdot/get-involved/sjt/sonora-safety-study/111620-feasibility-study-report.pdf), [I-5 JBLM Corridor Study](https://wsdot.wa.gov/publications/fulltext/projects/i5_jblm/corridorplanfeasibilitystudy.pdf). 
+and potential congestion relief or creation, example: [US 277 Sonora Safety Route Study](https://ftp.txdot.gov/pub/txdot/get-involved/sjt/sonora-safety-study/111620-feasibility-study-report.pdf), [I-5 JBLM Corridor Study](https://wsdot.wa.gov/publications/fulltext/projects/i5_jblm/corridorplanfeasibilitystudy.pdf). 
 These studies examine traffic patterns specific to the project area, identify existing bottlenecks, and analyze how the new 
 infrastructure will impact the overall transportation network.
 
-Similarly, understanding traffic patterns is fundamental to design and operate networks,influencing decisions across all temporal 
-and structural scales. This knowledge shapes everything from long-term, macro-level topology design down to millisecond-level, 
-micro-scale buffer allocation and tuning. 
+Similarly, understanding traffic patterns is fundamental to designing and operating networks, influencing decisions across all 
+temporal and structural scales. This knowledge shapes everything from long-term, macro-level topology design to millisecond-level, 
+micro-scale buffer allocation and tuning.
 
 In this post, we will generate synthetic time series to explore various traffic characteristics at a high level. In a subsequent 
 post, we’ll explore a practical example demonstrating how these traffic patterns can affect an Active Queue Management (AQM) 
