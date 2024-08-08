@@ -40,15 +40,12 @@ An example of a heavy-tailed distribution is below where we can see an extreme e
 {: .center}
 ![Heavy Tail Distribution](/images/post29/fig1.png "Heavy Tail Distribution")
 
-We can see the occasional large spike in the time-series plot and it statistical properties in the other graphs. 
-
 ## Service Time Distribution
 
-This refers to the statistical distribution of packet sizes or the time required to process/transmit packets. Common Models are 
+This generally refers to the statistical distribution of packet sizes or the time required to process/transmit packets. Common Models are 
 Exponential, deterministic, and more general phase-type distributions. The choice of service time distribution significantly affects 
-queuing behavior and network performance. Service times often exhibit multi-modal distributions due to different packet size classes (e.g., ACKs, MTU-sized packets).
-
-The service time distribution impacts the queueing behavior i.e. how packets accumulate in network queues. 
+queuing behavior and network performance. Service times often exhibit multi-modal distributions due to different packet size classes 
+(e.g., ACKs, MTU-sized packets).The service time distribution impacts the queueing behavior i.e. how packets accumulate in network queues. 
 
 Below plot shows an example of Exponential distribution.  In the time series plot we can see there are many small values with occasional 
 large spikes. The histogram shows peal near zero and a long, gradually decreasing tail to the right.  
@@ -63,17 +60,15 @@ can significantly impact on things like buffer occupation and packet loss.
 
 ### Poisson Process
 
-The classical model is to use Poisson process. It's a stochastic process where events (packet arrivals) occur continuously 
+The classic way was to use the Poisson process. It's a stochastic process where events (packet arrivals) occur continuously 
 and independently at a constant average rate. The Inter-arrival times are exponentially distributed.
 
-**Properties**:
-• **Memoryless Property**: The probability of an arrival occurring in the next time interval is independent of previous arrivals.
-• **Constant Rate**: The arrival rate (λ) is constant over time.
-• **Applications**: Used in simple network models, such as the M/M/1 queue, where both arrivals and service times are exponentially distributed.
-• **Limitations**: The Poisson process cannot capture burstiness or correlation in real network traffic.
+One of the key properties of the Poisson process is memorylessnes. This means that the probability of an arrival occurring in the 
+next time interval is independent of previous arrivals. The arrival rate $\lambda$ is constant over time, which is a very naive assumption 
+compared to how the real traffic behaves, and that is the reason it cannot capture burstiness or correlation in real network traffic.
 
-Many earlier research used Poisson arrival process as an assumption for packet arrival but it's a very simplistic view and 
-the real traffic patterns are more complicated. Some other process which captures complex patterns are
+Many earlier research used the Poisson arrival process as an assumption for packet arrival, but it's a very simplistic view and 
+the real traffic patterns are more complicated.
 
 ### Batch Markovian Arrival Process (BMAP)
 
