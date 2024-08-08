@@ -89,7 +89,8 @@ behavior below for self-similar traffic where as we zoom in from hours to second
 {: .center}
 Ref: Deploying IP and MPLS QoS for Multiservice Networks
 
-We can measure self-similarity by hurst-parameter with  $0.5 \lt H \lt 1$ indicates long-range dependance.
+We can measure self-similarity by hurst-parameter with  $0.5 \lt H \lt 1$ indicates long-range dependence. We will explore self-similarity and 
+long-range dependence more in later section.
 
 ### Markov Modulated Poisson Process (MMPP)
 
@@ -109,38 +110,38 @@ for the traffic pattern.
 
 ### Seasonality and Trend
 
-Seasonality refers to regular and predictable patterns or fluctuations that occur at specific intervals. examples of seasonality 
-can be traffic peaking during business hours and drop during night. Understanding seasonality helps in traffic forecasting and capacity planning.
+Seasonality refers to regular and predictable patterns or fluctuations at specific intervals. Examples of seasonality 
+include traffic peaking during business hours and dropping at night. Understanding seasonality helps in traffic forecasting and capacity planning.
 
-Trend is a long-term increase or decrease over time. Trend indicates the general direction in which traffic patterns are moving, 
+The Trend is a long-term increase or decrease over time. The Trend indicates the general direction in which traffic patterns are moving, 
 irrespective of short-term fluctuations or seasonal effects. 
 
-A Time series data can have both seasonality and Trend present. One can use Seasonal Decomposition of Time Series (STL) to decompose 
-into seasonal, trend and residual components. SARIMA is another classical model coming from econometrics to capture seasonality with ARIMA.
+Network traffic can have both Seasonality and Trend present. One can use Seasonal Decomposition of Time Series (STL) to decompose 
+into seasonal, Trend, and residual components. SARIMA is another classical model from econometrics that captures seasonality with ARIMA.
 
-To extract trend from a time series data, one can apply techniques like linear regression, moving average, exponential smoothing or 
+To extract Trend one can apply techniques like linear regression, moving average, exponential smoothing or 
 locally weighted polynomial regression (LOESS).
 
-Here is a timeseries which has both seasonality and trend.
+Here is a time series that includes both seasonality and trend.
 
 {: .center}
 ![Seasonality with Trend](/images/post29/fig5.png "Seasonality with Trend")
 
-Above timeseries is decomposed into Seasonal, Trend and everything left in the residual using STL.
+Decomposing the above timeseries into Seasonal, Trend and rest left as residual using STL.
 
 {: .center}
 ![STL](/images/post29/fig6.png "STL")
 
 ### ON/OFF Behavior in Network Traffic
 
-This refers to traffic patterns characterized by alternating periods of high activity (ON) and low or no activity (OFF). During 
-the ON periods, there is a burst of traffic, whereas during the OFF periods, the traffic is minimal or nonexistent. Example 
+This refers to traffic patterns characterized by alternating periods of high activity (ON) and low or no activity (OFF). There 
+is a burst of traffic during the ON periods, whereas, during the OFF periods, the traffic is minimal or nonexistent. An example 
 of this would be traffic patterns between GPUs.
 
-In order to characterize this behavior we need to under the duration of ON and OFF periods for burstiness analysis. This can 
-be simulated using Markov Modulated processes and decomposed using Wavelet analysis. 
+To characterize this behavior, we must understand the duration of ON and OFF periods for burstiness analysis. This can 
+be simulated using Markov-modulated processes and decomposed using Wavelet analysis. 
 
-Here is a synthetic traffic with On/Off traffic pattern.
+Here is synthetic traffic with an On/Off traffic pattern.
 
 {: .center}
 ![ON/OFF](/images/post29/fig7.png "ON/OFF")
@@ -173,7 +174,7 @@ strong correlation over long periods confirming long-range dependence.
 ### Multifractal Scaling
 
 This is a  property where traffic exhibits different scaling behaviors at different moments. This implies that the statistical 
-properties of the traffic can vary widely, depending on the time scale and the location in the time series.
+properties of the traffic can vary widely, depending on the timescale and the location in the time series.
 
 We can use Multifractal Detrended Fluctuation Analysis (MFDFA) to measure the multifractal properties of time series data.
 
@@ -286,4 +287,5 @@ performance based on various traffic characteristics.
 - [Self-similarity](https://en.wikipedia.org/wiki/Self-similarity)
 - [Long-tail traffic](https://en.wikipedia.org/wiki/Long-tail_traffic)
 - [Long-range dependence](https://en.wikipedia.org/wiki/Long-range_dependence)
+- [MFDFA](https://www.sciencedirect.com/science/article/abs/pii/S0378437102013833?via%3Dihub)
 
