@@ -15,12 +15,13 @@ Similarly, understanding traffic patterns is fundamental to designing and operat
 temporal and structural scales. This knowledge shapes everything from long-term, macro-level topology design to millisecond-level, 
 micro-scale buffer allocation and tuning.
 
-In this post, we will generate synthetic time series to explore various traffic characteristics at a high level. In a subsequent 
-post, we’ll explore a practical example demonstrating how these traffic patterns can affect an Active Queue Management (AQM) 
-technique such as Random Early Detection (RED).
+This post explores the characteristics of various traffic models using synthetic data, offering an overview of traffic patterns. 
+We’ll generate and analyze time series data to highlight the fundamental properties of different traffic models. In a follow-up post, 
+we will apply these insights to a practical example, examining how these traffic patterns affect the performance of Random Early Detection (RED)
+parameter tuning.
 
-Our goal here is to guide you up the hills, from where you can view the mountains in the distance. This approach offers a 
-broad perspective, allowing one to grasp the landscape without diving into intricate details.
+Also, this is a very high-level overview of the topic to provide a broader perspective. Think of this as a guided foothills tour, providing 
+a view of the distant peaks. The climb to those distant peaks is left as an adventure for readers to explore in the future.
 
 # Statistical Distributions
 
