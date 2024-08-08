@@ -21,7 +21,7 @@ technique such as Random Early Detection (RED).
 Our goal here is to guide you up the hills, from where you can view the mountains in the distance. This approach offers a 
 broad perspective, allowing one to grasp the landscape without diving into intricate details.
 
-# Statistical Distribution Properties
+# Statistical Distributions
 
 Statistical Distribution Properties are fundamental in characterizing network traffic behavior. They describe the underlying 
 probability distributions of various traffic attributes, such as packet inter-arrival times, packet sizes, flow durations, and traffic volumes. 
