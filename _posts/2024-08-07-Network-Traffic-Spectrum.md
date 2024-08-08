@@ -89,7 +89,8 @@ behavior below for self-similar traffic where as we zoom in from hours to second
 {: .center}
 ![Self-Similar vs Poisson](/images/post29/fig3.png "Self-Similar vs Poisson")
 
-Ref: Deploying IP and MPLS QoS for Multiservice Networks: Theory and Practice
+{: .center}
+Ref: Deploying IP and MPLS QoS for Multiservice Networks
 
 We can measure self-similarity by hurst-parameter with  $0.5 \lt H \lt 1$ indicates long-range dependance.
 
