@@ -165,7 +165,7 @@ It can be measured by Hurst Parameter which is a measure of self-similarity. Val
 Long-range dependence (LRD) refers to significant correlations between values over long periods. We can measure this by looking 
 at the ACF plots to see the correlation. 
 
-Here we are looking at a synthetic traffic with ACF plots which shows the values decay very slowly for the lags indicating 
+Here we are looking at synthetic traffic with ACF plots which shows the values decay very slowly for the lags indicating 
 strong correlation over long periods confirming long-range dependence. 
 
 {: .center}
@@ -190,9 +190,8 @@ This refers to high variability in traffic over short periods. It is characteriz
 
 ### Peak to Mean Ratio
 
-This is the difference between the peak and the average traffic rate over a period. This ratio is an important metric for understanding the extremes in traffic behavior.
-
-Below is the histogram of the above highlight the peak and average rate of traffic observed.
+This is the difference between the peak and the average traffic rate over a period. This ratio is an important metric for understanding the 
+extremes in traffic behavior. Below is the histogram of the above highlight the peak and average rate of traffic observed.
 
 {: .center}
 ![Peak to Mean](/images/post29/fig10.png "Peak to Mean")
