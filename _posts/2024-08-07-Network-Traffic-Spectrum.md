@@ -282,7 +282,7 @@ performance based on various traffic characteristics.
 # References
 
 - [Deploying IP and MPLS QoS for Multiservice Networks: Theory and Practice](https://www.amazon.com/Deploying-MPLS-QoS-Multiservice-Networks/dp/0123705495)
-- [Wide Area Trdfie: The Failure of Poisson Modeling](https://www.csl.mtu.edu/cs6461/www/Reading/Paxson-ton95.pdf)
+- [Wide Area Traffic: The Failure of Poisson Modeling](https://www.csl.mtu.edu/cs6461/www/Reading/Paxson-ton95.pdf)
 - [Self-similarity](https://en.wikipedia.org/wiki/Self-similarity)
 - [Long-tail traffic](https://en.wikipedia.org/wiki/Long-tail_traffic)
 - [Long-range dependence](https://en.wikipedia.org/wiki/Long-range_dependence)
