@@ -63,7 +63,7 @@ can significantly impact on things like buffer occupation and packet loss.
 The classic way was to use the Poisson process. It's a stochastic process where events (packet arrivals) occur continuously 
 and independently at a constant average rate. The Inter-arrival times are exponentially distributed.
 
-One of the key properties of the Poisson process is memorylessnes. This means that the probability of an arrival occurring in the 
+One of the key properties of the Poisson process is memorylessness. This means that the probability of an arrival occurring in the 
 next time interval is independent of previous arrivals. The arrival rate $\lambda$ is constant over time, which is a very naive assumption 
 compared to how the real traffic behaves, and that is the reason it cannot capture burstiness or correlation in real network traffic.
 
