@@ -271,7 +271,7 @@ This is an example of Non-Stationary time series as it has trend which means the
 
 # Conclusion
 
-We’ve covered several crucial traffic properties that are essential to understand. These include temporal patterns like 
+We looked at several foundational properties of a network traffic that are essential to understand. These include temporal patterns like 
 seasonality and trends, scale-related behaviors such as self-similarity and long-range dependence, and statistical distribution 
 characteristics. Each property uniquely influences network performance. For example, buffer sizing and packet drops will 
 vary depending on the traffic’s burstiness and arrival patterns.
