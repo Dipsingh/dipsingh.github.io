@@ -19,11 +19,9 @@ A natural starting point is Moore’s Law, famously associated with Gordon Moore
 paper, "[Cramming more components onto integrated circuits](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf)", that the 
 number of transistors on integrated circuits would double roughly every two years—largely propelled by continuous advancements in lithography.
 
-Over the decades, the semiconductor industry pursued Moore’s Law by following guidelines from a 1974 paper by R. Dennard and colleagues. Each new 
-technology node offered tangible gains: around a 50% area reduction, 30% cost decrease, 20% lower power consumption, and 25% performance increase. Collectively, 
-these metrics—Power, Performance, Area, and Cost (PPAC)—became the main yardsticks for deciding whether a new node was worth developing. Still, it’s 
-crucial to understand that Moore’s Law is an economic principle, not a fundamental law of physics: transistor scaling endures only as long as the advantages 
-of shrinking transistors outweigh the rising complexity and cost of making them.
+Over the years, semiconductor industry followed Moore’s Law based on ideas from a 1974 paper by R. Dennard. Each new node typically cuts transistor area by around 50%, lowers 
+cost by about 30%, reduces power by 20%, and boosts performance by 25%. Together, these factors—Power, Performance, Area, and Cost (PPAC)—determine whether a node is worth pursuing. But 
+it’s important to remember that Moore’s Law is an economic principle, not a fundamental law of physics: transistor scaling endures only as long as the advantages of shrinking transistors outweigh the rising complexity and cost of making them.
 
 Transistor scaling strategies have shifted dramatically over the years. In the 1990s, Dennard’s constant field scaling shrank all dimensions—gate length, 
 operating voltage, gate oxide thickness, and so forth—by the same factor ( $\frac{1}{k}$). This preserved uniform electric fields and kept power density 
