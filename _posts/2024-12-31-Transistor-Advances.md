@@ -8,10 +8,10 @@ title: Transistor Advances -  From Planar MOSFETs to CFET Stacks
 For many of us in network engineering, it's easy to overlook the semiconductor technology that makes our work possible. While we are 
 focused on packet processing details and how network protocols work, semiconductor engineering is what drives the continuous improvement of networking hardware.
 
-When we hear about new silicon offering improvements like higher bandwidth or lower latency, it's easy to forget about the innovations 
-taking place in under the hood that make it happen. Having an understanding of these advancements helps us appreciate the challenges of modern transistor scaling.
+When we see new silicon offering higher bandwidth or lower latency, it’s easy to overlook the underlying innovations that make those gains possible. By 
+understanding these breakthroughs, we can better appreciate the progress—and the trade-offs—that come with modern transistor scaling.
 
-Today I will explore how transistors technology has progressed, why Dennard scaling stopped working, and the next steps beyond FinFETs and 3D stacking.
+In this overview, I will discuss transistor technology’s progression, the reasons Dennard scaling hit a wall, and possible steps beyond FinFETs and 3D stacking.
 
 # Moore's Law
 
