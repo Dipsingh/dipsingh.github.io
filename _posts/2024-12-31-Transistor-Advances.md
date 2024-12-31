@@ -87,8 +87,8 @@ off and blocks current. You can think this like a door latch- you must push beyo
 charge can move more quickly. However, it also increases power consumption when the device is active, due to the larger current flow.
 
 **Off Current or Leakage Current($I_{off}$)** is the (ideally negligible) current that flows when the transistor is turned off ($V_{gs}$ is below $V_{th}$). In reality, a small amount of leakage current still flows for two main reasons:
-	• **Subthreshold Leakage**: Current that flows even when $V_{gs}$ is below $V_{th}$, which increases exponentially as $V_{th}$ decreases.
-	• **Gate Oxide Leakage**: Current that sneaks through the gate oxide layer. As transistors shrink, the oxide layer gets thinner, making this form of leakage more pronounced.
+- **Subthreshold Leakage**: Current that flows even when $V_{gs}$ is below $V_{th}$, which increases exponentially as $V_{th}$ decreases.
+- **Gate Oxide Leakage**: Current that sneaks through the gate oxide layer. As transistors shrink, the oxide layer gets thinner, making this form of leakage more pronounced.
 
 ### Capacitance
 
@@ -140,6 +140,7 @@ where:
 
 
 **Energy $CV^2$**
+
 Each time a node switches from 0 to V or back again, a certain amount of charge must be transferred, incurring an energy cost of ($\frac{1}{2}CV^2$). It’s common to simplify this to $CV^2$ in 
 broader power discussions. This energy isn’t stored long-term; rather, it’s released as heat within the transistor channel during each switching event.
 
