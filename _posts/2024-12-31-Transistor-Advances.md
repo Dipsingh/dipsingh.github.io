@@ -20,8 +20,8 @@ paper, "[Cramming more components onto integrated circuits](https://www.cs.utexa
 number of transistors on integrated circuits would double roughly every two years—largely propelled by continuous advancements in lithography.
 
 Over the years, semiconductor industry followed Moore’s Law based on ideas from a 1974 paper by R. Dennard. Each new node typically cuts transistor area by around 50%, lowers 
-cost by about 30%, reduces power by 20%, and boosts performance by 25%. Together, these factors—Power, Performance, Area, and Cost (PPAC)—determine whether a node is worth pursuing. But 
-it’s important to remember that Moore’s Law is an economic principle, not a fundamental law of physics: transistor scaling endures only as long as the advantages of shrinking transistors outweigh the rising complexity and cost of making them.
+cost by about 30%, reduces power by 20%, and boosts performance by 25%. Together, these factors—Power, Performance, Area, and Cost (PPAC)—determine whether a node is worth pursuing. However, It’s 
+important to remember that Moore’s Law is an economic principle, not a fundamental law of physics: transistor scaling endures only as long as the advantages of shrinking transistors outweigh the rising complexity and cost of making them.
 
 Transistor scaling strategies have shifted dramatically over the years. In the 1990s, Dennard’s constant field scaling shrank all dimensions—gate length, 
 operating voltage, gate oxide thickness, and so forth—by the same factor ( $\frac{1}{k}$). This preserved uniform electric fields and kept power density 
