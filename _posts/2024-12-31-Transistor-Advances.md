@@ -331,7 +331,7 @@ Finfet fin dimensions for various nodes.
 | **Fin Width**      | 10   | 9    | 8    | 7   |
 | **Fin height**     | 34   | 42   | 53   | 66  |
 
-#### Scaling Strategies in the FinFET Era: Feature Shrink vs. Depopulation
+### Scaling Strategies in the FinFET Era: Feature Shrink vs. Depopulation
 
 With the advent of FinFETs, transistor scaling took on a new dimension. While the traditional approach of shrinking every component of a transistor still exists, a new “depopulation” strategy 
 emerged in which each transistor is formed with fewer features overall. These two paths—feature shrink and depopulation—are both employed in modern semiconductor processes, but practical manufacturing 
@@ -363,7 +363,7 @@ overall transistor can still meet or exceed the required power and speed targets
 taller fins are more fragile, more susceptible to etch defects, and require meticulous attention to sidewall straightness. Furthermore, gate fill using metal becomes more difficult 
 at higher aspect ratios, prompting engineers to solve new issues in deposition uniformity.
 
-## Gate-All-Around (GAA) FETs: The Next Frontier
+## Gate-All-Around (GAA) FETs
 
 Gate-all-around (GAA) devices are widely regarded as the natural successor to FinFETs for technology nodes at or below 3 nm. The essential challenge with continued FinFET scaling is 
 maintaining stringent electrostatic control—particularly evident in the subthreshold swing—which becomes more difficult as fin widths shrink. GAA technology addresses this by fully 
