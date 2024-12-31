@@ -16,7 +16,7 @@ In this overview, I will discuss transistor technology’s progression, the reas
 # Moore's Law
 
 A natural starting point is Moore’s Law, famously associated with Gordon Moore, co-founder of Intel. Moore predicted in his seminal 
-paper, "[Cramming more components onto integrated circuits](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf),"that the 
+paper, "[Cramming more components onto integrated circuits](https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf)", that the 
 number of transistors on integrated circuits would double roughly every two years—largely propelled by continuous advancements in lithography.
 
 Over the decades, the semiconductor industry pursued Moore’s Law by following guidelines from a 1974 paper by R. Dennard and colleagues. Each new 
