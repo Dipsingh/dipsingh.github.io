@@ -63,6 +63,7 @@ the technology node aligned with the actual gate length of logic transistors. Th
 {: .center}
 ![Node and Gate Length Scaling](/images/post30/fig4.png "Node and Gate Length Scaling")
 
+{: .center}
 Ref:[Semiconductor Memory Devices and Circuits](https://www.amazon.com/Semiconductor-Memory-Devices-Circuits-Shimeng/dp/0367687070)
 
 However, as technology advanced, gate lengths were aggressively scaled down to sizes much smaller than their corresponding technology nodes. Subsequently, 
@@ -164,6 +165,7 @@ You can see in the plot below how the frequency grew without Power increase unti
 {: .center}
 ![Golden Era](/images/post30/fig5.png "Golden Era")
 
+{: .center}
 Ref:[Moore’s Law and Dennard scaling](https://semiconductor.substack.com/p/the-incredible-shrinking-transistor)
 
 ## Why Dennard Scaling Broke Down
@@ -195,6 +197,7 @@ both delay and energy consumed is decreasing with new process nodes, leakage cur
 {: .center}
 ![CMOS Scaling](/images/post30/fig7.png "CMOS Scaling")
 
+{: .center}
 Ref:[CMOS Scaling](https://www.scribd.com/document/648610267/NikonovBeyondCMOS-1-scaling)
 
 # Evolution of Transistor Technology
@@ -207,6 +210,7 @@ causing a surge in electron tunneling and a corresponding rise in leakage curren
 {: .center}
 ![Performance Scaling Options](/images/post30/fig8.png "Performance Scaling Options")
 
+{: .center}
 Ref: [High Performance Options](https://ewh.ieee.org/r5/denver/sscs/Presentations/2012_12_Loke.pdf)
 
 One of the key breakthroughs came in 2003, when Intel introduced strained silicon transistors at the 90 nm node. Tensile strain applied to the NMOS channel via a high-stress film enhanced electron mobility, boosting 
@@ -215,6 +219,7 @@ on-current. Simultaneously, compressive strain in PMOS devices was achieved by r
 {: .center}
 ![Strain Engineering](/images/post30/fig9.png "Strain Engineering")
 
+{: .center}
 Ref: IEDM 2003 N90 Strain Engineering
 
 The next major leap addressed the gate dielectric. In 2007, Intel adopted high-k metal gate transistors at the 45 nm node, replacing the traditional  ${SiO_2}$  dielectric 
@@ -224,6 +229,7 @@ in NMOS and PMOS devices. This combination of high-k dielectrics and metal gate 
 {: .center}
 ![High K-dielectric](/images/post30/fig10.png "High K-dielectric")
 
+{: .center}
 Ref: Implementation of high-k dielectric and metal electrode in 45 nm technology
 
 ## FinFET: Moving to 3D
@@ -253,6 +259,7 @@ The figure below shows how, once traditional MOSFET scaling lost momentum in the
 {: .center}
 ![Transistor Evolution](/images/post30/fig13.png "Transistor Evolution")
 
+{: .center}
 Ref: [Advance Device Concepts for 7nm Node and Beyond](https://nanohub.org/resources/23283/download/IEDM_2015_advanced_device_concepts-11.pdf)
 
 By adopting FinFETs, it became possible to operate at lower voltages yet maintain lower leakage, thereby cutting power consumption by roughly 50% at the same performance level compared to the previous planar 
@@ -270,6 +277,7 @@ Below is a depiction of the core geometric parameters in a FinFET transistor, no
 {: .center}
 ![FinFet Geometry](/images/post30/fig14.png "FinFet Geometry")
 
+{: .center}
 Ref: [Asic North Finfet layout](https://www.asicnorth.com/blog/part-one-finfet-technology-and-layout/)
 
 **Metal Pitch (MP)**: The center-to-center distance between neighboring metal interconnect lines on a given routing layer.
@@ -288,6 +296,7 @@ where:
 {: .center}
 ![CPP](/images/post30/fig15.png "CPP")
 
+{: .center}
 Ref: [IEDM 2022 – TSMC 3nm](https://semiwiki.com/semiconductor-manufacturers/tsmc/322688-iedm-2022-tsmc-3nm/)
 
 Logic chips are built from standard cell libraries, where each standard CMOS cell typically contains both a PMOS and an NMOS transistor. In a FinFET design, each transistor can include 
@@ -304,6 +313,8 @@ Below are dimensions details for various TSMC nodes.
 | **10nm** | 66        | 23          | 12.5         | 18          |
 | **7nm**  | 54        | 21          | 10           | 13          |
 | **5nm**  | 51        | 19          | 9.5          | 13          |
+
+{: .center}
 Ref: [IEDM 2022 – TSMC 3nm](https://semiwiki.com/semiconductor-manufacturers/tsmc/322688-iedm-2022-tsmc-3nm/)
 
 In early FinFET designs, fins were relatively short and tapered. In the next generation, however, they evolved into taller, thinner, more rectangular structures. Taller fins increase the effective channel 
@@ -330,6 +341,7 @@ obstacles and physics constraints have made the traditional path of feature shri
 {: .center}
 ![Fin Scaling](/images/post30/fig18.png "Fin Scaling")
 
+{: .center}
 Ref: [FinFET scaling](https://semiwiki.com/semiconductor-manufacturers/tsmc/300552-vlsi-technology-forum-short-course-logic-devices/)
 
 Transistors themselves are typically arranged in arrays. For instance, imagine a FinFET array that spans eight fins in width and three gates in height, with each transistor defined by the 
@@ -344,6 +356,7 @@ two fins to each gate, keeping feature sizes constant. Although both strategies 
 {: .center}
 ![Feature Shrink](/images/post30/fig20.png "Feature Shrink")
 
+{: .center}
 Ref:[Feature shrink](https://medium.com/predict/introduction-to-gaafet-the-next-big-phase-of-computer-chip-manufacturing-84e63abe11dd)
 
 Naturally, using fewer fins lowers the total gate-well surface area, which complicates the power–performance balance. The challenge becomes enhancing each fin’s performance so that the 
@@ -363,6 +376,7 @@ We can see the geometric differences among FinFET, nanowire, and nanosheet devic
 {: .center}
 ![GAA](/images/post30/fig21.png "GAA")
 
+{: .center}
 Ref: [Comparison of FinFet, Nanowire and Nanosheet](https://www.spiedigitallibrary.org/journals/journal-of-micro-nanopatterning-materials-and-metrology/volume-21/issue-02/021206/Review-of-nanosheet-metrology-opportunities-for-technology-readiness/10.1117/1.JMM.21.2.021206.full)
 
 By placing the gate on all sides of the channel, GAA transistors minimize parasitic short-channel effects and enable higher performance and lower power consumption. At the same time, 
@@ -381,6 +395,7 @@ improvements for standard cells as compared to the conventional CMOS architectur
 {: .center}
 ![CFET](/images/post30/fig22.png "CFET")
 
+{: .center}
 Ref: [Schematic representation of a CFET device.](https://spectrum.ieee.org/forksheet-transistor)
 
 We can see that the pMOS and nMOS structures are literally placed on top of each other with a common gate (G). Their respective sources (Sp for pMOS and Sn for nMOS) and drains (Dp for pMOS and Dn for nMOS) are folded in 
@@ -396,6 +411,7 @@ Below is IMEC's prediction of potential roadmap extension
 {: .center}
 ![IMEC Roadmap](/images/post30/fig23.png "IMEC Roadmap")
 
+{: .center}
 Ref: [Imec’s prediction of potential roadmap extension](https://www.imec-int.com/en/articles/smaller-better-faster-imec-presents-chip-scaling-roadmap)
 
 # Conclusion
