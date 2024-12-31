@@ -37,6 +37,7 @@ The graph demonstrates Moore's Law in action through actual transistor counts fr
 {: .center}
 ![Moore's Law](/images/post30/fig1.png "Moore's Law")
 
+{: .center} 
 Ref: [ourworldindata: Transistor per Microprocessor](https://ourworldindata.org/grapher/transistors-per-microprocessor)
 
 Performing a linear regression on the data, I got a growth coefficient of $0.1518$ which translates to roughly of 42% annual growth ($10^{0.1518} \approx 1.421$). Over 
