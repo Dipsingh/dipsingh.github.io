@@ -281,8 +281,8 @@ Below is a depiction of the core geometric parameters in a FinFET transistor, no
 Ref: [Asic North Finfet layout](https://www.asicnorth.com/blog/part-one-finfet-technology-and-layout/)
 
 **Metal Pitch (MP)**: The center-to-center distance between neighboring metal interconnect lines on a given routing layer.
-	- **Smaller pitch:** Increases wiring density, but elevates wire resistance and can raise reliability concerns.
-	- **Larger pitch:** Eases manufacturing and lowers wire resistance, but reduces routing density.
+- **Smaller pitch:** Increases wiring density, but elevates wire resistance and can raise reliability concerns.
+- **Larger pitch:** Eases manufacturing and lowers wire resistance, but reduces routing density.
 
 **Poly (Gate) Pitch/ Contacted Gate Pitch(CGP)/Contacted Poly Pitch(CPP)**: It is the horizontal distance from the center of a transistor gate to the corresponding adjacent transistor gate. A common way to express CGP is:  
 
