@@ -289,9 +289,10 @@ Ref: [Asic North Finfet layout](https://www.asicnorth.com/blog/part-one-finfet-t
 $\text{CGP (CPP)} = L_\text{g} + 2 \times T_\text{sp} + W_\text{c}$
 
 where:
-•$L_\text{g}$ = **Gate length** (the critical dimension of the transistor channel)
-• $T_\text{sp}$ = **Spacer thickness** (material separating the gate from other regions)
-• $W_\text{c}$ = **Contact width** (size of the gate’s contact)
+
+- $L_\text{g}$ = **Gate length** (the critical dimension of the transistor channel)
+- $T_\text{sp}$ = **Spacer thickness** (material separating the gate from other regions)
+- $W_\text{c}$ = **Contact width** (size of the gate’s contact)
 
 {: .center}
 ![CPP](/images/post30/fig15.png "CPP")
