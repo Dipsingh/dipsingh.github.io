@@ -220,7 +220,7 @@ on-current. Simultaneously, compressive strain in PMOS devices was achieved by r
 {: .center}
 Ref: IEDM 2003 N90 Strain Engineering
 
-The next major leap addressed the gate dielectric. In 2007, Intel adopted high-k metal gate transistors at the 45 nm node, replacing the traditional  ${SiO_2}$  dielectric 
+The next major leap addressed the gate dielectric. In 2007, Intel adopted high-k metal gate transistors at the 45nm node, replacing the traditional ${SiO_2}$ dielectric 
 with a hafnium-based high-k material—thereby reducing gate leakage and enhancing drive currents. In parallel, metal electrodes supplanted doped polysilicon gates to fine-tune threshold voltages 
 in NMOS and PMOS devices. This combination of high-k dielectrics and metal gate electrodes transformed transistor design, lowering leakage current and enhancing device performance.
 
@@ -269,7 +269,9 @@ planar device, which conducts only along one surface.
 Below is a depiction of the core geometric parameters in a FinFET transistor, noting that a single transistor can include multiple fins:
 
 **Fin Thickness(Fth)**: The width of each fin.
+
 **Fin Height(FH)**: The vertical dimension of the fin. Taller fins effectively increase the channel width, allowing the gate to enclose more area and resulting in higher drive current.
+
 **Fin Pitch(FP)**:The distance between adjacent fins. A smaller fin pitch allows more transistors to be packed into the same area.
 
 {: .center}
