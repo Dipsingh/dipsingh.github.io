@@ -383,7 +383,7 @@ By placing the gate on all sides of the channel, GAA transistors minimize parasi
 however, they demand more complex fabrication steps, tighter layout constraints, and innovations in spacer and contact engineering, as well as potential changes to standard-cell design. Overall, 
 GAA represents a key evolution in transistor architecture, pushing beyond the limits of FinFET scaling to continue delivering improvements in performance, leakage control, and power efficiency.
 
-TSMC 2NM technology will be based on Gate All Around transistors([TSMC Details Its High-End “2nm Process”, Revealing Massive Performance & Efficiency Improvements](https://wccftech.com/tsmc-details-its-high-end-2nm-process-revealing-performance-efficiency-improvements/#:~:text=TSMC's%20%22N2%20Nanosheet%22%20Implementation%20Has,the%20highlight%20of%20the%20briefing.)).
+TSMC 2NM technology will be based on Gate All Around transistors [TSMC Details Its High-End “2nm Process”, Revealing Massive Performance & Efficiency Improvements](https://wccftech.com/tsmc-details-its-high-end-2nm-process-revealing-performance-efficiency-improvements/#:~:text=TSMC's%20%22N2%20Nanosheet%22%20Implementation%20Has,the%20highlight%20of%20the%20briefing.).
 
 ## CFET: Stacking pMOS and nMOS for True 3D
 
