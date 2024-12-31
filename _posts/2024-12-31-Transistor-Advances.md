@@ -27,8 +27,8 @@ crucial to understand that Moore’s Law is an economic principle, not a fundame
 of shrinking transistors outweigh the rising complexity and cost of making them.
 
 Transistor scaling strategies have shifted dramatically over the years. In the 1990s, Dennard’s constant field scaling shrank all dimensions—gate length, 
-operating voltage, gate oxide thickness, and so forth—by the same factor ( $\tfrac{1}{k}$). This preserved uniform electric fields and kept power density 
-in check while boosting performance. Since both dimensions and voltage dropped by ( $\tfrac{1}{k}$), transistors ran faster by the same factor without raising power consumption.
+operating voltage, gate oxide thickness, and so forth—by the same factor ( $\frac{1}{k}$). This preserved uniform electric fields and kept power density 
+in check while boosting performance. Since both dimensions and voltage dropped by ( $\frac{1}{k}$), transistors ran faster by the same factor without raising power consumption.
 
 As dimensions pushed even smaller, however, constant field scaling hit roadblocks such as threshold voltage constraints and rising leakage currents. This led 
 to the modern "general scaling" approach, which optimizes power, performance, and area independently, making trade-offs wherever necessary.
@@ -107,8 +107,8 @@ every capacitance hanging on its output. Both the switching speed and power cons
 
 ### Transistor Delay and Power
 
-**Transistor Delay ($\tfrac{CV}{I}$)**
-When a transistor switches, it charges or discharges a total load capacitance $C$ via its drive current $I$. The delay ($\tfrac{CV}{I}$) approximates how long this process takes. You can picture the 
+**Transistor Delay ($\frac{CV}{I}$)**
+When a transistor switches, it charges or discharges a total load capacitance $C$ via its drive current $I$. The delay ($\frac{CV}{I}$) approximates how long this process takes. You can picture the 
 capacitance as a "bucket" of charge, the voltage V as the "pressure" pushing charge in or out, and the current $I$ as the "flow rate." Each switching event moves a charge of $Q = CV$. A larger 
 capacitance ("bigger bucket") or higher voltage ("more pressure") increases the total charge that must be transferred, prolonging the delay. In contrast, a higher current fills or empties the bucket faster, reducing delay.
 
@@ -141,7 +141,7 @@ where:
 
 
 **Energy $CV^2$**
-Each time a node switches from 0 to V or back again, a certain amount of charge must be transferred, incurring an energy cost of ($\tfrac{1}{2}CV^2$). It’s common to simplify this to $CV^2$ in 
+Each time a node switches from 0 to V or back again, a certain amount of charge must be transferred, incurring an energy cost of ($\frac{1}{2}CV^2$). It’s common to simplify this to $CV^2$ in 
 broader power discussions. This energy isn’t stored long-term; rather, it’s released as heat within the transistor channel during each switching event.
 
 # Dennard Scaling: The Golden Age of Power Efficiency
