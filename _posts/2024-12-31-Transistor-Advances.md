@@ -403,7 +403,7 @@ such a way that interconnects can be routed more compactly. Since both pMOS and 
 fit neatly into gate-all-around (GAA) flows: once the bottom device is formed up to the source/drain level, the top device can then be fabricated over it, with proper sealing steps to isolate one tier while processing the other.
 
 One of the biggest advantages of CFET, besides layout area reduction, is its ability to ease some of the parasitic effects that hamper 2D scaling. By exploiting a true three-dimensional structure, CFET addresses routing 
-overheads in the “x-y” plane and can help mitigate RC delay increases that come from shrinking pitch sizes. However, realizing CFET in a manufacturing flow does introduce complexity. The top device must tolerate a low-thermal-budget 
+overheads in the “x-y” plane. However, realizing CFET in a manufacturing flow does introduce complexity. The top device must tolerate a low-thermal-budget 
 process to avoid degrading the bottom device, and the entire stack requires reliable isolation layers.
 
 Below is IMEC's prediction of potential roadmap extension
