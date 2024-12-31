@@ -296,6 +296,7 @@ where:
 {: .center}
 ![CPP](/images/post30/fig15.png "CPP")
 
+{: .center}
 Ref: [IEDM 2022 – TSMC 3nm](https://semiwiki.com/semiconductor-manufacturers/tsmc/322688-iedm-2022-tsmc-3nm/)
 
 Logic chips are built from standard cell libraries, where each standard CMOS cell typically contains both a PMOS and an NMOS transistor. In a FinFET design, each transistor can include 
@@ -313,7 +314,6 @@ Below are dimensions details for various TSMC nodes.
 | **7nm**  | 54        | 21          | 10           | 13          |
 | **5nm**  | 51        | 19          | 9.5          | 13          |
 
-{: .center}
 Ref: [IEDM 2022 – TSMC 3nm](https://semiwiki.com/semiconductor-manufacturers/tsmc/322688-iedm-2022-tsmc-3nm/)
 
 In early FinFET designs, fins were relatively short and tapered. In the next generation, however, they evolved into taller, thinner, more rectangular structures. Taller fins increase the effective channel 
