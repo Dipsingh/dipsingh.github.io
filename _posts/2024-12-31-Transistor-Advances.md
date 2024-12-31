@@ -6,11 +6,11 @@ title: Transistor Advances -  From Planar MOSFETs to CFET Stacks
 > “No exponential is forever, but we can delay ‘forever’.” — Gordon Moore
 
 For many of us in network engineering, it's easy to overlook the semiconductor technology that makes our work possible. While we are 
-focused on packet processing details and how network protocols work, the word of transistor design and semiconductor manufacturing 
+focused on packet processing details and how network protocols work, the world of transistor design and semiconductor engineering 
 is what drives the continuous improvement of networking hardware.
 
 When we hear about new silicon offering improvements like higher bandwidth or lower latency, it's easy to forget about the innovations 
-taking place in the semiconductors that make it happen. Understanding these advancements helps us appreciate the challenges of modern transistor scaling.
+taking place in the semiconductors that make it happen. Having an understanding of these advancements helps us appreciate the challenges of modern transistor scaling.
 
 Today I will explore how transistors technology has progressed, why Dennard scaling stopped working, and the next steps beyond FinFETs and 3D stacking.
 
