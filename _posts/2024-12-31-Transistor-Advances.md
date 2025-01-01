@@ -184,7 +184,7 @@ Additionally, Dennard’s law assumed continuous increases in channel doping con
 
 All these limitations collectively ended Dennard scaling and compelled the industry to seek new avenues for further progress.
 
-Below is a comparison of the Transistor structure from Dennard's 1974 paper with Intel's 65nm generation in 2005. You can the gate length decreased from $\approx 1\mu\text{m}$ to $35nm$ and gate oxide thickness from $35nm$ to $1.2nm$. 
+Below is a comparison of the Transistor structure from Dennard's 1974 paper with Intel's 65nm generation in 2005. You can see the gate length decreased from $\approx 1\mu\text{m}$ to $35nm$ and gate oxide thickness from $35nm$ to $1.2nm$. 
 
 {: .center}
 ![Transistor Comparison](/images/post30/fig6.png "Transistor Comparison")
