@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hashing Strategies for High-Speed Packet Processing
+title: Hashing Strategies for Packet Processing
 ---
 
 >  “It is not easy to become an educated person.”  - Richard Hamming
