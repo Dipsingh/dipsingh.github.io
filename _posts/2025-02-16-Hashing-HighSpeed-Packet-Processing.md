@@ -232,10 +232,6 @@ items that share the same hash value.
 6. **Insertion:** Place the key (and its associated value) into a linked list (or similar data structure) within that bucket.
 7. **Multiple Items:** If several keys hash to the same bucket, they are all stored in that bucket’s list.
 
-**Search and Insertion Process:**
-- **Insertion:** Compute the hash to locate the appropriate bucket, then simply add the new key to that bucket’s list.
-- **Search:** Compute the hash to find the bucket, then scan through its list to locate the target key.
-
 In an ideal scenario, most buckets end up holding 0 or 1 items, and only occasionally do you see a small chain of collisions. However, if many 
 items end up in the same bucket (resulting in long chains), lookup performance can degrade significantly, much like a linear search. In such cases, 
 it might be more effective to improve the hash function or resize the table rather than overhauling the collision resolution strategy itself.
