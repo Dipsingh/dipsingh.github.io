@@ -402,37 +402,37 @@ When you query an element that wasn’t inserted, the Bloom filter checks the **
 these bits are 1, the filter indicates that the element might be present—a false positive. Assuming each bit is independently 1 with probability
 
 $$
-p = 1 - \left(1 - \frac{1}{m}\right)^{k n}
+\hspace{5cm} p = 1 - \left(1 - \frac{1}{m}\right)^{k n}
 $$
 
 false positive probability (FPP) for $k$ bits is:
 
 $$
-\text{FPP} = p^k = \left[1 - \left(1 - \frac{1}{m}\right)^{k n}\right]^k.
+\hspace{5cm} \text{FPP} = p^k = \left[1 - \left(1 - \frac{1}{m}\right)^{k n}\right]^k.
 $$
 
 When m is large, the term
 
 $$
-\left(1 - \frac{1}{m}\right)^{k n}
+\hspace{5cm} \left(1 - \frac{1}{m}\right)^{k n}
 $$
 
 can be approximated by an exponential function. Using the approximation
 
 $$
-\left(1 - \frac{1}{m}\right)^{k n} \approx e^{-\frac{k n}{m}},
+\hspace{5cm} \left(1 - \frac{1}{m}\right)^{k n} \approx e^{-\frac{k n}{m}},
 $$
 
 This, we have:
 
 $$
-p \approx 1 - e^{-\frac{k n}{m}},
+\hspace{5cm} p \approx 1 - e^{-\frac{k n}{m}},
 $$
 
 and the false positive probability becomes:
 
 $$
-\text{FPP} \approx \left(1 - e^{-\frac{k n}{m}}\right)^k.
+\hspace{5cm} \text{FPP} \approx \left(1 - e^{-\frac{k n}{m}}\right)^k.
 $$
 
 This exponential form is a standard approximation in mathematics, deriving from the limit $(1 - 1/x)^x \approx e^{-1}$ for large **x**.
@@ -461,7 +461,7 @@ A Bloom filter is built using three main parameters:
 Each time you add an element, all k hash functions set specific bits to 1. The optimal number of hash functions minimizes the false positive probability and is given by:
 
 $$
-k_{\min} = \frac{m}{n} \ln(2).
+\hspace{5cm} k_{\min} = \frac{m}{n} \ln(2).
 $$
 
 This result is derived by differentiating the false positive probability with respect to k and finding its minimum. The factor $\ln(2) \approx 0.693$ arises 
@@ -470,19 +470,19 @@ from the exponential behavior of the bit-setting process.
 Substituting the optimal $k$ back into the approximation for the false positive probability yields:
 
 $$
-\text{FPP} \approx \left(1 - e^{-\ln 2}\right)^{\frac{m}{n}\ln 2} = \left(\frac{1}{2}\right)^{\frac{m}{n}\ln 2}.
+\hspace{5cm} \text{FPP} \approx \left(1 - e^{-\ln 2}\right)^{\frac{m}{n}\ln 2} = \left(\frac{1}{2}\right)^{\frac{m}{n}\ln 2}.
 $$
 
 This can also be expressed as:
 
 $$  
-\text{FPP} \approx e^{-\frac{m}{n} (\ln 2)^2},
+\hspace{5cm} \text{FPP} \approx e^{-\frac{m}{n} (\ln 2)^2},
 $$
 
 or, equivalently,
 
 $$
-\text{FPP} \approx \left(0.6185\right)^{\frac{m}{n}},
+\hspace{5cm} \text{FPP} \approx \left(0.6185\right)^{\frac{m}{n}},
 $$
 
 since $e^{-(\ln 2)^2} \approx 0.6185$.
@@ -492,19 +492,19 @@ since $e^{-(\ln 2)^2} \approx 0.6185$.
 Often, you know the acceptable false positive rate p and the number of items n. A common formula to determine the required bits per element is:
 
 $$
-\frac{m}{n} = -\frac{\ln(p)}{(\ln(2))^2}.
+\hspace{5cm} \frac{m}{n} = -\frac{\ln(p)}{(\ln(2))^2}.
 $$
 
 For example, if you aim for a false positive rate of 1% (p = 0.01):
 
 $$
-\frac{m}{n} = -\frac{\ln(0.01)}{(0.693)^2} \approx \frac{4.605}{0.480} \approx 9.585.
+\hspace{5cm} \frac{m}{n} = -\frac{\ln(0.01)}{(0.693)^2} \approx \frac{4.605}{0.480} \approx 9.585.
 $$
 
 You would typically round up to about 10 bits per element. With this, the optimal number of hash functions becomes:
 
 $$
-k_{\min} = \frac{m}{n} \ln(2) \approx 9.585 \times 0.693 \approx 6.64,
+\hspace{5cm} k_{\min} = \frac{m}{n} \ln(2) \approx 9.585 \times 0.693 \approx 6.64,
 $$
 
 which you would round to 7 hash functions.
@@ -515,19 +515,19 @@ which you would round to 7 hash functions.
 - Calculate the bits per element needed:
 
 $$
-\frac{m}{n} = -\frac{\ln(p)}{(\ln 2)^2}.
+\hspace{5cm} \frac{m}{n} = -\frac{\ln(p)}{(\ln 2)^2}.
 $$
 
 - Determine the total number of bits:
 
 $$
-m = n \times \left(-\frac{\ln(p)}{(\ln 2)^2}\right).
+\hspace{5cm} m = n \times \left(-\frac{\ln(p)}{(\ln 2)^2}\right).
 $$
 
 - Determine the optimal number of hash functions:
 
 $$
-k_{\min} = \frac{m}{n} \ln(2).
+\hspace{5cm} k_{\min} = \frac{m}{n} \ln(2).
 $$
 
 {: .center}
