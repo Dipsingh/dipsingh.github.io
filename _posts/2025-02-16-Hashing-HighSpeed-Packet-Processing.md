@@ -101,11 +101,11 @@ happen with fewer items than one might expect.
 The load factor($\alpha$) is an important metric for hash tables, defined as $\alpha = \frac{n}{k}$.  Where $n$ is the number of elements stored 
 and $k$ is the total number of buckets. This ratio tells you how full the table is.
 
-**High Load Factor:** When $\alpha$ is high, many elements end up in the same bucket, increasing the likelihood of collisions. More collisions mean 
+High Load Factor: When $\alpha$ is high, many elements end up in the same bucket, increasing the likelihood of collisions. More collisions mean 
 that lookups take longer because multiple entries must be examined in a single bucket. To keep lookups fast, hash tables are typically resized when 
 the load factor exceeds a certain threshold.
 
-**Low Load Factor:** Conversely, if $\alpha$ is very low, the table is mostly empty. While this reduces collisions, it also wastes memory. The goal 
+Low Load Factor: Conversely, if $\alpha$ is very low, the table is mostly empty. While this reduces collisions, it also wastes memory. The goal 
 is to maintain a balanced load factor—enough to use memory efficiently, but low enough to avoid excessive collisions.
 
 **Balanced Distribution**
