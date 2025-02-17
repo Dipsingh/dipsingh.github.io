@@ -437,7 +437,7 @@ $$
 
 This exponential form is a standard approximation in mathematics, deriving from the limit $(1 - 1/x)^x \approx e^{-1}$ for large **x**.
 
-**4. How m, k, and n Affect False Positives**
+**How m, k, and n Affect False Positives**
 
 **Increasing m (the number of bits)**: With a larger bit array and a fixed number of elements n, fewer collisions occur; hence, the false positive probability decreases.
 
@@ -587,8 +587,8 @@ very even spread of items among buckets.
 # Application of Hashing techniques
 
 We have now discussed the fundamental concepts and challenges related to hashing. Next, I will shift to a practical perspective on how these techniques can be applied 
-in high-speed networking hardware. I want to caveat that I am not a hardware design expert; my insights are primarily based on research and the limited information 
-which is available . My goal is to provide enough context and understanding so that we at least know what questions to ask. Often, we aren't even aware of the 
+in high-speed networking hardware. I want to caveat that I am not a hardware design expert; my insights are primarily based on research and the information available to public. My goal 
+is to provide enough context and understanding so that we at least know what questions to ask. Often, we aren't even aware of the 
 questions we should be asking.
 
 ## Open Addressing with Fixed-Size Buckets
@@ -604,13 +604,13 @@ each lookup will require only a bounded number of comparisons (e.g., at most fou
 Key characteristics of open addressing in hardware include:
 
 - **Fixed Bucket Capacity**: Each hash bucket has a limited number of slots, often determined by the number of entries that can be accessed in a single memory read or 
-- clock cycle. If a bucket overflows, the hardware or control plane must address the issue—either by rehashing with a new hash function, using an overflow area, or 
-- evicting an existing entry (as in cuckoo hashing). In practice, hash tables are sized with enough spare capacity so that overflows are rare and can be handled separately.
+clock cycle. If a bucket overflows, the hardware or control plane must address the issue—either by rehashing with a new hash function, using an overflow area, or 
+evicting an existing entry (as in cuckoo hashing). In practice, hash tables are sized with enough spare capacity so that overflows are rare and can be handled separately.
 
 - **Probe Sequences**: A basic open addressing method is linear probing, where, if the intended bucket is full, the next consecutive slot is checked, and so on. However, 
-- pure linear probing can lead to unbounded probe chains in worst-case scenarios, which is not acceptable in hardware. To ensure predictable performance, designers 
-- either avoid linear probing by imposing strict limits on the probe length or employ alternative methods—such as double hashing, quadratic probing, multi-hash, or 
-- cuckoo schemes—to maintain time-bounded lookups.   
+pure linear probing can lead to unbounded probe chains in worst-case scenarios, which is not acceptable in hardware. To ensure predictable performance, designers 
+either avoid linear probing by imposing strict limits on the probe length or employ alternative methods—such as double hashing, quadratic probing, multi-hash, or 
+cuckoo schemes—to maintain time-bounded lookups.   
 
 ## Multiple-Hashing (d-way and d-left Hashing)
 
