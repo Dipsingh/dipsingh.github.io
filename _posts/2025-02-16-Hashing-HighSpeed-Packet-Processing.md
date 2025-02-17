@@ -368,13 +368,13 @@ likely to select any of the **m** positions.
 For one hash function, the probability that it does not set a particular bit is:
 
 $$
-1 - \frac{1}{m}
+\hspace{5cm} 1 - \frac{1}{m}
 $$
 
 With **k** independent hash functions used during a single insertion, the probability that a given bit remains off is:
 
 $$
-\left(1 - \frac{1}{m}\right)^k
+\hspace{5cm} \left(1 - \frac{1}{m}\right)^k
 $$
 
 **Probability That a Single Bit Remains Off After n Insertions:**
@@ -382,13 +382,13 @@ $$
 Assuming independence across insertions, after inserting **n** items the probability that a specific bit stays off is:
 
 $$
-\left(1 - \frac{1}{m}\right)^{k \cdot n}
+\hspace{5cm} \left(1 - \frac{1}{m}\right)^{k \cdot n}
 $$
 
 Thus, the probability that the bit is set (i.e., becomes 1) is:
 
 $$
-1 - \left(1 - \frac{1}{m}\right)^{k \cdot n}
+\hspace{5cm} 1 - \left(1 - \frac{1}{m}\right)^{k \cdot n}
 $$
 
 The below plot maps the probability of a bit being set as 0 or 1, as more things are added for 3 hash functions.
