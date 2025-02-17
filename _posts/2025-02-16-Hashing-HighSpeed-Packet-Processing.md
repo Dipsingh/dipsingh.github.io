@@ -616,15 +616,15 @@ cuckoo schemes—to maintain time-bounded lookups.
 
 To reduce collisions and balance load, multiple-hashing schemes provide each key with several potential locations in the hash table. Instead of relying 
 on a single hash function, these methods use d independent hash functions to generate d candidate buckets for every entry. Two commonly used approaches 
-in this category are d-way hashing with chaining and d-left hashing (also known as multilevel hashing)**.
+in this category are d-way hashing with chaining and d-left hashing.
 
-**d-way Hashing with Chaining**:  In this method, the hash table is conceptually divided into d parallel sub-tables. When inserting a key, it is hashed d 
-times (or with d different salts), resulting in d candidate buckets. The key is then placed in any bucket that has available space—typically by adding it to a 
-chain. During a lookup, all d candidate locations are checked (either in parallel or sequentially) until the key is found. Theoretical work by Azar and colleagues 
+**d-way Hashing with Chaining**:  In this method, the hash table is conceptually divided into `d` parallel sub-tables. When inserting a key, it is hashed `d` 
+times (or with `d` different salts), resulting in `d` candidate buckets. The key is then placed in any bucket that has available space—typically by adding it to a 
+chain. During a lookup, all `d` candidate locations are checked (either in parallel or sequentially) until the key is found. Theoretical work by Azar and colleagues 
 shows that even with just two choices (d = 2), the maximum chain length can drop exponentially compared to a single-hash scheme. In practice, using between two and 
 four hash functions already yields a significant improvement in the distribution of entries.
 
- **d-left Hashing (Multilevel)**: Designed with hardware efficiency in mind, d-left hashing divides the hash table into d equal segments arranged in order from
+ **d-left Hashing (Multilevel)**: Designed with hardware efficiency in mind, d-left hashing divides the hash table into `d` equal segments arranged in order from
  left to right, with each segment having its own hash function. For an insertion, the key is hashed once per segment, and the candidate buckets are examined in 
  sequence. The key is placed in the **leftmost** segment that offers an empty slot—a “first fit” approach. This strategy not only balances the occupancy across 
  segments but also minimizes the maximum load per bucket. Vöcking’s work has shown that d-left hashing is asymptotically optimal for balancing bucket loads. If 
