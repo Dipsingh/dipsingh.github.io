@@ -655,7 +655,7 @@ than being handled directly during packet forwarding.
 
 **Memory Efficiency and Relocation**: Cuckoo hashing generally achieves high load factors—often 80% or more—while still guaranteeing O(1) lookup times. However, as 
 the table becomes nearly full, insertions may trigger a cascade of evictions or even fail if a cycle is detected. To address this, hardware designers usually 
-provision extra capacity to keep load factors moderate and employ efficient rehashing strategies when necessary. Some modern switch ASICs include small secondary 
+provision extra capacity to keep load factors moderate and employ efficient rehashing strategies when necessary. ASICs can include small secondary 
 tables or fallback mechanisms to handle the rare cases of insertion failure, ensuring that packet forwarding continues uninterrupted while the control plane can 
 address the issue with a global rehash or expansion.
 
@@ -665,17 +665,10 @@ address the issue with a global rehash or expansion.
 In networking hardware, Bloom filters are employed to accelerate lookups on large tables or slower memory by quickly eliminating keys that are not 
 present. Some key applications include:
 
-**Longest Prefix Match (Routing Tables):** Traditional longest prefix match (LPM) algorithms can be resource-intensive, requiring searches through multiple 
-prefix lengths or traversals of a trie. By associating a Bloom filter with each possible prefix length stored in fast memory, the router can rapidly determine 
-which prefix lengths might contain a match. When a packet arrives, the router hashes the destination IP for each prefix length (usually starting from the longest) 
-and checks the Bloom filters in parallel. The longest prefix that returns a “possibly present” result is then used to perform a single lookup in the actual 
-routing table stored in slower memory. With a low false-positive rate (around 5%), this approach typically requires about 1.4 memory accesses per lookup, 
-a marked improvement over exhaustive searches.
-
 **Distributed Tables and Caches:** In some architectures, a large forwarding table is split between a small, fast on-chip cache and a larger, slower 
 DRAM-based table. A Bloom filter is maintained for the larger table to quickly ascertain whether an item might be present. If the cache lookup misses, 
 the Bloom filter is consulted before fetching data from DRAM. This ensures that if the item is definitely not in the large table, a slow DRAM access is 
-avoided, thereby enhancing overall performance.
+avoided.
 
 **Packet Classification and ACLs:** Bloom filters can also be used in packet classification engines. By assigning a Bloom filter to each category or 
 segment of rules (such as those in access control lists), the system can swiftly eliminate entire groups of rules that do not apply to the packet, thus 
@@ -684,14 +677,8 @@ reducing the number of detailed comparisons required.
 **Hardware Implementation Considerations:** Implementing Bloom filters in ASICs is relatively straightforward. They primarily require a large bit array 
 and units to compute several hash functions. To achieve high-speed performance, the bit array is often partitioned across multiple memory banks, allowing 
 parallel access to the necessary bits. Although the possibility of false positives means that an extra lookup might occasionally be triggered, this 
-trade-off is acceptable when balanced against the benefit of avoiding unnecessary memory accesses. By allocating sufficient bits per entry (typically 8 or 10), the 
+trade-off is acceptable when balanced against the benefit of avoiding unnecessary memory accesses. By allocating sufficient bits per entry, the 
 false-positive rate can be kept very low.
-
-For example, assuming a router that stores its IPv6 Forwarding Information Base (FIB) in external memory due to its large size. Such a router might use a 
-hash table (e.g., based on cuckoo hashing) for the FIB while maintaining an on-chip Bloom filter for each prefix length or range. When a lookup is 
-initiated, the ASIC sequentially checks Bloom filters corresponding to different prefix lengths (from /128 downwards). For instance, if the 
-destination is 2001:db8::/64, the Bloom filter for /64 is checked first. If it indicates a possible match, the ASIC performs an SRAM/DRAM lookup 
-using the full key. If the lookup fails (a false positive), it moves on to the next candidate.
 
 In summary, Bloom filters act as efficient “traffic cops” for memory accesses in high-speed routers, directing lookups only toward those areas where a 
 match is likely and significantly reducing both average and worst-case lookup times.
@@ -724,9 +711,8 @@ change the theoretical properties of the hash table, it distributes the computat
 designs, part of the lookup—such as a Bloom filter check or partial index computation—occurs in one stage, with the remainder processed in subsequent stages. Although 
 vendors tend to keep the specifics proprietary, the general objective is to ensure that no single hash computation or memory access exceeds the allotted time for its stage.
   
-In summary, hybrid approaches are prevalent because no single technique is optimal in every scenario. Router ASIC designers blend these methods to meet multiple 
-objectives—speed, low memory usage, high load tolerance, and ease of updates—leveraging hashing as a core tool. By integrating deterministic structures like small 
-TCAMs or fixed-route caches for handling corner cases, these systems form a highly optimized lookup subsystem capable of efficiently managing the immense scale of modern networks.
+In summary, hybrid approaches are prevalent because no single technique is optimal in every scenario. We blend these methods to meet multiple 
+objectives—speed, low memory usage, high load tolerance, and ease of updates—leveraging hashing as a core tool. 
 
 ## Pipeline and Parallel Lookups
 
@@ -737,26 +723,23 @@ the lookup operations and leveraging parallel memory accesses.
 **Pipelined Lookup Stages:**  When a hash table lookup requires multiple memory accesses—such as checking two potential buckets or first consulting a Bloom filter followed 
 by a table lookup—these accesses can be divided among successive pipeline stages. For example, in Stage 1, the hardware computes the hash and reads from the first 
 bucket; if necessary, Stage 2 handles the read for the second bucket. By overlapping these stages, while one packet is in Stage 2, another can begin in Stage 1. Although 
-each packet might experience a latency of two cycles, the overall throughput remains one packet per cycle. Modern switch ASICs break down even complex operations into 
+each packet might experience a latency of two cycles, the overall throughput remains one packet per cycle. ASICs break down operations into 
 tightly timed steps, ensuring that no single lookup step becomes a bottleneck.
 
 **Parallel Memory Access (Multi-Bank):**  Hashing techniques such as d-way and cuckoo hashing are designed to exploit parallelism by distributing table segments across 
 multiple memory banks. For instance, in a d-left hash table with four segments, the device attaches four independent SRAM blocks. A lookup then computes four hash values 
 and issues four simultaneous reads—one to each bank—so that the overall lookup time is determined by the slowest of these parallel accesses. Even with a 2-way cuckoo hash 
-table, duplicating memory or using dual-ported SRAM allows both candidate locations to be read concurrently. While adding more memory banks can increase silicon area and 
-may lead to underutilization if not all banks are needed, typical configurations (using 2 to 4 banks) provide a balanced solution.
+table, duplicating memory or using dual-ported SRAM allows both candidate locations to be read concurrently.
 
-**Parallel Pipelines:**  High-end devices sometimes incorporate multiple pipeline replicas that operate in parallel on different segments of traffic (for example, splitting 
-traffic by port groups). Each pipeline can have its own copy of critical tables, reducing the per-pipeline load. For example, a 12.8 Tb/s switch might internally be divided 
-into four pipelines of 3.2 Tb/s each, each equipped with its own hash table for MAC address lookups. Although the software view remains that of a single unified table, 
-hardware partitioning ensures that memory access requests are distributed evenly, which is crucial for maintaining high performance.
+**Parallel Pipelines:** ASICs incorporate multiple pipeline replicas that operate in parallel. Each pipeline can have its own copy of critical tables, reducing the per-pipeline load. For 
+example, a 12.8 Tb/s switch might internally have four pipelines, each with its own hash table for MAC address lookups. Although the 
+software view remains that of a single unified table, hardware partitioning ensures that memory access requests are distributed evenly.
 
 **Avoiding Stall Conditions:** The effectiveness of pipelining depends on ensuring that each stage performs a predictable, fixed amount of work. Algorithms that require 
 unbounded probing or have variable latency can disrupt the pipeline and cause stalls. Therefore, hardware hash tables are designed to execute a fixed number of memory 
 operations—often in parallel—per lookup. If a lookup fails to find a result in the predetermined number of slots, it simply returns a miss without initiating further 
 searches in the data plane. For example, if a key is not found after checking its two candidate cuckoo buckets, the packet is handled as unknown (e.g., flooded for a MAC address), 
-and any necessary corrections are managed by the control plane. This disciplined approach prevents unexpected delays and ensures that the forwarding pipeline continues to 
-operate at full speed.
+and any necessary corrections are managed by the control plane.
 
 # Conclusion
 
