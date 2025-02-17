@@ -620,26 +620,20 @@ in this category are d-way hashing with chaining and d-left hashing.
 
 **d-way Hashing with Chaining**:  In this method, the hash table is conceptually divided into `d` parallel sub-tables. When inserting a key, it is hashed `d` 
 times (or with `d` different salts), resulting in `d` candidate buckets. The key is then placed in any bucket that has available space—typically by adding it to a 
-chain. During a lookup, all `d` candidate locations are checked (either in parallel or sequentially) until the key is found. Theoretical work by Azar and colleagues 
-shows that even with just two choices (d = 2), the maximum chain length can drop exponentially compared to a single-hash scheme. In practice, using between two and 
+chain. During a lookup, all `d` candidate locations are checked (either in parallel or sequentially) until the key is found. Prior theoretical work shows that 
+even with just two choices (d = 2), the maximum chain length can drop exponentially compared to a single-hash scheme. In practice, using between two and 
 four hash functions already yields a significant improvement in the distribution of entries.
 
  **d-left Hashing (Multilevel)**: Designed with hardware efficiency in mind, d-left hashing divides the hash table into `d` equal segments arranged in order from
  left to right, with each segment having its own hash function. For an insertion, the key is hashed once per segment, and the candidate buckets are examined in 
  sequence. The key is placed in the **leftmost** segment that offers an empty slot—a “first fit” approach. This strategy not only balances the occupancy across 
- segments but also minimizes the maximum load per bucket. Vöcking’s work has shown that d-left hashing is asymptotically optimal for balancing bucket loads. If 
- every candidate bucket is already full, the system recognizes that the table is too congested, prompting the control software to trigger a rehash or expansion.
+ segments but also minimizes the maximum load per bucket. If every candidate bucket is already full, the system recognizes that the table is too congested, prompting 
+ the control software to trigger a rehash or expansion.
 
 **Why Multiple-Hashing is Used in Routers and Switches:** The main advantage of multiple-hashing in networking hardware is the ability to perform bounded and 
-parallel lookups. In a d-left hash table, each of the d candidate positions resides in a separate memory segment or bank. This enables the hardware to check all 
-positions in parallel, resulting in a lookup that requires at most d simultaneous memory reads. The process is straightforward—hardware can compute all d hash 
+parallel lookups. In a d-left hash table, each of the `d` candidate positions resides in a separate memory segment or bank. This enables the hardware to check all 
+positions in parallel, resulting in a lookup that requires at most `d` simultaneous memory reads. The process is straightforward—hardware can compute all `d` hash 
 functions concurrently (or through pipelining) and issue parallel memory accesses—ensuring a constant-time lookup with no long probe chains and efficient memory utilization.
-
-**d-left vs. d-way in Practice:** While both methods provide multiple placement options to mitigate collisions, d-left hashing is often favored in hardware 
-implementations. Its design avoids the use of pointers and enables parallel probing of fixed locations, inherently limiting the number of entries per 
-bucket (usually to one or a small fixed number). By partitioning memory into d independent segments, d-left hashing simplifies insertions (requiring at most one write) 
-and avoids the overhead of managing long chains. Although real-world systems may adapt these algorithms to fit specific requirements, the core ideas of using 
-multiple hash functions and placing entries in the first available slot remain fundamental to achieving robust and predictable hash table performance.
 
 ## Cuckoo Hashing
   
