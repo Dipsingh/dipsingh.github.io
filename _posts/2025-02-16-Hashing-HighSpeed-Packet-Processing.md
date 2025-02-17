@@ -241,7 +241,7 @@ it might be more effective to improve the hash function or resize the table rath
 Multiplicative hashing computes the hash index using the formula:
 
 $$
-\text{index} = \left\lfloor (n \cdot A \mod 1) \cdot m \right\rfloor
+\hspace{5cm} \text{index} = \left\lfloor (n \cdot A \mod 1) \cdot m \right\rfloor
 $$
 
 Here, $n$ is the numeric representation of the key, $A$ is a carefully chosen constant (often around 0.618, derived from the golden ratio), and $m$ is 
