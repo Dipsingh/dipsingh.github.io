@@ -29,22 +29,22 @@ into a much smaller, more manageable table. This simplifies storage and provides
 {: .center}
 ![Lookup Table](/images/post31/fig3.png "Lookup Table")
 
-Hash tables provide a flexible solution for exact-match lookups by delivering near-constant lookup times while naturally handling 
-multiple fields—simply combine the relevant header fields into one hashed value. The main challenge is designing these tables to 
-support line-rate traffic, ensuring that lookups occur fast enough for routers to process packets in real time without delay.
+The main challenge is designing these tables to support line-rate traffic, ensuring that lookups occur fast enough for routers 
+to process packets in real time without delay.
 
 We will explore hashing by first reviewing the fundamentals, including key concepts like hash functions, load factors, and collision 
 probabilities. Then, we'll examine collision resolution techniques such as chaining, open addressing, and perfect hashing, discussing 
 their advantages and trade-offs. Finally, we'll cover advanced topics like multiplicative and universal hashing, cuckoo hashing, Bloom filters, 
 and d-left hashing, focusing on their importance in hardware contexts with parallelism and bounded latency.
 
-# **Hashing Fundamentals**
+# Hashing Fundamentals
 
 ## Basic Hashing
 
-Hashing is a technique that maps a key to a specific position in a table using tow main steps:
+Hashing is a technique that maps a key to a specific position in a table using two main steps:
 
 1) Compute the hash value: Apply a hash function to the key to get a numeric value. $\text{hash} = \text{hashfunc}(\text{key})$
+
 2) Determine the table index: Use the modulo operation to ensure the index fits within the table bounds. $\text{index} = \text{hash } \% \text{ array\_size}$
 
 This two-step process ensures that regardless of how large or complex the key is, it always maps to a valid position within the table. Often, 
