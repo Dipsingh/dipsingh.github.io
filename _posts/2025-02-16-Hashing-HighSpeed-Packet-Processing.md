@@ -185,14 +185,14 @@ crucial; as the table fills, clustering intensifies, slowing lookups, and prompt
 
 ### Perfect Hashing
 
-A perfect hash function maps each of nn distinct elements to a unique slot, completely eliminating collisions. This is ideal for static key sets, such as 
+A perfect hash function maps each of $n$ distinct elements to a unique slot, completely eliminating collisions. This is ideal for static key sets, such as 
 compiler keywords or fixed dictionaries, where no updates occur over time. With perfect hashing, every lookup operates in O(1) time without the need for probing or chaining.
 
 **Two-Level Perfect Hashing (Fredman et al.):**
 
 3. **Level 1 – Partitioning:**
-    - Choose a large prime pp and a random coefficient $k \lt p$.
-    - Define the first-level hash function as: $f(x) = ((k \times x) \mod p) \mod n$ This maps each key in the set $S$ into one of $n$ buckets.
+    - Choose a large prime $p$ and a random coefficient $k \lt p$.
+    - Define the first-level hash function as: $f(x) = ((k \times x) \mod p) \mod n$. This maps each key in the set $S$ into one of $n$ buckets.
     - Group the keys into buckets based on their $f(x)$ value.
 4. **Level 2 – Perfecting Each Bucket:**
     - For each bucket $i$ with $n_i$ keys, allocate a block of slots sized roughly $n_i^2$.
