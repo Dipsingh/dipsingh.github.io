@@ -152,7 +152,7 @@ When inserting $m$ items into a hash table with $n$ slots, collisions occur when
     Multiply the probabilities for each item:
 
     $$
-   P(\text{no collisions}) = \frac{n}{n} \times \frac{n-1}{n} \times \frac{n-2}{n} \times \cdots \times \frac{n-(m-1)}{n}.
+    \hspace{5cm} P(\text{no collisions}) = \frac{n}{n} \times \frac{n-1}{n} \times \frac{n-2}{n} \times \cdots \times \frac{n-(m-1)}{n}.
     $$
 
     This can be written as:
@@ -161,13 +161,12 @@ When inserting $m$ items into a hash table with $n$ slots, collisions occur when
     $$
 
 2. **Probability of At Least One Collision:**  
-    Subtract the above from 1:
 
     $$
-    P(\text{collision}) = 1 - P(\text{no collisions}) = 1 - \frac{n!}{(n-m)! \, n^m}.
+    \hspace{5cm} P(\text{collision}) = 1 - P(\text{no collisions}) = 1 - \frac{n!}{(n-m)! \, n^m}.
     $$
 
-This result mirrors the surprising outcome of the “Birthday Paradox”: even when $m$ is much smaller than $n$ , collisions can happen more often than you might expect.
+This result mirrors the outcome of the “Birthday Paradox”: even when $m$ is much smaller than $n$ , collisions can happen more often than we might expect.
 
 ### Open Addressing
 
