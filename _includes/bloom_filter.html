@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Filter Interactive Demo</title>
+    
+    <!-- React and ReactDOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const BloomFilterDemo = () => {
+            const [bitArray, setBitArray] = React.useState(new Array(12).fill(0));
+            const [inputWord, setInputWord] = React.useState('');
+            const [message, setMessage] = React.useState('');
+            const [messageType, setMessageType] = React.useState('info');
+            const [insertedWords, setInsertedWords] = React.useState([]);
+
+            // Simple hash functions for demonstration
+            const hashFunctions = [
+                (str) => Math.abs(str.split('').reduce((acc, char) => acc + char.charCodeAt(0) * 7, 0) % 12),
+                (str) => Math.abs(str.split('').reduce((acc, char) => acc * 31 + char.charCodeAt(0), 0) % 12),
+                (str) => Math.abs(str.split('').reduce((acc, char) => acc + char.charCodeAt(0) * 11, 0) % 12)
+            ];
+
+            const getHashPositions = (word) => {
+                return hashFunctions.map(hashFn => hashFn(word));
+            };
+
+            const insertWord = () => {
+                if (!inputWord) {
+                    setMessage('Please enter a word');
+                    setMessageType('error');
+                    return;
+                }
+
+                const positions = getHashPositions(inputWord);
+                const newBitArray = [...bitArray];
+                positions.forEach(pos => {
+                    newBitArray[pos] = 1;
+                });
+                
+                setBitArray(newBitArray);
+                setInsertedWords([...insertedWords, inputWord]);
+                setMessage(`Inserted "${inputWord}" at positions ${positions.join(', ')}`);
+                setMessageType('success');
+                setInputWord('');
+            };
+
+            const checkWord = () => {
+                if (!inputWord) {
+                    setMessage('Please enter a word to check');
+                    setMessageType('error');
+                    return;
+                }
+
+                const positions = getHashPositions(inputWord);
+                const isPossiblyPresent = positions.every(pos => bitArray[pos] === 1);
+                
+                if (isPossiblyPresent) {
+                    setMessage(`"${inputWord}" is possibly in the set (bits ${positions.join(', ')} are all 1)`);
+                    setMessageType('warning');
+                } else {
+                    setMessage(`"${inputWord}" is definitely NOT in the set (found 0 at some required position)`);
+                    setMessageType('info');
+                }
+                setInputWord('');
+            };
+
+            return (
+                <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+                    <h2 className="text-2xl font-bold mb-6">Interactive Bloom Filter</h2>
+                    
+                    {/* Bit Array Display */}
+                    <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg mb-6">
+                        {bitArray.map((bit, index) => (
+                            <div
+                                key={index}
+                                className={`
+                                    w-12 h-12 flex items-center justify-center rounded-lg
+                                    ${bit ? 'bg-blue-500 text-white' : 'bg-white border border-gray-300'}
+                                    transition-colors duration-300
+                                `}
+                            >
+                                {index}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Input Controls */}
+                    <div className="flex gap-4 mb-6">
+                        <input
+                            type="text"
+                            value={inputWord}
+                            onChange={(e) => setInputWord(e.target.value)}
+                            placeholder="Enter a word..."
+                            className="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <button
+                            onClick={insertWord}
+                            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                        >
+                            Insert
+                        </button>
+                        <button
+                            onClick={checkWord}
+                            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                        >
+                            Check
+                        </button>
+                    </div>
+
+                    {/* Message Display */}
+                    {message && (
+                        <div className={`p-4 rounded-lg mb-6 ${
+                            messageType === 'error' ? 'bg-red-100 text-red-700' :
+                            messageType === 'success' ? 'bg-green-100 text-green-700' :
+                            messageType === 'warning' ? 'bg-yellow-100 text-yellow-700' :
+                            'bg-blue-100 text-blue-700'
+                        }`}>
+                            {message}
+                        </div>
+                    )}
+
+                    {/* Inserted Words List */}
+                    {insertedWords.length > 0 && (
+                        <div>
+                            <h3 className="text-sm font-medium mb-2">Inserted Words:</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {insertedWords.map((word, index) => (
+                                    <span
+                                        key={index}
+                                        className="px-2 py-1 bg-gray-100 rounded-full text-sm"
+                                    >
+                                        {word}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<BloomFilterDemo />, document.getElementById('root'));
+    </script>
+</body>
+</html>

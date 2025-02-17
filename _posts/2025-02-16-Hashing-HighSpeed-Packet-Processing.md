@@ -349,9 +349,7 @@ This method minimizes memory usage compared to storing every element, with only 
 reducing collisions. For example, with a 12-bit array and three hash functions, inserting “apple” might turn on bits at positions 3, 7, and 11. When checking “apple,” if 
 all these bits are on, you conclude it could be in the set; if you check “banana” and find even one bit off, you know it has not been added.
 
-![[bloom_filter.html]]
-
-{% include bloom_filter_interactive.html %}
+{% include bloom_filter.html %}
 
 The practical performance of a Bloom filter depends on choosing the right size for the bit array (**m**) and the appropriate number of hash functions (**k**), based 
 on the expected number of elements (**n**) and the acceptable rate of false positives. Let’s break down some of the details:
