@@ -152,19 +152,24 @@ When inserting $m$ items into a hash table with $n$ slots, collisions occur when
 **Formal Derivation:**
 1. **Probability All Items Are Collision-Free:**  
     Multiply the probabilities for each item:
+
     $$
    P(\text{no collisions}) = \frac{n}{n} \times \frac{n-1}{n} \times \frac{n-2}{n} \times \cdots \times \frac{n-(m-1)}{n}.
     $$
+
     This can be written as:
     $$
     P(\text{no collisions}) = \frac{n \cdot (n-1) \cdots (n-m+1)}{n^m} = \frac{n!}{(n-m)! \, n^m}.
     $$
+
 2. **Probability of At Least One Collision:**  
     Subtract the above from 1:
+
     $$
     P(\text{collision}) = 1 - P(\text{no collisions}) = 1 - \frac{n!}{(n-m)! \, n^m}.
     $$
- This result mirrors the surprising outcome of the “Birthday Paradox”: even when $m$ is much smaller than $n$ , collisions can happen more often than you might expect.
+
+This result mirrors the surprising outcome of the “Birthday Paradox”: even when $m$ is much smaller than $n$ , collisions can happen more often than you might expect.
 
 #### Open Addressing
 
@@ -349,10 +354,8 @@ This method minimizes memory usage compared to storing every element, with only 
 reducing collisions. For example, with a 12-bit array and three hash functions, inserting “apple” might turn on bits at positions 3, 7, and 11. When checking “apple,” if 
 all these bits are on, you conclude it could be in the set; if you check “banana” and find even one bit off, you know it has not been added.
 
-{% include bloom_filter.html %}
-
 The practical performance of a Bloom filter depends on choosing the right size for the bit array (**m**) and the appropriate number of hash functions (**k**), based 
-on the expected number of elements (**n**) and the acceptable rate of false positives. Let’s break down some of the details:
+on the expected number of elements (**n**) and the acceptable rate of false positives. Let’s break down some details:
 
 **Uniformity Assumption:** 
 
@@ -543,7 +546,7 @@ A common solution to the deletion problem is the Counting Bloom Filter. Instead 
 - Deletion: To remove an item, you decrement those same counters. A counter only resets to 0 when every item that contributed to it has been removed.
 
 {: .center}
-![Counting Bloom Filters](/images/post31/fig15.png "Counting Bloom Filters")
+![Counting Bloom Filters](/images/post31/fig16.png "Counting Bloom Filters")
 
 This approach neatly resolves the deletion issue. However, it introduces a new concern: counter overflow. Because each counter is typically a small 
 integer (often using just a few bits), a heavily used position might exceed its maximum value. In practice, using techniques such as a Poisson approximation, it has 
