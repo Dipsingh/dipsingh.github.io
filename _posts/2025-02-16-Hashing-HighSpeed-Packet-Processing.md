@@ -58,9 +58,7 @@ the same table index—forcing the system to spend extra time resolving these co
 
 Ensuring that a hash function distributes keys uniformly across a table is a challenging problem, often examined through statistical analysis. One 
 important factor in this process is the size of the hash table. When resizing a hash table—usually by doubling or halving its size—it’s common to 
-choose a power-of-two size. This choice simplifies the computation of table indices using fast bit-level operations, even though it might 
-sometimes increase the likelihood of collisions.
-
+choose a power-of-two size. This choice simplifies the computation of table indices using fast bit-level operations.
 
 {: .center}
 ![Hash Table](/images/post31/fig4.png "Hash Table")
@@ -81,7 +79,7 @@ Here is a simple breakdown:
 Multiplying these probabilities together gives the chance that all n people have distinct birthdays:
 
 $$
-\text{P(all distinct)} =  \frac{365}{365} \times\frac{364}{365} \times \frac{363}{365} \times ... \times \frac{365-(n-1)}{365} = \frac{365!}{(365-n)!365^n}
+\hspace{5cm} \text{P(all distinct)} =  \frac{365}{365} \times\frac{364}{365} \times \frac{363}{365} \times ... \times \frac{365-(n-1)}{365} = \frac{365!}{(365-n)!365^n}
 $$
 
 Thus, the probability that at least one birthday is shared is: 
