@@ -174,11 +174,11 @@ Open addressing is a collision resolution technique where, if a key's designated
 using a predefined probing sequence. Unlike chaining—where keys sharing the same hash value are stored in a linked list—open addressing stores the key directly in the table.
 
 **Linear Probing:**  
-In linear probing, you compute the initial hash as $)h = \text{hash(key)}$. If slot $h$ is occupied, you check the next slot $(h+1) \mod \text{tableSize}$ and 
-continue sequentially until you find an empty slot. For example, if key $K3$ hashes to slot 1 (occupied by $K2$), it checks slot 2 next; if key $K4$ also 
+In linear probing, you compute the initial hash as $h = \text{hash(key)}$. If slot $h$ is occupied, you check the next slot $(h+1) \mod \text{tableSize}$ and 
+continue sequentially until you find an empty slot. For example, if a key $K2$ hashes to slot 1 (already occupied by $K1$), it checks slot 2 next; if key $K3$ also 
 hashes to slot 1, it continues to slot 3 if necessary.
 
-To mitigate clustering—where consecutive slots become filled—alternative methods like quadratic probing and double hashing are used. In quadratic probing, the 
+Linear probing can lead to clustering, where adjacent slots become filled. To mitigate this issue, alternative methods such as quadratic probing and double hashing are employed. In quadratic probing, the 
 probe sequence increases quadratically (e.g. $h + 1^2, h + 2^2,$ etc.), while double hashing uses a second hash function $h_2(\text{key})$ to compute the 
 probe step as ($h + i \times h_2(\text{key})) \mod \text{tableSize}$ for the $i^\text{th}$ probe. Maintaining a low load factor (typically 0.5 to 0.75) is 
 crucial; as the table fills, clustering intensifies, slowing lookups, and prompting the need for rehashing.
