@@ -50,7 +50,7 @@ Hashing is a technique that maps a key to a specific position in a table using t
 This two-step process ensures that regardless of how large or complex the key is, it always maps to a valid position within the table. Often, 
 the hash function and the table size are designed separately, with the modulo operation linking them.
 
-### Hash Function
+## Hash Function
 
 The hash function is the heart of any hashing system. Its job is to spread the keys evenly across the table, which is crucial for fast 
 lookups. A poor hash function that doesn’t distribute keys uniformly will lead to many collisions—instances where different keys map to 
@@ -63,7 +63,7 @@ choose a power-of-two size. This choice simplifies the computation of table indi
 {: .center}
 ![Hash Table](/images/post31/fig4.png "Hash Table")
 
-### Birthday Paradox
+## Birthday Paradox
 
 The Birthday Paradox is a famous probability puzzle illustrating why collisions occur in hashing. It shows that in a group of just 23 people, there’s 
 about a 50% chance that at least two people share the same birthday—a result that often defies our intuition.
@@ -96,7 +96,7 @@ For n = 23, this probability is roughly 50%.
 This paradox is especially relevant to hashing because it shows that even with a seemingly large number of possible hash values, collisions can 
 happen with fewer items than one might expect.
 
-### LoadFactor
+## LoadFactor
 
 The load factor($\alpha$) is an important metric for hash tables, defined as $\alpha = \frac{n}{k}$.  Where $n$ is the number of elements stored 
 and $k$ is the total number of buckets. This ratio tells you how full the table is.
@@ -132,12 +132,12 @@ entries: $\alpha = \frac{2}{8} = 0.25$. In this case, collisions are rare, but m
 {: .center}
 ![Too Many Buckets](/images/post31/fig8.png "Too Many Buckets")
 
-### Collision Resolution Techniques
+## Collision Resolution Techniques
 
 When using a hash table, you’re mapping many items into a fixed number of buckets (or slots). This inevitably leads to collisions—situations where 
 multiple items land in the same bucket. The key questions are: How likely are these collisions to occur, and once they do, how can we handle them efficiently?
 
-#### Probability of Collisions
+### Probability of Collisions
 
 When inserting $m$ items into a hash table with $n$ slots, collisions occur when two or more items map to the same slot. Here’s an intuitive breakdown followed by a formal derivation:
 
@@ -169,7 +169,7 @@ When inserting $m$ items into a hash table with $n$ slots, collisions occur when
 
 This result mirrors the surprising outcome of the “Birthday Paradox”: even when $m$ is much smaller than $n$ , collisions can happen more often than you might expect.
 
-#### Open Addressing
+### Open Addressing
 
 Open addressing is a collision resolution technique where, if a key's designated slot is occupied, the algorithm searches for another free slot 
 using a predefined probing sequence. Unlike chaining—where keys sharing the same hash value are stored in a linked list—open addressing stores the key directly in the table.
@@ -184,7 +184,7 @@ probe sequence increases quadratically (e.g. $h + 1^2, h + 2^2,$ etc.), while do
 probe step as ($h + i \times h_2(\text{key})) \mod \text{tableSize}$ for the $i^\text{th}$ probe. Maintaining a low load factor (typically 0.5 to 0.75) is 
 crucial; as the table fills, clustering intensifies, slowing lookups, and prompting the need for rehashing.
 
-#### Perfect Hashing
+### Perfect Hashing
 
 A perfect hash function maps each of nn distinct elements to a unique slot, completely eliminating collisions. This is ideal for static key sets, such as 
 compiler keywords or fixed dictionaries, where no updates occur over time. With perfect hashing, every lookup operates in O(1) time without the need for probing or chaining.
@@ -216,7 +216,7 @@ Next, allocate disjoint slot blocks for each non-empty bucket (e.g., Bucket 0 ge
 To perform a lookup, first compute $f(x)$ to find the appropriate bucket, then use the corresponding $g_i(x)$ to directly access the final slot. This 
 two-level approach guarantees $O(1)$ lookup time while keeping the overall space linear in $n$.
 
-#### Chaining
+### Chaining
 
 One common method to handle collisions is chaining. Instead of forcing each bucket to hold only one item, chaining allows each bucket to store a list of 
 items that share the same hash value.
@@ -241,7 +241,7 @@ In an ideal scenario, most buckets end up holding 0 or 1 items, and only occasio
 items end up in the same bucket (resulting in long chains), lookup performance can degrade significantly, much like a linear search. In such cases, 
 it might be more effective to improve the hash function or resize the table rather than overhauling the collision resolution strategy itself.
 
-#### Multiplicative Hash
+### Multiplicative Hash
 
 Multiplicative hashing computes the hash index using the formula:
 
@@ -279,7 +279,7 @@ this irrational number produces uniformly distributed fractional parts, it ensur
 ![Effect of Different Multiplier values](/images/post31/fig11.png "Effect of Different Multiplier values")
 
   
-#### Universal Hashing
+### Universal Hashing
 
 Universal hashing employs a family of hash functions $\mathcal{H}$ such that a function $f$ is chosen at random before processing elements. This random selection ensures 
 that for any two distinct keys $x$ and $y$, the collision probability is at most $\frac{1}{m}$, where $m$ is the number of buckets. 
@@ -305,7 +305,7 @@ guarantees collision-free mapping within each bucket.
 ![Universal Hashing](/images/post31/fig12.png "Universal Hashing")
 
 
-#### Cuckoo Hashing
+### Cuckoo Hashing
 
 Cuckoo hashing is inspired by how cuckoo birds displace eggs from other nests. In this method, each key has two possible "homes" in two separate tables. If 
 you try to insert a key and its primary spot is already taken, you "kick out" the existing key and move it to its other home. This displacement may trigger 
