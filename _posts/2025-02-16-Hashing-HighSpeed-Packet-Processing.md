@@ -326,6 +326,7 @@ a chain reaction, but in practice, these chains are short. If you ever get caugh
 - $g(x) = (3x + 1) \mod 5$
 
 **Insert** x = 12 **:** $f(12) = 2$, Since $T_1[2]$ is empty, insert 12 there.
+
 **Insert** y = 17 **:** $f(17) = 2$ as well. $T_1[2]$ is occupied by 12, so evict 12 and place 17 in that slot.
 
 Now, compute $g(12) = 2$.  Check $T_2[2]$ ; if it’s empty, place 12 there. This process continues, “bumping” keys between tables until every key is placed or a cycle is detected.
