@@ -261,7 +261,7 @@ This mapping—\{1, 7, 4, 0, 6\}—is more evenly spread out than using a simple
 the keys to 0, 1, 2, 3, and 4, which are much more clustered.
 
 A plot from a simulation shows keys (0–49) evenly distributed across 16 table slots. The histogram summarizes the overall distribution, while the 
-scatter plot details each key’s corresponding hash value, confirming a balanced spread.
+scatter plot details each key’s corresponding hash value, showing a balanced spread.
 
 {: .center}
 ![Multiplicative Hashing](/images/post31/fig10.png "Multiplicative Hashing")
@@ -280,10 +280,10 @@ Universal hashing employs a family of hash functions $\mathcal{H}$ such that a f
 that for any two distinct keys $x$ and $y$, the collision probability is at most $\frac{1}{m}$, where $m$ is the number of buckets. 
 
 **Key Properties:**
-- **Collision Probability**: For any two different keys $x$ and $y$ , if a function $f$is chosen uniformly at random from $\mathcal{H}$, then
-- 
+- **Collision Probability**: For any two different keys $x$ and $y$ , if a function $f$ is chosen uniformly at random from $\mathcal{H}$, then
+
 $$
-\Pr_{f \in \mathcal{H}}\bigl[f(x) = f(y)\bigr] \le \frac{1}{m}.
+\hspace{5cm} \Pr_{f \in \mathcal{H}}\bigl[f(x) = f(y)\bigr] \le \frac{1}{m}.
 $$
 
 -  **Unbiased Selection**: The random choice of $f$ ensures that no pair of keys is inherently more likely to collide than any other, even under adversarial conditions.
