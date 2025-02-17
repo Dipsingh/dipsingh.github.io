@@ -752,8 +752,8 @@ improved, please feel free to reach out.
 # References
 
 - [Golden Ratio](https://mathworld.wolfram.com/GoldenRatio.html)
-- Mitzenmacher et al., _Hash-Based Techniques for High-Speed Packet Processing_, which discusses the adoption of d-left hashing and Bloom filters in router hardware ([](https://www.eecs.harvard.edu/~michaelm/postscripts/dimacs-chapter-08.pdf#:~:text=many%20current%20products%20use%20this,66%5D%2C%20but)).
-- Kirsch et al., _Using Multiple Hash Functions to Improve IP Lookups_, which introduces d-left hashing and its parallel lookup advantage ([](https://www.eecs.harvard.edu/~michaelm/NEWWORK/postscripts/iproute.pdf#:~:text=where%20it%20is%20important%20to,parallel%20in%20a%20straightforward%20manner)).
-- PhD Thesis by D. Kim (CMU 2022) on programmable switches, noting that modern switch ASICs use variations of cuckoo hashing for exact-match lookups in SRAM and the concept of bounded linear probing for single-DRAM-access lookups ([](https://daehyeok.kim/assets/papers/cmu-phd-thesis.pdf#:~:text=lookups%20in%20SRAM%20as%20it,make%20the%20data%20plane%20logic)).
+- [Mitzenmacher et al., _Hash-Based Techniques for High-Speed Packet Processing_, which discusses the adoption of d-left hashing and Bloom filters in router hardware](https://www.eecs.harvard.edu/~michaelm/postscripts/dimacs-chapter-08.pdf#:~:text=many%20current%20products%20use%20this,66%5D%2C%20but).
+- [Kirsch et al., _Using Multiple Hash Functions to Improve IP Lookups_, which introduces d-left hashing and its parallel lookup advantage](https://www.eecs.harvard.edu/~michaelm/NEWWORK/postscripts/iproute.pdf#:~:text=where%20it%20is%20important%20to,parallel%20in%20a%20straightforward%20manner).
+- [PhD Thesis by D. Kim (CMU 2022) on programmable switches, noting that modern switch ASICs use variations of cuckoo hashing for exact-match lookups in SRAM and the concept of bounded linear probing for single-DRAM-access lookups](https://daehyeok.kim/assets/papers/cmu-phd-thesis.pdf#:~:text=lookups%20in%20SRAM%20as%20it,make%20the%20data%20plane%20logic).
 - [Advanced Data Structures: Theory and Applications](https://www.amazon.com/Advanced-Data-Structures-Theory-Applications/dp/1138592609)
 - [Network Algorithmics](https://www.amazon.com/Network-Algorithmics-Interdisciplinary-Designing-Networking-dp-0128099275/dp/0128099275)
