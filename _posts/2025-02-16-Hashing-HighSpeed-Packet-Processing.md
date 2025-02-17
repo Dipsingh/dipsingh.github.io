@@ -683,7 +683,7 @@ false-positive rate can be kept very low.
 In summary, Bloom filters act as efficient “traffic cops” for memory accesses in high-speed routers, directing lookups only toward those areas where a 
 match is likely and significantly reducing both average and worst-case lookup times.
 
-## Hybrid and Advanced Approaches
+## Hybrid Approaches
 
 Modern systems often combine multiple strategies to leverage their individual strengths.
 
