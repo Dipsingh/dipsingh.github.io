@@ -732,7 +732,7 @@ and issues four simultaneous reads—one to each bank—so that the overall look
 table, duplicating memory or using dual-ported SRAM allows both candidate locations to be read concurrently.
 
 **Parallel Pipelines:** ASICs incorporate multiple pipeline replicas that operate in parallel. Each pipeline can have its own copy of critical tables, reducing the per-pipeline load. For 
-example, a 12.8 Tb/s switch might internally have four pipelines, each with its own hash table for MAC address lookups. Although the 
+example, a switch might internally have four pipelines, each with its own hash table for MAC address lookups. Although the 
 software view remains that of a single unified table, hardware partitioning ensures that memory access requests are distributed evenly.
 
 **Avoiding Stall Conditions:** The effectiveness of pipelining depends on ensuring that each stage performs a predictable, fixed amount of work. Algorithms that require 
@@ -743,8 +743,10 @@ and any necessary corrections are managed by the control plane.
 
 # Conclusion
 
-In summary, this primer covers key concepts in hashing and advanced techniques used in high-speed networks. I hope you found the breakdown of methods like collision 
-resolution and cuckoo hashing useful. If you see anything I missed or have additional thoughts, feel free to reach out.
+In this primer, we have examined the fundamental concepts behind modern hashing techniques and their application in high-speed networks. We discussed various collision 
+resolution strategies as well as specialized methods like cuckoo hashing. Each approach aims to balance speed, efficiency, and reliability, even under heavy load. I hope this 
+overview has provided you with clear insights and a practical understanding of these methods. If you have any feedback, additional thoughts, or notice anything that could be 
+improved, please feel free to reach out.
 
   
 # References
