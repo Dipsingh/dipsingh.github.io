@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Notes on Packet Classification- Tries, TCAMs, and Other Detours
+title: Notes on Packet Classification for High Speed Packet Processing
 ---
 
 > "We are drowning in information but starved for knowledge." - _John Naisbitt
