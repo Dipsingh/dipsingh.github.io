@@ -3,7 +3,7 @@ layout: post
 title: Packet Classification for High Speed Packet Processing
 ---
 
-> "We are drowning in information but starved for knowledge." - _John Naisbitt
+> "We are drowning in information but starved for knowledge." - John Naisbitt
 
 # Introduction
 
@@ -22,6 +22,7 @@ rule $R_i$ defines matching criteria across these header fields. The matching co
 - **Exact match:** The header field must exactly match a specified value.
 - **Prefix match:** The header field must match a common prefix defined in the rule (commonly used with IP addresses).
 - **Range match:** The header field must fall within a specified numerical range.
+
 
 | Rule | SRC       | DST            | Protocol | SRC Port | DST Port | Action              |
 | ---- | --------- | -------------- | -------- | -------- | -------- | ------------------- |
