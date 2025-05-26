@@ -203,10 +203,10 @@ R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for "00*" will conta
 ![Set Pruning Trie](/images/post32/fig5.png "Set Pruning Trie")
 
 Step 1: $F_1$ Match
-Suppose a packet arrives with an $F_1$ value that matches "00*". In the $F_1$ trie, you quickly identify "00*" as the longest matching prefix.
+Suppose a packet arrives with an $F_1$ value that matches $"00*"$. In the $F_1$ trie, you quickly identify $"00*"$ as the longest matching prefix.
 
 Step 2: $F_2$ Lookup Without Backtracking
-Rather than backtracking to check parent nodes (like "0*" or "_"), you follow the pointer to the $F_2$ trie associated with "00*". Since 
+Rather than backtracking to check parent nodes (like $"0*"$ or "_"), you follow the pointer to the $F_2$ trie associated with $"00*"$. Since 
 this $F_2$ trie already contains the $F_2$ prefixes from R1, R2, R3, R7, and R8, you perform a single search for the packet’s $F_2$ field.
 
 Step 3: Identify the Best Match
@@ -259,7 +259,7 @@ found, using stored best-match information at each node to determine the optimal
 {: .center}
 ![Grid of Tries](/images/post32/fig6.png "Grid of Tries")
 
-Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for "000" in the F1 trie results in "00*" as the best match. Using 
+Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for "000" in the F1 trie results in $"00*"$ as the best match. Using 
 its next-trie pointer, the search continues on the F2 trie for 110. However, it fails in the first bit 1. Hence, the switch pointer is used to jump to 
 the node containing rules R2,R3 and R7. Similarly, when the search on the next bit fails again, we jump to the node containing rule R8 in the F2 trie associated with the 
 F1 prefix $*$. Hence, the best matching rule for the packet is R8. As can be seen, the switch pointer eliminates the need for backtracking in a hierarchical trie 
