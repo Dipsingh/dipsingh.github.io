@@ -196,7 +196,7 @@ applicable rules have already been replicated within this trie.
 - Step 3 (Determine Best Match): Quickly identify the highest-priority rule directly from this single lookup.
 
 For example: With set pruning, the $F_2$ trie for the node "00\*" is built to include not only R1 (which exactly has $F_1$ = "00\*") but also all rules whose $F_1$ prefix 
-is an ancestor of "00\*". Since "00*" is more specific than "0*", the rules R2, R3, and R7 (all with $F_1$ = "0\*") must be included. Additionally, the wildcard rule 
+is an ancestor of "00\*". Since "00*" is more specific than "0\*", the rules R2, R3, and R7 (all with $F_1$ = "0\*") must be included. Additionally, the wildcard rule 
 R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for "00\*" will contain the $F_2$ prefixes for R1, R2, R3, R7, and R8.
 
 {: .center}
