@@ -117,15 +117,15 @@ Let’s classify a packet whose fields are $F_1 = 000$ and $F_2 = 000$.
 
 1. Match in $F_1$ Trie:
 	- We traverse the $F_1$ trie from the root, following bits of $\hat{F}_1 = 000$.
-	- The longest match in the $F_1$ trie is “00*,” so we land on the node representing “00*.”
-2. Look Up in $F_2$  Trie for “00*”:
-	- From the node “00*” in the $F_1$ trie, we follow the next‐trie pointer to its $F_2$ trie.
+	- The longest match in the $F_1$ trie is "00\*", so we land on the node representing "00\*".
+2. Look Up in $F_2$  Trie for "00\*":
+	- From the node "00\*" in the $F_1$ trie, we follow the next‐trie pointer to its $F_2$ trie.
 	- In that $F_2$ trie, we search for $F_2 = 000$.
-	- Suppose we find a match for “00*” in $F_2$. That corresponds to rule $R_1$. We record $R_1$ as our best match so far.
+	- Suppose we find a match for "00\*" in $F_2$. That corresponds to rule $R_1$. We record $R_1$ as our best match so far.
 3. Backtrack to Check Ancestors:
-	- Because a shorter prefix in $F_1$ (like “0*”) might combine with a longer or earlier‐priority prefix in $F_2$, we backtrack one level up the $F_1$ trie to “0*.”
-	- We then follow “0*”’s next‐trie pointer to its $F_2$ trie and look for $F_2 = 000$ there.
-	- In that trie, we may find a match for “0*” (rule R3), but we compare R3 to our current best (R1). If R1 has higher priority (or occurs earlier in the classifier), we keep R1.
+	- Because a shorter prefix in $F_1$ (like "0\*") might combine with a longer or earlier‐priority prefix in $F_2$, we backtrack one level up the $F_1$ trie to "0\*".
+	- We then follow "0\*"’s next‐trie pointer to its $F_2$ trie and look for $F_2 = 000$ there.
+	- In that trie, we may find a match for "0\*" (rule R3), but we compare R3 to our current best (R1). If R1 has higher priority (or occurs earlier in the classifier), we keep R1.
 4. Continue Until Root
 	- We backtrack again to the root node of the $F_1$ trie (which corresponds to prefix "\*"), follow its pointer to the “\*” $F_2$ trie, and search $F_2 = 000$.
 	- If no matching rule there is higher priority, we remain with R1.
@@ -196,7 +196,7 @@ applicable rules have already been replicated within this trie.
 - Step 3 (Determine Best Match): Quickly identify the highest-priority rule directly from this single lookup.
 
 For example: With set pruning, the $F_2$ trie for the node "00\*" is built to include not only R1 (which exactly has $F_1$ = "00\*") but also all rules whose $F_1$ prefix 
-is an ancestor of "00\*". Since "00*" is more specific than "0\*", the rules R2, R3, and R7 (all with $F_1$ = "0\*") must be included. Additionally, the wildcard rule 
+is an ancestor of "00\*". Since "00\*" is more specific than "0\*", the rules R2, R3, and R7 (all with $F_1$ = "0\*") must be included. Additionally, the wildcard rule 
 R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for "00\*" will contain the $F_2$ prefixes for R1, R2, R3, R7, and R8.
 
 {: .center}
@@ -245,13 +245,13 @@ due to switch pointer usage.
 For Example: Consider classifying a packet with header fields and:
 
 1. $F_1$ Trie Traversal: Begin traversing the  $F_1$  trie using bits from the packet's first header field. Suppose the longest matching prefix found 
-is "00*". Follow the pointer from this node to its corresponding $F_2$ trie.
+is "00\*". Follow the pointer from this node to its corresponding $F_2$ trie.
         
-2. $F_2$ Trie Search: Traverse the $F_2$ trie for "00*" using bits of the packet's second header field. If a mismatch occurs 
+2. $F_2$ Trie Search: Traverse the $F_2$ trie for "00\*" using bits of the packet's second header field. If a mismatch occurs 
 (for example, at the first bit), rather than restarting the search, utilize the precomputed switch pointer.
         
 3. Switch Pointer Usage: The switch pointer quickly moves the search to the corresponding node in the $F_2$ trie of a less specific 
-$F_1$ prefix (such as "0*"). The search then resumes seamlessly.
+$F_1$ prefix (such as "0\*"). The search then resumes seamlessly.
         
 4. Search Continuation and Decision: This process of utilizing switch pointers repeats until the most specific applicable rule is 
 found, using stored best-match information at each node to determine the optimal final decision.
@@ -259,7 +259,7 @@ found, using stored best-match information at each node to determine the optimal
 {: .center}
 ![Grid of Tries](/images/post32/fig6.png "Grid of Tries")
 
-Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for "000" in the F1 trie results in $"00*"$ as the best match. Using 
+Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for "000" in the F1 trie results in "00\*" as the best match. Using 
 its next-trie pointer, the search continues on the F2 trie for 110. However, it fails in the first bit 1. Hence, the switch pointer is used to jump to 
 the node containing rules R2,R3 and R7. Similarly, when the search on the next bit fails again, we jump to the node containing rule R8 in the F2 trie associated with the 
 F1 prefix $*$. Hence, the best matching rule for the packet is R8. As can be seen, the switch pointer eliminates the need for backtracking in a hierarchical trie 
@@ -900,10 +900,10 @@ algorithm (LBV/ABV), implemented in hardware logic to occur within a cycle or tw
 # Tuple Search
 
 A rule describes packets using fields like Source IP and Destination IP. Each field can be specified with different prefix lengths 
-(e.g., '01*' specifies two bits, '0*' specifies one bit). A tuple is simply a group of rules that have the exact same 
+(e.g., '01*' specifies two bits, "0\*" specifies one bit). A tuple is simply a group of rules that have the exact same 
 combination of prefix lengths.
 
-For instance, if a rule specifies a Source IP prefix with two bits (like '10*') and a Destination IP prefix with two bits (like '01*'), 
+For instance, if a rule specifies a Source IP prefix with two bits (like "10\*") and a Destination IP prefix with two bits (like '01*'), 
 that rule belongs in the tuple (2, 2). We create separate, efficient lookup tables (hash tables) for each tuple. Each hash table only 
 contains rules with precisely that tuple’s combination of prefix lengths.
 
@@ -938,8 +938,8 @@ packet classification process.
 The pruning process begins with each relevant field's longest independent prefix matches. Assume a scenario where a packet is 
 evaluated based on multiple fields. For each field individually, you perform a standard longest prefix match—similar to how 
 routers find the best match for destination IP addresses. For example, suppose field F1 has the value '010', and the longest 
-prefix match available is '0*', which is one bit long. Concurrently, field F2 might have the value '100', with the longest 
-prefix match being '10*', two bits in length.
+prefix match available is "0\*", which is one bit long. Concurrently, field F2 might have the value '100', with the longest 
+prefix match being "10\*", two bits in length.
 
 Once these independent longest prefix matches are identified for each field, the next step involves intersecting these matches 
 to find the relevant tuple combinations. Using our previous example, combining a one-bit prefix in F1 and a two-bit prefix in 
@@ -950,7 +950,7 @@ To illustrate this more concretely, consider a simplified classifier with two fi
 with prefix lengths of 0, 1, or 2 bits. Suppose the classifier contains rules corresponding to tuples (0, 2), (1, 1), (1, 2), 
 and (2, 2). In a naive tuple space search, each of these tuples would be checked individually, requiring four separate lookups.
 
-However, with tuple space pruning, if the longest prefix match for F1 is found to be '0*' (one bit) and for F2 '10*' (two bits), then 
+However, with tuple space pruning, if the longest prefix match for F1 is found to be "0\*" (one bit) and for F2 "10\*" (two bits), then 
 the only relevant tuple is (1, 2). This pruned approach drastically reduces the complexity, requiring only a single hash table lookup for the identified tuple rather than probing all available tuples.
 
 ## Practical example of TSS-Based Hardware Packet Classification
