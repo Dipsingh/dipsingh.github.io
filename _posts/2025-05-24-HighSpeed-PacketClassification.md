@@ -203,10 +203,10 @@ R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for "00\*" will cont
 ![Set Pruning Trie](/images/post32/fig5.png "Set Pruning Trie")
 
 Step 1: $F_1$ Match
-Suppose a packet arrives with an $F_1$ value that matches $"00*"$. In the $F_1$ trie, you quickly identify $"00*"$ as the longest matching prefix.
+Suppose a packet arrives with an $F_1$ value that matches "00\*". In the $F_1$ trie, you quickly identify "00\*" as the longest matching prefix.
 
 Step 2: $F_2$ Lookup Without Backtracking
-Rather than backtracking to check parent nodes (like $"0*"$ or "_"), you follow the pointer to the $F_2$ trie associated with $"00*"$. Since 
+Rather than backtracking to check parent nodes (like "0\*" or "_"), you follow the pointer to the $F_2$ trie associated with "00\*". Since 
 this $F_2$ trie already contains the $F_2$ prefixes from R1, R2, R3, R7, and R8, you perform a single search for the packet’s $F_2$ field.
 
 Step 3: Identify the Best Match
