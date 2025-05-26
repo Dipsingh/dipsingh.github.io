@@ -195,18 +195,18 @@ The classification process becomes simpler and faster:
 applicable rules have already been replicated within this trie.
 - Step 3 (Determine Best Match): Quickly identify the highest-priority rule directly from this single lookup.
 
-For example: With set pruning, the $F_2$ trie for the node “00*” is built to include not only R1 (which exactly has $F_1$ = 00*) but also all rules whose $F_1$ prefix 
-is an ancestor of “00*”. Since “00*” is more specific than “0*”, the rules R2, R3, and R7 (all with $F_1$ = 0*) must be included. Additionally, the wildcard rule 
-R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for “00*” will contain the $F_2$ prefixes for R1, R2, R3, R7, and R8.
+For example: With set pruning, the $F_2$ trie for the node $"00*"$ is built to include not only R1 (which exactly has $F_1$ = $00*$) but also all rules whose $F_1$ prefix 
+is an ancestor of "00*". Since "00*" is more specific than "0*", the rules R2, R3, and R7 (all with $F_1$ = $0*$) must be included. Additionally, the wildcard rule 
+R8 (with $F_1$ = "\*") also applies. Thus, the  $F_2$  trie for "00*" will contain the $F_2$ prefixes for R1, R2, R3, R7, and R8.
 
 {: .center}
 ![Set Pruning Trie](/images/post32/fig5.png "Set Pruning Trie")
 
 Step 1: $F_1$ Match
-Suppose a packet arrives with an $F_1$ value that matches “00*”. In the $F_1$ trie, you quickly identify “00*” as the longest matching prefix.
+Suppose a packet arrives with an $F_1$ value that matches "00*". In the $F_1$ trie, you quickly identify "00*" as the longest matching prefix.
 
 Step 2: $F_2$ Lookup Without Backtracking
-Rather than backtracking to check parent nodes (like “0*” or “_”), you follow the pointer to the_ $F_2$ trie associated with “00*”. Since 
+Rather than backtracking to check parent nodes (like "0*" or "_"), you follow the pointer to the $F_2$ trie associated with "00*". Since 
 this $F_2$ trie already contains the $F_2$ prefixes from R1, R2, R3, R7, and R8, you perform a single search for the packet’s $F_2$ field.
 
 Step 3: Identify the Best Match
@@ -259,7 +259,7 @@ found, using stored best-match information at each node to determine the optimal
 {: .center}
 ![Grid of Tries](/images/post32/fig6.png "Grid of Tries")
 
-Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for 000 in the F1 trie results in $00*$ as the best match. Using 
+Consider classifying a packet with the header values of F1 = 000 and F2 = 110. The search for "000" in the F1 trie results in "00*" as the best match. Using 
 its next-trie pointer, the search continues on the F2 trie for 110. However, it fails in the first bit 1. Hence, the switch pointer is used to jump to 
 the node containing rules R2,R3 and R7. Similarly, when the search on the next bit fails again, we jump to the node containing rule R8 in the F2 trie associated with the 
 F1 prefix $*$. Hence, the best matching rule for the packet is R8. As can be seen, the switch pointer eliminates the need for backtracking in a hierarchical trie 
@@ -468,7 +468,9 @@ Slice C4: (Under C5=2) Lower fringe (`0xx`) covers multiple values, yielding one
 slice. `Row 2:  (C5=2 , C4<3 ):  000 000 011  0xx xxx xxx xxx xxx`
 
 Slice C3: Similar splitting produces another TCAM row (`0xx`). The upper fringe (`11`) moves further down. `Row 3: (C4=3,  C3<3):  000 000 011  111 0xx xxx xxx xxx`
+
 Slice C2: Produces one row covering values below (`000`), yielding one additional entry. `Row 4  (C3=3,  C2<1):  000 000 011  111 111 000 xxx xxx`
+
 Slices C1 & C0: Identical (`00`), yielding the final exact-match TCAM row. `Row 5  (C2=1,  C1):  000 000 011  111 111 001 000 000`
 
 Final Set of TCAM Entries
