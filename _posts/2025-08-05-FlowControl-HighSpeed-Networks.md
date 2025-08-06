@@ -3,7 +3,7 @@ layout: post
 title: Notes on Flow Control for High Speed Networks
 ---
 
-> "We are drowning in information but starved for knowledge." - John Naisbitt
+>  "In theory, there is no difference between theory and practice. In practice, there is." - Jan L. A. van de Snepscheut
 
 # Introduction
 
