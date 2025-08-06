@@ -201,7 +201,7 @@ this at a high level as a sum of Reaction data, Wire data and small far-end data
 takes to generate Pause frame, Traveling it back to the sender and the action time for the sender to pause the frame. 
 
 $$
-\text{Reaction data} = R \times (T_{gen} + \text{Link Delay(One Way)} +T_{action})
+\hspace{5cm} \text{Reaction data} = R \times (T_{gen} + \text{Link Delay(One Way)} +T_{action})
 $$
 
 {: .center}
@@ -210,7 +210,7 @@ $$
 **Wire Data**: The time after the last bit has left the far-end but has not yet reached the near end. 
 
 $$
-\text{wire data} = R \times \text{Link Delay(One Way)}
+\hspace{5cm} \text{wire data} = R \times \text{Link Delay(One Way)}
 $$
 
 {: .center}
@@ -220,7 +220,7 @@ There is some minor residual data from small far-end and near-end data which is 
 the total Headroom Buffer which needs to accommodated
 
 $$
- \text{HeadRoom}=  \text{Reaction Data} +  \text{Wire Data} +  \text{Small near-end data} +  \text{Small far-end data}
+\hspace{5cm}  \text{HeadRoom}=  \text{Reaction Data} +  \text{Wire Data} +  \text{Small near-end data} +  \text{Small far-end data}
 $$
 
 Although for the sake of simplification, I am putting various components into big buckets of delays, one thing worth observing is 
@@ -310,7 +310,7 @@ than 6, and observe that it will result in a drop at the receiver.
 For a link of rate R and round‑trip time (RTT), a receiver buffer protected by credit‑based flow control and sized to the bandwidth–delay product.
 
 $$
-\text{BDP}=R\times RTT
+\hspace{5cm} \text{BDP}=R\times RTT
 $$
 
 is strictly loss‑free and is indistinguishable, from the sender’s perspective, from an infinite queue positioned immediately downstream.
@@ -345,7 +345,7 @@ Ref: [Credit Based Flow Contro](https://www.csd.uoc.gr/~hy534/16a/s61_creditFC_s
 **Upstream departures**: Because the sender can transmit only when it owns credits, and each departure consumes one credit. 
 
 $$
-UD(t) = DD(t - RTT) + RTT \times R
+\hspace{5cm} UD(t) = DD(t - RTT) + RTT \times R
 $$
 
 At the start, sender has exactly $RTT \times R$ credits(This is the initial credit window). After initial credits are spent, new credits arrive exactly RTT time after 
@@ -354,7 +354,7 @@ downstream departs data. Thus, the total sent upstream at time “t” is the to
 **Downstream Arrivals**: Since data takes exactly RTT to travel from upstream to downstream, we can say that Downstream Arrival function $DA(t)$ can be given as:
 
 $$
-   DA(t)=UD(t-RTT)=DD(t-RTT)+R\times RTT .
+\hspace{5cm} DA(t)=UD(t-RTT)=DD(t-RTT)+R\times RTT .
 $$
 
 This means that the data entering the downstream buffer at time “t” corresponds exactly to the downstream departures one RTT earlier, plus the fixed initial credit window.
@@ -362,13 +362,13 @@ This means that the data entering the downstream buffer at time “t” correspo
 **Buffer Occupancy:** The occupied buffer can be represented as the difference between data packets arriving and data packets departing.
 
 $$
-   BO(t)=DA(t)-DD(t)=R\times RTT-\bigl[DD(t)-DD(t-RTT)\bigr].
+\hspace{5cm} BO(t)=DA(t)-DD(t)=R\times RTT-\bigl[DD(t)-DD(t-RTT)\bigr].
 $$ 
 
 The bracketed term $\bigl[DD(t)-DD(t-RTT)\bigr]$ is non‑negative and at most $R\times RTT$ by the service‑rate constraint, so
 
 $$
-   0\;\le\;BO(t)\;\le\;R\times RTT=\text{BDP}.
+\hspace{5cm} 0\;\le\;BO(t)\;\le\;R\times RTT=\text{BDP}.
 $$ 
 
 Hence, the buffer never overruns, and from the sender’s viewpoint the system behaves as if any excess data were “pushed back” into an infinite upstream queue.
@@ -388,7 +388,7 @@ requires less buffer than XON/XOFF scheme.
 **Credit-Based:** The minimum buffer requirement is precisely one BDP, ensuring overflow is inherently prevented:
 
 $$
-B_{\min}=R \times RTT \quad(\text{one BDP})
+\hspace{5cm} B_{\min}=R \times RTT \quad(\text{one BDP})
 $$
 
 **XON/XOFF:**  The buffer headroom for XON/XOFF includes three distinct components:
@@ -400,7 +400,7 @@ $$
 The total buffer headroom requirement thus becomes:
 
 $$
-\text{HeadRoom} = R(T_{gen}+T_{link}+T_{act})+ R\,T_{link}+\text{Hystersis (Another reaction data worth of space)}
+\hspace{5cm} \text{HeadRoom} = R(T_{gen}+T_{link}+T_{act})+ R\,T_{link}+\text{Hystersis (Another reaction data worth of space)}
 $$
 
 Because both reaction and wire-data terms scale linearly with link length, the overall buffer demand for XON/XOFF increases 
@@ -429,7 +429,7 @@ Packets on a link with a Bandwidth `B` bits per second, payload size `S` bytes, 
 preamble, SFD, IFG etc.) arrive at an average rate given by:
 
 $$
-R = \frac{B}{8 \times (S+G)}
+\hspace{5cm} R = \frac{B}{8 \times (S+G)}
 $$
 
 **Calculate Single Pipeline Processing Rate(r):**
@@ -438,7 +438,7 @@ cycle, and processes packets that requires multiple cycles if they exceed the bu
 is:
 
 $$
-r = \frac{f}{\left\lceil(\frac{S+G}{W})/c\right\rceil}
+\hspace{5cm} r = \frac{f}{\left\lceil(\frac{S+G}{W})/c\right\rceil}
 $$
 
 Here, $\left\lceil(\frac{S+G}{W})/c\right\rceil$ represents the number of cycles required to process each packet, determined 
@@ -449,7 +449,7 @@ by the datapath width and packets per clock cycle.
 To avoid packet loss, the number of parallel pipelines required is calculated as: 
 
 $$
-P = \frac{R}{r} = \frac{B}{8(S+G)}\times \frac{\left\lceil(\frac{S+G}{W})/c\right\rceil}{f}
+\hspace{5cm} P = \frac{R}{r} = \frac{B}{8(S+G)}\times \frac{\left\lceil(\frac{S+G}{W})/c\right\rceil}{f}
 $$
 
 If $P \gt 1$, multiple pipelines are required.
@@ -605,7 +605,7 @@ Queueing theory is a rabbit hole of its own, and diving deep into M/D/1 would ta
 However, we can look at M/D/1 Tail probability behavior using Large Deviation (LD) approximation, which can be given as:
 
 $$
-P\{Q \gt N\} \approx C_{q}e^{-\theta N}
+\hspace{5cm} P\{Q \gt N\} \approx C_{q}e^{-\theta N}
 $$
 with $\theta$ solving $\rho(e^{\theta}-1) = \theta$ and $C_{q}=\frac{1-\rho}{\rho+e^{-\theta}}$.
 
@@ -613,13 +613,13 @@ The way to solve theta $\theta$ is by using iterative algo's like Newton-Raphson
 than some target $P_{max}$ (e.g. $10^{-6}$), We can figure it out by using inequality
 
 $$
-C_{q}e^{-\theta N} \leq P_{max}
+\hspace{5cm} C_{q}e^{-\theta N} \leq P_{max}
 $$
 
 Which will reduce to 
 
 $$
-\begin{equation} N \geq \frac{logC_{q} - logP_{max}}{\theta} \end{equation}
+\hspace{5cm} \begin{equation} N \geq \frac{logC_{q} - logP_{max}}{\theta} \end{equation}
 $$
 
 For example, if we want to find what are the chances i.e. on an average at most one packet in a million arrives to a full queue, 
