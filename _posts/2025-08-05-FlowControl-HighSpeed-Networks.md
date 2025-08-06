@@ -514,8 +514,10 @@ and with no loss of throughput at the receiver. For example, let's assume that w
 So with the above the minimum credit rate needs to be at least $C_{min} = \frac{50 GBps}{0.5}= 100\text{B}$ to keep the port busy. If 
 we account for 5% speed-up in the fabric, then its $105\text{B}$. Typical cell size is 256 Bytes, so we can round this to 256 Bytes per credit.
 
-If the credits are given at a slice level and not port level, for example - lets say 18 x 400G is one slice, then it will be $\approx 1800\text{B}$, which 
-can be rounded to the nearest $2KB$ as the size of the credit. 
+If the credits are given at a slice level and not port level, for example, let's say 18 x 400G is one slice, then it will be $\approx 1800\text{B}$, which 
+can be rounded to the nearest $2KB$ as the size of the credit. When sizing the credit quantum, some practical limits to keep in mind are: (1) the scheduler 
+must issue credits fast enough to keep the pipe full, (2) on-chip counters must be wide enough to track all in-flight credits without roll-over, and (3) a 
+small fabric speed-up is sometimes needed to mask any residual scheduler slack.
 
 This does bring a fact that you have to be aware about how the credits are issued - Is it at a slice level or port level. If it's at a 
 slice level then it can result into unfairness. 
