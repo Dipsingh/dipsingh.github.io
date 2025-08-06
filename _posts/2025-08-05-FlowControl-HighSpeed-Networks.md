@@ -7,9 +7,9 @@ title: Notes on Flow Control for High Speed Networks
 
 # Introduction
 
-Flow control is a fundamental component in the design of high-performance networks. While reviewing the scheduling mechanisms used in router architectures, I took the opportunity 
-to explore the fundamental principles of flow control, its various mechanisms, and their practical implications. This write-up tries to outline key models, 
-compares typical schemes, and highlights relevant system-level considerations.
+Flow control is a fundamental component in the design of high-performance networks. While reviewing the scheduling mechanisms used in router architectures, I took 
+the opportunity to revisit the core principles of flow control, examine its various mechanisms, and reflect on their practical implications. This write-up outlines 
+key models, compares typical schemes, and highlights relevant system-level considerations.
 
 # Principles of Flow Control
 
