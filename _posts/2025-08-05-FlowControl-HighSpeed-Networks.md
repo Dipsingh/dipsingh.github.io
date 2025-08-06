@@ -299,7 +299,7 @@ this point the sender is stalled until it gets more credits.
 Below is a time sequence diagram which goes through all the events in more detail. 
 
 {: .center}
-![CBFC4](/images/post33/fig14.png "CBFC4")
+[![CBFC4](/images/post33/fig14.png "CBFC4")](/images/post33/timeline_full.png)
 
 At time 6, buffer reaches 4/6 occupancy. The sender has consumed all 6 credits and sent 6 cells. This demonstrates why we need at least 6 cells of buffer - 
 otherwise, cells arriving after time 6 would be dropped. A reader can play the same scenario with the initial conditions and with a buffer less 
