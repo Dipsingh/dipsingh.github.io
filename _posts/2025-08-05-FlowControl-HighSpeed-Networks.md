@@ -374,10 +374,9 @@ Hence, the buffer never overruns, and from the sender’s viewpoint the system b
 
 #### BDP Sufficiency & Necessity (Corollary)
 
-The proof establishes that a buffer of exactly one BDP is sufficient for lossless operation.  
-Conversely, if the buffer were any smaller, the worst‑case blind‑period injection of $R\times RTT$ bytes could overflow it, so
-the BDP size is also tight. This formalises the sizing rule introduced in Credit‑Based Flow Control and quantified with the 
-toy example there. 
+The proof establishes that a buffer of exactly one BDP is sufficient for lossless operation. Conversely, if the buffer were any smaller, the 
+worst‑case blind‑period injection of $R\times RTT$ bytes could overflow it, so the BDP size is also tight. This formalises the sizing rule 
+introduced in Credit‑Based Flow Control and quantified with the toy example there. 
 
 ## Comparing Credit-based vs. XON/XOFF
 
