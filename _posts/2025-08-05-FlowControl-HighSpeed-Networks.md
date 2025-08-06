@@ -296,7 +296,7 @@ this point the sender is stalled until it gets more credits.
 {: .center}
 ![CBFC3](/images/post33/fig13.png "CBFC3")
 
-Below is a time sequence diagram which goes through all the events in more detail. 
+Below is a time sequence diagram (“Click to enlarge”) which goes through all the events in more detail.
 
 {: .center}
 [![CBFC4](/images/post33/fig14.png "CBFC4")](/images/post33/timeline_full.png)
