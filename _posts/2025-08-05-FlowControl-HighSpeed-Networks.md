@@ -337,7 +337,7 @@ d is the time delta between `t+d` and `t`.
 {: .center}
 ![CBFC7](/images/post33/fig17.png "CBFC7")
 
-Ref: [Credit Based Flow Contro](https://www.csd.uoc.gr/~hy534/16a/s61_creditFC_sl.pdf)
+Ref: [Credit Based Flow Control](https://www.csd.uoc.gr/~hy534/16a/s61_creditFC_sl.pdf)
 
 **Credit rule**:  At any instant the sender owns exactly the credits that represent free slots in the receiver buffer. Immediately after start‑up the sender holds $R\times RTT=\text{BDP}$ credits.
 
