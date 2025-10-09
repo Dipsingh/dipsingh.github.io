@@ -20,7 +20,19 @@ permalink: /feed.xml
     <link href="{{ post.url | absolute_url }}"/>
     <id>{{ post.id | absolute_url }}</id>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <content type="html">{{ post.content | markdownify | xml_escape }}</content>
+
+    {%- comment -%}
+      Build a short, safe excerpt:
+      - Prefer post.excerpt (Jekyll’s first paragraph), else full content
+      - Render Markdown to HTML (markdownify)
+      - Strip HTML tags so we keep just text
+      - Truncate to 120 words to avoid giant code/log blobs
+      - XML-escape the result so it’s valid inside Atom <content>
+    {%- endcomment -%}
+    {% capture raw %}{{ post.excerpt | default: post.content | markdownify }}{% endcapture %}
+    {% assign safe = raw | strip_html | truncatewords: 120 | xml_escape %}
+
+    <content type="html">{{ safe }}</content>
   </entry>
   {% endfor %}
 </feed>
