@@ -41,7 +41,7 @@ google_analytics: G-CJK9V5798J
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://dipsingh.github.io
+url: https://dipsingh.github.io
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -84,6 +84,14 @@ gems:
   - jekyll-paginate # Adding pagination support
   - jekyll-archive #test
   - jekyll-remote-theme
+
+# Tell jekyll-feed to publish to /feed.atom so your custom /feed.xml is free
+feed:
+  path: feed.atom
+
+# Ensure UTF-8 everywhere (helps avoid weird XML chars)
+encoding: "utf-8"
+
 
 # Exclude these files from your production _site
 exclude:
