@@ -88,6 +88,7 @@ gems:
 # Tell jekyll-feed to publish to /feed.atom so your custom /feed.xml is free
 feed:
   path: feed.atom
+  excerpt_only: true
 
 # Ensure UTF-8 everywhere (helps avoid weird XML chars)
 encoding: "utf-8"
