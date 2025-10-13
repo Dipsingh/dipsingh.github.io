@@ -554,12 +554,15 @@ link, 100 microsecond RTT, and typical 10-packet bursts:
 $$
 \hspace{5cm} \text{Bandwidth-Delay Product} = 10 \text{ Gbps} \times 100 \mu s = 125 \text{ KB}
 $$
+
 $$
 \hspace{5cm} \text{BurstSize} = 10 \times 1500 \text{ bytes} = 15 \text{ KB}
 $$
+
 $$
 \hspace{5cm} \text{SafetyMargin} = 0.2 \times 125 \text{ KB} = 25 \text{ KB}
 $$
+
 $$
 \hspace{5cm} \text{DECNOFFSET} = 125 + 15 + 25 = 165 \text{ KB}
 $$
