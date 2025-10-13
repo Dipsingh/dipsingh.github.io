@@ -3,7 +3,7 @@ layout: post
 title: Notes on Active Queue Management Techniques
 ---
 
->  "In theory, there is no difference between theory and practice. In practice, there is." - Jan L. A. van de Snepscheut
+> "When you can measure what you are speaking about, and express it in numbers, you know something about it" - Lord Kelvin
 
 In packet-switched networks, buffers serve an essential function by temporarily storing packets, which helps smooth out bursts 
 of incoming traffic and manage mismatches between the rates of incoming and outgoing links. However, since buffers have limited 
@@ -392,7 +392,7 @@ So we would drop or mark 40% of packets.
 ![WREDLinearRamp](/images/post34/fig7.png "WRED Linear Ramp")
 
 
-_Note: In case of DCTCP, $Q_{min}$ and $Q_{max}$ is set to same value, so there is no linear ramp._
+_Note: In case of DCTCP, Q_min and Q_max is set to same value, so there is no linear ramp._
 
 **RED’s “uniformization” using a packet counter**
 
