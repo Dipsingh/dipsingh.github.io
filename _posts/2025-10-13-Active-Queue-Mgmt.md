@@ -564,7 +564,7 @@ $$
 $$
 
 $$
-\hspace{5cm} \text{DECNOFFSET} = 125 + 15 + 25 = 165 \text{ KB}
+\hspace{5cm} \text{DECN OFFSET} = 125 + 15 + 25 = 165 \text{ KB}
 $$
 
 #### DECN_FLOOR: Your Minimum Operating Point
