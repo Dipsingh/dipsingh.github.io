@@ -585,7 +585,7 @@ $$
 Where Min_BDP is the bandwidth-delay product of your shortest RTT flows. For a data center with 10 microsecond minimum RTT:
 
 $$
-\hspace{5cm} \text{DECNFLOOR} = 10 \text{ Gbps} \times 10 \mu s + 5 \times 1500 \text{ bytes} = 12.5 \text{ KB} + 7.5 \text{ KB} = 20 \text{ KB}
+\hspace{5cm} \text{DECN FLOOR} = 10 \text{ Gbps} \times 10 \mu s + 5 \times 1500 \text{ bytes} = 12.5 \text{ KB} + 7.5 \text{ KB} = 20 \text{ KB}
 $$
 
 D-ECN is complementary to static ECN—both coexist and operate independently. When either WRED's probabilistic algorithm or D-ECN's 
