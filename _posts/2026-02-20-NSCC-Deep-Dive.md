@@ -20,9 +20,9 @@ Here, $B$ stands for the bottleneck bandwidth, and $R_0$ is the base round-trip 
 before the first acknowledgment comes back. For example, at 100 Gbps with a 12μs round-trip time, $\text{BDP}$ = 12.5 GB/s x 12 μs = 150 KB. Assuming 4KB size per packet, 
 That is about 37 MTU-sized packets in flight to keep the connection fully used.
 
-I have learned most of what I know from three main sources: the UE design paper, the FASTFLOW research paper (arXiv:2404.01630v3, which used to be called SMaRTT-REPS),
-which describes a similar two-signal design and includes details like control-law formulas, the WTD mechanism, and parameter scaling. I also rely on the htsim simulator implementation (uec.cpp in the
-htsim codebase). I am sure i have got still few things wrong, so if you spot any mistakes, please let me know.
+Most of what I know comes from three main sources: the [UE design paper](https://arxiv.org/html/2508.08906v1), the  [FASTFLOW research paper](https://arxiv.org/html/2404.01630v3) research paper (which was previously called SMaRTT-REPS),
+which describes a similar two-signal design and covers details such as control-law formulas, the WTD mechanism, and parameter scaling. I also use the htsim simulator implementation, specifically uec.cpp in the
+htsim codebase. I am sure I still have a few things wrong, so if you notice any mistakes, please let me know.
 
 ## 1. The Problem: Why Two Signals?
 
