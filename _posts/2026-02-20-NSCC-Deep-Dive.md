@@ -875,7 +875,6 @@ A clean way to compare congestion control algorithms is the triple: **Knob** (wh
 | **Increase shape** | Proportional to headroom | Cubic function of time | Timer-driven steps |
 | **Decrease shape** | Proportional to severity | Typically β=0.7 (config-dependent) | α-proportional cut |
 | **Pacing** | NIC-limited (htsim) | Typically ACK-clocked; SW pacing optional | Hardware rate limiter |
-| **Target fabric** | Multi-path spraying, shallow buffers | Single-path, deep buffers OK | Lossless RDMA (PFC) |
 | **Multi-path** | Native (per-packet spraying) | Single-path | Single-path |
 
 TCP Cubic works by making cubic loss-driven cuts, then regrows the rate over time in a cubic pattern. DCQCN uses a staircase 
