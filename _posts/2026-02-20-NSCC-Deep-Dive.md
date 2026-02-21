@@ -276,56 +276,20 @@ where it falls short, and improving it step by step until the equations make sen
 
 We know we want to increase the window when delay is below the target. But what shape should the increase function have?
 
-**Constant increase** add the same number of bytes regardless of how far below the target the delay is.
-
-```
-  increase
-  rate ↑
-       │████████████████████  ← constant: same increase everywhere
-       │
-       └──────────────────→ queueing delay
-       0              target
-```
-
-The issue is when delay is at 90% of target, we're almost congested but still pushing just as hard as when the network is empty, resuling in an overshoot. We blow 
+**Constant increase** add the same number of bytes regardless of how far below the target the delay is. The issue is when delay is at 90% of target, we're almost congested but still pushing just as hard as when the network is empty, resuling in an overshoot. We blow 
 past the target every time.
 
-**Quadratic taper** increase falls off as delay² approaches target.
-
-```
-  increase
-  rate ↑
-       │╲
-       │ ╲
-       │   ╲
-       │     ╲              ← quadratic: too cautious near zero
-       │       ╲╲
-       │          ╲╲╲╲╲___
-       └──────────────────→ queueing delay
-       0              target
-```
-
-The issue is that it's too cautious near zero delay. When the network is nearly empty, the slope is nearly flat, and we barely increase and waste capacity during ramp-up.
+**Quadratic taper** increase falls off as delay² approaches target. The issue is that it's too cautious near zero delay. When the network is nearly empty, the slope is nearly flat, and we barely increase and waste capacity during ramp-up.
 
 **Linear ramp** increase proportional to `(target − delay)`.
-
-```
-  increase
-  rate ↑
-       │╲
-       │  ╲
-       │    ╲          ← slope = alpha
-       │      ╲
-       │        ╲
-       │          ╲
-       └───────────╲──→ queueing delay
-       0         target
-```
 
 This is the Goldilocks choice:
 - Maximum aggressiveness when the network is empty (delay ≈ 0)
 - Gentle approach as we near the target (no overshoot)
 - Zero proportional increase exactly at the target (the ramp naturally tapers off)
+
+{: .center}
+![Functions](/images/post35/fig9.png "Functions")
 
 The implementation accumulates increase credits into an `_inc_bytes` variable on every ACK:
 
