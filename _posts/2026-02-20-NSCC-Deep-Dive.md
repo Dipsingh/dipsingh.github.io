@@ -569,17 +569,9 @@ Normal multiplicative decrease works in steps. For example, in a 64-flow incast,
 
 Quick Adapt takes a different approach. Instead of just lowering the window, it resets the window to the amount that was actually delivered in the last measurement period. This way, the window matches what the network can really support, rather than making gradual changes.
 
-```
-         WITHOUT Quick Adapt              WITH Quick Adapt
-  cwnd                                cwnd
-  192KB │╲                            192KB │╲
-        │  ╲ slow decrease                  │  ╲
-        │    ╲  via mult_dec                │   ╳ ← QA fires!
-   96KB │     ╲                             │   │
-        │       ╲                           │   │
-        │         ╲  still too big   1.5KB  │   └── reset to achieved_bytes
-        └────────────────→ time             └────────────────→ time
-```
+{: .center}
+![QA](/images/post35/fig10.png "QA")
+
 
 ### Dual Guards: Preventing False Positives
 
