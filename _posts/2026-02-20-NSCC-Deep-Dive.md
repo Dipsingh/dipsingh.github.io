@@ -76,14 +76,14 @@ growth speed from NIC coalescing behavior.
 Clock 3: EWMA convergence. The EWMA filter smooths out raw delay samples using the standard update rule: 
 
 $$
-\texttt{avg\_delay} = \alpha \times \texttt{new\_sample} + (1 - \alpha) \times \texttt{avg\_delay} \qquad (\alpha = 0.0125)
+\hspace{5cm} \texttt{avg_delay} = \alpha \times \texttt{new_sample} + (1 - \alpha) \times \texttt{avg_delay} \qquad (\alpha = 0.0125)
 $$
 
 How quickly does it respond? If the delay suddenly jumps from 0 to a new value V, the old state decays by $(1-\alpha)$ per sample. The usual 
 “one time constant” benchmark is 63% convergence requires
 
 $$
-(1-\alpha)^N = \frac{1}{e} \quad \Rightarrow \quad N = \frac{-1}{\ln(1-\alpha)} \approx \frac{1}{\alpha} = \frac{1}{0.0125} = 80 \text{ samples}
+\hspace{5cm} (1-\alpha)^N = \frac{1}{e} \quad \Rightarrow \quad N = \frac{-1}{\ln(1-\alpha)} \approx \frac{1}{\alpha} = \frac{1}{0.0125} = 80 \text{ samples}
 $$
 
 Unlike Fulfill, EWMA counts samples, and each sample comes from one ACK, since ACKs are the only way to get delay information. You 
@@ -98,7 +98,6 @@ the signals call for a reduction. The EWMA acts as the “slow actuator” that 
 Clock 4: QA window. Quick Adapt works on a real-time schedule, firing once every base_rtt plus target_Qdelay. Unlike EWMA, this clock does not count ACKs 
 or bytes; it uses a wall-clock timer. With htsim defaults: `12 + 9 = 21 µs` (FASTFLOW’s 0.5x base target gives 12 + 6 = 18 µs). QA asks a simple question: “Over the 
 last window, did I send enough data?” If the answer is clearly no, iterative cwnd adjustment is too slow, so QA forces an immediate reset.
-
 
 Here are the concrete numbers side by side:
 
