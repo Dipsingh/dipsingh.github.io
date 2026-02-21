@@ -877,9 +877,10 @@ A clean way to compare congestion control algorithms is the triple: **Knob** (wh
 | **Pacing** | NIC-limited (htsim) | Typically ACK-clocked; SW pacing optional | Hardware rate limiter |
 | **Multi-path** | Native (per-packet spraying) | Single-path | Single-path |
 
-TCP Cubic works by making cubic loss-driven cuts, then regrows the rate over time in a cubic pattern. DCQCN uses a staircase 
-approach, with discrete rate steps on fixed timers. NSCC creates smooth curves, adjusting both direction and size based on the 
-network state. This smoothness is important because it leads to less queuing variance, fewer lost packets, and more predictable latency when the network is stable.
+TCP Cubic reduces its rate sharply when it detects loss, then increases the rate over time following a cubic pattern. DCQCN, on the other hand, changes 
+its rate in steps at set time intervals. NSCC adjusts its rate smoothly, changing both the direction and size of adjustments based on the current network 
+conditions. This smooth adjustment is important because it reduces queuing changes, lowers packet loss, and makes latency more predictable when the 
+network is stable. Here is an example of how the congestion window or sending rate might change over time for each method.
 
 {: .center}
 ![CC Comparison](/images/post35/fig5.png "CC Comparison")
