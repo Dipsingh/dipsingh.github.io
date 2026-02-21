@@ -17,12 +17,12 @@ $$
 $$
 
 Here, $B$ stands for the bottleneck bandwidth, and $R_0$ is the base round-trip time, which is the delay without any queuing. The BDP shows how many bytes can be sent 
-before the first acknowledgment comes back. For example, at 100 Gbps with a 12μs round-trip time, $ext{BDP} = 12.5$ GB/s x 12 μs = 150 KB. Assuming 4KB size per packet, 
+before the first acknowledgment comes back. For example, at 100 Gbps with a 12μs round-trip time, $text{BDP} = 12.5$ GB/s x 12 μs = 150 KB. Assuming 4KB size per packet, 
 That is about 37 MTU-sized packets in flight to keep the connection fully used.
 
 I have learned most of what I know from three main sources: the UE design paper, the FASTFLOW research paper (arXiv:2404.01630v3, which used to be called SMaRTT-REPS),
 which describes a similar two-signal design and includes details like control-law formulas, the WTD mechanism, and parameter scaling. I also rely on the htsim simulator implementation (uec.cpp in the
-htsim codebase). I might still have some things wrong, so if you spot any mistakes, please let me know.
+htsim codebase). I am sure i have got still few things wrong, so if you spot any mistakes, please let me know.
 
 ## 1. The Problem: Why Two Signals?
 
@@ -61,19 +61,19 @@ Neither signal gives the full picture on its own. When we use both together, we 
 
 These three loops work across four nested timescales, with each clock running at a different speed from fastest to slowest. To make this clearer, let’s look at each one using the reference setup (100 Gbps, 4 KB MTU, 12 µs base RTT).
 
-Clock 1: Per-ACK (~0.3–1.3 µs). This is the system’s heartbeat, where every ACK triggers a decision. The time between heartbeats depends on serialization delay, which is 
+Clock 1: Per-ACK. This is the system’s heartbeat, where every ACK triggers a decision. The time between heartbeats depends on serialization delay, which is 
 how long it takes to send one ACK’s worth of data. At 100 Gbps with 4 KB packets: `4 KB × 8 bits / 100 Gbps = 32,768 bits / 10¹¹ bps ≈ 0.33 µs`. If the NIC combines four 
 packets into one 16 KB delayed ACK, the heartbeat slows to `16 KB / 100 Gbps ≈ 1.3 µs`. Each heartbeat does three things: (1) reads the raw queueing delay and ECN flag 
 to decide what action to take, (2) feeds the delay sample into the EWMA filter, and (3) accumulates increase credit when the signals say to grow. The action choice 
 happens instantly, making this the “fast trigger” part of the system.
 
-Clock 2: Fulfill (~2.6 µs). The window loop does not apply its accumulated increase credit on every ACK; instead, it batches these actions. A fulfill happens 
+Clock 2: Fulfill. The window loop does not apply its accumulated increase credit on every ACK; instead, it batches these actions. A fulfill happens 
 every time 32 KB of new data is acknowledged. The key detail is that the threshold is measured in bytes, not in ACK counts. With per-packet ACKs (4 KB each), a 
 fulfill happens every 8 ACKs: `8 × 0.33 µs ≈ 2.6 µs`. With delayed ACKs (16 KB each), it happens every 2 ACKs: `2 × 1.3 µs ≈ 2.6 µs`. The wall-clock time is the 
 same in both cases. Using bytes for the threshold makes the fulfill rate independent of the ACK model, which is a deliberate design choice to separate cwnd 
 growth speed from NIC coalescing behavior.
 
-Clock 3: EWMA convergence (~26–105 µs). The EWMA filter smooths out raw delay samples using the standard update rule: `avg_delay = α × new_sample + (1−α) × avg_delay`, 
+Clock 3: EWMA convergence. The EWMA filter smooths out raw delay samples using the standard update rule: `avg_delay = α × new_sample + (1−α) × avg_delay`, 
 with `α = 0.0125`. How quickly does it respond? If the delay suddenly jumps from 0 to a value V, after N samples the old value is multiplied by `(1−α)` N times, so the 
 fraction of the new steady state reached is `1 − (1−α)^N`. The usual “one time constant” benchmark is 63% convergence, which is the EWMA version of `e⁻¹ ≈ 0.37` left 
 from continuous-time exponential decay. Setting `(1−α)^N = 1/e` and solving gives `N = −1/ln(1−α)`. For small α, this simplifies to `N ≈ 1/α = 1/0.0125 = 80` samples. So, 
@@ -164,7 +164,7 @@ Let's build a congestion control algorithm for a spraying network from the groun
 We measure the queuing delay on every ACK. If the delay goes above the target, we decrease the window. If it stays below, we increase it. This method 
 works well on a single path, but with spraying, here is what happens:
 
-```
+```textmate
   16 paths total. Path 5 is congested (delay = 20µs).
   All other paths: delay ≈ 2µs.
 
@@ -198,9 +198,9 @@ Now we have two signals that work together, and each one is binary. ECN is alway
 In this context, whenever I mention "delay," I am referring to *queueing delay*. This is the extra time packets spend waiting in switch queues, excluding the unavoidable time 
 it takes them to travel across the network.
 
-```
-qdelay = raw_rtt − base_rtt
-```
+$$
+\hspace{5cm} \text{qdelay} = \text{raw_rtt} − \text{base_rtt}
+$$
 
 The `base_rtt` is the minimum observed RTT and represents the baseline with no congestion. `target_Qdelay` is the operating point, showing how much queueing the sender is willing to accept. FASTFLOW sets the target RTT at about 1.5 times the base_rtt, which means a target queueing delay of about 0.5 times base_rtt. In case of htsim, it uses slightly higher defaults: 0.75 times base_rtt with packet trimming and 1.0 times base_rtt without. The stricter value from the paper works well when path-aware spraying is active and can quickly reduce load.
 
@@ -241,10 +241,10 @@ bounded to [0, 1). The cwnd drop is bounded to 50% `new_cwnd = max(cwnd × (1 - 
 multi-path fabric, this most likely means one specific path is congested while the rest are fine. The response: don't change the window at all. Instead, tell 
 the multipath load balancer to avoid that path next time. Steer first, throttle second.
 
-> **Three sources, three behaviors.** This quadrant is where UE, FASTFLOW, and the simulator diverge. **UE NSCC** explicitly says "NSCC does not react" at the 
-> cwnd level, the load balancer handles it. **FASTFLOW** adds **Wait-to-Decrease (WTD)**: it tracks an EWMA of ECN-marked ACK fraction, and only applies a 
-> gentle **Fair Decrease** (proportional to `cwnd/BDP`) if that fraction exceeds ~25%. Below the threshold, path steering alone handles the congestion, 
-> giving REPS/Bitmap time to fix transient ECMP collisions before CC intervenes. The **htsim simulator** exposes this as a `_q3_pressure` parameter: 
+> This quadrant is where UE, FASTFLOW, and the simulator diverge. UE NSCC explicitly says "NSCC does not react" at the 
+> cwnd level, the load balancer handles it. FASTFLOW adds Wait-to-Decrease (WTD): it tracks an EWMA of ECN-marked ACK fraction, and only applies a 
+> gentle Fair Decrease (proportional to `cwnd/BDP`) if that fraction exceeds ~25%. Below the threshold, path steering alone handles the congestion, 
+> giving REPS/Bitmap time to fix transient ECMP collisions before CC intervenes. The htsim simulator exposes this as a `_q3_pressure` parameter: 
 > at 0.0 (default), it matches UE's pure Steer-Only; at values like 0.05, it applies a 5% per-RTT cwnd decrease.
 
 **High delay, no ECN (D=1, M=0): Fair Increase**. In this case, Delay is high, but there are no new ECN marks. This usually means congestion is easing. Earlier packets might 
@@ -396,7 +396,7 @@ The natural choice is to define $s = (R - R_\text{target}) / R$. This gives:
 Putting it all together:
 
 $$
-\hspace{5cm} W_\text{new} = W \times \left(1 - \gamma \cdot \frac{\texttt{avg\_rtt} - R_\text{target}}{\texttt{avg\_rtt}}\right)
+\hspace{5cm} W_\text{new} = W \times \left(1 - \gamma \cdot \frac{\texttt{avg_rtt} - R_\text{target}}{\texttt{avg_rtt}}\right)
 $$
 
 The default value of $\gamma = 0.8$ allows for a quick response while staying within limits. Because the severity factor $s = (R - R_\text{target})/R$ always falls 
@@ -577,8 +577,6 @@ How does the split help? The same packet still causes an immediate decrease beca
 ### 4d. Three-Case EWMA with Trust Bias
 
 §1 (Clock 3) showed that the EWMA filter ($\alpha = 0.0125$, about 80 samples to reach 63%) is intentionally slow. It smooths out short-term per-path noise so that only ongoing congestion causes a decrease in magnitude. However, just being slow is not enough. In a spraying fabric, some delay samples are less reliable than others, so the filter must take this into account.
-
->Provenance note. The three trust-bias cases below are from the simulator’s EWMA implementation (uec.cpp). FASTFLOW describes a standard EWMA; UE NSCC says the sender maintains filtered delay but doesn’t prescribe case-specific rules. The trust-bias logic is one implementation’s strategy for handling multipath noise.
 
 The main idea is that ECN serves as a trust signal for delay samples. In the code, the ECN echo flag appears as a variable named skip, where skip = true means ECN is
 present. The outer if statement checks for the no-ECN discount case first, giving it the highest priority:
@@ -895,10 +893,7 @@ indicates congestion on the only path, but Q3 does nothing with it. The flow onl
 resulting in a delay in reaction compared to a protocol like TCP Cubic, which responds to every ECN mark. Q3 is unconditionally a NOOP regardless of how many 
 marks arrive, there is no adaptive fallback.
 
-
----
-
-## 8. Transport Plumbing: NIC & Feedback
+## 8. Transport Feedback
 
 Earlier sections explained what NSCC decides. Here, we look at how the timing of those decisions is controlled, like when ACKs arrive to trigger the next step.
 
@@ -983,7 +978,7 @@ what I do and don’t fully understand.
 - [FASTFLOW: Flexible Adaptive Congestion Control for High-Performance Datacenters (earlier drafts titled SMaRTT-REPS, arXiv:2404.01630v3](https://arxiv.org/html/2404.01630v3)
 - [DCTCP Data Center TCP, RFC 8257, IETF, 2017]
 - [TCP CUBIC for Fast and Long-Distance Networks, RFC 9438, IETF, 2023]
-- [DCQCN Y. Zhu et al., "Congestion Control for Large-Scale RDMA Deployments," ACM SIGCOMM 2015]
-- [DCQCN+ Y. Gao et al., "DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks," IEEE ICNP 2018]
-- [TIMELY R. Mittal et al., "TIMELY: RTT-based Congestion Control for the Datacenter," ACM SIGCOMM 2015]
-- [Swift G. Kumar et al., "Swift: Delay is Simple and Effective for Congestion Control in the Datacenter," ACM SIGCOMM 2020]
+- ["Congestion Control for Large-Scale RDMA Deployments," ACM SIGCOMM 2015]
+- ["DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks," IEEE ICNP 2018]
+- ["TIMELY: RTT-based Congestion Control for the Datacenter," ACM SIGCOMM 2015]
+- ["Swift: Delay is Simple and Effective for Congestion Control in the Datacenter," ACM SIGCOMM 2020]
