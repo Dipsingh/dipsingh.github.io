@@ -749,7 +749,7 @@ NACK processing in the multipath engine is more detailed than it first seems. It
   The fabric path was fine! Only the receiver port is congested
   (e.g., incast at the receiver).
 
-  → Multipath feedback: path is innocent (no penalty)
+  → Multipath feedback: path is fine (no penalty)
 
   Mid-fabric trim (switch):
   ────────────────────────────────────────────────────
@@ -880,7 +880,7 @@ A clean way to compare congestion control algorithms is the triple: **Knob** (wh
 TCP Cubic reduces its rate sharply when it detects loss, then increases the rate over time following a cubic pattern. DCQCN, on the other hand, changes 
 its rate in steps at set time intervals. NSCC adjusts its rate smoothly, changing both the direction and size of adjustments based on the current network 
 conditions. This smooth adjustment is important because it reduces queuing changes, lowers packet loss, and makes latency more predictable when the 
-network is stable. Here is an example of how the congestion window or sending rate might change over time for each method.
+network is stable. Here is an example of how the congestion window or sending rate might change over time for each.
 
 {: .center}
 ![CC Comparison](/images/post35/fig5.png "CC Comparison")
@@ -898,9 +898,9 @@ what I do and don’t fully understand.
 
 - [UE Ultra Ethernet's Design Principles and Architectural Innovations, arXiv:2508.08906](https://arxiv.org/html/2508.08906v1)
 - [FASTFLOW: Flexible Adaptive Congestion Control for High-Performance Datacenters (earlier drafts titled SMaRTT-REPS, arXiv:2404.01630v3](https://arxiv.org/html/2404.01630v3)
-- [DCTCP Data Center TCP, RFC 8257, IETF, 2017]
-- [TCP CUBIC for Fast and Long-Distance Networks, RFC 9438, IETF, 2023]
-- ["Congestion Control for Large-Scale RDMA Deployments," ACM SIGCOMM 2015]
-- ["DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks," IEEE ICNP 2018]
-- ["TIMELY: RTT-based Congestion Control for the Datacenter," ACM SIGCOMM 2015]
-- ["Swift: Delay is Simple and Effective for Congestion Control in the Datacenter," ACM SIGCOMM 2020]
+- [DCTCP Data Center TCP, RFC 8257](https://datatracker.ietf.org/doc/html/rfc8257)
+- [TCP CUBIC for Fast and Long-Distance Networks, RFC 9438](https://www.rfc-editor.org/rfc/rfc9438.html)
+- [Congestion Control for Large-Scale RDMA Deployments](https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p523.pdf)
+- [DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks](https://ieeexplore.ieee.org/document/8526809/)
+- [TIMELY: RTT-based Congestion Control for the Datacenter](https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p537.pdf)
+- [Swift: Delay is Simple and Effective for Congestion Control in the Datacenter](https://dl.acm.org/doi/10.1145/3387514.3406591)
