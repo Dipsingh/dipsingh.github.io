@@ -979,11 +979,11 @@ what I do and don’t fully understand.
 
 # References
 
-- [UE] Ultra Ethernet's Design Principles and Architectural Innovations, [arXiv:2508.08906](https://arxiv.org/html/2508.08906v1)
-- [FASTFLOW] FASTFLOW: Flexible Adaptive Congestion Control for High-Performance Datacenters (earlier drafts titled SMaRTT-REPS), [arXiv:2404.01630v3](https://arxiv.org/html/2404.01630v3)
-- [DCTCP] Data Center TCP, RFC 8257, IETF, 2017
-- [TCP Cubic] CUBIC for Fast and Long-Distance Networks, RFC 9438, IETF, 2023
-- [DCQCN] Y. Zhu et al., "Congestion Control for Large-Scale RDMA Deployments," ACM SIGCOMM 2015
-- [DCQCN+] Y. Gao et al., "DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks," IEEE ICNP 2018
-- [TIMELY] R. Mittal et al., "TIMELY: RTT-based Congestion Control for the Datacenter," ACM SIGCOMM 2015
-- [Swift] G. Kumar et al., "Swift: Delay is Simple and Effective for Congestion Control in the Datacenter," ACM SIGCOMM 2020
+- [UE Ultra Ethernet's Design Principles and Architectural Innovations, arXiv:2508.08906](https://arxiv.org/html/2508.08906v1)
+- [FASTFLOW: Flexible Adaptive Congestion Control for High-Performance Datacenters (earlier drafts titled SMaRTT-REPS, arXiv:2404.01630v3](https://arxiv.org/html/2404.01630v3)
+- [DCTCP Data Center TCP, RFC 8257, IETF, 2017]
+- [TCP CUBIC for Fast and Long-Distance Networks, RFC 9438, IETF, 2023]
+- [DCQCN Y. Zhu et al., "Congestion Control for Large-Scale RDMA Deployments," ACM SIGCOMM 2015]
+- [DCQCN+ Y. Gao et al., "DCQCN+: Taming Large-Scale Incast Congestion in RDMA over CEE Networks," IEEE ICNP 2018]
+- [TIMELY R. Mittal et al., "TIMELY: RTT-based Congestion Control for the Datacenter," ACM SIGCOMM 2015]
+- [Swift G. Kumar et al., "Swift: Delay is Simple and Effective for Congestion Control in the Datacenter," ACM SIGCOMM 2020]
