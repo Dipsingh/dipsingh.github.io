@@ -17,7 +17,7 @@ $$
 $$
 
 Here, $B$ stands for the bottleneck bandwidth, and $R_0$ is the base round-trip time, which is the delay without any queuing. The BDP shows how many bytes can be sent 
-before the first acknowledgment comes back. For example, at 100 Gbps with a 12μs round-trip time, $text{BDP}$ = 12.5$ GB/s x 12 μs = 150 KB. Assuming 4KB size per packet, 
+before the first acknowledgment comes back. For example, at 100 Gbps with a 12μs round-trip time, $text{BDP}$ = 12.5 GB/s x 12 μs = 150 KB. Assuming 4KB size per packet, 
 That is about 37 MTU-sized packets in flight to keep the connection fully used.
 
 I have learned most of what I know from three main sources: the UE design paper, the FASTFLOW research paper (arXiv:2404.01630v3, which used to be called SMaRTT-REPS),
@@ -96,7 +96,7 @@ last window, did I send enough data?” If the answer is clearly no, iterative c
 
 Here are the concrete numbers side by side:
 
-```
+```text
                                 Per-packet ACK (4KB)     Delayed ACK (16KB)
                                 ────────────────────     ──────────────────
   per-ACK spacing               4KB/100Gbps ≈ 0.33µs     16KB/100Gbps ≈ 1.3µs
@@ -126,7 +126,7 @@ explained further, keeps the system from overreacting to brief spikes but still 
 #### Dataflow: what feeds what
 
 Here is the dataflow wiring for a single ACK event. The two signals, delay and ECN, work together to create one of four possible actions. You do not need to focus on the four cases yet; section 2 will explain them from the basics. Use this diagram as a reference to come back to after you have seen the whole process.
-```
+```text
 ACK arrives
   │
   ├─► raw_rtt ──┬─► base_rtt update (min-tracking)
@@ -164,7 +164,7 @@ Let's build a congestion control algorithm for a spraying network from the groun
 We measure the queuing delay on every ACK. If the delay goes above the target, we decrease the window. If it stays below, we increase it. This method 
 works well on a single path, but with spraying, here is what happens:
 
-```textmate
+```text
   16 paths total. Path 5 is congested (delay = 20µs).
   All other paths: delay ≈ 2µs.
 
@@ -250,7 +250,7 @@ increase, so NSCC is stuck with decrease or Steer-Only.
 
 The ECN marks that drive NSCC's quadrant selection don't appear by magic — switches generate them when their output queue depth crosses a configured threshold. FASTFLOW (§3.5, ECN Marking) uses RED with Kmin/Kmax as fractions of the switch queue size — **20% and 80%**:
 
-```textmate
+```text
   ecn_low  = ⌈0.2 × queue_pkts⌉     (start marking — "queue is filling")
   ecn_high = ⌈0.8 × queue_pkts⌉     (mark everything — "queue is almost full")
 ```
@@ -377,7 +377,7 @@ between 0 and 1, the largest possible cut is $\gamma \times 1 = 0.8$, meaning at
 In the simulator variant (htsim uec.cpp), there is a minimum kept fraction of 0.5, so no more than half is cut in any step. The decrease is also limited to once 
 per base RTT using `_last_dec_time`.
 
-```
+```python
   if (eventlist().now() - _last_dec_time > _base_rtt) {
       // allowed to decrease
       new_cwnd = cwnd × (1 - γ × s)
@@ -390,7 +390,7 @@ per base RTT using `_last_dec_time`.
 
 What happens if we change the gamma parameter? To make this clearer, let's look at how the kept fraction changes at different RTT levels, using multiples of the target RTT.
 
-```
+```text
   At RTT = 1.5 x target_RTT:
 
   γ=0.5: kept = 1 − 0.5x(0.5t)/1.5t = 1 − 0.17 = 83%  (gentle)
