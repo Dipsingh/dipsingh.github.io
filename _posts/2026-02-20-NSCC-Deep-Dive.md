@@ -206,26 +206,8 @@ The `base_rtt` is the minimum observed RTT and represents the baseline with no c
 
 With two binary inputs, delay above or below target ($D$) and ECN mark present or absent ($M$), there are four possible combinations:
 
-```
-      qdelay (trailing indicator)
-           ↑
-           │  FAIR              MULTIPLICATIVE
-           │  INCREASE          DECREASE
-           │  (D=1, M=0:        (D=1, M=1:
-           │   congestion        both signals
-           │   clearing)         agree: bad)
-    target ┤╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶
-           │  PROPORTIONAL
-           │  INCREASE          STEER-ONLY *
-           │  (D=0, M=0:        (D=0, M=1:
-           │   both good)        congestion
-           │                     building)
-           └──────────────────────────────→ ECN (leading indicator)
-
-  * UE: no cwnd reaction (steer only). FASTFLOW: FD (if WTD allows).
-    htsim default: pure steer-only (Q3 pressure = 0).
-```
-
+{: .center}
+![Four Quadrants](/images/post35/fig6.png "Four Quadrants")
 
 
 Let’s walk through each:
@@ -242,10 +224,10 @@ multi-path fabric, this most likely means one specific path is congested while t
 the multipath load balancer to avoid that path next time. Steer first, throttle second.
 
 > This quadrant is where UE, FASTFLOW, and the simulator diverge. UE NSCC explicitly says "NSCC does not react" at the 
-> cwnd level, the load balancer handles it. FASTFLOW adds Wait-to-Decrease (WTD): it tracks an EWMA of ECN-marked ACK fraction, and only applies a 
-> gentle Fair Decrease (proportional to `cwnd/BDP`) if that fraction exceeds ~25%. Below the threshold, path steering alone handles the congestion, 
-> giving REPS/Bitmap time to fix transient ECMP collisions before CC intervenes. The htsim simulator exposes this as a `_q3_pressure` parameter: 
-> at 0.0 (default), it matches UE's pure Steer-Only; at values like 0.05, it applies a 5% per-RTT cwnd decrease.
+cwnd level, the load balancer handles it. FASTFLOW adds Wait-to-Decrease (WTD): it tracks an EWMA of ECN-marked ACK fraction, and only applies a 
+gentle Fair Decrease (proportional to `cwnd/BDP`) if that fraction exceeds ~25%. Below the threshold, path steering alone handles the congestion, 
+giving REPS/Bitmap time to fix transient ECMP collisions before CC intervenes. The htsim simulator exposes this as a `_q3_pressure` parameter: 
+at 0.0 (default), it matches UE's pure Steer-Only; at values like 0.05, it applies a 5% per-RTT cwnd decrease.
 
 **High delay, no ECN (D=1, M=0): Fair Increase**. In this case, Delay is high, but there are no new ECN marks. This usually means congestion is easing. Earlier packets might 
 have been marked, but now the queue is below the marking threshold. The response is to increase the window gently to test if things are getting better. If marks 
@@ -268,25 +250,15 @@ increase, so NSCC is stuck with decrease or Steer-Only.
 
 The ECN marks that drive NSCC's quadrant selection don't appear by magic — switches generate them when their output queue depth crosses a configured threshold. FASTFLOW (§3.5, ECN Marking) uses RED with Kmin/Kmax as fractions of the switch queue size — **20% and 80%**:
 
-```
+```textmate
   ecn_low  = ⌈0.2 × queue_pkts⌉     (start marking — "queue is filling")
   ecn_high = ⌈0.8 × queue_pkts⌉     (mark everything — "queue is almost full")
 ```
 
 Between `ecn_low` and `ecn_high`, the switch probabilistically marks packets — the probability ramps linearly from 0% to 100%, RED-style. Above `ecn_high`, every packet is marked.
 
-```
-  mark
-  probability
-  100% │                    ┌──────────
-       │                   ╱
-       │                  ╱     ← linear ramp between thresholds
-       │                 ╱
-    0% │───────────────┘
-       └───────────────┬──────┬──────→ queue depth (packets)
-                    ecn_low  ecn_high
-                  (0.2×queue) (0.8×queue)
-```
+{: .center}
+![Linear Ramp](/images/post35/fig7.png "Linear Ramp")
 
 These ECN thresholds have a direct impact on the quadrant decision. If `ecn_low` is set too high, queues can grow a lot before any marks show up. The sender then 
 stays in proportional increase longer than planned, and by the time marks appear, delay is already high. This can cause the system to jump straight to multiplicative 
@@ -456,18 +428,9 @@ cwnd += _inc_bytes / cwnd
 That division by `cwnd` is the fairness mechanism. Two flows sharing a bottleneck experience the same delay and accumulate similar `_inc_bytes` over one RTT. But the step 
 each flow actually takes depends on its current window size:
 
-```
-  cwnd
-  (KB)
-   80│  Flow A ╲                       (600K / 80K = +7.5 bytes)
-     │           ╲
-     │             ╲─────────── converge
-   40│─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  fair share
-     │             ╱───────────
-     │           ╱                     (600K / 10K = +60 bytes)
-   10│  Flow B ╱
-     └─────────────────────────→ time
-```
+{: .center}
+![Fairness](/images/post35/fig8.png "Fairnessp")
+
 
 Flow A (large window) divides by 80 KB → small step. Flow B (small window) divides by 10 KB → large step. The small flow catches up, the large flow slows down, and 
 they converge. This is mathematically equivalent to TCP's classic `+MSS²/cwnd` additive increase.
