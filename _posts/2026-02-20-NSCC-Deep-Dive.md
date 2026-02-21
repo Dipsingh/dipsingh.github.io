@@ -96,7 +96,7 @@ last window, did I send enough data?” If the answer is clearly no, iterative c
 
 Here are the concrete numbers side by side:
 
-```text
+```textmate
                                 Per-packet ACK (4KB)     Delayed ACK (16KB)
                                 ────────────────────     ──────────────────
   per-ACK spacing               4KB/100Gbps ≈ 0.33µs     16KB/100Gbps ≈ 1.3µs
@@ -126,7 +126,8 @@ explained further, keeps the system from overreacting to brief spikes but still 
 #### Dataflow: what feeds what
 
 Here is the dataflow wiring for a single ACK event. The two signals, delay and ECN, work together to create one of four possible actions. You do not need to focus on the four cases yet; section 2 will explain them from the basics. Use this diagram as a reference to come back to after you have seen the whole process.
-```text
+
+```textmate
 ACK arrives
   │
   ├─► raw_rtt ──┬─► base_rtt update (min-tracking)
@@ -164,7 +165,7 @@ Let's build a congestion control algorithm for a spraying network from the groun
 We measure the queuing delay on every ACK. If the delay goes above the target, we decrease the window. If it stays below, we increase it. This method 
 works well on a single path, but with spraying, here is what happens:
 
-```text
+```textmate
   16 paths total. Path 5 is congested (delay = 20µs).
   All other paths: delay ≈ 2µs.
 
@@ -250,7 +251,7 @@ increase, so NSCC is stuck with decrease or Steer-Only.
 
 The ECN marks that drive NSCC's quadrant selection don't appear by magic — switches generate them when their output queue depth crosses a configured threshold. FASTFLOW (§3.5, ECN Marking) uses RED with Kmin/Kmax as fractions of the switch queue size — **20% and 80%**:
 
-```text
+```textmate
   ecn_low  = ⌈0.2 × queue_pkts⌉     (start marking — "queue is filling")
   ecn_high = ⌈0.8 × queue_pkts⌉     (mark everything — "queue is almost full")
 ```
@@ -390,7 +391,7 @@ per base RTT using `_last_dec_time`.
 
 What happens if we change the gamma parameter? To make this clearer, let's look at how the kept fraction changes at different RTT levels, using multiples of the target RTT.
 
-```text
+```textmate
   At RTT = 1.5 x target_RTT:
 
   γ=0.5: kept = 1 − 0.5x(0.5t)/1.5t = 1 − 0.17 = 83%  (gentle)
@@ -587,7 +588,7 @@ values are the same, but this hardcoding is a safeguard. If someone changes $\al
 
 Not every ACK gives a usable RTT sample. For each packet, the sender keeps track of two things: `_rtx_times`, which counts how many times the packet has been sent, and `rtx_echo`, a bit from the receiver that shows if the packet was marked as a retransmission. The `validateSendTs` function checks these to decide if the sample should be used.
 
-```
+```textmate
   Rule 1: rtx_times = 0 AND rtx_echo = false  →  VALID  (fresh packet, clean ACK)
   Rule 2: rtx_times = 1 AND rtx_echo = true   →  VALID  (one retransmit, receiver confirms)
   Rule 3: anything else                       →  INVALID (skip sample, use avg_delay)
@@ -603,6 +604,7 @@ receiver got the original. Invalid samples are ignored, and the EWMA keeps using
 Normal multiplicative decrease works in steps. For example, in a 64-flow incast, each flow's fair share is about 1/64 of the total bandwidth. Even if the window is halved every round-trip time, it still takes about $\log_2(64) \approx 6$ RTTs to converge. During these 6 RTTs, extra packets can build up and cause heavy queuing for all flows.
 
 Quick Adapt takes a different approach. Instead of just lowering the window, it resets the window to the amount that was actually delivered in the last measurement period. This way, the window matches what the network can really support, rather than making gradual changes.
+
 ```
          WITHOUT Quick Adapt              WITH Quick Adapt
   cwnd                                cwnd
@@ -676,7 +678,7 @@ Entering recovery happens when ooo goes over the threshold. At this point, SLEEK
 boundary: everything below this point is considered “old” and might be lost, while everything above is “new” and was sent after the issue was found. Recovery 
 focuses only on old packets.
 
-```
+```textmate
   Sent:        1  2  3  4  5  6  7  8  9  10
   ACKed:       1  2     4  5     7  8        ← cum_ack = 2 (contiguous)
   In bitmap:         3        6        9  10 ← sent but not ACKed
@@ -737,7 +739,7 @@ Fast mechanisms handle common cases, while slower mechanisms handle rare situati
 
 The Steer-Only quadrant makes sense when we understand how it works with the load balancer. Here is how the process works:
 
-```
+```textmate
   1. Packet sent on Path 5, gets ECN-marked at a congested switch
   2. ACK arrives: ecn=true, delay=3µs (low — other paths are fine)
   3. Quadrant: ECN + low delay → Steer-Only (cwnd unchanged)
@@ -754,7 +756,7 @@ So far, we have said things like “multipath engine: Path 5 penalized” withou
 
 The simulator (htsim) uses four path-selection strategies. REPS is explained in the UE design paper, which describes how it uses EVs returned in ACKs, and comes from earlier SMaRTT-REPS work. The current FASTFLOW paper talks about adaptive load balancing in general, without focusing on REPS. The other strategies are specific to the simulator. The Bitmap strategy is the most illustrative, as it keeps a penalty score for each EV or path:
 
-```
+```textmate
   Cycle 1:  Path scores [0, 0, 0, 0, 0, 0, 0, 0]  → all paths available
             Send on: 1, 2, 3, 4, 5, 6, 7, 8
 
@@ -783,7 +785,7 @@ other part of the Steer-Only quadrant: the congestion control does not change th
 
 NACK processing in the multipath engine is more detailed than it first seems. It identifies where the trim happened
 
-```
+```textmate
   Last-hop trim (receiver NIC):
   ────────────────────────────────────────────────────
   Sender ──→ Switch A ──→ Switch B ──→ [Receiver NIC ✗]
@@ -820,7 +822,7 @@ Whether Q3’s “steer first” approach works depends on whether path steering
 
 **Scenario 1: ECMP collision (path steering can fix it)**
 
-```
+```textmate
   t=0µs   Two flows collide on Path 3 (ECMP hash collision)
   t=2µs   ECN marks arrive, delay still low
           → Q3 fires: cwnd unchanged
@@ -835,7 +837,7 @@ Whether Q3’s “steer first” approach works depends on whether path steering
 
 **Scenario 2: Receiver incast (path steering cannot fix it)**
 
-```
+```textmate
   t=0µs   64 flows converge on one receiver port — ALL paths congested
   t=2µs   ECN marks + HIGH delay on every path
           → Q2 (multiplicative decrease) fires — delay is above target
@@ -871,7 +873,7 @@ The simulator uses three triggers for delayed ACKs: ECN-immediate ACKs, byte-thr
 
 The AR flag is crucial for the sender to avoid a subtle deadlock. Without it:
 
-```
+```textmate
   Without AR:                       With AR:
   ─────────────                    ─────────────
   Sender: send pkt 7, pkt 8        Sender: send pkt 7, pkt 8 (AR=true)
@@ -886,7 +888,7 @@ The AR flag is crucial for the sender to avoid a subtle deadlock. Without it:
 
 The total feedback loop, from send to quadrant decision, is roughly one RTT plus any ACK delay. ECN-marked packets get the fastest feedback (ACKs are immediate), which is exactly right: the “smoke detector” signal should arrive as quickly as possible. Non-ECN packets may wait up to 4 packets for batching, adding a few microseconds of delay that the slow EWMA filter easily absorbs.
 
-```
+```textmate
   Data packet sent
        │
        │  serialization (NIC) + propagation + queuing
