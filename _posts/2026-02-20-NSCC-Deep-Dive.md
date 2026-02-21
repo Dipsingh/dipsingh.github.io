@@ -62,34 +62,40 @@ Neither signal gives the full picture on its own. When we use both together, we 
 These three loops work across four nested timescales, with each clock running at a different speed from fastest to slowest. To make this clearer, let’s look at each one using the reference setup (100 Gbps, 4 KB MTU, 12 µs base RTT).
 
 Clock 1: Per-ACK. This is the system’s heartbeat, where every ACK triggers a decision. The time between heartbeats depends on serialization delay, which is 
-how long it takes to send one ACK’s worth of data. At 100 Gbps with 4 KB packets: `4 KB × 8 bits / 100 Gbps = 32,768 bits / 10¹¹ bps ≈ 0.33 µs`. If the NIC combines four 
-packets into one 16 KB delayed ACK, the heartbeat slows to `16 KB / 100 Gbps ≈ 1.3 µs`. Each heartbeat does three things: (1) reads the raw queueing delay and ECN flag 
+how long it takes to send one ACK’s worth of data. For example, assuming 4KB size packets on a 100Gbps link will take about `0.33 µs`. If the NIC combines four 
+packets into one 16 KB delayed ACK, the heartbeat slows to `1.3 µs`. Each heartbeat does three things: (1) reads the raw queueing delay and ECN flag 
 to decide what action to take, (2) feeds the delay sample into the EWMA filter, and (3) accumulates increase credit when the signals say to grow. The action choice 
 happens instantly, making this the “fast trigger” part of the system.
 
-Clock 2: Fulfill. The window loop does not apply its accumulated increase credit on every ACK; instead, it batches these actions. A fulfill happens 
+Clock 2: Fulfill. Accumulated increase credits are not applied on every ACK; instead, it batches these actions. A fulfill happens 
 every time 32 KB of new data is acknowledged. The key detail is that the threshold is measured in bytes, not in ACK counts. With per-packet ACKs (4 KB each), a 
-fulfill happens every 8 ACKs: `8 × 0.33 µs ≈ 2.6 µs`. With delayed ACKs (16 KB each), it happens every 2 ACKs: `2 × 1.3 µs ≈ 2.6 µs`. The wall-clock time is the 
+fulfill happens every 8 ACKs: `2.6 µs`. With delayed ACKs (16 KB each), it happens every 2 ACKs: `2.6 µs`. The wall-clock time is the 
 same in both cases. Using bytes for the threshold makes the fulfill rate independent of the ACK model, which is a deliberate design choice to separate cwnd 
 growth speed from NIC coalescing behavior.
 
-Clock 3: EWMA convergence. The EWMA filter smooths out raw delay samples using the standard update rule: `avg_delay = α × new_sample + (1−α) × avg_delay`, 
-with `α = 0.0125`. How quickly does it respond? If the delay suddenly jumps from 0 to a value V, after N samples the old value is multiplied by `(1−α)` N times, so the 
-fraction of the new steady state reached is `1 − (1−α)^N`. The usual “one time constant” benchmark is 63% convergence, which is the EWMA version of `e⁻¹ ≈ 0.37` left 
-from continuous-time exponential decay. Setting `(1−α)^N = 1/e` and solving gives `N = −1/ln(1−α)`. For small α, this simplifies to `N ≈ 1/α = 1/0.0125 = 80` samples. So, 
-`1/α` is the filter’s time constant in terms of sample counts.
+Clock 3: EWMA convergence. The EWMA filter smooths out raw delay samples using the standard update rule: 
 
-This is where the ACK model becomes very important. EWMA counts samples, and each sample comes from one ACK, since ACKs are the only way to get delay information. You 
+$$
+\texttt{avg\_delay} = \alpha \times \texttt{new\_sample} + (1 - \alpha) \times \texttt{avg\_delay} \qquad (\alpha = 0.0125)
+$$
+
+How quickly does it respond? If the delay suddenly jumps from 0 to a new value V, the old state decays by $(1-\alpha)$ per sample. The usual 
+“one time constant” benchmark is 63% convergence requires
+
+$$
+(1-\alpha)^N = \frac{1}{e} \quad \Rightarrow \quad N = \frac{-1}{\ln(1-\alpha)} \approx \frac{1}{\alpha} = \frac{1}{0.0125} = 80 \text{ samples}
+$$
+
+Unlike Fulfill, EWMA counts samples, and each sample comes from one ACK, since ACKs are the only way to get delay information. You 
 cannot sample queueing delay without a returning packet; using a timer would just repeat old data. With per-packet ACKs: `80 × 0.33 µs ≈ 26 µs (~2 RTTs) `. With delayed 
 ACKs: `80 × 1.3 µs ≈ 105 µs (~9 RTTs)`. The formula is the same, but convergence is four times slower because each combined ACK carries more bytes but still counts as 
 one delay sample. The filter’s statistical properties are the same in both cases, but its responsiveness in time changes with the ACK coalescing ratio. This design 
 means the EWMA’s convergence speed is closely tied to the ACK rate.
 
-This is important: avg_delay does not choose the action; the raw qdelay and ecn flag do that. Instead, avg_delay determines how much to decrease cwnd when the signals 
-call for a reduction. The EWMA acts as the “slow actuator” that works alongside the fast per-ACK trigger. Per-packet ACKs match the FASTFLOW paper’s description, while 
-the htsim simulator uses delayed ACKs (16 KB threshold), which slows EWMA convergence but lowers ACK processing overhead.
+An important distinction worth making is that, `avg_delay` does not choose the action. The raw qdelay and ecn flag do that. Instead, `avg_delay` determines how much to decrease `cwnd` when 
+the signals call for a reduction. The EWMA acts as the “slow actuator” that works alongside the fast per-ACK trigger. The htsim simulator uses delayed ACKs (16 KB threshold), which slows EWMA convergence but lowers ACK processing overhead.
 
-Clock 4: QA window (~21 µs). Quick Adapt works on a real-time schedule, firing once every base_rtt plus target_Qdelay. Unlike EWMA, this clock does not count ACKs 
+Clock 4: QA window. Quick Adapt works on a real-time schedule, firing once every base_rtt plus target_Qdelay. Unlike EWMA, this clock does not count ACKs 
 or bytes; it uses a wall-clock timer. With htsim defaults: `12 + 9 = 21 µs` (FASTFLOW’s 0.5x base target gives 12 + 6 = 18 µs). QA asks a simple question: “Over the 
 last window, did I send enough data?” If the answer is clearly no, iterative cwnd adjustment is too slow, so QA forces an immediate reset.
 
