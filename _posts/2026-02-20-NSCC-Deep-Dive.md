@@ -223,11 +223,11 @@ bounded to [0, 1). The cwnd drop is bounded to 50% `new_cwnd = max(cwnd × (1 - 
 multi-path fabric, this most likely means one specific path is congested while the rest are fine. The response: don't change the window at all. Instead, tell 
 the multipath load balancer to avoid that path next time. Steer first, throttle second.
 
-> This quadrant is where UE, FASTFLOW, and the simulator diverge. UE NSCC explicitly says "NSCC does not react" at the 
+_This quadrant is where UE, FASTFLOW, and the simulator diverge. UE NSCC explicitly says "NSCC does not react" at the 
 cwnd level, the load balancer handles it. FASTFLOW adds Wait-to-Decrease (WTD): it tracks an EWMA of ECN-marked ACK fraction, and only applies a 
 gentle Fair Decrease (proportional to `cwnd/BDP`) if that fraction exceeds ~25%. Below the threshold, path steering alone handles the congestion, 
 giving REPS/Bitmap time to fix transient ECMP collisions before CC intervenes. The htsim simulator exposes this as a `_q3_pressure` parameter: 
-at 0.0 (default), it matches UE's pure Steer-Only; at values like 0.05, it applies a 5% per-RTT cwnd decrease.
+at 0.0 (default), it matches UE's pure Steer-Only; at values like 0.05, it applies a 5% per-RTT cwnd decrease._
 
 **High delay, no ECN (D=1, M=0): Fair Increase**. In this case, Delay is high, but there are no new ECN marks. This usually means congestion is easing. Earlier packets might 
 have been marked, but now the queue is below the marking threshold. The response is to increase the window gently to test if things are getting better. If marks 
@@ -421,7 +421,7 @@ NSCC applies increases and decreases asymmetrically:
 
 When the fulfill fires, the accumulated credit is applied as:
 
-```
+```textmate
 cwnd += _inc_bytes / cwnd
 ```
 
@@ -453,7 +453,7 @@ multi-path noise.
 
 Every thermometer has a zero point. For NSCC, this zero point is base RTT, which is the round-trip time a packet would see if all queues along its path were empty.
 
-```
+```textmate
   measured_rtt = base_rtt + queuing_delay
                  ────────   ──────────────
                  "zero"      "the signal"
@@ -556,7 +556,7 @@ else
 
 The branching priority produces four cases:
 
-```
+```textmate
   Condition                          What filter sees          Rationale
   ─────────────────────────────────────────────────────────────────────────
   No ECN + low delay                 actual delay (α)          Trusted. Below target,
@@ -643,7 +643,7 @@ works well when packets follow a single path and arrive in order. When packets a
 often arrive out of order. If you use a fixed threshold of 3, loss recovery would trigger all the time, even on healthy flows. The threshold should adjust 
 based on how much reordering you expect.
 
-```
+```textmate
   TCP (single path):              NSCC (sprayed):
   Sent: 1, 2, 3, 4, 5            Sent: 1, 2, 3, 4, 5
   Recv: 1, 2, _, 4, 5            Recv: 3, 1, 5, 2, _
@@ -658,7 +658,7 @@ based on how much reordering you expect.
 SLEEK, which is the loss recovery mechanism used in NSCC’s simulator, replaces the fixed threshold with one that scales with the window size. The 
 out-of-order count (ooo) keeps track of how many packets have arrived out of order, so the threshold is also measured in packets.
 
-```
+```textmate
 threshold_pkts = min(1.5 x cwnd, maxwnd) / pkt_size
 ```
 
@@ -709,7 +709,7 @@ on the way. But a fast probe is a strong sign that anything still missing is gon
 Under SLEEK is the oldest safety net in transport protocols: the Retransmission Timeout (RTO). The minimum RTO is based on the physical worst case, which is the 
 time needed to drain a full queue at every hop along the longest path.
 
-```
+```textmate
 min_rto = 15µs + queue_drain_per_hop × diameter_hops
 ```
 
@@ -819,6 +819,7 @@ The “wait” is built into the system: there is no timer or gate, just a gap i
 Whether Q3’s “steer first” approach works depends on whether path steering can solve the problem:
 
 **Scenario 1: ECMP collision (path steering can fix it)**
+
 ```
   t=0µs   Two flows collide on Path 3 (ECMP hash collision)
   t=2µs   ECN marks arrive, delay still low
