@@ -490,7 +490,7 @@ $$
 Alpha does not depend on `target_Qdelay`. This means that changing the target only affects where the algorithm settles, not how quickly it gets there. To understand 
 this, remember the proportional increase formula from `§3a: inc_bytes += alpha × acked_bytes × (target − delay)`. Alpha sets how quickly the window grows for each 
 microsecond of available space, while the target sets the point where growth stops. It is similar to adjusting a thermostat: raising the setpoint from 70°F to 75°F does 
-not make the heater stronger—the room just settles at a different temperature at the same rate. Because scale_b cancels out the target, operators can adjust the 
+not make the heater stronger,the room just settles at a different temperature at the same rate. Because scale_b cancels out the target, operators can adjust the 
 queueing target without affecting how the algorithm converges.
 
 ### 4c. Two Delays, Two Jobs
