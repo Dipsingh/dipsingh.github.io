@@ -8,9 +8,7 @@ My name is Diptanshu singh and I am a Network engineer.This blog is mostly about
 
 
 ### Public Presentations and blogs
-[Traffic Has Shape](https://www.youtube.com/watch?v=AD5fixLptCk&t=96s)
-<br>
-[Slides: Traffic Has Shape](/files/traffic-has-shape-final.pptx)
+[Traffic Has Shape](https://www.youtube.com/watch?v=AD5fixLptCk&t=96s) ([slides](/files/traffic-has-shape-final.pptx))
 <br>
 [Segment Routing Traffic Engineering](https://www.youtube.com/watch?v=6Mnx6Y3MZMo)
 <br>
