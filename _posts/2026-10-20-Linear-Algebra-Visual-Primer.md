@@ -42,10 +42,6 @@ We can scale arrows before adding them, too. If a and b are two vectors, <span c
 
 ## 2. A matrix as an operation
 
-<p class="chapter-tag">the arrow machine</p>
-
-<p class="why" markdown="1">**Why we need this.** A matrix is a rule for turning one arrow into another. The whole primer is about one such rule, so we need to see what it does to our arrow, and the two habits that make it predictable enough to reason about.</p>
-
 ### Give the input two rules to follow
 
 How do we turn one vector into another? Here's the rule we'll use for the entire primer. Double the first input entry and add the second: that's the first output. Add the first input entry to twice the second: that's the second output.
@@ -90,10 +86,6 @@ Rows are for computing the output one coordinate at a time. Columns show how the
 
 ## 3. The dot product
 
-<p class="chapter-tag">are we perpendicular?</p>
-
-<p class="why" markdown="1">**Why we need this.** We're going to split arrows into pieces, and the splits only behave well when the pieces meet at right angles. So we need a right-angle test that runs on arithmetic, not on eyesight. The same calculation will soon become our measuring tool.</p>
-
 ### A test for right angles
 
 Take two vectors a and b, with entries (a₁, a₂) and (b₁, b₂). Multiply matching entries and add the products. The result is a single number called their *dot product*:
@@ -127,10 +119,6 @@ So far we've written coordinates as pairs. In matrix notation, a vector's entrie
 <a id="norm" class="chapter-anchor"></a>
 
 ## 4. Length and unit vectors
-
-<p class="chapter-tag">how long is an arrow, really?</p>
-
-<p class="why" markdown="1">**Why we need this.** To compare directions fairly, we'll eventually have to give every arrow the same length. That takes a precise idea of length, a feel for how it behaves when an arrow is scaled, and a way to shrink an arrow to length one without turning it.</p>
 
 ### Length and squared length describe the same arrow
 
@@ -181,10 +169,6 @@ Let θ be the angle between two nonzero arrows a and b. Then a · b = ‖a‖ �
 <a id="projection" class="chapter-anchor"></a>
 
 ## 5. Projection
-
-<p class="chapter-tag">the part along a chosen line</p>
-
-<p class="why" markdown="1">**The question.** How much of an arrow points along a chosen line? A projection separates that part from the part at a right angle to it.</p>
 
 ### Split one arrow into two useful pieces
 
@@ -248,10 +232,6 @@ This will help us measure how much of an input lies in each of two perpendicular
 
 ## 6. Eigenvectors and eigenvalues
 
-<p class="chapter-tag">the arrows that stay on their line</p>
-
-<p class="why" markdown="1">**The question.** Are there directions where the matrix only changes the amount, without pushing the arrow off its line? Those directions make the matrix easier to understand.</p>
-
 ### Watch three arrows go through the same matrix
 
 We are still using the matrix with these two rules: double the first entry and add the second; then add the first entry to twice the second.
@@ -307,10 +287,6 @@ The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors an
 
 ## 7. A different set of coordinates
 
-<p class="chapter-tag">same arrow, simpler instructions</p>
-
-<p class="why" markdown="1">**The question.** We know what M does along two special lines. How does that help with an arrow on neither line? Split the arrow into pieces along those lines.</p>
-
 ### Describe the same arrow using different steps
 
 In ordinary coordinates, <span class="math">x = (3, 1)</span> means three horizontal steps and one vertical step. We can reach exactly the same point using the eigenvector steps <span class="math">q₁ = (1, −1)</span> and <span class="math">q₂ = (1, 1)</span>:
@@ -362,10 +338,6 @@ We can now understand every input from the matrix's responses along its eigenvec
 <a id="symmetry" class="chapter-anchor"></a>
 
 ## 8. Why perpendicular unit directions help
-
-<p class="chapter-tag">easy measurements, simple pieces</p>
-
-<p class="why" markdown="1">**The question.** Our eigenvector coordinates make M easy to apply. Can they also make lengths and projections easy to calculate? Yes, if the reference arrows are perpendicular and have length one.</p>
 
 ### Perpendicular pieces have squared lengths that add
 
@@ -450,10 +422,6 @@ For x, normalizing the input gives <span class="math">x̂ = (3, 1)/√10</span>.
 <a id="quadratic" class="chapter-anchor"></a>
 
 ## 9. A score from the input and output
-
-<p class="chapter-tag">one calculation, one clear meaning</p>
-
-<p class="why" markdown="1">**The question.** The matrix gives us an output arrow. How can we turn the input and output into one useful number? Take their dot product. We will call this number the raw score.</p>
 
 ### First calculate the score at the original size
 
@@ -555,10 +523,6 @@ Chapter 11 will show how to remove the effect of input size without first drawin
 
 ## 10. Can a nonzero input have score zero?
 
-<p class="chapter-tag">zero score, real input</p>
-
-<p class="why" markdown="1">**The question.** Can an arrow of length one get a score of zero? Yes, for some matrices. The input can be present even when the matrix's response is zero.</p>
-
 ### Our matrix M always gives a positive score
 
 M's eigenvalues are 1 and 3. Each eigenvector piece contributes a positive multiplier times its squared length. A nonzero input has at least one nonzero piece, so its total score is positive.
@@ -614,10 +578,6 @@ If x is nonzero, at least one of the first two squares is positive. So the sum i
 <a id="rayleigh" class="chapter-anchor"></a>
 
 ## 11. Compare directions at the same size
-
-<p class="chapter-tag">a score that ignores size</p>
-
-<p class="why" markdown="1">**The question.** How do we compare directions when the arrows have different lengths? Divide each raw score by the input's squared length.</p>
 
 ### Why the raw score needs a size correction
 
@@ -721,10 +681,6 @@ The experiment suggests where the smallest and largest scores occur. Next, the w
 
 ## 12. Finding the minimum and maximum
 
-<p class="chapter-tag">find a limit, then reach it</p>
-
-<p class="why" markdown="1">**The question.** Which direction gives the lowest fair score, and how do we know nothing else does better? Show that every score is at least 1, then find a direction that scores exactly 1.</p>
-
 ### Every score stays between 1 and 3
 
 Chapter 11 showed that each quotient for M is a weighted average of its eigenvalues, 1 and 3. The weights are nonnegative and add to one. Such an average cannot fall below 1 or rise above 3.
@@ -780,10 +736,6 @@ Its eigenvectors still score their eigenvalues. They simply do not achieve the e
 <a id="mean-plane" class="chapter-anchor"></a>
 
 ## 13. Remove the average to reveal the pattern
-
-<p class="chapter-tag">compare the ups and downs</p>
-
-<p class="why" markdown="1">**The question.** The bumpiness score gives every flat list zero. How can we compare the variation in lists instead of letting the flat direction win? Remove each list's average, then compare the remaining patterns at the same size.</p>
 
 ### Separate the shared level from the pattern
 

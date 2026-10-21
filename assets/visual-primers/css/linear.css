@@ -172,6 +172,13 @@
   font: inherit;
   color: inherit;
 }
+/* Size all article illustrations like figure 03, including comics and interactive figures. */
+.post .visual-primer figure.figure,
+.post .visual-primer figure.comic {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .post .visual-primer h1,
 .post .visual-primer h2,
 .post .visual-primer h3 {
