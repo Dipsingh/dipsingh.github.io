@@ -43,7 +43,7 @@ Keep this split in mind. The two pieces are perpendicular, and we’ll use them 
 
 ### Give the input two rules to follow
 
-How do we turn one vector into another? Here's the rule we'll use for the entire primer. Double the first input entry and add the second: that's the first output. Add the first input entry to twice the second: that's the second output.
+How do we turn one vector into another? We’ll use a simple rule throughout this primer: each output is twice its matching input entry, plus the other input entry.
 
 Call the input entries x₁ and x₂. We record the rule as a matrix called M, with one row for each output:
 
