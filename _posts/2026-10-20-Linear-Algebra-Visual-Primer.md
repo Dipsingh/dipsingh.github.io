@@ -10,10 +10,6 @@ primer: linear
 
 ## 1. Vectors and coordinates
 
-<p class="chapter-tag">arrows are instructions, not places</p>
-
-<p class="why" markdown="1">**Why we need this.** Everything later is built from arrows: the input to the matrix, the special directions, even a list of numbers. So we start with what an arrow is, and the two things you can do with arrows: scale them and add them.</p>
-
 ### An arrow describes a movement
 
 Suppose we walk three units right and one unit up. The vector <span class="math">x = (3, 1)</span> is a record of that trip. Start at the origin, follow the instructions, and you can draw it as an arrow ending at the point (3, 1).
