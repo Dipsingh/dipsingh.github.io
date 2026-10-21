@@ -1,53 +1,12 @@
 ---
 layout: visual-primer
-title: "A Visual Primer on Linear Algebra"
-date: 2026-10-20 00:00:01 -0700
-permalink: /Linear-Algebra-Visual-Primer/
+title: "A Primer on Linear Algebra"
 primer: linear
-excerpt: "Build intuition for vectors, projections, eigenvectors, and the Rayleigh quotient through one example, original illustrations, and interactive experiments."
 ---
 
-**Part 1 of a two-part visual series.** Part 2, A Visual Primer on Spectral Graph Theory, is coming later.
+> "It is by logic that we prove, but by intuition that we discover." - Henri Poincaré 
 
-<p class="eyebrow" markdown="1">Linear algebra · Primer 1 · Stick-figure edition</p>
-
-<p class="deck" markdown="1">One arrow, one matrix, and the two stubborn directions that explain everything the matrix does.</p>
-
-<p class="promise" markdown="1">The main idea first, a concrete example at each step, and optional calculations when you want more detail.</p>
-
-A matrix can change an arrow's length, turn it, or both. Multiplication tells you where the arrow ends up. This primer is about *why* it ends up there. The answer is a story about two special directions that the matrix can't push off their own lines.
-
-Here's the question the whole primer builds toward. Our matrix will give every direction a *score*, adjusted so arrow length does not affect the comparison. Which direction gets the lowest score? That sounds like a puzzle for its own sake, so here's why anyone cares. Scores like this one appear whenever you add up squares: how bumpy a list of numbers is, or how far a cloud of points spreads along a line. The lowest-scoring direction is then the smoothest list, or the line the points spread along least. In the next primer the list of numbers will live on a network, and a smooth pattern, after removing a shared level, will help show how the network splits into groups.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup> Everything in this primer is a tool for that search.
-
-We'll pick up the tools one at a time, always on the same small example: one arrow, <span class="math">x = (3, 1)</span>, followed through the whole thing the way a nature documentary follows one very patient penguin, and one small matrix that keeps showing up. There will be equations. They're friendly. Most of them are arithmetic wearing a tie.
-
-<aside class="howto" aria-label="How to read this page" markdown="1">
-
-**How to read this page.** Follow the main text and pictures for the core explanation. Open the “Optional” sections for extra calculations, proofs, and comparisons. Little bracketed numbers are footnotes<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup>: click one and it pops up. Comics have bonus alt-text: hover over the comic, or tap “alt-text” underneath it.
-
-</aside>
-
-{% include visual-primer/linear/figure-01.html %}
-
-{% include visual-primer/linear/figure-02.html %}
-
-<nav aria-label="Contents"><span>In this post</span><ol>
-<li><a href="#patterns">Vectors and coordinates</a> <i>arrows are instructions</i></li>
-<li><a href="#operator">A matrix as an operation</a> <i>the arrow machine</i></li>
-<li><a href="#dot-product">The dot product</a> <i>are we perpendicular?</i></li>
-<li><a href="#norm">Length and unit vectors</a> <i>the pizza problem</i></li>
-<li><a href="#projection">Projection</a> <i>the part along a line</i></li>
-<li><a href="#eigenvectors">Eigenvectors and eigenvalues</a> <i>the job interview</i></li>
-<li><a href="#basis">A different set of coordinates</a> <i>same arrow, new description</i></li>
-<li><a href="#symmetry">Why perpendicular unit directions help</a> <i>easy measurements</i></li>
-<li><a href="#quadratic">A score from the input and output</a> <i>what the number means</i></li>
-<li><a href="#nonnegative">Can a nonzero input have score zero?</a> <i>the blind spot</i></li>
-<li><a href="#rayleigh">Compare directions at the same size</a> <i>a score that ignores size</i></li>
-<li><a href="#minimum">Finding the minimum and maximum</a> <i>find a limit, then reach it</i></li>
-<li><a href="#mean-plane">Remove the average to reveal the pattern</a> <i>compare the ups and downs</i></li>
-</ol></nav>
-
-<a id="patterns" class="chapter-anchor"></a>
+## Provide Context
 
 ## 1. Vectors and coordinates
 
