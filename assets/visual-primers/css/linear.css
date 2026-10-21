@@ -165,9 +165,12 @@
 @media(max-width:600px){.visual-primer{padding:0 4px;font-size:17.5px}.visual-primer .comic.wide{margin-left:0;margin-right:0}}
 @media print{.visual-primer{max-width:none;padding:0;font-size:11pt}.visual-primer details:not(.alt){display:block}.visual-primer details>summary{font-weight:bold}}
 
-/* Match the blog's prose typography; keep artwork and standalone embeds unchanged. */
+/* Match the blog's reading width and prose styles; standalone embeds keep their layout. */
 .post .visual-primer {
   --body: Helvetica, Arial, sans-serif;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   font: inherit;
   color: inherit;
 }
@@ -179,10 +182,14 @@
   line-height: 1.7;
   word-spacing: normal;
   color: #222;
+  margin: 1em 0 15px;
 }
 .post .visual-primer h1 { font-size: 30px; }
 .post .visual-primer h2 { font-size: 24px; }
 .post .visual-primer h3 { font-size: 20px; }
+.post .visual-primer > blockquote { margin: 1em 0; }
+.post .visual-primer > blockquote p { margin: 0; }
+.post .visual-primer .chapter-tag { margin-bottom: 12px; }
 .post .visual-primer .chapter-tag,
 .post .visual-primer .why,
 .post .visual-primer .note,
