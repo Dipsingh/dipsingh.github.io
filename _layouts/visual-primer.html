@@ -1,10 +1,9 @@
 ---
 layout: post
 ---
-<link rel="stylesheet" href="{{ '/assets/visual-primers/css/fonts.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/visual-primers/css/' | append: page.primer | append: '.css' | relative_url }}">
-<div id="article" class="visual-primer" data-primer="{{ page.primer }}">
+{% assign primer_asset_version = site.time | date: '%s' %}
+<link rel="stylesheet" href="{{ '/assets/visual-primers/css/fonts.css' | relative_url }}?v={{ primer_asset_version }}">
+<link rel="stylesheet" href="{{ '/assets/visual-primers/css/' | append: page.primer | append: '.css' | relative_url }}?v={{ primer_asset_version }}">
 {{ content }}
 <div id="fn-pop" class="fn-pop" role="dialog" aria-label="Footnote" tabindex="-1" hidden><button type="button" class="fn-close" aria-label="Close footnote">×</button><div class="fn-body"></div></div>
-</div>
-<script defer src="{{ '/assets/visual-primers/js/' | append: page.primer | append: '.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/visual-primers/js/' | append: page.primer | append: '.js' | relative_url }}?v={{ primer_asset_version }}"></script>

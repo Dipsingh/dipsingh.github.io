@@ -147,7 +147,7 @@
 
 
 /* Integration with the existing Jekyll Now theme. All styles remain inside the primer. */
-.visual-primer{max-width:820px;margin:28px auto 0;padding:0 14px;background:#fff;color:var(--ink);font:18.5px/1.72 var(--body);text-align:left}
+.visual-primer:not(.entry){max-width:820px;margin:28px auto 0;padding:0 14px;background:#fff;color:var(--ink);font:18.5px/1.72 var(--body);text-align:left}
 .visual-primer h2{margin-top:56px;margin-bottom:12px}
 .visual-primer h3{clear:none}
 .visual-primer .chapter-tag{font:17px/1.4 var(--label);color:var(--muted);margin:0 0 20px}
@@ -162,15 +162,12 @@
 .visual-primer .fn-pop p:first-child{margin-top:0}
 .visual-primer .fn-pop p:last-child{margin-bottom:0}
 .visual-primer .art svg{max-width:none}
-@media(max-width:600px){.visual-primer{padding:0 4px;font-size:17.5px}.visual-primer .comic.wide{margin-left:0;margin-right:0}}
+@media(max-width:600px){.visual-primer:not(.entry){padding:0 4px;font-size:17.5px}.visual-primer .comic.wide{margin-left:0;margin-right:0}}
 @media print{.visual-primer{max-width:none;padding:0;font-size:11pt}.visual-primer details:not(.alt){display:block}.visual-primer details>summary{font-weight:bold}}
 
-/* Match the blog's reading width and prose styles; standalone embeds keep their layout. */
+/* The post's .entry is the primer root; its width and quote layout come from the blog theme. */
 .post .visual-primer {
   --body: Helvetica, Arial, sans-serif;
-  max-width: none;
-  margin: 0;
-  padding: 0;
   font: inherit;
   color: inherit;
 }
@@ -187,8 +184,8 @@
 .post .visual-primer h1 { font-size: 30px; }
 .post .visual-primer h2 { font-size: 24px; }
 .post .visual-primer h3 { font-size: 20px; }
-.post .visual-primer > blockquote { margin: 1em 0; }
-.post .visual-primer > blockquote p { margin: 0; }
+.post .visual-primer > p:not([class]),
+.post .visual-primer > blockquote p { margin: 15px 0; }
 .post .visual-primer .chapter-tag { margin-bottom: 12px; }
 .post .visual-primer .chapter-tag,
 .post .visual-primer .why,

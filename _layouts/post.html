@@ -5,7 +5,7 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
 
-  <div class="entry">
+  <div class="entry{% if page.primer %} visual-primer{% endif %}"{% if page.primer %} id="article" data-primer="{{ page.primer }}"{% endif %}>
     {{ content }}
   </div>
 
