@@ -7,12 +7,13 @@ primer: linear
 > "It is by logic that we prove, but by intuition that we discover." - Henri Poincaré 
 
 ## Provide Context
+Todo: 
 
 ## 1. Vectors and coordinates
 
 ### An arrow describes a movement
 
-Suppose we walk three units right and one unit up. The vector <span class="math">x = (3, 1)</span> is a record of that trip. Start at the origin, follow the instructions, and you can draw it as an arrow ending at the point (3, 1).
+Suppose we walk three units right and one unit up. The vector <span class="math">x = (3, 1)</span> is a record of that trip. Start at the origin, and you can draw it as an arrow ending at the point (3, 1).
 
 Here's the slightly sneaky part: we can draw the same movement starting anywhere. As long as the arrow still goes three right and one up, it's still (3, 1). A vector's entries describe *changes* in coordinates, not a fixed starting point.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
@@ -34,9 +35,7 @@ We can also reach (3, 1) in two steps: first move by (1, −1), then by (2, 2). 
 
 {% include visual-primer/linear/figure-04.html %}
 
-Remember this particular split. Its two pieces are perpendicular, and they're about to become the main characters.
-
-We can scale arrows before adding them, too. If a and b are two vectors, <span class="math">2a + b</span> means “two copies of a, then one copy of b.” That's a *linear combination*, and the numbers 2 and 1 are its *coefficients*: how much of each ingredient to use.
+Keep this split in mind. The two pieces are perpendicular, and we’ll use them next. We can scale arrows before adding them, too. If a and b are two vectors, <span class="math">2a + b</span> means “two copies of a, then one copy of b.” That's a *linear combination*, and the numbers 2 and 1 are its *coefficients*: how much of each ingredient to use.
 
 <a id="operator" class="chapter-anchor"></a>
 
