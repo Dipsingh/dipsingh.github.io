@@ -470,7 +470,12 @@ Consider A with rows <span class="math">(1, 1)</span> and <span class="math">(0,
 
 For A, the two complete pieces are (2, 0) and (1, 1). Add their coordinates to get the input: <span class="math">x = (2 + 1, 0 + 1) = (3, 1)</span>.
 
-Projecting x onto the horizontal line keeps its horizontal coordinate, 3, and sets its vertical coordinate to zero. That gives (3, 0). The horizontal coordinate includes 2 from the first piece and 1 from the second. So the projection combines contributions from both pieces, instead of recovering just the first piece, (2, 0).
+Projecting onto the horizontal line keeps only the horizontal part of each piece:
+
+- The first piece, (2, 0), is already horizontal, so it stays (2, 0).
+- The second piece, (1, 1), loses its upward movement but keeps its one unit to the right, becoming (1, 0).
+
+Add these projections: <span class="math">(2, 0) + (1, 0) = (3, 0)</span>. The result includes a horizontal part from the second piece too. If the second piece were perpendicular to the horizontal line, its projection would be zero, leaving only the first piece, (2, 0).
 
 {% include visual-primer/linear/figure-26.html %}
 
