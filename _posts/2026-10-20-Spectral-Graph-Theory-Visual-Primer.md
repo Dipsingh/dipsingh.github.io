@@ -1190,8 +1190,7 @@ We began with two links joining two groups of routers. Node values let us measur
 </section>
 
 <footer class="credits">
-<p>The stick figures, comics and charts are original drawings, made in the general style of <a href="https://xkcd.com/">xkcd</a> as a tribute. This page is not affiliated with or endorsed by xkcd or Randall Munroe. Every figure from the original primer has been redrawn with the same coordinates and data, and the figures new to this edition use the same eight-node graph, with every number computed from it and checked in code; the wobble moves the middle of each line, never its endpoints. The two eight-node graphs and the three-node path are teaching examples, not sampled RNG topologies.</p>
-<p>Lettering: <em>Humor Sans</em> by Michael Ciuffo and <em>Playpen Sans</em> by TypeTogether, both under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.</p>
+<p>Illustrations inspired by <a href="https://xkcd.com/">xkcd</a>; fonts: <em>Humor Sans</em> by Michael Ciuffo and <em>Playpen Sans</em> by TypeTogether, licensed under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.</p>
 </footer>
 
 {% include visual-primer/spectral/graph-data.html %}
