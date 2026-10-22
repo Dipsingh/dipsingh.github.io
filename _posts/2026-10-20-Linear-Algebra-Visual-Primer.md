@@ -668,15 +668,6 @@ If we look for N's smallest measurement among unit inputs, a vertical input give
 To study what N keeps, **remove the vertical component first**. Then compare the remaining nonzero horizontal arrows at length one. They all give 1, because N leaves them unchanged. We will use this idea again in Chapter 13: remove a component the matrix ignores, then compare the remaining patterns.<sup class="fnref"><a href="#fn-21" id="fnref-21" data-fn="21" aria-expanded="false" aria-label="Footnote 21">[21]</a></sup>
 
 <details markdown="1">
-<summary>Optional: compare all directions for M and N</summary>
-
-{% include visual-primer/linear/figure-38.html %}
-
-M's unit-input scores stay between 1 and 3. N's stay between 0 and 1: its score is simply the share of squared length along the horizontal direction.
-
-</details>
-
-<details markdown="1">
 <summary>Optional: does a zero score always mean zero output?</summary>
 
 For a positive semidefinite matrix, yes. Each eigenvector piece contributes its eigenvalue times its squared coefficient. All contributions are zero or positive, so a total of zero means every contribution is zero. Every nonzero piece must lie along an eigenvector with eigenvalue zero, and the matrix sends all those pieces to zero.
