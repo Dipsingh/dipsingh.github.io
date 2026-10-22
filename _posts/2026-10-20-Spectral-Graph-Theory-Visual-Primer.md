@@ -11,91 +11,114 @@ Todo:
 
 ## 1. Start with the graph
 
-<p class="chapter-tag">three friends each, two doors out</p>
+<p class="chapter-tag">three links per router, two links between groups</p>
 
 ### Eight routers, twelve links
 
-We will use one small network to see how a group of routers can have very few connections to the rest. Its graph has eight nodes, numbered 1 to 8, and twelve edges. An edge joins a pair of nodes, and two nodes joined by an edge are *neighbours*. Think of a node as a router and an edge as a cable between two routers. “Graph” is just the mathematician's word for a wiring diagram.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup>
+Our example has eight routers and twelve links. Every router has three links, yet only two links connect the two halves of the network. We want to understand that weakness and learn how to find similar ones in larger networks.
+
+We draw the network as a **graph**: a circle, called a **node**, represents a router, and a line, called an **edge**, represents a link. Two nodes joined by an edge are **neighbours**.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup> The nodes are numbered 1 to 8.
 
 {% include visual-primer/spectral/figure-03.html %}
 
 A node's number identifies it. Its position on the page only helps us see the wiring. We could slide the circles around or bend the lines without changing a single connection.
 
-The number of neighbours a node has is its *degree*. Every node here has degree three. A graph whose nodes all have the same degree is called *regular*, so this one is 3-regular.
+The number of neighbours a node has is its **degree**. Node 3 has neighbours 1, 2 and 5, so its degree is three. Every other node also has degree three. When all nodes have the same degree, the graph is called **regular**; ours is 3-regular.
 
-### Three links each, two doors out
+### Only two links connect the halves
 
-Now imagine using this graph as a network. Every router has three neighbours. Yet only two links connect nodes 1–4 to nodes 5–8. All the traffic between the two halves has to squeeze through one of those two links. Looking at the routers one at a time, you would never notice.
+Look at nodes 1–4 as one group and nodes 5–8 as another. Only edges 3–5 and 4–6 connect the groups. All traffic between the halves must cross one of those two links.
 
 {% include visual-primer/spectral/figure-04.html %}
 
-### Paint one side, then write it down
+Knowing that each router has three links does not tell us how well a whole group is connected to the rest. In a larger network, a weak division like this may be hard to spot in a drawing. We need a way to study it through calculations.
 
-To study this division, give every node in one group the value +1 and every node in the other the value −1. We'll call this a *paint check*. These are temporary labels for testing the division. They don't change the wiring and they aren't traffic rates.
+### Label the two groups
 
-One value at every node is what we'll call a *pattern*. Collect the values in node-number order and you get a vector, <span class="math">x</span>. Its entry <span class="math">x₃</span> is the value at node 3, here +1. The entry has nothing to do with where node 3 sits on the page.
+Give nodes 1–4 the value +1 and nodes 5–8 the value −1. These are labels we choose to mark the groups. The wiring stays the same.
+
+The labels let us recognize a crossing link by subtracting the values at its ends:
+
+- **Same group:** the values match, so their difference is zero.
+- **Different groups:** the difference is 2 or −2, depending on which value we subtract from which.
+
+We can now identify links between the groups using arithmetic.
+
+The values assigned to all the nodes form a **pattern**. List them in node-number order and we have a vector, <span class="math">x</span>. Its third entry, <span class="math">x₃</span>, is the value assigned to node 3: here, +1. The node number tells us which entry to read.
 
 {% include visual-primer/spectral/figure-05.html %}
 
-All our edges run both ways and count the same. There are no edges from a node to itself and no doubled edges between a pair. Next we build the matrices that compare the painted values along the links.
+All our links work in both directions and count equally. No node links to itself, and no pair has more than one link. Next we will put the wiring into matrices that compare the assigned values at connected nodes.
 
 <a id="laplacian" class="chapter-anchor"></a>
 
 ## 2. Turn the wiring into A, D and L
 
-<p class="chapter-tag">three machines at one node</p>
+<p class="chapter-tag">one comparison, written for every node</p>
 
 ### Start with one node's comparison
 
-To find where the two groups meet, we can compare each node's value with its neighbours' values. Start with node 3, which holds +1. Its neighbours 1 and 2 also hold +1, and its neighbour 5 holds −1. Subtract each neighbour's value from node 3's own value, then add the three results:
+Node 3 holds +1. Its neighbours 1 and 2 also hold +1, while its neighbour 5 holds −1. Subtract each neighbour's value from node 3's value, then add the three differences:
 
 <div class="equation" role="math" aria-label="At node 3, one minus one, plus one minus one, plus one minus negative one, equals two.">(1 − 1) + (1 − 1) + (1 − (−1)) = 2</div>
 
-The two neighbours in the same group contribute zero. The neighbour across the division contributes 2. Notice how the calculation is built: it uses node 3's own value three times, once per link, and subtracts the sum of the neighbours' values. We want to do the same at every node at once, and two matrices supply the two parts.
+The two neighbours in the same group contribute zero. The neighbour in the other group contributes 2.
 
-{% include visual-primer/spectral/figure-06.html %}
+To see how a matrix can do this, regroup the same calculation. Collect the three copies of node 3's value, then subtract the neighbours' values together:
 
-### A: collect the neighbours' values
+<div class="equation" role="math" aria-label="One minus one, plus one minus one, plus one minus negative one, equals three times one minus the sum of one, one, and negative one. This equals three minus one, or two.">(1 − 1) + (1 − 1) + (1 − (−1))<br>= 3 × 1 − (1 + 1 + (−1))<br>= 3 − 1 = 2</div>
 
-Give every node a row and a column, in node-number order. Put a 1 wherever two nodes share an edge and a 0 wherever they don't. This table is the *adjacency matrix*, called <span class="math">A</span>. “Adjacent” means joined by an edge.
+There are two parts: the node's own value counted once per neighbour, and the sum of its neighbours' values. We will build a matrix for each part so we can do the calculation at every node.
 
-Multiplying A by the pattern x gives one result per node. Row 3 tells us how to calculate node 3’s result: its 1s select the values at neighbours 1, 2 and 5, and its zeros leave the other values out.
+### A: add the neighbours' values
+
+Start by recording the wiring. Give every node a row and a column, in node-number order. Eight nodes give us an 8 × 8 table. Put a 1 where the row's node and the column's node share an edge, and a 0 everywhere else. This is the **adjacency matrix**, <span class="math">A</span>. “Adjacent” means joined by an edge.
+
+Multiplying A by x gives a new vector, **Ax**, with one result per node. The notation <span class="math">(Ax)₃</span> means its third entry: the result for node 3.
+
+Row 3 has 1s in columns 1, 2 and 5, so it adds the values at those three neighbours. The zeros leave the other values out:
 
 <div class="equation" role="math" aria-label="At node 3, A x equals x one plus x two plus x five, which is one plus one minus one, or one.">(Ax)₃ = x₁ + x₂ + x₅ = 1 + 1 + (−1) = 1</div>
 
-The result is the sum of the neighbours’ values. To get their average we would divide by three; A performs the sum.
+So node 3's result in Ax is 1: the sum of its neighbours' values.
 
 {% include visual-primer/spectral/figure-07.html %}
 
-Every edge appears twice in A. The edge 3–5 puts a 1 in row 3, column 5, and another in row 5, column 3. So A is symmetric across its diagonal: the same connection is recorded from each end.
+Every link works in both directions. Edge 3–5 therefore puts a 1 in row 3, column 5, and another in row 5, column 3. These matching entries make A symmetric across its main diagonal.
 
-### D: copy the node's own value, once per link
+### D: count the node's own value once per neighbour
 
-Node 3 has three neighbours, so its own value appears three times in the comparison. We need that multiplier at every node. Put each node's degree on the diagonal of a new matrix, called <span class="math">D</span>, and zeros everywhere else. A diagonal entry multiplies the matching node's value, and the zeros keep every other node out. At node 3:
+Now we need the other part: three copies of node 3's own value. Its degree tells us how many copies to count.
+
+Put each node's degree on the main diagonal of a matrix called <span class="math">D</span>, the **degree matrix**, and put zeros elsewhere. Each row multiplies that node's value by its degree. For node 3:
 
 <div class="equation" role="math" aria-label="At node 3, D x equals three times x three, which equals three.">(Dx)₃ = 3x₃ = 3</div>
 
 {% include visual-primer/spectral/figure-08.html %}
 
-A node's degree is the number of 1s in its row of A. Every row here has three, so D is <span class="math">3I</span>: three times the identity matrix I, the matrix that returns its input unchanged.
+Every node in our graph has degree three, so D multiplies every entry of x by three. We can write <span class="math">D = 3I</span>, where I is the identity matrix, which returns its input unchanged.
 
-### L = D − A: the difference
+### L = D − A: combine the two parts
 
-D supplies the copies of the node's own value. A supplies the neighbours' sum. Subtracting one output from the other gives exactly the comparison we started with. At node 3 it is 3 − 1 = 2. Call the matrix that does this subtraction <span class="math">L = D − A</span>. It is the graph's *Laplacian*.<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup>
+Dx counts each node's own value once per neighbour. Ax adds its neighbours' values. Subtracting the two outputs performs our original comparison at every node:
+
+<div class="equation" role="math" aria-label="L x equals D x minus A x. At node three, L x is three minus one, or two.">Lx = Dx − Ax<small>At node 3: (Lx)₃ = 3 − 1 = 2</small></div>
+
+The matrix <span class="math">L = D − A</span> is called the graph's **Laplacian**.<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup> Its diagonal entries are the degrees. Each neighbour's column gets −1, and every other entry is zero.
 
 {% include visual-primer/spectral/figure-09.html %}
 
-The diagonal of L holds the degrees. A neighbour's column gets a −1 from subtracting A. Every other entry stays zero. In compact notation, the output at node i is:
+For any node i, row i adds the differences between that node's value and each neighbour's value. The summation sign below means “add one term for each neighbour j”:
 
 <div class="equation" role="math" aria-label="Entry i of L x is the sum over the neighbours j of i of x i minus x j.">(Lx)ᵢ = ∑<sub>j neighbouring i</sub> (xᵢ − xⱼ)</div>
 
-The result at a node is its degree times the difference between its own value and its neighbours’ average. A positive result means it is above that average; a negative result means it is below.
+{% include visual-primer/spectral/figure-06.html %}
 
-A zero result can also occur when positive and negative gaps cancel. For example, a node holding 5 between neighbours holding 3 and 7 gets (5 − 3) + (5 − 7) = 0. The neighbours do not both have to match the node.
+A, D and L depend only on the wiring. We can assign new values to the nodes by changing x, and the same matrices will compare those values. Each output entry still belongs to the same node.
 
-{% include visual-primer/spectral/figure-10.html %}
+The differences have signs, so they can cancel. Suppose we give node 3 the value 1 and its neighbours the values 0, 1 and 2. Its result is (1 − 0) + (1 − 1) + (1 − 2) = 0. Here, zero means the node's value equals its neighbours' average; the individual neighbours have different values.
 
-Adding all the entries of Lx gives zero: each edge’s difference appears positively at one end and negatively at the other. So that sum cannot measure the graph’s total disagreement. Chapter 4 will use squared differences to build a useful total.
+We now have a matrix that compares values at connected nodes. Before combining those comparisons into one measurement, we need to decide how to judge whether a division of the network is weak.
 
 <a id="boundary" class="chapter-anchor"></a>
 
@@ -121,7 +144,7 @@ Scoring one proposed group was easy. Finding the lowest score over *every* group
 
 {% include visual-primer/spectral/figure-12.html %}
 
-The matrices give us a different way in. Our +1 and −1 paint already marks a proposed group. The next step is to combine the link-by-link comparisons into one measurement of its boundary.
+The matrices give us a different way in. Our +1 and −1 labels already mark a proposed group. The next step is to combine the link-by-link comparisons into one measurement of its boundary.
 
 <a id="energy" class="chapter-anchor"></a>
 
@@ -129,7 +152,7 @@ The matrices give us a different way in. Our +1 and −1 paint already marks a p
 
 <p class="chapter-tag">one number for all the edge disagreements</p>
 
-Start with the painting from Chapter 1: +1 at nodes 1–4 and −1 at nodes 5–8. We want one number that adds up the disagreement across all the edges. Each edge should contribute according to how different its two endpoint values are.
+Start with the labels from Chapter 1: +1 at nodes 1–4 and −1 at nodes 5–8. We want one number that adds up the disagreement across all the edges. Each edge should contribute according to how different its two endpoint values are.
 
 ### Let each edge contribute one amount
 
@@ -144,7 +167,7 @@ Add these contributions over all the edges, counting each edge once. We call the
 
 ### Apply it to our graph
 
-In the two-group painting, ten edges join equal values and contribute zero. Only edges 3–5 and 4–6 join opposite signs. Each contributes 4, so the energy is **8**.
+In the two-group pattern, ten edges join equal values and contribute zero. Only edges 3–5 and 4–6 join opposite signs. Each contributes 4, so the energy is **8**.
 
 Now place the same four +1 values and four −1 values in an alternating arrangement. Six edges join opposite signs, giving energy **24**.
 
@@ -160,7 +183,9 @@ It also makes large gaps especially costly. A gap of 3 contributes 9, while thre
 
 ### The Laplacian computes this same total
 
-Chapter 2 gave us Lx: one signed comparison at each node. For our two-group painting, the interior nodes get zero, the two positive boundary nodes get +2, and the two negative boundary nodes get −2.
+Chapter 2 gave us Lx: one signed comparison at each node. For our two-group pattern, the interior nodes get zero, the two positive boundary nodes get +2, and the two negative boundary nodes get −2.
+
+Simply adding those results gives zero. This happens for any pattern on our undirected graph: an edge contributes xᵢ − xⱼ at one end and xⱼ − xᵢ at the other, so they cancel. We need a different way to combine the results to recover the energy.
 
 Multiply each node’s value by its own Lx result, then add:
 
@@ -1058,7 +1083,7 @@ We started by asking how to find a weak boundary. The question led to three loca
 
 1. A graph is nodes and edges; a pattern is one value per node. A collects the neighbours' values, D repeats a node's own value once per link, and <span class="math">L = D − A</span> asks how far a node stands above its neighbourhood.
 2. A cut's score is crossing edges divided by the smaller side. The lowest score over all groups is the edge expansion h(G), and checking every group is hopeless.
-3. The energy <span class="math">E(x) = ∑(xᵢ − xⱼ)² = xᵀLx</span> counts squared disagreement across links. For a paint check it is 4 times the crossing edges. It is never negative.
+3. The energy <span class="math">E(x) = ∑(xᵢ − xⱼ)² = xᵀLx</span> counts squared disagreement across links. With +1 and −1 group labels, it is 4 times the crossing edges. It is never negative.
 4. Two conditions make the comparison fair: mean zero, because the edges can't see a common level, and variation 1, because shrinking isn't an improvement. Variation is the sum of squared distances from the mean. Dividing energy by variation, the Rayleigh quotient <span class="math">xᵀLx / xᵀx</span>, ranks patterns the same way.
 5. Letting values bend helps. One number, t, moves the four boundary nodes toward zero, with a rescaling after every move. The energy falls from 1 to 0.764 at t = 0.618 and climbs to 2 at t = 0, because the interior edges start to disagree.
 6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and variation 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
