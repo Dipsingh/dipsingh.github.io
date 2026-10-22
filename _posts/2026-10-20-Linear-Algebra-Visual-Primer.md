@@ -35,9 +35,13 @@ We can also reach (3, 1) in two steps: first move by (1, −1), then by (2, 2). 
 
 {% include visual-primer/linear/figure-04.html %}
 
-Keep this split in mind. The two pieces are perpendicular, and we’ll use them next. 
+Keep this split in mind. The two pieces are perpendicular, and we'll return to them throughout the primer.
 
-We can scale arrows before adding them, too. If a and b are two vectors, <span class="math">2a + b</span> means “two copies of a, then one copy of b.” That's a *linear combination*, and the numbers 2 and 1 are its *coefficients*: how much of each ingredient to use.
+The second piece, (2, 2), is twice the arrow (1, 1). So we can write the same sum as:
+
+<div class="equation" role="math" aria-label="x equals one times the vector 1 minus 1 plus two times the vector 1 1, giving 3 comma 1">x = 1(1, −1) + 2(1, 1) = (3, 1)</div>
+
+Scaling vectors and then adding them is called a **linear combination**. The multipliers 1 and 2 are its **coefficients**: one copy of the first arrow and two copies of the second.
 
 <a id="operator" class="chapter-anchor"></a>
 
@@ -45,9 +49,12 @@ We can scale arrows before adding them, too. If a and b are two vectors, <span c
 
 ### Give the input two rules to follow
 
-How do we turn one vector into another? We’ll use a simple rule throughout this primer: each output is twice its matching input entry, plus the other input entry.
+How do we turn one vector into another? Call the input entries x₁ and x₂. Each output entry gets its own rule:
 
-Call the input entries x₁ and x₂. We record the rule as a matrix called M, with one row for each output:
+- **First output:** double x₁, then add x₂.
+- **Second output:** add x₁ to twice x₂.
+
+A matrix records the multipliers in these rules, with one row for each output. We'll call our matrix M and use it throughout the primer:
 
 <div class="equation" role="math" aria-label="The matrix M has first row 2 1 and second row 1 2">M = <span class="matrix" aria-hidden="true"><span>2</span><span>1</span><span>1</span><span>2</span></span></div>
 
@@ -65,11 +72,18 @@ For our input (3, 1), the first row gives <span class="math">2 × 3 + 1 × 1 = 7
 
 ### Keep the matrix fixed and change the input
 
-Two habits of M make it predictable, and the next picture shows both. On the left, double the input from (3, 1) to (6, 2): the output becomes (14, 10), which is exactly (7, 5) doubled. On the right, split the input into two pieces and push each piece through on its own: the two outputs, placed tip to tail, land exactly on Mx.
+M follows two rules for every input:
+
+- **Scaling:** multiplying an input by a number multiplies its output by the same number.
+- **Adding:** adding two inputs and then applying M gives the same result as applying M to each input separately and adding the outputs.
+
+These rules make M **linear**. They let us find an output by transforming simpler pieces and adding the results.
+
+The picture shows both rules. On the left, doubling (3, 1) doubles its output (7, 5). On the right, we split the input into (3, 0) and (0, 1); their outputs add up to (7, 5).
 
 {% include visual-primer/linear/figure-07.html %}
 
-Together, these two properties make M *linear*. They let us chop an input into pieces, push each piece through separately, and glue the results back together. We'll do that constantly. They also mean zero in gives zero out: M never moves the origin.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
+The scaling rule also means that zero in gives zero out: M leaves the origin in place.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
 ### Read the columns to see where the unit steps go
 
@@ -87,13 +101,19 @@ Rows are for computing the output one coordinate at a time. Columns show how the
 
 ## 3. The dot product
 
+We need a way to check whether two arrows are perpendicular. Later, the same calculation will measure how much of one arrow lies along another.
+
 ### A test for right angles
 
-Take two vectors a and b, with entries (a₁, a₂) and (b₁, b₂). Multiply matching entries and add the products. The result is a single number called their *dot product*:
+Take the arrows <span class="math">a = (2, 1)</span> and <span class="math">b = (1, −2)</span>. Multiply matching entries, then add. The result is a single number called their **dot product**:
+
+<div class="equation" role="math" aria-label="a dot b equals 2 times 1 plus 1 times minus 2, which equals zero">a · b = 2 × 1 + 1 × (−2) = 0</div>
+
+The two products, 2 and −2, cancel. A zero dot product tells us that these arrows are perpendicular.
+
+For any two vectors with entries (a₁, a₂) and (b₁, b₂), the same calculation is:
 
 <div class="equation" role="math" aria-label="a dot b equals a1 times b1 plus a2 times b2">a · b = a₁b₁ + a₂b₂</div>
-
-For the arrows <span class="math">a = (2, 1)</span> and <span class="math">b = (1, −2)</span>, the products are 2 and −2, and they cancel. The dot product is zero, and these arrows meet at a right angle.
 
 ### The sign tells you about the angle
 
@@ -101,7 +121,7 @@ For two nonzero vectors, a positive dot product means the angle between them is 
 
 {% include visual-primer/linear/figure-09.html %}
 
-**If two vectors are perpendicular, their dot product is zero.** We'll use this rule constantly, starting with finding a perpendicular remainder. Vectors with a zero dot product are called *orthogonal*, which is “perpendicular” wearing a lab coat.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
+**Two nonzero vectors are perpendicular exactly when their dot product is zero.** We'll use this test to find a perpendicular remainder in Chapter 5. Vectors with a zero dot product are called **orthogonal**.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
 
 {% include visual-primer/linear/figure-10.html %}
 
@@ -113,9 +133,14 @@ Double either arrow and the dot product doubles, even though the angle stays the
 
 We can simplify things by making the reference arrow one unit long. The dot product then tells us how much of the other arrow lies along that direction. A positive value means that part points with the reference arrow; a negative value means it points against it. First, we’ll build this unit arrow, then see why the measurement works.
 
-### The same calculation in matrix notation
+<details markdown="1">
+<summary>Optional: the same calculation in matrix notation</summary>
 
-So far we've written coordinates as pairs. In matrix notation, a vector's entries are usually stacked in a column. The transpose, written aᵀ, tips that column over into a row. Multiplying the row aᵀ by the column b does exactly the matching-entries calculation above, so <span class="math">aᵀb</span> and <span class="math">a · b</span> are the same dot product in different outfits.
+In matrix notation, a vector's entries are usually stacked in a column. The **transpose**, written aᵀ, turns that column into a row. Multiplying the row aᵀ by the column b multiplies matching entries and adds them, just as we did above.
+
+So <span class="math">aᵀb</span> and <span class="math">a · b</span> are two ways to write the same dot product.
+
+</details>
 
 <a id="norm" class="chapter-anchor"></a>
 
@@ -125,11 +150,11 @@ So far we've written coordinates as pairs. In matrix notation, a vector's entrie
 
 To make an arrow one unit long, we first need to know its length. Squared length is just the length multiplied by itself.
 
-For example, take an arrow of length 3. Its squared length is <span class="math">3 × 3 = 9</span>. If we double every coordinate:
+For a separate example, take an arrow of length 3. Its squared length is <span class="math">3 × 3 = 9</span>. If we double every coordinate:
 
 <div class="table-wrap" markdown="1">
 
-| Measurement | Original arrow | Twice as long |
+| Measurement | Length-3 arrow | After doubling |
 | --- | --- | --- |
 | Length | 3 | 6 |
 | Squared length | 3 × 3 = 9 | 6 × 6 = 36 |
@@ -138,7 +163,12 @@ For example, take an arrow of length 3. Its squared length is <span class="math"
 
 The length doubles, but the squared length becomes four times as large. To get the length back, take the square root: <span class="math">√9 = 3</span>.
 
+<details markdown="1">
+<summary>Optional: squared growth in a pizza example</summary>
+
 {% include visual-primer/linear/figure-11.html %}
+
+</details>
 
 ### Find length from the coordinates
 
@@ -158,7 +188,7 @@ Our x has length √10, so dividing every coordinate by √10 makes its length o
 
 {% include visual-primer/linear/figure-12.html %}
 
-As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called normalization.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup> Keep that word in mind. In Chapter 8 we'll normalize something else, and the difference will matter.
+As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called **normalization**.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup> In Chapter 8, we'll apply the same operation to our reference arrows.
 
 <details markdown="1">
 <summary>How the dot product includes both length and angle</summary>
@@ -218,7 +248,9 @@ The remaining arrow is $r=(1,-1)$, which is perpendicular to the diagonal. This 
 
 Let u be an arrow of length one along the chosen line. Think of u as a one-unit step in that direction.
 
-The dot product <span class="math">x · u</span> gives us a number. If that number is 3, it means x has 3 units along u. Its projection is therefore <span class="math">3u</span>: an arrow three units long in the direction of u. If the number is −3, the projection points three units in the opposite direction.
+The dot product <span class="math">x · u</span> gives us a number. For example, if that number is 3, the projection is <span class="math">3u</span>: an arrow three units long in the direction of u. The original arrow x may also have a perpendicular piece.
+
+If the number is −3, the projection points three units in the opposite direction.
 
 To get the projection arrow, multiply that number by u:
 
@@ -259,9 +291,11 @@ This will help us measure how much of an input lies in each of two perpendicular
 
 ## 6. Eigenvectors and eigenvalues
 
+M can change both an arrow's length and direction. We want to find directions where it only scales the arrow. If we can split an input along those directions, we can get its output by scaling the pieces and adding them.
+
 ### Watch three arrows go through the same matrix
 
-We are still using the matrix with these two rules: double the first entry and add the second; then add the first entry to twice the second.
+Use our same matrix:
 
 <div class="equation" role="math" aria-label="M has first row 2 1 and second row 1 2">M = <span class="matrix" aria-hidden="true"><span>2</span><span>1</span><span>1</span><span>2</span></span></div>
 
@@ -285,7 +319,7 @@ A nonzero arrow that the matrix multiplies by one number is an **eigenvector**.<
 
 <div class="equation" role="math" aria-label="M times the eigenvector v equals its eigenvalue lambda times v">Mv = λv</div>
 
-Read this as: “applying M to v has the same effect as multiplying v by λ.” The eigenvector tells us the direction; the eigenvalue tells us the multiplier. For M, <span class="math">λ₁ = 1</span> and <span class="math">λ₂ = 3</span>.
+Read this as: “applying M to v has the same effect as multiplying v by λ.” The eigenvector tells us the direction; the eigenvalue tells us the multiplier. For M, q₁ has eigenvalue <span class="math">λ₁ = 1</span> and q₂ has eigenvalue <span class="math">λ₂ = 3</span>.
 
 {% include visual-primer/linear/figure-17.html %}
 
@@ -304,7 +338,9 @@ The chart shows how much M turns an arrow for each starting direction. The two e
 
 Other arrows turn toward the q₂ line, by at most 30° in one application. Repeated applications move them closer to that line unless they started exactly on q₁.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
 
-Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>. An eigenvector direction is sometimes called a mode, and the list of eigenvalues, including repeats, is called the spectrum.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup>
+Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>.
+
+The list of eigenvalues, including repeats, is called the **spectrum**.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup>
 
 The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors and eigenvalues](https://www.3blue1brown.com/lessons/eigenvalues/).
 
@@ -316,17 +352,17 @@ The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors an
 
 ### Describe the same arrow using different steps
 
-In ordinary coordinates, <span class="math">x = (3, 1)</span> means three horizontal steps and one vertical step. We can reach exactly the same point using the eigenvector steps <span class="math">q₁ = (1, −1)</span> and <span class="math">q₂ = (1, 1)</span>:
+In ordinary coordinates, <span class="math">x = (3, 1)</span> means three horizontal unit steps and one vertical unit step. We can reach exactly the same point using the eigenvectors <span class="math">q₁ = (1, −1)</span> and <span class="math">q₂ = (1, 1)</span> as our reference steps:
 
 <div class="equation" role="math" aria-label="x is one q1 step plus two q2 steps, giving 3 comma 1">x = q₁ + 2q₂ = (1, −1) + (2, 2) = (3, 1)</div>
 
-So x has coordinates <span class="math">(1, 2)</span> in this new system: one q₁ step and two q₂ steps. **Changing coordinates changes the description of x. It does not move x.**
+Using q₁ and q₂, x has coordinates <span class="math">(1, 2)</span>: one q₁ step and two q₂ steps. Its ordinary horizontal and vertical coordinates are still (3, 1). **Changing coordinates changes the description of x. It does not move x.**
 
 {% include visual-primer/linear/figure-19.html %}
 
 ### Now let M act on the pieces
 
-M keeps the q₁ part the same and multiplies the q₂ part by 3. So 1q₁ + 2q₂ becomes 1q₁ + 6q₂. Add these two arrows to get the result in ordinary coordinates:
+M keeps the q₁ component the same and triples the q₂ component. So <span class="math">1q₁ + 2q₂</span> becomes <span class="math">1q₁ + 6q₂</span>. Using q₁ and q₂, the output coordinates are (1, 6). Adding the component arrows gives the output in ordinary coordinates:
 
 <div class="equation" role="math" aria-label="M x is one q1 step plus six q2 steps, giving 7 comma 5">Mx = q₁ + 6q₂ = (1, −1) + (6, 6) = (7, 5)</div>
 
@@ -334,7 +370,7 @@ M keeps the q₁ part the same and multiplies the q₂ part by 3. So 1q₁ + 2q�
 
 | Reference steps | Input coordinates | Output coordinates |
 | --- | --- | --- |
-| Horizontal and vertical | (3, 1) | (7, 5) |
+| Horizontal and vertical unit steps | (3, 1) | (7, 5) |
 | q₁ and q₂ | (1, 2) | (1, 6) |
 
 </div>
@@ -345,7 +381,7 @@ This works because M is linear: we can transform the pieces separately and then 
 
 ### What makes a valid coordinate system?
 
-A set of reference arrows is called a **basis** when it can describe every vector, and each vector has exactly one description.
+A **basis** is a set of reference arrows that can build every vector by scaling and adding. Each vector must have exactly one choice of coefficients.
 
 In the plane, any two nonparallel arrows form a basis. Our q₁ and q₂ qualify. Two arrows pointing along the same line do not: they cannot reach points away from that line.
 
@@ -366,11 +402,7 @@ We can now understand every input from the matrix's responses along its eigenvec
 
 ## 8. Why perpendicular unit directions help
 
-### Perpendicular pieces have squared lengths that add
-
-Our split is <span class="math">x = (1, −1) + (2, 2)</span>. The pieces are perpendicular, so each one is the projection of x onto its line. Their squared lengths are 2 and 8, giving x a squared length of 10.
-
-This lets us say exactly how x's squared length is shared: **20% along the first eigenvector line and 80% along the second.** These percentages describe squared length, not ordinary length.
+We can already transform x by splitting it along q₁ and q₂. Now we want an easy way to find those pieces for any input. Perpendicular unit reference arrows let us do that with dot products.
 
 ### Use reference arrows of length one
 
@@ -384,7 +416,11 @@ The figure compares **before: q₁ and q₂** with **after: u₁ and u₂**. Fro
 
 {% include visual-primer/linear/figure-22.html %}
 
-Each reference arrow is one unit long, so the coefficient tells us the length of its piece. The sign only tells us the direction: 3 means a length of 3 along the reference arrow, while −3 means the same length in the opposite direction.
+Together, u₁ and u₂ form an **orthonormal basis**: the reference arrows are perpendicular to each other and each has length one.
+
+Because these directions are perpendicular, projecting x onto either line recovers just the component along that line.
+
+Each reference arrow is one unit long, so **ignoring its sign, the coefficient gives the length of its component**. A coefficient of 3 means three units along the reference arrow; −3 means three units in the opposite direction.
 
 Squaring the coefficient gives the piece’s squared length. Since u₁ and u₂ are perpendicular unit arrows, we find each coefficient by taking a dot product:
 
@@ -397,11 +433,15 @@ Squaring the coefficient gives the piece’s squared length. Since u₁ and u₂
 
 </div>
 
-Together, u₁ and u₂ form an **orthonormal basis**. This simply means the reference arrows are perpendicular to each other and each has length one.
+### How the squared length is shared
+
+Our split is <span class="math">x = (1, −1) + (2, 2)</span>. The pieces are perpendicular, so their squared lengths add: <span class="math">2 + 8 = 10</span>.
+
+The first piece accounts for <span class="math">2/10 = 20%</span> of x's squared length, and the second accounts for <span class="math">8/10 = 80%</span>. These percentages describe **squared length**. We'll use these shares in Chapter 9 to compare input directions.
 
 ### Why does our matrix allow this?
 
-M has matching entries across its main diagonal: the upper-right and lower-left entries are both 1. A matrix with this mirror property is called **symmetric**. Swapping its rows and columns leaves it unchanged, written <span class="math">Mᵀ = M</span>.
+M has matching entries across its main diagonal: the upper-right and lower-left entries are both 1. A matrix with this mirror property is called **symmetric**. Turning its rows into columns gives the same matrix, written <span class="math">Mᵀ = M</span>.
 
 {% include visual-primer/linear/figure-23.html %}
 
@@ -415,21 +455,23 @@ The **coefficients c₁ and c₂ are numbers**: they tell us how many steps to t
 
 <div class="equation" role="math" aria-label="c1 equals x dot u1; c2 equals x dot u2">c₁ = x · u₁<br>c₂ = x · u₂</div>
 
-Let’s work through two inputs using the same unit arrows, <span class="math">u₁ = (1, −1)/√2</span> and <span class="math">u₂ = (1, 1)/√2</span>.
+We'll follow four steps for each input: **find the coefficients, build the component arrows, scale each component by its eigenvalue, and add the outputs**. Both examples use the same unit arrows, <span class="math">u₁ = (1, −1)/√2</span> and <span class="math">u₂ = (1, 1)/√2</span>.
 
 **Example 1: x = (3, 1)**
 
-First, find the coefficients. The dot product with u₁ subtracts the second coordinate from the first and divides by √2. The dot product with u₂ adds the coordinates and divides by √2:
+**1. Find the coefficients.** Dotting with u₁ subtracts the second coordinate from the first and divides by √2. Dotting with u₂ adds the coordinates and divides by √2:
 
 <div class="equation" role="math" aria-label="c1 equals x dot u1, which is 3 minus 1 divided by square root 2, giving square root 2; c2 equals x dot u2, which is 3 plus 1 divided by square root 2, giving 2 square root 2">c₁ = x · u₁ = (3 − 1)/√2 = √2<br>c₂ = x · u₂ = (3 + 1)/√2 = 2√2</div>
 
-Now multiply each coefficient by its unit arrow to get the two pieces. The √2 factors cancel:
+**2. Build the component arrows.** Multiply each coefficient by its unit arrow. The √2 factors cancel:
 
 <div class="equation" role="math" aria-label="c1 u1 equals square root 2 times 1 comma minus 1 divided by square root 2, giving 1 comma minus 1; c2 u2 equals 2 square root 2 times 1 comma 1 divided by square root 2, giving 2 comma 2">c₁u₁ = √2 × (1, −1)/√2 = (1, −1)<br>c₂u₂ = 2√2 × (1, 1)/√2 = (2, 2)</div>
 
 Adding the pieces gives our input back: <span class="math">x = (1, −1) + (2, 2) = (3, 1)</span>.
 
-Now apply M. Its **eigenvalues are 1 along u₁ and 3 along u₂**, so it leaves the first piece unchanged and triples the second:
+**3. Scale each component by its eigenvalue.** M's eigenvalues are 1 along u₁ and 3 along u₂. The first piece stays (1, −1); the second becomes <span class="math">3 × (2, 2) = (6, 6)</span>.
+
+**4. Add the outputs.** Together, the scaled pieces give Mx:
 
 <div class="equation" role="math" aria-label="M x equals 1 times the component c1 u1 plus 3 times the component c2 u2; this is 1 times 1 comma minus 1 plus 3 times 2 comma 2, giving 7 comma 5">Mx = 1 × (c₁u₁) + 3 × (c₂u₂)<br>= 1 × (1, −1) + 3 × (2, 2)<br>= (1, −1) + (6, 6) = (7, 5)</div>
 
@@ -439,17 +481,19 @@ The figure shows this example. On the left, M acts on unit arrows. On the right,
 
 **Example 2: x = (4, 2)**
 
-Use the same dot products with the new input:
+**1. Find the coefficients.** Use the same dot products with the new input:
 
 <div class="equation" role="math" aria-label="c1 equals x dot u1, which is 4 minus 2 divided by square root 2, giving square root 2; c2 equals x dot u2, which is 4 plus 2 divided by square root 2, giving 3 square root 2">c₁ = x · u₁ = (4 − 2)/√2 = √2<br>c₂ = x · u₂ = (4 + 2)/√2 = 3√2</div>
 
-Turn those numbers into the two component arrows:
+**2. Build the component arrows.** Multiply each coefficient by its unit arrow:
 
 <div class="equation" role="math" aria-label="c1 u1 equals square root 2 times 1 comma minus 1 divided by square root 2, giving 1 comma minus 1; c2 u2 equals 3 square root 2 times 1 comma 1 divided by square root 2, giving 3 comma 3">c₁u₁ = √2 × (1, −1)/√2 = (1, −1)<br>c₂u₂ = 3√2 × (1, 1)/√2 = (3, 3)</div>
 
 They add up to the new input: <span class="math">x = (1, −1) + (3, 3) = (4, 2)</span>.
 
-M still uses eigenvalues 1 and 3. Apply them to these new pieces:
+**3. Scale each component by its eigenvalue.** M still uses eigenvalues 1 and 3. The first piece stays (1, −1); the second becomes <span class="math">3 × (3, 3) = (9, 9)</span>.
+
+**4. Add the outputs.** The two scaled pieces give:
 
 <div class="equation" role="math" aria-label="M x equals 1 times 1 comma minus 1 plus 3 times 3 comma 3, which is 1 comma minus 1 plus 9 comma 9, giving 10 comma 8">Mx = 1 × (1, −1) + 3 × (3, 3)<br>= (1, −1) + (9, 9) = (10, 8)</div>
 
@@ -826,6 +870,5 @@ This gives us a way to find the minimum without checking every direction: find t
 </section>
 
 <footer class="credits">
-<p>The stick figures, comics and charts are original drawings, made in the general style of <a href="https://xkcd.com/">xkcd</a> as a tribute. This page is not affiliated with or endorsed by xkcd or Randall Munroe. Every figure from the original primer has been redrawn with the same coordinates, and the figures new to this edition use the same running example; the wobble moves the middle of each line, never its endpoints.</p>
-<p>Lettering: <em>Humor Sans</em> by Michael Ciuffo and <em>Playpen Sans</em> by TypeTogether, both under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.</p>
+<p>Illustrations inspired by <a href="https://xkcd.com/">xkcd</a>; fonts: <em>Humor Sans</em> by Michael Ciuffo and <em>Playpen Sans</em> by TypeTogether, licensed under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.</p>
 </footer>
