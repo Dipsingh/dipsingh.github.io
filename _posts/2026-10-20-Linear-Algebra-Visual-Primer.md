@@ -735,59 +735,63 @@ The experiment suggests where the smallest and largest quotients occur. Next, we
 
 <a id="minimum" class="chapter-anchor"></a>
 
-## 12. Finding the minimum and maximum
+## 12. Finding the smallest and largest quotients
 
-### Every score stays between 1 and 3
+Chapter 11 gave us a number for each direction. Now we want to find the smallest and largest possible values. For an input of length one, these tell us the least and most output along the input's own direction.
 
-Chapter 11 showed that each quotient for M is a weighted average of its eigenvalues, 1 and 3. The weights are nonnegative and add to one. Such an average cannot fall below 1 or rise above 3.
+Our running direction gives 2.6. That is one possible value; it does not tell us where the limits are.
 
-{% include visual-primer/linear/figure-43.html %}
+### Why every quotient stays between 1 and 3
 
-So 1 is a floor for every possible direction. We do not need to test directions one at a time to know this.
+For our symmetric matrix M, the quotient is a weighted average of the eigenvalues 1 and 3. The weight on each eigenvalue is the share of the input's squared length along its eigenvector. These shares cannot be negative and add to 100%.
+
+Putting all the weight on 1 gives an average of 1. Moving any of that weight to 3 raises the average. Even when all the weight is on 3, the result is only 3. So **every nonzero input has a quotient between 1 and 3, including the two ends**.
 
 ### The eigenvectors reach both limits
 
-Choose <span class="math">q₁ = (1, −1)</span>. All its squared length lies along the eigenvector with eigenvalue 1, so <span class="math">R(q₁) = 1</span>. That proves the minimum is exactly 1: no direction goes lower, and this direction reaches it.
+We can put all the weight on 1 by choosing u₁ as the input. It has no u₂ piece. Likewise, choosing u₂ puts all the weight on 3.
 
-Choose <span class="math">q₂ = (1, 1)</span> for the other end. Its quotient is 3, so the maximum is exactly 3.
-
-{% include visual-primer/linear/figure-44.html %}
+Compare these two unit inputs with our running unit input x̂. The shares below are percentages of squared length:
 
 <div class="table-wrap" markdown="1">
 
-| Question | Direction that achieves it | Score |
-| --- | --- | --- |
-| Lowest quotient for M | q₁ = (1, −1) | 1 |
-| Highest quotient for M | q₂ = (1, 1) | 3 |
+| Unit input | u₁ share | u₂ share | Quotient |
+| --- | --- | --- | --- |
+| u₁ | 100% | 0% | 1 |
+| x̂ | 20% | 80% | 2.6 |
+| u₂ | 0% | 100% | 3 |
 
 </div>
 
-The arrows can be resized or reversed without changing their quotients. We are finding directions, not one particular arrow length.
+This proves both limits: **no direction gives less than 1, and u₁ gives exactly 1; no direction gives more than 3, and u₂ gives exactly 3**. Finding a minimum takes both parts: show that nothing can go lower, then find an input that reaches that value.
 
-### Why one trial is not a proof of the minimum
+{% include visual-primer/linear/figure-44.html %}
 
-Our trial x gives 2.6. That tells us the minimum is *at most* 2.6: a direction with that score exists. It does not tell us that every other direction scores more.
-
-To prove a minimum, we need both parts of the argument: a floor that applies to every candidate, and a candidate that reaches the floor.
+Resizing or reversing an arrow leaves its quotient unchanged. Every nonzero arrow on the u₁ line therefore gives the minimum, and every nonzero arrow on the u₂ line gives the maximum. In the chart, 135° points along −u₁, which is on the same line as u₁.
 
 ### The same rule works in more dimensions
 
-For any **real symmetric matrix**, the smallest eigenvalue is the smallest Rayleigh quotient, and an eigenvector with that eigenvalue achieves it. The largest eigenvalue gives the maximum in the same way.<sup class="fnref"><a href="#fn-25" id="fnref-25" data-fn="25" aria-expanded="false" aria-label="Footnote 25">[25]</a></sup>
+For any **real symmetric matrix**, every nonzero input's quotient is a weighted average of its eigenvalues. The same argument works however many entries the input has:
 
-This gives the extreme eigenvalues two meanings: they are multipliers along special directions, and they are the best and worst values of this fair score. If an extreme eigenvalue repeats, more than one independent direction can achieve the same extreme score.
+- The **smallest eigenvalue** is the minimum quotient. An eigenvector with that eigenvalue reaches it.
+- The **largest eigenvalue** is the maximum quotient. An eigenvector with that eigenvalue reaches it.<sup class="fnref"><a href="#fn-25" id="fnref-25" data-fn="25" aria-expanded="false" aria-label="Footnote 25">[25]</a></sup>
 
-We can therefore search for a minimum by finding the smallest eigenvalue and a corresponding eigenvector. The weighted-average argument still works when there are too many dimensions to draw. [Spielman, Chapter 2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=47).
+This gives us a way to find the minimum without checking every direction: find the smallest eigenvalue and an eigenvector that goes with it. The eigenvalue tells us the minimum value; the eigenvector tells us an input direction that achieves it. [Spielman, Chapter 2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=47).
 
 <details markdown="1">
 <summary>Optional: why the symmetry condition matters</summary>
 
-The nonsymmetric matrix A from Chapter 8 has rows <span class="math">(1, 1)</span> and <span class="math">(0, 2)</span>. Its eigenvalues are 1 and 2, but its quotients range from about 0.79 to 2.21.
+Symmetry lets us split the input into perpendicular eigenvector pieces. That is what makes the squared-length shares work as weights in an average.
+
+For comparison, the nonsymmetric matrix A from Chapter 8 has rows <span class="math">(1, 1)</span> and <span class="math">(0, 2)</span>. Its eigenvalues are 1 and 2. Its quotient can go below 1 and above 2, as the chart shows:
 
 {% include visual-primer/linear/figure-45.html %}
 
-Its eigenvectors still score their eigenvalues. They simply do not achieve the extremes. Because the eigenvector lines are not perpendicular, the squared-length shares do not give the weighted-average formula we used for M. The spectral theorem supplies that formula for real symmetric matrices.
+Each eigenvector of A still gives its eigenvalue as the quotient. Other directions give values as low as about 0.79 and as high as about 2.21. So A's eigenvectors do not give the minimum and maximum. Its eigenvector pieces are not perpendicular, and the weighted-average rule we used for M does not apply.
 
 </details>
+
+Next, we will use this idea to find the smoothest pattern in a list.
 
 <a id="mean-plane" class="chapter-anchor"></a>
 
