@@ -791,15 +791,11 @@ This gives us a way to find the minimum without checking every direction: find t
 7. A real symmetric matrix with no negative eigenvalues is positive semidefinite: Q(x) is never negative. For such a matrix, Q(x) = 0 means the matrix sends x to zero.
 8. For any nonzero input, the Rayleigh quotient <span class="math">R(x) = Q(x)/‖x‖²</span> gives the measurement for that direction at length one. For a real symmetric matrix, its smallest and largest eigenvalues are the minimum and maximum quotients. Their eigenvectors give directions that reach those limits.
 
-<aside class="source-note" aria-label="References" markdown="1">
-
-**Further reading**
+## Further reading
 
 1. [3Blue1Brown, *Eigenvectors and eigenvalues*.](https://www.3blue1brown.com/lessons/eigenvalues/) The moving-grid picture, done properly, with animation budgets.
 2. [Gilbert Strang, MIT 18.06, Lecture 25: Symmetric matrices and positive definiteness.](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/resources/lecture-25-symmetric-matrices-and-positive-definiteness/) For the spectral theorem and orthogonal eigenvectors.
 3. [Daniel Spielman, *Spectral and Algebraic Graph Theory*, Chapter 2.](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf) For the variational characterization of eigenvalues and the Courant–Fischer theorem.
-
-</aside>
 
 <section class="footnotes" aria-labelledby="footnotes-title">
 <h2 id="footnotes-title">Footnotes</h2>
