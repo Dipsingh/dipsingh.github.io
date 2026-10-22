@@ -509,15 +509,85 @@ For x, normalizing the input gives <span class="math">x̂ = (3, 1)/√10</span>.
 
 <a id="quadratic" class="chapter-anchor"></a>
 
-## 9. A score from the input and output
+## 9. Measuring the output along the input
 
-### First calculate the score at the original size
+Chapter 8 showed how to find the whole output arrow. Now we want to compare directions: **which input direction gives the most output along its own line, and which gives the least?** This will give us another way to understand the largest and smallest eigenvalues.
 
-Our input is <span class="math">x = (3, 1)</span>, and its output is <span class="math">Mx = (7, 5)</span>. Dot the two together:
+To make that comparison fair, start with inputs of length one. Otherwise, a longer input could give more output simply because it was larger to begin with.
 
-<div class="equation" role="math" aria-label="The raw score Q of x is the input dotted with the output: 3 times 7 plus 1 times 5, which equals 26">Q(x) = x · Mx = 3 × 7 + 1 × 5 = 26</div>
+### Use the dot product to measure along the input
 
-The letter Q names the score. Another way to write the same dot product is <span class="math">xᵀMx</span>. Do not confuse this score with the output arrow or its squared length:<sup class="fnref"><a href="#fn-19" id="fnref-19" data-fn="19" aria-expanded="false" aria-label="Footnote 19">[19]</a></sup>
+We already know how to measure an arrow along a chosen direction: dot it with a unit arrow in that direction. Here, the arrow we measure is the output, and the unit reference is the input itself. Any sideways part contributes zero.
+
+Our running input is <span class="math">x = (3, 1)</span>, with length √10. Divide it by √10 to get the unit input x̂. Its output shrinks by the same factor:
+
+<div class="equation" role="math" aria-label="The unit input x hat is 3 comma 1 divided by square root 10. Its output is 7 comma 5 divided by square root 10.">x̂ = (3, 1)/√10<br>Mx̂ = (7, 5)/√10</div>
+
+Now dot the unit input with its output:
+
+<div class="equation" role="math" aria-label="x hat dotted with M x hat equals 3 times 7 plus 1 times 5, all divided by 10, which equals 2.6">x̂ · Mx̂ = <span class="frac"><span>3 × 7 + 1 × 5</span><span>10</span></span> = 2.6</div>
+
+**The output goes 2.6 units along the input's direction.** Its projection is the arrow <span class="math">2.6x̂</span>. The full output also has a sideways part, so 2.6 is not its full length.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup> The measurement is signed: a negative result would mean the projection points opposite to the input.
+
+{% include visual-primer/linear/figure-28.html %}
+
+For u₁, the amount along the input is 1. For u₂, it is 3. An eigenvector's output stays entirely on its input line, so this measurement gives exactly its eigenvalue.
+
+### Why does our direction give 2.6?
+
+We can also calculate this from the two eigenvector pieces. Along a unit eigenvector with eigenvalue λ, an input coefficient c becomes an output coefficient λc. Their contribution to the dot product is:
+
+<div class="equation" role="math" aria-label="Input coefficient times output coefficient equals c times lambda c, which equals lambda c squared">c × (λc) = λc²</div>
+
+That is why **each eigenvalue multiplies a squared coefficient**. The two eigenvector lines are perpendicular, and M keeps each piece on its own line, so we can add the two contributions without any extra terms.
+
+In Chapter 8, the original x had coefficients √2 and 2√2. We have now divided x by √10, so both coefficients are divided by √10 too. The reference arrows u₁ and u₂ stay the same:
+
+<div class="table-wrap" markdown="1">
+
+| Reference | Coefficient in the unit input x̂ | Squared coefficient |
+| --- | --- | --- |
+| u₁ | √2/√10 = 1/√5 | 1/5 = 20% |
+| u₂ | 2√2/√10 = 2/√5 | 4/5 = 80% |
+
+</div>
+
+Because x̂ has length one, these squared coefficients add to one. They are its shares of squared length. Multiply each share by its eigenvalue and add:
+
+<div class="equation" role="math" aria-label="x hat dotted with M x hat is 1 times 20 percent plus 3 times 80 percent, which equals 2.6">x̂ · Mx̂ = 1 × 20% + 3 × 80% = 2.6</div>
+
+This is a **weighted average of the eigenvalues**: 20% of the weight goes to 1, and 80% goes to 3.
+
+{% include visual-primer/linear/figure-29.html %}
+
+More share along u₁ moves the result toward 1; more along u₂ moves it toward 3. The shares cannot be negative and add to 100%, so the result always stays between 1 and 3. **The eigenvector directions give the smallest and largest amounts along the input.** We can find these limits without trying every possible direction.
+
+### Give the calculation a name
+
+The same input-output dot product can be calculated for an input of any length:
+
+<div class="equation" role="math" aria-label="Q of x equals x dotted with M x, also written x transpose M x">Q(x) = x · Mx = xᵀMx</div>
+
+This is called a **quadratic form**. Q is just its label. We will call its value the **raw score**, because it includes the effect of input size. Double the input and the output doubles too, so their dot product becomes four times as large.
+
+For the original <span class="math">x = (3, 1)</span>, the raw score is:
+
+<div class="equation" role="math" aria-label="Q of x equals 3 times 7 plus 1 times 5, which equals 26">Q(x) = 3 × 7 + 1 × 5 = 26</div>
+
+For its unit version, <span class="math">Q(x̂) = 2.6</span>. Only when the input has length one does the raw score directly give the signed length of the output's projection. Chapter 11 will show how to get that same fair comparison from an input of any size.
+
+<details markdown="1">
+<summary>Optional: check the calculation at both sizes</summary>
+
+For the unit input x̂, the two contributions are <span class="math">1 × 0.2 = 0.2</span> and <span class="math">3 × 0.8 = 2.4</span>. Together they give 2.6:
+
+{% include visual-primer/linear/figure-30.html %}
+
+For the original x, the squared coefficients are 2 and 8, adding to 10. Its raw score is <span class="math">1 × 2 + 3 × 8 = 26</span>:
+
+{% include visual-primer/linear/figure-31.html %}
+
+The output arrow, the raw score, and the output's squared length are three different things:<sup class="fnref"><a href="#fn-19" id="fnref-19" data-fn="19" aria-expanded="false" aria-label="Footnote 19">[19]</a></sup>
 
 <div class="table-wrap" markdown="1">
 
@@ -529,44 +599,7 @@ The letter Q names the score. Another way to write the same dot product is <span
 
 </div>
 
-### The raw score changes when the input changes size
-
-Double x and Mx also doubles. Both arrows in the dot product are now twice as large, so the score becomes four times as large. This “size squared” behavior is why Q is called a **quadratic form**.
-
-To compare directions fairly, first give every input length one. Our x has length √10, so its unit version is <span class="math">x̂ = (3, 1)/√10</span>. Dividing the input by √10 also divides the output by √10. Their dot product is therefore divided by 10:
-
-<div class="equation" role="math" aria-label="The score of unit input x hat is 26 divided by 10, which equals 2.6">Q(x̂) = 26/10 = 2.6</div>
-
-**For a unit input, the score is the signed amount of the output along the input's direction.** It measures the output's projection onto that line. Any sideways part contributes zero to the dot product.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup>
-
-{% include visual-primer/linear/figure-28.html %}
-
-For x̂, that amount is 2.6. For the unit eigenvectors u₁ and u₂, it is 1 and 3. Along an eigenvector, the whole output stays on the input's line, so the unit-input score is exactly the eigenvalue.
-
-### Why does our direction score 2.6?
-
-Chapter 8 split x's squared length into 20% along u₁ and 80% along u₂. Resizing x to length one keeps these same shares. M multiplies the first piece by 1 and the second by 3, so:
-
-<div class="equation" role="math" aria-label="The unit-input score is 20 percent times 1 plus 80 percent times 3, which equals 2.6">Q(x̂) = 20% × 1 + 80% × 3 = 2.6</div>
-
-The score is a **weighted average of the eigenvalues**. The weights are shares of *squared length*. They cannot be negative, and they add to 100%.
-
-{% include visual-primer/linear/figure-29.html %}
-
-More share along u₁ moves the score toward 1. More share along u₂ moves it toward 3. Every unit input's score stays between those two values.
-
-<details markdown="1">
-<summary>Optional: why each piece contributes its eigenvalue times its squared amount</summary>
-
-Let c be the input's signed coefficient along one unit eigenvector. Its output coefficient is λc. That piece's contribution to the dot product is therefore <span class="math">c × λc = λc²</span>.
-
-{% include visual-primer/linear/figure-30.html %}
-
-For a unit input, the squared coefficients add to one, so they are already shares. For the original x, they add to 10. Its score is <span class="math">1 × 2 + 3 × 8 = 26</span>.
-
-{% include visual-primer/linear/figure-31.html %}
-
-Written in ordinary coordinates, this same score is <span class="math">Q(x) = 2x₁² + 2x₁x₂ + 2x₂²</span>.
+Written in ordinary coordinates, the quadratic form is <span class="math">Q(x) = 2x₁² + 2x₁x₂ + 2x₂²</span>. Each term multiplies two input entries, which explains the word “quadratic.”
 
 </details>
 
@@ -579,13 +612,15 @@ The shortcut works for **perpendicular eigenvector pieces**. Here is why both co
 
 The full score pairs each input piece with each output piece. There are four dot products:
 
-<div class="equation" role="math" aria-label="The score of a plus b is the two separate scores plus the two cross terms">Q(a + b) = Q(a) + Q(b) + a · Mb + b · Ma</div>
+<div class="equation" role="math" aria-label="The score of a plus b is the two separate scores plus the two cross terms">Q(a + b) = Q(a) + Q(b)<br>+ a · Mb + b · Ma</div>
 
 The last two are called **cross terms**. Here each equals 3, so the full total is <span class="math">18 + 2 + 3 + 3 = 26</span>.
 
+The next figure compares this with the eigenvector split. In that panel, a and b name the complete pieces: <span class="math">a = c₁u₁ = (1, −1)</span> and <span class="math">b = c₂u₂ = (2, 2)</span>.
+
 {% include visual-primer/linear/figure-33.html %}
 
-Why does the eigenvector split avoid this? Each output piece stays on its own eigenvector line. Those lines are perpendicular, so an input piece dotted with the other piece's output gives zero.
+Why do the cross terms disappear? Each output piece stays on its own eigenvector line. Those lines are perpendicular, so an input piece dotted with the other piece's output gives zero.
 
 {% include visual-primer/linear/figure-34.html %}
 
@@ -593,7 +628,14 @@ Perpendicular inputs alone are not enough: M can turn their outputs. Eigenvector
 
 </details>
 
-### A practical example: how bumpy is a list?
+### A preview: measuring how bumpy a list is
+
+A quadratic form can describe a useful measurement of data. For a list, one example is **bumpiness**: square the difference between each neighboring pair and add. Smaller values mean neighboring entries are closer; a flat list gives zero.
+
+This can be written <span class="math">zᵀBz</span>, using a three-entry list z and a different symmetric matrix B.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> Chapter 13 will use its eigenvector directions to find a smooth pattern. The same method of splitting into perpendicular pieces will help us minimize a concrete measurement.
+
+<details markdown="1">
+<summary>Optional: try the bumpiness calculation</summary>
 
 Take the list <span class="math">(3, 1, 2)</span>. To measure its bumpiness, subtract neighboring entries, square each difference, and add:
 
@@ -603,13 +645,17 @@ A step up and a step down of the same size cost the same. Larger steps cost more
 
 {% include visual-primer/linear/figure-35.html %}
 
-This is another quadratic form. It can be written <span class="math">zᵀBz</span>, using a three-entry input z and a new symmetric matrix B.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> B is different from our two-by-two M, but the same reasoning applies: perpendicular eigenvector pieces explain its score.
+This value of 5 is a raw score. Resizing the list changes it, so we will need a size correction before comparing different patterns fairly.
 
-Chapter 11 will show how to remove the effect of input size without first drawing a unit arrow. Chapter 13 will use that fair comparison to find a smooth pattern in the three-entry list.
+</details>
+
+Before making that correction, let's look at what a score of zero can tell us.
 
 <a id="nonnegative" class="chapter-anchor"></a>
 
 ## 10. Can a nonzero input have score zero?
+
+For a unit input, zero means the output has no component along the input's line. One way this happens is when the matrix sends the whole input to zero.
 
 ### Our matrix M always gives a positive score
 
@@ -667,9 +713,11 @@ If x is nonzero, at least one of the first two squares is positive. So the sum i
 
 ## 11. Compare directions at the same size
 
-### Why the raw score needs a size correction
+### Compare directions without resizing every input
 
-Our input x scores 26. Half of x scores only 6.5. It points in exactly the same direction, so the smaller score has not found a better direction. It has only made the input smaller.
+In Chapter 9, we resized each input to length one before comparing directions. We can get the same comparison directly from the original input, using one division.
+
+Our input x has raw score 26. Half of x has raw score 6.5, even though it points in exactly the same direction. The raw score still includes input size:
 
 {% include visual-primer/linear/figure-39.html %}
 
@@ -724,7 +772,7 @@ For the original x, halving its length lowers the score from 26 to 6.5 and the s
 
 ### Read the quotient from the shares
 
-For our symmetric M, the quotient is a weighted average of the eigenvalues. Find the fraction of squared length in each eigenvector direction, multiply each fraction by its eigenvalue, and add.
+This is the same weighted average we found in Chapter 9. For our symmetric M, multiply each eigenvalue by its share of the input's squared length and add.
 
 Our x has squared-length shares <span class="math">2/10 = 0.2</span> and <span class="math">8/10 = 0.8</span>:
 
@@ -827,7 +875,7 @@ Its eigenvectors still score their eigenvalues. They simply do not achieve the e
 
 ### Separate the shared level from the pattern
 
-Return to the three-entry list <span class="math">z = (3, 1, 2)</span>. Its average is 2. Subtract 2 from every entry:
+Take the three-entry list <span class="math">z = (3, 1, 2)</span>. Its average is 2. Subtract 2 from every entry:
 
 <div class="equation" role="math" aria-label="The list 3 comma 1 comma 2 is its shared average 2 comma 2 comma 2 plus the centered pattern 1 comma minus 1 comma zero">(3, 1, 2) = (2, 2, 2) + (1, −1, 0)</div>
 
@@ -910,7 +958,7 @@ Keep the two example matrices separate. For this bumpiness matrix B, the flat di
 3. Projection finds the closest point on a line. The remainder is perpendicular, so squared lengths add.
 4. An eigenvector is a nonzero arrow that M only scales: <span class="math">Mv = λv</span>. Here, q₁ has λ₁ = 1 and q₂ has λ₂ = 3.
 5. A real symmetric matrix only stretches, along perpendicular eigenlines: that's the spectral theorem. In coordinates built from its unit eigenvectors, M multiplies each coordinate by its eigenvalue, and the pieces don't overlap: shadows find them and their squared lengths add.
-6. The score Q(v) = v · Mv is how much of the output points back along the input. For a unit input it's a blend of the eigenvalues, weighted by the input's shares of squared length. The cross terms vanish because eigenvector pieces stay on perpendicular lines. Any score made of squares and products, like the bumpiness of a list, is a score of this kind.
+6. For a unit input v, the dot product v · Mv measures the signed amount of output along the input. For our symmetric matrix, it is a weighted average of the eigenvalues, using the input's shares of squared length. The same calculation for any input is the quadratic form Q(v) = v · Mv; its raw value also depends on input size. Bumpiness is another example of a quadratic form.
 7. When no score is negative, zero means “nothing this score counts”: the input lies entirely in directions the matrix sends to zero.
 8. The Rayleigh quotient, raw score divided by squared length, is the unit-input score for an arrow of any length. For our M it's a wave between 1 and 3, and the eigenvectors hit the two ends. The smallest eigenvalue is the lowest score; its eigenvector is the direction that gets it.
 9. A shared shift moves a list along the all-equal direction. Centering (subtracting the average) removes that direction, and normalizing fixes the size. What's left is the pattern, and the search runs inside the plane of centered lists with the same tools: for the bumpiness score, the smoothest non-flat pattern is the ramp, with the second-smallest eigenvalue, 1.
