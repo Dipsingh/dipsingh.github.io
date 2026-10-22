@@ -1,6 +1,6 @@
 ---
 layout: visual-primer
-title: "A Visual Primer on Spectral Graph Theory"
+title: "Understanding Networks Through Spectral Graph Theory"
 primer: spectral
 ---
 
