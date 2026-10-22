@@ -466,13 +466,17 @@ Consider A with rows <span class="math">(1, 1)</span> and <span class="math">(0,
 
 {% include visual-primer/linear/figure-25.html %}
 
-We can still use these two directions as coordinates: <span class="math">x = 2(1, 0) + (1, 1)</span>. But projecting x onto either line does not recover the corresponding piece, because the other piece also has a component along that line.
+**Perpendicular directions let us measure one piece at a time.** When we project x onto the u₁ line, the u₂ piece contributes zero along that direction. So the projection gives us exactly the u₁ piece. The same works the other way around.
+
+For A, we can still split the input into two pieces: <span class="math">x = (2, 0) + (1, 1)</span>. But both pieces include some horizontal movement: two steps from (2, 0) and one from (1, 1). Projecting x onto the horizontal line picks up all three steps, giving (3, 0). It does not isolate the first piece, (2, 0).
 
 {% include visual-primer/linear/figure-26.html %}
 
-The squared lengths of the pieces are 4 and 2. They add to 6, not 10. The full formula has an extra term: <span class="math">‖a + b‖² = ‖a‖² + 2a · b + ‖b‖²</span>. Here that extra term is 4. Perpendicular pieces make it zero.
+**Perpendicular pieces also have squared lengths that add.** This is Pythagoras' rule: for M's pieces, <span class="math">2 + 8 = 10</span>, the squared length of x. It is the squared lengths that add this way, rather than the ordinary distances.
 
-So eigenvector coordinates alone do not give all our shortcuts. We need perpendicular eigenvectors. Some matrices, such as a 90° rotation, do not even have real eigenvectors.
+For A's pieces, the squared lengths are 4 and 2. Adding them gives 6, while x still has squared length 10. We need an extra term: twice the dot product of the pieces. Their dot product is <span class="math">(2, 0) · (1, 1) = 2</span>, so the full calculation is <span class="math">4 + 2 + 2 × 2 = 10</span>. When pieces are perpendicular, their dot product is zero and that extra term disappears.
+
+We can still use nonperpendicular eigenvectors to split an input and scale its pieces. We lose the two shortcuts: finding each piece directly by projection, and adding squared lengths without an extra term. Some matrices, such as a 90° rotation, do not even have real eigenvectors.
 
 </details>
 
