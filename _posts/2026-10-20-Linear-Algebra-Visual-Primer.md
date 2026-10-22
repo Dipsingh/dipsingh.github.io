@@ -304,7 +304,7 @@ The chart shows how much M turns an arrow for each starting direction. The two e
 
 Other arrows turn toward the q₂ line, by at most 30° in one application. Repeated applications move them closer to that line unless they started exactly on q₁.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup>
 
-Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>. An eigenvector direction is sometimes called a *mode*, and the list of eigenvalues, including repeats, is called the *spectrum*.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
+Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>. An eigenvector direction is sometimes called a mode, and the list of eigenvalues, including repeats, is called the spectrum.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
 
 The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors and eigenvalues](https://www.3blue1brown.com/lessons/eigenvalues/).
 
@@ -326,7 +326,7 @@ So x has coordinates <span class="math">(1, 2)</span> in this new system: one q�
 
 ### Now let M act on the pieces
 
-M leaves the q₁ piece alone and triples the q₂ piece. The new coordinates therefore change from <span class="math">(1, 2)</span> to <span class="math">(1, 6)</span>. Add the output pieces to return to ordinary coordinates:
+M keeps the q₁ part the same and multiplies the q₂ part by 3. So 1q₁ + 2q₂ becomes 1q₁ + 6q₂. Add these two arrows to get the result in ordinary coordinates:
 
 <div class="equation" role="math" aria-label="M x is one q1 step plus six q2 steps, giving 7 comma 5">Mx = q₁ + 6q₂ = (1, −1) + (6, 6) = (7, 5)</div>
 
@@ -374,15 +374,17 @@ This lets us say exactly how x's squared length is shared: **20% along the first
 
 ### Use reference arrows of length one
 
-Our original reference arrows q₁ and q₂ each have length √2. Divide each by √2 to get unit reference arrows:
+Our original reference arrows q₁ and q₂ each have length √2. Divide each by √2 and call the resulting unit arrows u₁ and u₂. Each u arrow points in the same direction as its matching q arrow:
 
-<div class="equation" role="math" aria-label="u1 is 1 comma minus 1 divided by square root 2; u2 is 1 comma 1 divided by square root 2">u₁ = (1, −1)/√2    u₂ = (1, 1)/√2</div>
+<div class="equation" role="math" aria-label="u1 equals q1 divided by square root 2, or 1 comma minus 1 divided by square root 2; u2 equals q2 divided by square root 2, or 1 comma 1 divided by square root 2">u₁ = q₁/√2 = (1, −1)/√2<br>u₂ = q₂/√2 = (1, 1)/√2</div>
 
 This changes the size of a reference step. It does not change x or its pieces. The same pieces now need √2 steps along u₁ and 2√2 steps along u₂.
 
+The figure compares **before: q₁ and q₂** with **after: u₁ and u₂**. From here on, we’ll use u₁ and u₂ for the unit reference arrows.
+
 {% include visual-primer/linear/figure-22.html %}
 
-Because the references are unit length, a coefficient's absolute value is the length of its piece. Squaring the coefficient gives that piece's squared length. Projection finds the coefficients with a dot product:
+Because u₁ and u₂ have length one, a coefficient's absolute value is the length of its piece. Squaring the coefficient gives that piece's squared length. Because these unit arrows are also perpendicular, dot products give the coefficients of the two pieces:
 
 <div class="table-wrap" markdown="1">
 
@@ -403,7 +405,7 @@ M has matching entries across its main diagonal: the upper-right and lower-left 
 
 The **spectral theorem** says that every real symmetric matrix has an orthonormal basis of eigenvectors, with real eigenvalues. We can choose enough perpendicular unit eigenvectors to describe every input.
 
-For M, the recipe is now simple: project the input onto the two eigenvector lines, multiply each piece by its eigenvalue, then add the results.
+For M, the recipe is now simple: project the input onto the u₁ and u₂ lines, multiply each piece by its eigenvalue, then add the results.
 
 {% include visual-primer/linear/figure-24.html %}
 
@@ -436,7 +438,7 @@ Let v and w be eigenvectors of a real symmetric matrix M, with eigenvalues α an
 <details markdown="1">
 <summary>Optional: two different things can be normalized</summary>
 
-**Normalize the references:** make the measuring steps unit length. The input stays fixed, and its coefficients change.
+**Normalize the references:** replace q₁ and q₂ with their unit versions u₁ and u₂. The input stays fixed, and its coefficients change.
 
 **Normalize the input:** resize x itself to length one. The reference steps stay fixed, and all of x's pieces resize together.
 
