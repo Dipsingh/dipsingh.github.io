@@ -15,7 +15,7 @@ Todo:
 
 Suppose we walk three units right and one unit up. The vector <span class="math">x = (3, 1)</span> is a record of that trip. Start at the origin, and you can draw it as an arrow ending at the point (3, 1).
 
-Here's the slightly sneaky part: we can draw the same movement starting anywhere. As long as the arrow still goes three right and one up, it's still (3, 1). A vector's entries describe *changes* in coordinates, not a fixed starting point.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
+We can draw the same movement starting anywhere. As long as the arrow still goes three right and one up, it's still (3, 1). A vector's entries describe *changes* in coordinates, not a fixed starting point.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
 Order matters: (1, 3) means one right and three up, which is a different trip. In the ordinary coordinate pictures, the first entry is always the horizontal movement and the second is the vertical one.
 
@@ -35,7 +35,9 @@ We can also reach (3, 1) in two steps: first move by (1, −1), then by (2, 2). 
 
 {% include visual-primer/linear/figure-04.html %}
 
-Keep this split in mind. The two pieces are perpendicular, and we’ll use them next. We can scale arrows before adding them, too. If a and b are two vectors, <span class="math">2a + b</span> means “two copies of a, then one copy of b.” That's a *linear combination*, and the numbers 2 and 1 are its *coefficients*: how much of each ingredient to use.
+Keep this split in mind. The two pieces are perpendicular, and we’ll use them next. 
+
+We can scale arrows before adding them, too. If a and b are two vectors, <span class="math">2a + b</span> means “two copies of a, then one copy of b.” That's a *linear combination*, and the numbers 2 and 1 are its *coefficients*: how much of each ingredient to use.
 
 <a id="operator" class="chapter-anchor"></a>
 
@@ -107,13 +109,13 @@ Our earlier pair passes the test: (1, −1) and (2, 2) give <span class="math">1
 
 ### The number also depends on length
 
-Double either arrow and the dot product doubles too, even though the angle hasn't changed. So the dot product mixes alignment and length together. It isn't a pure angle meter.
+Double either arrow and the dot product doubles, even though the angle stays the same. So the dot product depends on both the angle and the lengths of the arrows.
 
-We can at least remove one of the two lengths. Measure against a *reference* arrow of length one. Then the dot product measures the other arrow along that direction, with a sign that says which way it points. That arrow's own length still counts, as it should. First we'll build a unit arrow; then we'll see why the measurement works.
+We can simplify things by making the reference arrow one unit long. The dot product then tells us how much of the other arrow lies along that direction. A positive value means that part points with the reference arrow; a negative value means it points against it. First, we’ll build this unit arrow, then see why the measurement works.
 
 ### The same calculation in matrix notation
 
-So far we've written coordinates as pairs. In matrix notation, a vector's entries are usually stacked in a column. The *transpose*, written aᵀ, tips that column over into a row. Multiplying the row aᵀ by the column b does exactly the matching-entries calculation above, so <span class="math">aᵀb</span> and <span class="math">a · b</span> are the same dot product in different outfits.
+So far we've written coordinates as pairs. In matrix notation, a vector's entries are usually stacked in a column. The transpose, written aᵀ, tips that column over into a row. Multiplying the row aᵀ by the column b does exactly the matching-entries calculation above, so <span class="math">aᵀb</span> and <span class="math">a · b</span> are the same dot product in different outfits.
 
 <a id="norm" class="chapter-anchor"></a>
 
@@ -121,9 +123,9 @@ So far we've written coordinates as pairs. In matrix notation, a vector's entrie
 
 ### Length and squared length describe the same arrow
 
-Before we can build a one-unit arrow, we need to know how long our arrow is right now. Length is how long it is. Squared length is that number multiplied by itself.
+To make an arrow one unit long, we first need to know its length. Squared length is just the length multiplied by itself.
 
-For a small example, take any arrow of length 3. (We'll get to the length of (3, 1) in a moment.) Its squared length is <span class="math">3 × 3 = 9</span>. Now double every coordinate, which makes it twice as long:
+For example, take an arrow of length 3. Its squared length is <span class="math">3 × 3 = 9</span>. If we double every coordinate:
 
 <div class="table-wrap" markdown="1">
 
@@ -134,7 +136,7 @@ For a small example, take any arrow of length 3. (We'll get to the length of (3,
 
 </div>
 
-The length doubles, but the squared length quadruples, because both factors in the multiplication doubled. To get back from squared length to length, take the square root: a squared length of 9 means a length of √9 = 3.
+The length doubles, but the squared length becomes four times as large. To get the length back, take the square root: <span class="math">√9 = 3</span>.
 
 {% include visual-primer/linear/figure-11.html %}
 
@@ -142,13 +144,13 @@ The length doubles, but the squared length quadruples, because both factors in t
 
 For our arrow (3, 1), the horizontal and vertical steps make a right triangle, so Pythagoras gives squared length <span class="math">3² + 1² = 10</span>. Its length is √10, about 3.16.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup>
 
-Dotting x with itself adds up those same squared coordinates. We write the length of x as ‖x‖, with double bars. It's also called the *Euclidean norm*:
+Dotting x with itself adds up those same squared coordinates. We write the length of x as ‖x‖, with double bars. It's also called the Euclidean norm:
 
 <div class="equation" role="math" aria-label="The squared length of x equals x dot x equals x1 squared plus x2 squared">‖x‖² = x · x = x₁² + x₂²</div>
 
 ### Make a one-unit measuring step
 
-To measure along a direction, we want a standard step. An arrow of length exactly one does the job. It's called a *unit vector*.
+To measure along a direction, we want a standard step. An arrow of length exactly one does the job. It's called a unit vector.
 
 Our x has length √10, so dividing every coordinate by √10 makes its length one. Both entries shrink by the same factor, so the direction doesn't change. Call the new arrow <span class="math">x̂</span>, read “x-hat”:
 
@@ -156,7 +158,7 @@ Our x has length √10, so dividing every coordinate by √10 makes its length o
 
 {% include visual-primer/linear/figure-12.html %}
 
-As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called *normalization*.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> Keep that word in mind. In Chapter 8 we'll normalize something else, and the difference will matter.
+As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called normalization.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> Keep that word in mind. In Chapter 8 we'll normalize something else, and the difference will matter.
 
 <details markdown="1">
 <summary>How the dot product includes both length and angle</summary>
@@ -188,40 +190,66 @@ The piece <span class="math">p = (2, 2)</span> follows the diagonal. The remaind
 <details markdown="1">
 <summary>Optional: how do we find (2, 2)?</summary>
 
-A point on this diagonal has equal coordinates, so write the unknown projection as <span class="math">p = (a, a)</span>. The remaining step is then <span class="math">r = (3 − a, 1 − a)</span>.
+A point on the diagonal has equal coordinates, so write the unknown projection as $p=(a,a)$. The arrow from $p$ to our original point $x=(3,1)$ is:
 
-Choose a so that r has dot product zero with the diagonal direction:
+$$
+r=x-p=(3-a,\;1-a)
+$$
 
-<div class="equation" role="math" aria-label="3 minus a plus 1 minus a equals zero">(3 − a) + (1 − a) = 0</div>
+The diagonal points in the direction $(1,1)$. We want $r$ to be perpendicular to that direction, so their dot product must be zero. Multiply matching coordinates and add:
 
-This gives <span class="math">4 − 2a = 0</span>, so <span class="math">a = 2</span>. A perpendicular connection is also the shortest connection from x's tip to the line.
+$$
+r\cdot(1,1)=(3-a)\times1+(1-a)\times1=0
+$$
+
+Since both multiplications are by 1, this simplifies to:
+
+$$
+(3-a)+(1-a)=0
+$$
+
+Combining terms gives $4-2a=0$, so $a=2$. Our projection is therefore $p=(2,2)$.
+
+The remaining arrow is $r=(1,-1)$, which is perpendicular to the diagonal. This perpendicular connection is the shortest path from $x$ to the line.
 
 </details>
 
 ### A unit arrow gives us a shortcut
 
-Let u be a length-one arrow along the chosen line. The dot product <span class="math">x · u</span> tells us the signed amount of x along that line. Multiplying that number by u turns it into the projection arrow:
+Let u be an arrow of length one along the chosen line. Think of u as a one-unit step in that direction.
+
+The dot product <span class="math">x · u</span> gives us a number. If that number is 3, it means x has 3 units along u. Its projection is therefore <span class="math">3u</span>: an arrow three units long in the direction of u. If the number is −3, the projection points three units in the opposite direction.
+
+To get the projection arrow, multiply that number by u:
 
 <div class="equation" role="math" aria-label="The projection p equals the dot product of x and unit vector u, multiplied by u">p = (x · u)u</div>
 
-The number <span class="math">x · u</span> is a **coefficient**: it tells us how many u steps to take. The whole arrow p is the **component**. A negative coefficient means taking those steps in the opposite direction.
+The number <span class="math">x · u</span> is called the **coefficient**. The resulting arrow p is the **component of x along the line**.
 
 <details markdown="1">
 <summary>Optional: the same component with two measuring steps</summary>
 
-Our diagonal arrow d has length √2. Make it unit length by dividing by √2: <span class="math">u = (1, 1)/√2</span>. Now <span class="math">x · u = (3 + 1)/√2 = 2√2</span>.
+The diagonal arrow <span class="math">d = (1, 1)</span> has length √2. Divide each entry by √2 to make a one-unit arrow:
+
+<span class="math">u = (1, 1)/√2</span>
+
+The dot product tells us how many u steps to take:
+
+<span class="math">x · u = (3 + 1)/√2 = 2√2</span>
+
+So we can reach the projection using either 2 steps of d or 2√2 steps of u:
 
 <div class="equation" role="math" aria-label="p equals 2 times d, or 2 square root 2 times u; both give 2 comma 2">p = 2d = 2√2 u = (2, 2)</div>
 
 {% include visual-primer/linear/figure-15.html %}
 
-The coefficient changes because the measuring step changes. The component itself stays the same.
+The unit arrow u is shorter than d, so we need more steps to reach the same point. The number of steps changes, but the projection stays at (2, 2).
 
 </details>
 
 ### The squared lengths add
 
-Because p and r meet at a right angle, Pythagoras applies. Their *squared* lengths add to x's squared length:
+Because p and r meet at a right angle, Pythagoras applies. Their squared lengths add to x's squared length:
 
 <div class="equation" role="math" aria-label="The squared length of x is 8 plus 2, which equals 10">‖x‖² = ‖p‖² + ‖r‖² = 8 + 2 = 10</div>
 
