@@ -122,72 +122,111 @@ We now have a matrix that compares values at connected nodes. Before combining t
 
 <a id="boundary" class="chapter-anchor"></a>
 
-## 3. What does “connected” leave out?
+## 3. Measure how weakly a group connects
 
-<p class="chapter-tag">a path exists; so what</p>
+<p class="chapter-tag">crossing links relative to group size</p>
 
-Our graph is *connected*: you can walk from any node to any other along edges. But the two links between the halves show how little that promises. A path exists; the path is just very easy to cut.
+Our graph is **connected**: you can follow edges from any node to any other. Yet removing just two links separates it into two groups of four nodes. We want to measure how weakly a group connects to the rest of the network.
 
-To compare proposed divisions we need two numbers: how many edges leave a group, and how big the group is. Call the chosen group of nodes <span class="math">S</span>. Its *boundary*, written <span class="math">∂S</span>, is the set of edges with one end inside S and one end outside. Separating S from the rest is a *cut*. Vertical bars, as in <span class="math">|S|</span> or <span class="math">|∂S|</span>, mean “how many”.
+### Count crossing links relative to group size
 
-A bare boundary count doesn't tell the story. Two outward edges mean one thing for a group of two routers and another for a group of two hundred. So we divide the crossing count by the number of nodes on the *smaller* side:
+Two links connecting a group of four nodes to the rest give us <span class="math">2 ÷ 4 = 0.5</span> crossing links per node. The same two links would mean much less connectivity per node for a group of two hundred.
+
+We call a division into two nonempty groups a **cut**. To compare cuts, divide the number of crossing links by the number of nodes on the smaller side:
 
 <div class="equation" role="math" aria-label="Cut score equals crossing edges divided by nodes on the smaller side."><span class="frac"><span>crossing edges</span><span>nodes on the smaller side</span></span></div>
 
-Why the smaller side? Cutting one node away from our graph severs three edges: three doors for one stranded router, which is generous. Dividing by the seven nodes on the other side would make the same cut look dangerously weak. The smaller-side rule also gives the same answer whichever side you name first.
+**A lower score means fewer links connect the smaller group to the rest, relative to its size.** The crossing edges are also called the group's **boundary**.
+
+### Why use the smaller side?
+
+Separate node 1 from the other seven nodes. Three links cross that division, so its score is <span class="math">3 ÷ 1 = 3</span>.
+
+If we divided by the seven nodes on the other side, we would get <span class="math">3 ÷ 7 ≈ 0.43</span>. The same division would appear much weaker just because we chose the larger group as the denominator. Always using the smaller side gives one answer for the cut, whichever side we name first.
 
 {% include visual-primer/spectral/figure-11.html %}
 
-Our four-against-four cut scores <span class="math">2/4 = 0.5</span>. Is there a group with an even lower score? The lowest score anywhere in the graph is called its *edge expansion*. We write G for the graph and <span class="math">h(G)</span> for its edge expansion. A small h(G) means some group has few ways out for its size.
+### Find the weakest division
 
-Scoring one proposed group was easy. Finding the lowest score over *every* group is the hard part. Checking all nonempty groups of up to half the nodes gives 162 candidate groups for eight nodes, representing 127 distinct cuts. For forty nodes, the number of candidate groups exceeds 600 billion.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
+Our four-against-four cut scores 0.5, the lowest of the three examples above. Another division might score even lower.
+
+The lowest score across **all** cuts is the graph's **edge expansion**, written <span class="math">h(G)</span>, where G names the graph. A small h(G) means that some group has few links to the rest for its size. Finding a cut with score 0.5 gives us a candidate for that minimum.
+
+Scoring one group is easy. Searching for the lowest score is harder because there are so many groups to try. Checking all nonempty groups of up to half the nodes means 162 candidates for eight nodes, but more than 600 billion for forty.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
 {% include visual-primer/spectral/figure-12.html %}
 
-The matrices give us a different way in. Our +1 and −1 labels already mark a proposed group. The next step is to combine the link-by-link comparisons into one measurement of its boundary.
+Our +1 and −1 labels already mark a proposed division. Next we will use those values to measure its crossing links. This will connect the cut calculation to the Laplacian and give us a way to search for useful divisions through node values.
 
 <a id="energy" class="chapter-anchor"></a>
 
 ## 4. Use node values to test a division
 
-<p class="chapter-tag">one number for all the edge disagreements</p>
+<p class="chapter-tag">from crossing links to squared differences</p>
 
-Start with the labels from Chapter 1: +1 at nodes 1–4 and −1 at nodes 5–8. We want one number that adds up the disagreement across all the edges. Each edge should contribute according to how different its two endpoint values are.
+Chapter 3 judged a division by its crossing links relative to group size. Our labels from Chapter 1 already tell us which links cross: +1 marks nodes 1–4, and −1 marks nodes 5–8. A crossing link joins opposite signs.
 
-### Let each edge contribute one amount
+### From crossing links to squared differences
 
-For one edge, subtract the value at one end from the value at the other, then square the difference.
+For each edge, subtract the value at one end from the value at the other, then square the difference:
 
 - **Equal values:** the difference is zero, so the contribution is zero.
 - **Values +1 and −1:** the difference is 2 or −2, depending on the reading direction. Either way, its square is 4.
 
-Add these contributions over all the edges, counting each edge once. We call the total the pattern’s **energy**. Here, energy measures disagreement between node values.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
+Squaring makes each contribution nonnegative and independent of which way we read the edge. Positive and negative differences cannot cancel.
+
+Add the contributions, counting each edge once. We call this total the pattern's **energy**, written <span class="math">E(x)</span>. It measures how different the values are across the graph's edges.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
 
 <div class="equation" role="math" aria-label="Energy equals the sum of squared differences across edges, counting each edge once.">energy = sum of squared differences across edges</div>
 
-### Apply it to our graph
+With our +1 and −1 labels, **energy is four times the number of crossing links**. Every crossing link contributes 4; every other link contributes zero.
 
-In the two-group pattern, ten edges join equal values and contribute zero. Only edges 3–5 and 4–6 join opposite signs. Each contributes 4, so the energy is **8**.
+### Compare two divisions
 
-Now place the same four +1 values and four −1 values in an alternating arrangement. Six edges join opposite signs, giving energy **24**.
+In our two-halves pattern, only edges 3–5 and 4–6 join opposite signs. The energy is <span class="math">2 × 4 = 8</span>.
+
+Now alternate the signs in node-number order: +1, −1, +1, −1, and so on. We still have four nodes of each sign, but six edges cross between the groups. The energy is <span class="math">6 × 4 = 24</span>.
 
 {% include visual-primer/spectral/figure-13.html %}
 
-The wiring and the collection of values are the same in both cases. Their placement changed. The lower energy tells us that the grouped arrangement creates less disagreement across the existing links.
+Here is how energy connects to Chapter 3's cut score:
 
-### Why square the differences?
+<div class="table-wrap" markdown="1">
 
-Squaring makes each edge’s contribution nonnegative. A difference of −2 contributes just as much as a difference of +2. Disagreements cannot disappear merely because we read some edges in opposite directions.
+| Arrangement | Crossing links | Cut score | Energy |
+| --- | --- | --- | --- |
+| Two halves | 2 | 2 ÷ 4 = 0.5 | 2 × 4 = 8 |
+| Alternating signs | 6 | 6 ÷ 4 = 1.5 | 6 × 4 = 24 |
 
-It also makes large gaps especially costly. A gap of 3 contributes 9, while three gaps of 1 contribute only 3 in total. That will matter when we allow values between +1 and −1: spreading a large jump over several smaller changes can reduce the energy.
+</div>
 
-### The Laplacian computes this same total
+Both divisions have four nodes on each side, so fewer crossing links means both a lower cut score and lower energy. For divisions with different group sizes, we must also account for size; energy alone does not do that.
 
-Chapter 2 gave us Lx: one signed comparison at each node. For our two-group pattern, the interior nodes get zero, the two positive boundary nodes get +2, and the two negative boundary nodes get −2.
+Squared differences also work when node values are not limited to +1 and −1. They make large gaps especially costly: a gap of 3 contributes 9, while three gaps of 1 contribute only 3 in total. Later we will use this calculation to look for patterns that change more gently across the links.
 
-Simply adding those results gives zero. This happens for any pattern on our undirected graph: an edge contributes xᵢ − xⱼ at one end and xⱼ − xᵢ at the other, so they cancel. We need a different way to combine the results to recover the energy.
+<details markdown="1">
+<summary>Optional: three pictures explaining the squared differences</summary>
 
-Multiply each node’s value by its own Lx result, then add:
+{% include visual-primer/spectral/figure-14.html %}
+
+</details>
+
+### The Laplacian computes the same energy
+
+Chapter 2 gave us Lx: one result per node, found by adding its differences from its neighbours. Simply adding all the Lx entries gives zero. Each edge appears at both ends with opposite differences, so those contributions cancel.
+
+Instead, multiply each node's value by its own Lx result, then add. Multiplying matching entries and adding is a **dot product**. Here it is <span class="math">x · (Lx)</span>, also written <span class="math">xᵀLx</span>. This is the input–output dot product from the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#quadratic), with L as the matrix.
+
+To see why this recovers the energy, follow just edge 3–5. It joins +1 to −1, so its squared gap is 4. In the dot product, this edge contributes at both ends:
+
+- **At node 3:** its value +1 multiplies the difference +2, giving <span class="math">(+1) × (+2) = 2</span>.
+- **At node 5:** its value −1 multiplies the difference −2, giving <span class="math">(−1) × (−2) = 2</span>.
+
+Together, these give <span class="math">2 + 2 = 4</span>, exactly one squared gap for this edge. Edge 4–6 contributes another 4. Every other edge joins equal values and contributes zero.
+
+{% include visual-primer/spectral/figure-15.html %}
+
+The full calculation, using one product per node, is:
 
 <div class="table-wrap" markdown="1">
 
@@ -199,41 +238,28 @@ Multiply each node’s value by its own Lx result, then add:
 
 </div>
 
-There are four nonzero products, each equal to 2. Their total is 8—the same energy we found by counting the edges.
-
-Multiplying matching entries and adding is a **dot product**. The notation xᵀLx means exactly that calculation. In general:
+The four nonzero products add to 8, the same energy we found from the edges. This equality works for any node values:
 
 <div class="equation" role="math" aria-label="E of x equals x transpose L x, which equals the sum over edges of x i minus x j squared.">E(x) = xᵀLx = ∑<sub>edges {i, j}</sub> (xᵢ − xⱼ)²</div>
 
-We now have two ways to compute one quantity: add the squared edge gaps, or use the Laplacian and a dot product. The answer is always nonnegative.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
-
-### Next, let the values change
-
-The energy calculation works for any real node values. We can use 0.3 or −0.6 as well as +1 and −1. That opens the possibility of improving a pattern gradually.
-
-But smaller values also produce smaller squared gaps. Before searching for a better arrangement, we need to stop a pattern from winning merely by shrinking. Chapter 5 makes that comparison fair.
+The summation means to add one squared difference per edge. We can calculate energy directly from those gaps or through the Laplacian; both methods give the same nonnegative total.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
 
 <details markdown="1">
-<summary>Optional: three pictures explaining the squared differences</summary>
+<summary>Optional: the same edge calculation with any two values</summary>
 
-{% include visual-primer/spectral/figure-14.html %}
-
-</details>
-
-<details markdown="1">
-<summary>Optional: why the dot product counts each edge correctly</summary>
-
-Follow one edge joining nodes i and j. At node i, its contribution to xᵀLx is xᵢ(xᵢ − xⱼ). At node j, its contribution is xⱼ(xⱼ − xᵢ). Together:
+For an edge joining nodes i and j, use their values xᵢ and xⱼ in place of +1 and −1. Its two contributions to the dot product are:
 
 <div class="equation" role="math" aria-label="x i times x i minus x j, plus x j times x j minus x i, equals x i minus x j squared.">xᵢ(xᵢ − xⱼ) + xⱼ(xⱼ − xᵢ) = (xᵢ − xⱼ)²</div>
 
-So the two endpoint contributions combine into exactly one squared edge gap. This works for every edge and for any values at its ends.
-
-{% include visual-primer/spectral/figure-15.html %}
-
-There is a different calculation that is easy to confuse with energy: squaring the entries of Lx itself and adding them. That gives ‖Lx‖². For this example it is 16. Energy instead multiplies each Lx entry by the original node value, giving xᵀLx = 8.
+The two endpoint contributions add to exactly one squared gap. Summing over all edges gives <span class="math">xᵀLx = E(x)</span>.
 
 </details>
+
+### Next, let the values change
+
+The labels +1 and −1 force each node into one of two groups. Allowing values between them, such as 0.3 or −0.6, lets us adjust a pattern gradually. We will look for a pattern with low energy, then use its values to suggest a division of the graph.
+
+But shrinking every value also lowers the energy, even when the arrangement stays the same. Before searching, we need a way to compare patterns fairly. Chapter 5 sets that up.
 
 <a id="fair" class="chapter-anchor"></a>
 
@@ -241,65 +267,53 @@ There is a different calculation that is easy to confuse with energy: squaring t
 
 <p class="chapter-tag">a better arrangement, or just smaller numbers?</p>
 
-Chapter 4 gave us a way to measure disagreement: take the difference across each edge, square it, and add the results. We want to arrange the values so that this energy is small. Before we start searching, we need to make the comparison fair.
+Chapter 4 gave us energy: the total squared disagreement across the edges. We want to find node values that keep this total small. But first we need to distinguish a better arrangement from simply using smaller numbers.
 
-### Why not give every node the same value?
+### Low energy alone is not enough
 
-If every node holds zero, every edge joins equal values. The energy is zero—the lowest it can possibly be.
+Give every node zero and the energy is zero. That works on any graph, so it tells us nothing about where the network might divide into groups.
 
-But this would work on *any* graph. It tells us nothing about the wiring. To learn something, the values must vary across the graph while staying as similar as possible across its edges.
+Requiring different values does not solve the problem either. Our four +1 values and four −1 values give energy 8. Halve every value and the energy falls to 2: the gaps halve, so their squares become one quarter as large. We could keep shrinking the numbers without changing their arrangement.
 
-That is the task we actually care about: **keep some overall spread in the values, and arrange that spread to create as little edge disagreement as possible.**
+**We need to hold the overall spread fixed, then look for the arrangement with the least disagreement across edges.**
 
-### Why saying “the values must differ” is not enough
+### Measure spread separately from energy
 
-Start with four values of +1 on the left and four values of −1 on the right. Only the two crossing edges disagree. Each has a gap of 2, whose square is 4, so the total energy is 8.
+We will measure **squared spread** by subtracting the average from each node value, squaring each result, and adding them. This primer also calls that quantity **variation**. It measures how far the values lie from their average, regardless of which nodes are connected.
 
-Now halve every value. The two groups still have different values, but each crossing gap is only 1. The energy drops to 2.
+**Energy** uses the wiring: it adds the squared differences between values at the ends of each edge.
 
-We could keep halving the values and make the energy as close to zero as we like. The arrangement would remain the same. The numbers would simply get smaller.
-
-So allowing any nonconstant pattern does not solve the problem. **We need every candidate to have the same amount of overall spread.**
-
-### Spread and energy measure different things
-
-**Spread** asks how far the node values lie from their average. This guide calls that quantity **variation**: subtract the average from each value, square each result, and add them.
-
-**Energy** asks how different the values are at the ends of the edges that actually exist.
-
-The distinction matters. Rearrange the same four +1 values and four −1 values among the nodes. Their overall spread stays the same. But the energy can change, because different edges now join different values.
+Rearranging the same values leaves their squared spread unchanged, but can change their energy. Chapter 4's two patterns show the difference:
 
 {% include visual-primer/spectral/figure-16.html %}
 
-Both patterns above have variation 8. The grouped pattern has energy 8; the alternating pattern has energy 24. This is a meaningful comparison: the same amount of spread creates less disagreement in the grouped arrangement.
+To compare any patterns fairly, we will prepare each one in two steps. **Subtracting the average removes a level shared by all nodes. Rescaling fixes the squared spread, so shrinking cannot count as an improvement.**
 
-### First, remove the level shared by all the nodes
+### First, subtract the average
 
-Suppose we add 10 to every value. The two levels +1 and −1 become 11 and 9. Their difference is still 2. Every edge sees exactly the same gap as before, so the energy is unchanged.
+Suppose we add 10 to every value. The levels +1 and −1 become 11 and 9. Their gap is still 2, so the energy is unchanged. Their distances from the new average, 10, are also unchanged.
 
-We do not need to treat these as separate candidates. Subtract the average from every value. In this example the average is 10, so we get +1 and −1 again. In general, the result always has **mean zero**, while every difference between nodes stays the same.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
+Subtract the average, 10, and we get +1 and −1 again. This is called **centering**. It gives every pattern mean zero while preserving every edge difference and the squared spread.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
 
-Mean zero means that the positive and negative values add up to zero. It does not require equal numbers of positive and negative nodes.
+Mean zero means the values add up to zero. The numbers of positive and negative values need not be equal.
 
-### Then, give every candidate the same total spread
+### Then, make the squared spread equal to 1
 
-Once the average is zero, variation is especially easy to compute: square each node value and add the squares.
+After centering, the average is zero. Subtracting it leaves each value unchanged, so the squared spread is just the sum of the squared values.
 
-For four +1 values and four −1 values, there are eight squares equal to 1. The variation is therefore 8. To bring it to 1, divide every value by √8. Each value becomes approximately +0.354 or −0.354.
+Our eight values each have square 1, so their squares add to 8. Divide every value by √8. Each square becomes 1/8, and the eight squares now add to <span class="math">8 × (1/8) = 1</span>. The node values become approximately +0.354 and −0.354.
 
-Dividing the values by √8 divides every squared gap by 8 too. The grouped pattern’s energy goes from 8 to **1**. The alternating pattern’s energy goes from 24 to **3**. Their relative quality has not changed; they are now on our agreed scale.
+Every edge gap is divided by √8 too, so every squared gap is divided by 8. The grouped pattern's energy changes from 8 to **1**; the alternating pattern's changes from 24 to **3**. Both are now compared at squared spread 1.
 
-We choose total spread **1** for convenience.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup> Any fixed positive amount would work. It is the *sum of the squares* that must equal 1. The individual values can still differ and change.
+We choose 1 for convenience; any fixed positive amount would work.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup> It is the **sum of the squares** that equals 1. Each node can still have its own value.
 
 ### The search now has two simple rules
 
 <div class="equation" role="math" aria-label="The node values have mean zero, and their squares add up to one.">mean of the node values = 0<br>sum of their squared values = 1</div>
 
-The rules work together. An all-equal pattern becomes all zeros when we subtract its mean. Its total spread is then zero, so it cannot satisfy the second rule. A nonconstant pattern can be centered and rescaled to satisfy both.
+An all-equal pattern becomes all zeros when centered. Its squared spread is zero, so it cannot satisfy the second rule. Any pattern with some differences can be centered and rescaled to satisfy both.
 
-**Among patterns obeying these rules, which has the least energy?** Every candidate has the same overall spread. We can now concentrate on how that spread is arranged across the graph.
-
-Our starting candidate is the hard split: four values of about +0.354 and four of about −0.354, with energy 1. Chapter 6 will change those values and see whether a smoother arrangement can do better.
+We can now search for the lowest energy while holding the squared spread fixed. A lower energy must come from how the differences are arranged across the graph.
 
 <details markdown="1">
 <summary>Optional: see shifting and shrinking side by side</summary>
@@ -311,19 +325,21 @@ Our starting candidate is the hard split: four values of about +0.354 and four o
 <details markdown="1">
 <summary>Optional: the formulas and a shortcut</summary>
 
-Let x̄ be the average of the node values. The total squared spread is:
+Let x̄ be the average of the node values, and V their squared spread:
 
-<div class="equation" role="math" aria-label="Variation equals the sum over nodes of the squared difference between the node value and the mean.">variation = ∑ᵢ (xᵢ − x̄)²</div>
+<div class="equation" role="math" aria-label="V equals the sum over nodes of the squared difference between the node value and the mean.">V = ∑ᵢ (xᵢ − x̄)²</div>
 
-Subtracting the mean leaves all edge differences unchanged. If the resulting variation is V > 0, dividing every value by √V makes the variation 1. The energy is divided by V too.
+Subtracting the mean preserves V and every edge difference. If V > 0, dividing the centered values by √V makes their squared spread 1 and divides their energy by V.
 
-So we can score a nonconstant pattern without carrying out the rescaling: divide its original energy by its variation. This gives the energy it would have after centering and rescaling. For a pattern that already has mean zero, this ratio is called the *Rayleigh quotient*:
-
-<div class="equation" role="math" aria-label="For a nonzero mean-zero pattern, R of x equals x transpose L x divided by x transpose x.">R(x) = <span class="frac"><span>xᵀLx</span><span>xᵀx</span></span><small>for a nonzero pattern whose mean is zero</small></div>
-
-The hard split scores 8/8 = 1. Halving all its values gives 2/2 = 1. Adding 10 to all its values leaves both energy and variation unchanged, giving 8/8 = 1 again.
+So **energy divided by squared spread** gives the energy a pattern would have after centering and rescaling. The hard split gives 8/8 = 1. Halving its values gives 2/2 = 1. Shifting them from ±1 to 9 and 11 gives 8/8 = 1, because their squared distances from the average are still the same.
 
 {% include visual-primer/spectral/figure-18.html %}
+
+When x already has mean zero, its squared spread is <span class="math">xᵀx</span>. We can then write the comparison as:
+
+<div class="equation" role="math" aria-label="For our comparison, x has mean zero and is nonzero. R of x equals x transpose L x divided by x transpose x.">R(x) = <span class="frac"><span>xᵀLx</span><span>xᵀx</span></span><small>here, x contains the centered values and is nonzero</small></div>
+
+This expression is the **Rayleigh quotient**. It is defined for any nonzero vector, but our comparison uses centered values. For the shifted pattern, the raw sum of squares is 808, while the squared spread around its average is 8. We must subtract the average before using <span class="math">xᵀx</span> as our denominator.
 
 </details>
 
@@ -332,9 +348,11 @@ The hard split scores 8/8 = 1. Halving all its values gives 2/2 = 1. Adding 10 t
 
 On our connected graph, zero energy requires every pair of neighbours to agree. That agreement travels through the whole graph, forcing a flat pattern. Our two rules exclude it.
 
-If the graph has disconnected pieces, each piece can hold its own constant value. The pieces can have different levels without any edge disagreement. We can then have mean zero, positive spread, and zero energy. This will help explain the meaning of a zero second eigenvalue in Chapter 7.
+If the graph has disconnected pieces, each piece can hold its own constant value. The pieces can have different levels without any edge disagreement. We can then have mean zero, squared spread 1, and zero energy. This will help explain the meaning of a zero second eigenvalue in Chapter 7.
 
 </details>
+
+Our starting candidate is the **hard split**: four values of about +0.354 and four of about −0.354, with energy 1. Chapter 6 will change those values while keeping the mean zero and squared spread 1.
 
 <a id="adjust" class="chapter-anchor"></a>
 
@@ -342,15 +360,15 @@ If the graph has disconnected pieces, each piece can hold its own constant value
 
 <p class="chapter-tag">can a gentler boundary lower the total?</p>
 
-Our first pattern has energy 1. To lower it, we will try bringing the values closer together at the boundary between the two groups. We will keep the mean at zero and the total squared spread at 1, so the comparison stays fair. The wiring stays fixed; we change only the numbers assigned to the nodes.
+Our first pattern has energy 1. We will try to lower it by bringing the values closer together where the two groups meet. The wiring stays fixed. Every pattern we compare will have mean zero and squared spread 1.
 
 ### Start by finding where the disagreement is
 
-In the hard split, nodes 1–4 all have value about +0.354, and nodes 5–8 all have value about −0.354. The mean is zero and the total squared spread is 1, as Chapter 5 requires.
+In the hard split, nodes 1–4 all have value about +0.354, and nodes 5–8 all have value about −0.354.
 
 All ten edges within the groups join equal values, so they contribute no energy. The two edges between the groups carry all the disagreement. Each contributes 0.5, giving total energy **1**.
 
-That suggests where to start: can we reduce the two large gaps at the boundary?
+We will start by reducing those two gaps.
 
 ### Bring the boundary values closer to zero
 
@@ -364,21 +382,36 @@ This is the trade-off: **we reduce disagreement between the groups by creating s
 
 ### Keep the comparison fair while the values change
 
-Moving only the boundary values toward zero would also reduce the overall spread. Chapter 5 tells us not to count that shrinking as an improvement.
+Moving only the boundary values toward zero would also reduce the squared spread. To keep it at 1, we must rescale all eight values.
 
-So each trial has two steps: choose how small the boundary values should be relative to the interior values, then rescale *all eight values* so their squares still add up to 1. The positive and negative halves remain matched, so the mean stays zero.
+For a first trial, make each boundary value half as large as the interior value in its group. Before rescaling, we can write this as <span class="math">(1, 1, ½, ½, −½, −½, −1, −1)</span>. The mean is zero, and the squares add to <span class="math">4 × 1 + 4 × ¼ = 5</span>.
 
-The slider uses one number, **t**, for that relative size:
+Divide every value by √5 to make the squares add to 1. Here are the resulting values compared with our starting pattern:
+
+<div class="table-wrap" markdown="1">
+
+| Pattern | Interior values | Boundary values | Energy |
+| --- | --- | --- | --- |
+| Hard split | ±0.354 | ±0.354 | 1 |
+| Boundary values half as large | ±0.447 | ±0.224 | 0.8 |
+
+</div>
+
+The values shown are rounded. Positive values stay in the first group and negative values stay in the second. The boundary values move toward zero, while the interior values move farther from zero to keep the squared spread at 1. We are changing how the spread is distributed across the graph.
+
+### Use t to choose the relative size
+
+The slider calls this boundary-to-interior ratio **t**:
 
 - **t = 1:** boundary and interior values have equal size. This is the hard split.
 - **t = ½:** each boundary value is half its group’s interior value.
 - **t = 0:** every boundary value is zero.
 
-Rescaling changes every value by the same factor, so it preserves this ratio. It also explains why the interior values move as you use the slider: they must adjust too, to keep the total spread fixed.
+At t = ½, the rescaled boundary values are about ±0.224, not ±½. **t describes a ratio, not a node's value.** Each slider setting rescales all eight values together, preserving that ratio and keeping the squared spread at 1. The matched positive and negative values keep the mean at zero.
 
 ### Try the experiment
 
-Start at the hard split. Try t = ½, then “Best in this family,” then t = 0. Watch the **total energy**. The orange edges show disagreement between the groups; the teal edges show disagreement inside them. Every displayed pattern has already been centered and rescaled.
+Start at the hard split, then try t = ½ and t = 0. Watch the **total energy**. Orange edges show disagreement between the groups; teal edges show disagreement inside them. The displayed values have already been rescaled.
 
 {% include visual-primer/spectral/figure-19.html %}
 
@@ -386,41 +419,45 @@ Start at the hard split. Try t = ½, then “Best in this family,” then t = 0.
 
 At **t = ½**, the energy on the crossing edges falls from 1 to 0.4. We have saved 0.6. The new disagreement inside the groups costs 0.4, so the total is **0.8**.
 
-The saving is larger than the new cost. And because the overall spread is still 1, this is a real improvement in the arrangement.
-
-The best setting in this experiment is **t ≈ 0.618**: boundary values about 62% as large as interior values. Its total energy is approximately **0.764**. That number comes from finding the lowest total as the ratio changes.
+The saving is larger than the new cost. Because the squared spread is still 1, the lower energy comes from redistributing the values across the graph.
 
 ### Why moving all the way to zero is worse
 
 At **t = 0**, the two crossing edges join zeros, so their energy is zero. But the total energy has risen to **2**.
 
-Where does the energy come from? To keep the spread at 1, the four interior values are now +0.5, +0.5, −0.5 and −0.5. Eight edges join one of these values to a boundary value of zero. Each has a squared gap of 0.25, and eight contributions of 0.25 add up to 2.
+To keep the squared spread at 1, the four interior values are now +0.5, +0.5, −0.5 and −0.5. Eight edges join one of these values to a boundary value of zero. Each has a squared gap of 0.25, and eight contributions of 0.25 add up to 2.
 
 Eliminating all disagreement between the groups creates too much disagreement inside them. Every edge contributes to the same total.
 
+### Find the best balance
+
+Moving partway helped; moving all the way to zero went too far. Now try **“Best in this family.”** The lowest total in this experiment occurs at **t ≈ 0.618**: boundary values about 62% as large as interior values. The energy is approximately **0.764**.
+
+The columns below separate the two sources of energy:
+
 <div class="table-wrap" markdown="1">
 
-| Boundary ratio t | Inside | Between | Total |
+| Boundary ratio t | Inside groups | Between groups | Total energy |
 | --- | --- | --- | --- |
 | 1: hard split | 0 | 1 | 1 |
 | ½ | 0.4 | 0.4 | 0.8 |
-| ≈ 0.618: best here | ≈ 0.211 | ≈ 0.553 | **≈ 0.764** |
 | 0: boundary at zero | 2 | 0 | 2 |
+| ≈ 0.618: best here | ≈ 0.211 | ≈ 0.553 | **≈ 0.764** |
 
 </div>
 
-### What have we established so far?
+### What improved, and what stayed the same?
 
-Allowing different values within each group improved on the hard split. The best pattern in this experiment has energy about 0.764, compared with our starting energy of 1.
+The **pattern's energy** fell from 1 to about 0.764. Its positive nodes are still 1–4 and its negative nodes are still 5–8. Dividing by sign therefore gives the same cut: two crossing links for four nodes, with **cut score 0.5**.
 
-But the slider explored only one family. It kept certain pairs of nodes equal and made the two halves mirror each other. Other patterns could give all eight nodes different values.
+We have found a smoother pattern on the same graph. Once the node values can differ within each group, energy accounts for those differences too; it no longer just counts crossing links. Later we will use the pattern's values to suggest cuts.
+
+The slider also explored only one family. It kept certain pairs of nodes equal and made the two halves mirror each other. Other patterns could give all eight nodes different values.
 
 **Could a pattern outside this family have energy below 0.764?** The experiment alone cannot answer that. Chapter 7 will show why no allowed pattern can do better.
 
 <details markdown="1">
 <summary>Optional: see the rescaling at t = ½</summary>
-
-Before rescaling, use the values (1, 1, ½, ½, −½, −½, −1, −1). Their mean is zero, but their squared values add up to 5. Divide every value by √5. The interior values become about ±0.447, and the boundary values become about ±0.224. The ratio is still ½, and the total squared spread is now 1.
 
 {% include visual-primer/spectral/figure-20.html %}
 
@@ -436,15 +473,15 @@ Before rescaling, use the values (1, 1, ½, ½, −½, −½, −1, −1). Their
 <details markdown="1">
 <summary>Optional: the formula behind the experiment</summary>
 
-Before rescaling, write the pattern as (1, 1, t, t, −t, −t, −1, −1). Its total squared spread is 4 + 4t².
+Before rescaling, write the pattern as (1, 1, t, t, −t, −t, −1, −1). Its squared spread is 4 + 4t².
 
 Eight internal edges have gap 1 − t, so their combined energy is 8(1 − t)². Two crossing edges have gap 2t, giving combined energy 8t². The other two edges, 1–2 and 7–8, join equal values and contribute zero.
 
-Divide the energy by the spread to get the energy after rescaling:
+Divide the energy by the squared spread to get the energy after rescaling:
 
 <div class="equation" role="math" aria-label="E of t equals eight times the square of one minus t plus eight times t squared, all divided by four plus four times t squared.">E(t) = <span class="frac"><span>8(1 − t)² + 8t²</span><span>4 + 4t²</span></span></div>
 
-The numerator adds the two sources of disagreement. The denominator keeps the comparison at total spread 1. The minimum over the slider’s settings occurs at t = (√5 − 1)/2 ≈ 0.618, with energy 3 − √5 ≈ 0.764.
+The numerator adds the two sources of disagreement. The denominator keeps the comparison at squared spread 1. The minimum over the slider's settings occurs at t = (√5 − 1)/2 ≈ 0.618, with energy 3 − √5 ≈ 0.764.
 
 </details>
 
@@ -454,78 +491,99 @@ The numerator adds the two sources of disagreement. The denominator keeps the co
 
 <p class="chapter-tag">why the second eigenvector wins</p>
 
-The slider found a pattern with energy about 0.764 by trying one particular way of arranging the eight node values. It kept pairs of nodes equal and kept the two halves as mirror images. We could also try patterns that break those rules. Perhaps giving every node its own value would lower the energy further.
+The slider found energy about 0.764 while keeping pairs of nodes equal and the two halves as mirror images. Could a pattern outside that family do better? We need an argument that covers every possible assignment of node values.
 
-This chapter explains why it cannot. We will stay with the same eight-node graph and build up to one idea: **every allowed pattern has an energy that is a weighted average of certain basic energies. The smallest available one is about 0.764.**
+The key is to describe every pattern using the Laplacian's eigenvectors. We will see why **every allowed pattern's energy is an average of their energies**, and why that average cannot fall below about 0.764.
 
 ### First, remember what we are comparing
 
-A **pattern** is one number at each node. Its **energy** measures the disagreement across the edges: for each edge, take the difference between its two endpoint values, square it, and add all those squares.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup>
+A **pattern** assigns one value to each node. Its **energy** adds the squared differences across the edges.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> We compare patterns that follow Chapter 5's two rules:
 
-We want small differences across edges, while keeping some spread across the whole graph. Chapter 5 made the comparison fair with two rules:
+- **Mean zero:** remove the level shared by all nodes.
+- **Squared values adding to 1:** fix the squared spread, so shrinking cannot count as an improvement.
 
-- **The values average to zero.** This removes the level shared by all the nodes.
-- **The squared values add up to 1.** This fixes the total spread, so a pattern cannot win just by shrinking.
+The hard split has energy 1. The slider reached about 0.764. We want the minimum among all patterns obeying these rules.
 
-Every candidate we compare obeys both rules. The hard split has energy 1. The smoother pattern found by the slider has energy about 0.764. We want to know the lowest energy among *all* candidates.
+### Eigenvectors give us eight building blocks
 
-### Eight building blocks can describe every pattern
+In the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#eigenvectors), our vectors had two entries. Here a vector has eight entries, one value per node. The eigenvector idea is the same: **apply L, and every entry is multiplied by the same number**. The pattern is an eigenvector; that multiplier is its eigenvalue.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup>
 
-There are infinitely many ways to choose eight node values. How could we reason about all of them at once?
+Our edges are undirected, so L is symmetric. The spectral theorem from linear algebra tells us that we can choose eight mutually perpendicular eigenvectors and use them to describe every pattern.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> Each eigenvector is a whole eight-node pattern. Multiplying these patterns by coefficients and adding their matching entries lets us build any assignment of values.
 
-The useful fact is that the Laplacian L gives us a set of eight special **building-block patterns**. Every possible assignment of values can be made by adding suitable amounts of these eight patterns together. Each building block is itself a whole list of eight node values.
+We scale each eigenvector to **unit length**, meaning its squared entries add to 1. We name them <span class="math">u₁, u₂, …, u₈</span>, ordered by their eigenvalues <span class="math">λ₁, λ₂, …, λ₈</span> from smallest to largest. The subscript identifies a pattern in this list, not a node.
 
-These special patterns are called **eigenvectors**. Apply L to one, and its shape stays the same: every entry is multiplied by the same number. That multiplier is its **eigenvalue**.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup>
+For example, u₂ is the pattern we found with the slider. Applying L multiplies all its values by <span class="math">λ₂ ≈ 0.764</span>:
 
-Why can we use them as a complete set of building blocks? Our edges are undirected, so L is symmetric. A result from linear algebra guarantees that we can choose eight eigenvectors that are perpendicular to one another and together describe every pattern.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> The optional algebra below explains why that perpendicularity matters.
+{% include visual-primer/spectral/figure-22.html %}
 
-We scale each building block so that its squared entries add up to 1. At that size, **its eigenvalue is also its energy**. We can therefore put the building blocks in order, from the lowest energy to the highest:
+### Why a unit eigenvector's energy equals its eigenvalue
+
+Chapter 4 wrote energy as the dot product of a pattern and its output. For an eigenvector u, that output is λu. Its energy is therefore λ times the sum of its squared entries. We chose that sum to be 1:
+
+<div class="equation" role="math" aria-label="For a unit eigenvector u, energy equals u dot lambda u, which equals lambda times u dot u, or lambda times one.">E(u) = u · (λu)<br>= λ(u · u) = λ × 1 = λ</div>
+
+**u₂ is a pattern with eight entries. λ₂ is one number: its multiplier under L and, at unit length, its energy.** Here are all eight eigenvalues for our graph:
 
 <div class="table-wrap" markdown="1">
 
-| Building block | Energy at this fixed size |
+| Unit eigenvector | Eigenvalue and energy |
 | --- | --- |
-| First, u₁: every node has the same value | 0 |
-| **Second, u₂** | **about 0.764** |
-| Third, u₃ | 2 |
-| Fourth through seventh, u₄ to u₇ | 4 each |
-| Eighth, u₈ | about 5.236 |
+| u₁: every node has the same value | λ₁ = 0 |
+| **u₂** | **λ₂ ≈ 0.764** |
+| u₃ | λ₃ = 2 |
+| u₄ through u₇ | 4 each |
+| u₈ | λ₈ ≈ 5.236 |
 
 </div>
 
-These energies are calculated from this graph’s wiring. We have not chosen them to make the example work. Four different building blocks can have the same energy, as happens here with 4.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
+These numbers come from L, which records the graph's wiring. Different eigenvectors can have the same eigenvalue, as the four entries with energy 4 show.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
 
 ### Why the zero-energy pattern is set aside
 
-The first building block is flat: every node holds the same value. Every edge then joins equal values, so its energy is zero.
+The first eigenvector, u₁, is flat: every node holds the same value. Every edge joins equal values, giving energy zero.
 
-But our candidates must average to zero. Subtract the mean from a flat pattern and all its values become zero. That leaves no spread, so it cannot satisfy the second rule.
+Center it and every value becomes zero. Its squared spread is then zero, so it cannot satisfy our two rules.
 
-The mean-zero rule also removes the flat part of *every mixture*. Imagine adding 10 to all eight values of a pattern. You have added a shared level; subtracting the mean removes it again. The differences between nodes stay the same.
+The other seven eigenvectors are perpendicular to u₁. Since u₁ has the same entry everywhere, a dot product with u₁ is just a constant times the sum of the other pattern's entries. Perpendicularity makes that dot product zero, so **each of the other eigenvectors has entries that add to zero**.
 
-So every allowed candidate is built entirely from **u₂ through u₈**. The cheapest building block still available is u₂, with energy about 0.764.
+Adding any amount of u₁ would add a shared level. The mean-zero rule requires its coefficient to be zero, leaving **u₂ through u₈** as the building blocks for allowed patterns. The lowest energy among them is about 0.764.
 
-### Could mixing the others produce something cheaper?
+### What happens when we mix the remaining patterns?
 
-This is the crucial question. Knowing the cheapest building block is not enough by itself. We still need to know what happens when building blocks are combined.
+We still need to check whether combining these patterns could lower the energy further. Take this example:
 
-For these eigenvectors, the answer is particularly useful: **the energy of an allowed mixture is a weighted average of their energies.**
+<div class="equation" role="math" aria-label="x equals 0.6 times u two plus 0.8 times u three.">x = 0.6u₂ + 0.8u₃</div>
 
-The weights describe how much of the total squared spread each building block contributes. They are never negative, and they add up to 1. A 20% share means 20% of the spread; it does not mean 20% of the nodes.
+The numbers 0.6 and 0.8 are **coefficients**. Each multiplies a whole eight-node pattern. Since these unit eigenvectors are perpendicular, their contributions to squared spread add:
 
-For example, suppose 80% of the spread comes from u₂ and 20% comes from u₃. The energy is approximately:
+<div class="table-wrap" markdown="1">
 
-<div class="equation" role="math" aria-label="Energy is approximately 0.8 times 0.764 plus 0.2 times 2, which is 1.011.">E ≈ 0.8 × 0.764 + 0.2 × 2 ≈ 1.011<small>80% at the lower energy, 20% at the higher energy</small></div>
+| Pattern | Coefficient | Share of squared spread |
+| --- | --- | --- |
+| u₂ | 0.6 | 0.6² = 0.36, or 36% |
+| u₃ | 0.8 | 0.8² = 0.64, or 64% |
 
-The energy has gone up. Some of the spread now contributes at the higher rate of 2. Mixing in a building block with energy 4 or 5.236 would also raise it.
+</div>
+
+The shares add to 1, so the mixture has squared spread 1. It also has mean zero because both building blocks do.
+
+L only rescales each eigenvector, so the pieces remain perpendicular after applying L. Their contributions to the energy dot product add too: each squared coefficient multiplies that eigenvector's energy.
+
+<div class="equation" role="math" aria-label="The energy of x is approximately 0.36 times 0.764 plus 0.64 times 2, which is approximately 1.555.">E(x) ≈ 0.36 × 0.764 + 0.64 × 2<br>≈ 1.555</div>
+
+**The coefficients are 0.6 and 0.8; the energy weights are their squares, 0.36 and 0.64.** These percentages describe shares of squared spread. Each building block still assigns a value to every node.
+
+This is a **weighted average**: 36% at energy about 0.764 and 64% at energy 2. Mixing in the higher-energy pattern has raised the total above 0.764.
+
+The same rule applies to any allowed mixture of u₂ through u₈. Its coefficients can be positive or negative, but their squares are nonnegative and add to 1. The energy is the weighted average of the corresponding eigenvalues.
 
 **An average cannot be smaller than the smallest number being averaged.** Here that smallest energy is about 0.764. This reasoning covers every allowed pattern, because every one is a mixture of these building blocks.
 
 There are two parts to the conclusion. No allowed pattern can go lower than the energy of u₂. And u₂ itself is allowed and reaches that energy. Together, these facts establish the minimum.
 
-### The pattern and the number have different jobs
+### The minimum is λ₂
 
-We label the eigenvalues in increasing order: λ₁, λ₂, and so on. The flat pattern has λ₁ = 0. The next value, λ₂, is the minimum energy we have been looking for:
+The smallest eigenvalue left after removing the flat pattern is λ₂. It gives the minimum energy under our two rules:
 
 <div class="equation" role="math" aria-label="Lambda two equals three minus the square root of five, approximately 0.764.">λ₂ = 3 − √5 ≈ 0.764<small>the lowest energy of any mean-zero pattern with total squared spread 1</small></div>
 
@@ -544,20 +602,18 @@ What does u₂ look like? It is the slider’s winning pattern from Chapter 6, a
 
 The boundary values sit closer to zero than the interior values. That is the compromise we saw in Chapter 6: it reduces disagreement between the groups while allowing some disagreement inside them.
 
-**u₂ is the pattern: one value per node. λ₂ is the number: the energy that pattern achieves.** The subscript 2 means second in the ordered list of eigenvectors or eigenvalues. It does not mean node 2.
-
 An eigenvector for λ₂ is called a **Fiedler vector**, and λ₂ is called the graph’s **algebraic connectivity**.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup> Reversing every sign gives an equally good pattern, since squared differences do not change.
 
 The slider found the best pattern because this particular family included u₂. A different restricted family might miss it. The eigenvector argument is what lets us rule out a better answer anywhere else.
 
 <details markdown="1">
-<summary>Optional: why the weighted-average rule works</summary>
+<summary>Optional: the weighted-average formula for all seven patterns</summary>
 
 Write an allowed pattern as a mixture of the seven available building blocks:
 
 <div class="equation" role="math" aria-label="x equals c two u two plus all the remaining terms through c eight u eight.">x = c₂u₂ + ⋯ + c₈u₈</div>
 
-The amounts c₂ through c₈ can be positive or negative. Each amount multiplies a whole pattern. Because our building blocks are perpendicular and each has squared length 1, the mixture’s squared length is c₂² + ⋯ + c₈². Our fixed-spread rule therefore says:
+The coefficients c₂ through c₈ multiply whole patterns. Perpendicularity makes their squared-length contributions add. Every pattern here has mean zero, so squared length is also squared spread. Our fixed-spread rule says:
 
 <div class="equation" role="math" aria-label="c two squared plus all the remaining squared amounts through c eight squared equals one.">c₂² + ⋯ + c₈² = 1</div>
 
@@ -565,9 +621,7 @@ Chapter 4 wrote energy as x · Lx. L multiplies each eigenvector uᵢ by its own
 
 <div class="equation" role="math" aria-label="Energy equals lambda two times c two squared plus all the remaining terms through lambda eight times c eight squared.">E(x) = λ₂c₂² + ⋯ + λ₈c₈²</div>
 
-The weights are the squared amounts. They are nonnegative and add up to 1, so this is a weighted average. Every λᵢ here is at least λ₂, which gives E(x) ≥ λ₂. Choosing x = u₂ gives equality. For a single unit eigenvector, the same calculation reads u · Lu = u · (λu) = λ.
-
-{% include visual-primer/spectral/figure-22.html %}
+The weights cᵢ² are nonnegative and add to 1. Every λᵢ here is at least λ₂, giving <span class="math">E(x) ≥ λ₂</span>. Choosing <span class="math">x = u₂</span> gives equality.
 
 </details>
 
@@ -596,7 +650,7 @@ The minimum-energy pattern is a list of numbers. To make a cut, we still have to
 
 ### Put the nodes in order by their values
 
-The Fiedler pattern tends to keep connected nodes close in value. That makes its ordering a useful place to look for a division.
+An edge with a large gap between its endpoint values contributes a lot of energy. The Fiedler pattern minimizes total energy, so it tends to keep connected nodes close in value. Sorting the nodes by these values gives us a useful place to look for a division.
 
 Sort the nodes from the most negative value to the most positive:
 
@@ -613,11 +667,13 @@ Sort the nodes from the most negative value to the most positive:
 
 The values are rounded here. In this graph, the two nodes in each pair have exactly equal values.
 
-Now place a **threshold** between two different values. Nodes below it form one group; nodes above it form the other. Moving the threshold changes the proposed groups. The wiring and the node values stay fixed.
+Choose a number between two different node values. This number is the **threshold**: put every node whose value is below it into one group, and the remaining nodes into the other. Moving the threshold changes group membership while the wiring and node values stay fixed.
+
+Zero is one possible threshold. The best cut may come from another gap, so we will try each gap and compare the cut scores.
 
 ### Try one threshold completely
 
-Put the threshold after the first pair. The chosen group is **{7, 8}**, and the other group contains nodes 1–6.
+Choose **−0.34**, which lies between −0.425 and −0.263. Nodes 7 and 8 have value −0.425, below the threshold. Every other node has a higher value. The chosen group is therefore **{7, 8}**, with nodes 1–6 on the other side.
 
 Look back at the original graph. Four edges leave {7, 8}: 5–7, 5–8, 6–7 and 6–8. The smaller group has two nodes, so the cut score is:
 
@@ -627,7 +683,7 @@ That is one complete candidate: the threshold proposes the groups, and the origi
 
 ### Move it once and see what changes
 
-Move the threshold after the next pair. Nodes 5 and 6 join the chosen group, which is now **{5, 6, 7, 8}**.
+Move the threshold to **0**, between −0.263 and +0.263. Nodes 5 and 6 now fall below it and join the chosen group: **{5, 6, 7, 8}**.
 
 The four edges we just counted no longer cross the cut. Both ends of each now lie inside the chosen group. Only edges 3–5 and 4–6 leave it.
 
@@ -635,21 +691,21 @@ We now have two crossing edges and four nodes on each side. The score is **2/4 =
 
 {% include visual-primer/spectral/figure-24.html %}
 
-Adding nodes to a group can reduce its number of crossing edges. The score depends on the actual wiring, not just on how many nodes the threshold has passed.
+Adding nodes has reduced the number of crossing edges. We find the score by checking the wiring for each proposed group.
 
 ### Check the remaining gap
 
-Move the threshold after the third pair. The chosen group becomes **{3, 4, 5, 6, 7, 8}**, leaving {1, 2} on the other side.
+Choose **+0.34**, between +0.263 and +0.425. Nodes 3 and 4 join the chosen group, giving **{3, 4, 5, 6, 7, 8}**, with {1, 2} on the other side.
 
 Four edges cross this division. Although the chosen group has six nodes, the *smaller* group has two. The score is therefore **4/2 = 2**.
 
 <div class="table-wrap" markdown="1">
 
-| Chosen group | Crossing edges | Smaller group | Score |
-| --- | --- | --- | --- |
-| {7, 8} | 4 | 2 | 2 |
-| **{5, 6, 7, 8}** | **2** | **4** | **0.5** |
-| {3, 4, 5, 6, 7, 8} | 4 | 2 | 2 |
+| Example threshold | Nodes below it | Cut score |
+| --- | --- | --- |
+| −0.34 | {7, 8} | 4 ÷ 2 = 2 |
+| **0** | **{5, 6, 7, 8}** | **2 ÷ 4 = 0.5** |
+| +0.34 | {3, 4, 5, 6, 7, 8} | 4 ÷ 2 = 2 |
 
 </div>
 
@@ -659,17 +715,17 @@ Try the three positions below. Follow which nodes change sides and which origina
 
 ### Why are there only three candidates?
 
-There are four distinct values, leaving three gaps between them. Moving a threshold within one gap does not change any membership, so it proposes the same cut.
+There are four distinct values, leaving three gaps between them. Any threshold within the same gap selects the same nodes. For example, −0.34 and −0.35 both select {7, 8}.
 
 A threshold also cannot separate two nodes with exactly equal values. They stay together. Moving beyond all the values would put every node on one side, which is not a valid cut.
 
-Trying the gaps in order and comparing their scores is called a **sweep**. With n nodes, there are at most n − 1 such cuts. Our four distinct values give three, compared with 127 distinct cuts of the eight-node graph.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup>
+Trying the gaps in order and comparing their scores is called a **sweep**. With n nodes, there are at most n − 1 threshold cuts. Here we check three, out of the graph's 127 possible cuts.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup>
 
 ### What did the sweep establish?
 
 The second threshold gives the best cut **among these three candidates**, with score 0.5.
 
-Chapter 7 proved a global minimum for *pattern energy*: λ₂ ≈ 0.764. The sweep has solved a different task, choosing a *cut* from the candidates supplied by one ordering. It has not compared all 127 divisions.
+Chapter 7 proved the lowest possible **pattern energy**, about 0.764. The sweep found a **cut score** of 0.5 by checking only the cuts from this ordering. That does not establish the best score across all cuts.
 
 We therefore have a good candidate and a new question: **could a cut outside this list score much lower?** Chapter 9 uses λ₂ to limit how much better an unseen cut could be.
 
@@ -681,9 +737,7 @@ We therefore have a good candidate and a new question: **could a cut outside thi
 </details>
 
 <details markdown="1">
-<summary>Optional: why not simply split at zero?</summary>
-
-The winning threshold happens to sit between the negative and positive values in our symmetric example. On a different graph, the best sweep cut may come from another gap. That is why we compare the gaps instead of automatically choosing zero.
+<summary>Optional: signs, scale, and group sizes</summary>
 
 Reversing every sign reverses the ordering and swaps the sides of the sweep cuts. Their scores do not change. Multiplying all values by a positive number stretches the value axis while leaving the ordering and the candidate groups unchanged.
 
@@ -696,7 +750,7 @@ Mean zero does not require equal numbers of positive and negative entries. A few
 
 No. When a node moves into the chosen group, only its incident edges can change crossing status. An edge to a node already inside stops crossing; an edge to a node still outside starts crossing. The sweep can update its crossing count as it moves.
 
-Nodes with equal values move as a group, and we score the cut after the whole group has moved. This avoids treating a tie as an extra threshold. The sweep examines a restricted set of candidates; it does not enumerate all possible divisions.
+Nodes with equal values move together, and we score the cut after the whole group has moved.
 
 </details>
 
@@ -1084,9 +1138,9 @@ We started by asking how to find a weak boundary. The question led to three loca
 1. A graph is nodes and edges; a pattern is one value per node. A collects the neighbours' values, D repeats a node's own value once per link, and <span class="math">L = D − A</span> asks how far a node stands above its neighbourhood.
 2. A cut's score is crossing edges divided by the smaller side. The lowest score over all groups is the edge expansion h(G), and checking every group is hopeless.
 3. The energy <span class="math">E(x) = ∑(xᵢ − xⱼ)² = xᵀLx</span> counts squared disagreement across links. With +1 and −1 group labels, it is 4 times the crossing edges. It is never negative.
-4. Two conditions make the comparison fair: mean zero, because the edges can't see a common level, and variation 1, because shrinking isn't an improvement. Variation is the sum of squared distances from the mean. Dividing energy by variation, the Rayleigh quotient <span class="math">xᵀLx / xᵀx</span>, ranks patterns the same way.
+4. Two conditions make the comparison fair: mean zero removes a shared level, and squared spread 1 prevents shrinking from counting as an improvement. Squared spread is the sum of squared distances from the mean. For a centered, nonzero pattern, dividing energy by squared spread gives the Rayleigh quotient <span class="math">xᵀLx / xᵀx</span>.
 5. Letting values bend helps. One number, t, moves the four boundary nodes toward zero, with a rescaling after every move. The energy falls from 1 to 0.764 at t = 0.618 and climbs to 2 at t = 0, because the interior edges start to disagree.
-6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and variation 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
+6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and squared spread 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
 7. Sort the nodes by Fiedler value, sweep a threshold through the gaps, score each cut by crossing edges over the smaller side. Four distinct values give three gaps; the second one gives 0.5. A sweep tests the prefixes of one ordering, not every group.
 8. Cheeger: <span class="math">λ₂/2 ≤ h(G) ≤ √(2dλ₂)</span>. A cheap cut gives a cheap pattern, and a cheap pattern gives a cheap cut. Here 0.382 ≤ h(G) ≤ 0.5, and checking all 127 cuts gives exactly 0.5.
 9. Expansion means every group has links out in proportion to its size. Rewiring the same twelve links raised h from 0.5 to 1 and λ₂ from 0.764 to 2. Adjacency eigenvalues tell the same story in another dialect, α = d − λ. A good graph is a map; routing still has to drive.
@@ -1105,11 +1159,11 @@ We started by asking how to find a weak boundary. The question led to three loca
 <li id="fn-1"><span class="fn-text">Nothing to do with charts. The word was borrowed in 1878 by J. J. Sylvester, who was drawing molecules as dots and lines and wanted a name for the drawings.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li>
 <li id="fn-2"><span class="fn-text">Named after Laplace because it is the wiring-diagram cousin of his operator from physics, which also measures how far a value sits from the average of its surroundings. Books that want to be precise call this one the <em>combinatorial</em> Laplacian; Chapter 11 meets a cousin that divides by degree.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li>
 <li id="fn-3"><span class="fn-text">For eight nodes, the nonempty groups of size at most four number 8 + 28 + 56 + 70 = 162. A four-versus-four cut appears twice in that list, once for each side, so these groups describe 127 distinct cuts. In general, n nodes have 2^(n − 1) − 1 nontrivial cuts when swapping the sides is counted as the same cut. For forty nodes, there are 618,679,078,297 groups of size at most twenty, representing 549,755,813,887 distinct cuts.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li>
-<li id="fn-4"><span class="fn-text">The word is borrowed from physics, where a spring stores energy proportional to the square of its stretch. Picture every link as a spring between the two values at its ends. Our springs are never allowed to relax.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li>
+<li id="fn-4"><span class="fn-text">The name comes from physics: an ideal spring stores energy proportional to the square of its stretch. Here, energy is a mathematical measure of the differences between values at connected nodes.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li>
 <li id="fn-5"><span class="fn-text">A symmetric matrix whose energy is never negative is called <em>positive semidefinite</em>. L is symmetric because every edge runs both ways. Both facts matter in Chapter 7, where the eigenvectors take over.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li>
 <li id="fn-6"><span class="fn-text"><em>Centering</em> removes the component along the all-equal direction. Subtracting the mean does this one value at a time.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li>
-<li id="fn-7"><span class="fn-text">A pattern rescaled to variation 1 is called <em>normalized</em>. We will mostly say “rescaled”.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li>
-<li id="fn-8"><span class="fn-text">Here, each undirected edge is counted once: E(x) = ∑{i,j} (xᵢ − xⱼ)² = xᵀLx. With mean zero, the variation is ∑ᵢ xᵢ². These are the same energy and variation used in Chapters 4–6.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li>
+<li id="fn-7"><span class="fn-text">A centered pattern rescaled so its squared values add to 1 is called <em>normalized</em>. We will mostly say “rescaled”.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li>
+<li id="fn-8"><span class="fn-text">Here, each undirected edge is counted once: E(x) = ∑{i,j} (xᵢ − xⱼ)² = xᵀLx. With mean zero, the squared spread is ∑ᵢ xᵢ². These are the same energy and squared spread used in Chapters 4–6.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li>
 <li id="fn-9"><span class="fn-text">“Eigen” is German for “own”: a pattern the matrix treats as its own. Primer 1 drew eigenvectors as arrows that a matrix only stretched. Here each arrow has eight entries, so we read those entries as values on eight nodes.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li>
 <li id="fn-10"><span class="fn-text">This is the spectral theorem, drawn in Primer 1's Chapter 8 for a 2 × 2 matrix. For eight nodes the picture has eight perpendicular directions instead of two, and nothing else changes.</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li>
 <li id="fn-11"><span class="fn-text">When an eigenvalue repeats, any nonzero mixture of eigenvectors belonging to it is another eigenvector with that eigenvalue. We choose perpendicular, length-1 building blocks within that space. If λ₂ repeats, several independent directions achieve the same minimum.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li>

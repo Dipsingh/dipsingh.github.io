@@ -140,11 +140,11 @@
 <text x="190" y="716" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.1" fill="#5c6670" text-anchor="middle">Equal-valued nodes stay together.</text>
 </svg></div></div>
 <div class="interactive-controls">
-<p id="cut-help">Fixed: the wiring and the Fiedler values; nothing is recomputed. Changing: which of the three gaps holds the threshold. Nodes left of the threshold form the group S, drawn filled blue. Thick orange edges cross between the two groups. Start at the first gap and advance.</p>
-<div class="control-row"><label for="cut-position">Threshold position</label><output id="cut-position-output" for="cut-position">First gap</output><input id="cut-position" type="range" min="0" max="2" step="1" value="0" aria-describedby="cut-help"></div>
+<p id="cut-help">Choose one of the three gaps. Nodes below the threshold form the blue group; orange edges cross to the other group. The wiring and node values stay fixed. The threshold readout is rounded.</p>
+<div class="control-row"><label for="cut-position">Threshold value</label><output id="cut-position-output" for="cut-position">≈ −0.34</output><input id="cut-position" type="range" min="0" max="2" step="1" value="0" aria-describedby="cut-help"></div>
 <div class="actions"><button id="cut-first" type="button">After the first pair</button><button id="cut-second" type="button">After the second pair</button><button id="cut-third" type="button">After the third pair</button></div>
 <div class="readouts" aria-live="polite" aria-atomic="true"><div class="readout"><span>Crossing edges</span><strong id="cut-boundary">4</strong></div><div class="readout"><span>Smaller side</span><strong id="cut-smaller">2</strong></div><div class="readout"><span>Cut score</span><strong id="cut-score">2.000</strong></div></div>
 <p id="cut-members" class="members">Selected nodes: 7, 8.</p>
 </div>
-<figcaption><strong>Sort, then sweep.</strong> On the number line, horizontal position is the Fiedler value, so this is a true number line, not an equally spaced list. Nodes with equal values are stacked so you can read them, and they move together: a threshold can never separate a tie. The wiring and the values are fixed throughout; only group membership and the score change.</figcaption>
+<figcaption>Horizontal position shows each node’s Fiedler value. Nodes below the dashed threshold form the selected group. Equal values are stacked vertically for readability and always stay on the same side of the threshold.</figcaption>
 </figure>

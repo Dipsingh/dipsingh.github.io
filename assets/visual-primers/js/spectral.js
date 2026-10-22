@@ -70,7 +70,7 @@ const Sk=(()=>{
   const energy=edges.reduce((a,[i,j])=>a+(v[i]-v[j])**2,0),mean=v.reduce((a,x)=>a+x,0)/8,norm2=v.reduce((a,x)=>a+x*x,0);
   const contributions={within:2*(1-t)**2/(1+t*t),between:2*t*t/(1+t*t),total:energy};
   write('t-output',fmt(t));write('soft-energy',fmt(energy));write('soft-mean',fmt(mean));write('soft-norm',fmt(norm2));
-  soft.setAttribute('aria-valuetext','Boundary value ratio '+fmt(t)+'; energy within groups '+fmt(contributions.within)+', between groups '+fmt(contributions.between)+', total '+fmt(energy)+'; all patterns have mean zero and length one');
+  soft.setAttribute('aria-valuetext','Boundary-to-interior value ratio '+fmt(t)+'; energy within groups '+fmt(contributions.within)+', between groups '+fmt(contributions.between)+', total '+fmt(energy)+'; all patterns have mean zero and squared spread one');
   document.querySelectorAll('svg[data-soft]').forEach(svg=>{
    svg.dataset.values=JSON.stringify(v);svg.dataset.energy=energy;svg.dataset.mean=mean;svg.dataset.norm=norm2;svg.dataset.t=t;
    svg.dataset.withinEnergy=contributions.within;svg.dataset.betweenEnergy=contributions.between;
@@ -87,7 +87,7 @@ const Sk=(()=>{
     const dot=svg.querySelector('[data-energy-dot="'+kind+'"]');dot.setAttribute('cx',currentX);dot.setAttribute('cy',Number(marker.dataset.baseline)-Number(marker.dataset.energyScale)*value);
     svg.querySelector('[data-energy-value="'+kind+'"]').textContent=fmt(value);
    });
-   svg.querySelector('desc').textContent='The graph wiring is fixed. Unit-length node values are '+v.map(x=>fmt(x)).join(', ')+'. Their mean is zero and squared length is one. At boundary ratio '+fmt(t)+', energy within the groups is '+fmt(contributions.within)+', energy between the groups is '+fmt(contributions.between)+', and total energy is '+fmt(energy)+'. Teal edges and the dashed teal curve show within-group disagreement. Orange edges and the dotted orange curve show between-group disagreement. The solid dark curve adds both. The vertical marker and the three dots show the current setting.';
+   svg.querySelector('desc').textContent='The graph wiring is fixed. The rescaled node values are '+v.map(x=>fmt(x)).join(', ')+'. Their mean is zero and squared spread is one. At boundary-to-interior ratio '+fmt(t)+', energy within the groups is '+fmt(contributions.within)+', energy between the groups is '+fmt(contributions.between)+', and total energy is '+fmt(energy)+'. Teal edges and the dashed teal curve show within-group disagreement. Orange edges and the dotted orange curve show between-group disagreement. The solid dark curve adds both. The vertical marker and the three dots show the current setting.';
   });
  }
  if (soft) soft.addEventListener('input',updateSoft);
@@ -97,16 +97,16 @@ const Sk=(()=>{
   const p=Number(cut.value),threshold=[(-f[0]-f[2])/2,0,(f[0]+f[2])/2][p];
   const chosen=new Set(f.map((v,i)=>v<threshold?i:-1).filter(i=>i>=0));
   const boundary=edges.filter(([i,j])=>chosen.has(i)!==chosen.has(j)).length,smaller=Math.min(chosen.size,8-chosen.size),score=boundary/smaller;
-  write('cut-position-output',['First gap','Second gap','Third gap'][p]);write('cut-boundary',boundary);write('cut-smaller',smaller);write('cut-score',fmt(score));
+  write('cut-position-output',threshold===0?'0':'≈ '+fmt(threshold,2));write('cut-boundary',boundary);write('cut-smaller',smaller);write('cut-score',fmt(score));
   write('cut-members','Selected nodes: '+[...chosen].map(i=>i+1).join(', ')+'.');
-  cut.setAttribute('aria-valuetext',['First','Second','Third'][p]+' gap; '+boundary+' crossing edges; smaller side '+smaller+' nodes; cut score '+fmt(score));
+  cut.setAttribute('aria-valuetext',['First','Second','Third'][p]+' gap; threshold '+fmt(threshold)+'; '+boundary+' crossing edges; smaller side '+smaller+' nodes; cut score '+fmt(score));
   document.querySelectorAll('svg[data-sweep]').forEach(svg=>{
    svg.dataset.selected=JSON.stringify([...chosen]);svg.dataset.boundary=boundary;svg.dataset.smaller=smaller;svg.dataset.score=score;svg.dataset.threshold=threshold;
    svg.querySelectorAll('[data-edge]').forEach(e=>{const [i,j]=e.dataset.edge.split('-').map(Number),cross=chosen.has(i)!==chosen.has(j);e.setAttribute('stroke',cross?colors.orange:colors.rule);e.setAttribute('stroke-width',cross?4:2.3);});
    ['node','order-node'].forEach(attr=>svg.querySelectorAll('[data-'+attr+']').forEach(n=>{const on=chosen.has(Number(n.getAttribute('data-'+attr)));n.setAttribute('fill',on?'#eaf1f8':'white');n.setAttribute('stroke',on?colors.blue:colors.muted);}));
    svg.querySelectorAll('[data-node-label]').forEach(n=>n.setAttribute('fill',chosen.has(Number(n.dataset.nodeLabel))?colors.blue:colors.muted));
    const line=svg.querySelector('[data-threshold]'),x=Number(line.dataset.origin)+Number(line.dataset.scale)*threshold;line.setAttribute('x1',x);line.setAttribute('x2',x);
-   svg.querySelector('desc').textContent='Fiedler threshold '+fmt(threshold)+' selects nodes '+[...chosen].map(i=>i+1).join(', ')+'. There are '+boundary+' crossing edges. The smaller side has '+smaller+' nodes, so edge expansion for this cut is '+fmt(score)+'. Equal values stay together.';
+   svg.querySelector('desc').textContent='Fiedler threshold '+fmt(threshold)+' selects nodes '+[...chosen].map(i=>i+1).join(', ')+'. There are '+boundary+' crossing edges. The smaller side has '+smaller+' nodes, so the cut score is '+fmt(score)+'. Equal values stay together.';
   });
  }
  if (cut) cut.addEventListener('input',updateCut);
