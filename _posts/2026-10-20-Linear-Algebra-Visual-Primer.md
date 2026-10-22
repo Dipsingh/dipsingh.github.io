@@ -709,9 +709,9 @@ We can therefore calculate the measurement for a unit input without actually res
 
 <div class="equation" role="math" aria-label="R of x equals the raw score Q of x divided by the squared length of x">R(x) = <span class="frac"><span>Q(x)</span><span>‖x‖²</span></span></div>
 
-This is called the **Rayleigh quotient**. “Quotient” means the result of a division.<sup class="fnref"><a href="#fn-23" id="fnref-23" data-fn="23" aria-expanded="false" aria-label="Footnote 23">[23]</a></sup>
+Dividing the raw score by the input's squared length gives the **Rayleigh quotient**.<sup class="fnref"><a href="#fn-23" id="fnref-23" data-fn="23" aria-expanded="false" aria-label="Footnote 23">[23]</a></sup> For our example, <span class="math">R(x) = 26/10 = 2.6</span>.
 
-**R(x) is the measurement that the same direction would have at length one.** For our x, it is <span class="math">26/10 = 2.6</span>, the result we found in Chapter 9 for x̂. The input must be nonzero, because we cannot divide by a squared length of zero.
+**R(x) is the measurement that the same direction would have at length one.** This is the same result we found in Chapter 9 for x̂. The input must be nonzero, because we cannot divide by a squared length of zero.
 
 ### Turn the input and watch R change
 
