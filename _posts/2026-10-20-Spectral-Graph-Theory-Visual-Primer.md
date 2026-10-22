@@ -9,9 +9,9 @@ primer: spectral
 ## Provide Context
 Todo: 
 
-## 1. Start with the graph
+## 1. Find a bottleneck in a small network
 
-<p class="chapter-tag">three links per router, two links between groups</p>
+<p class="chapter-tag">eight routers, three links each, two links between groups</p>
 
 ### Eight routers, twelve links
 
@@ -52,9 +52,9 @@ All our links work in both directions and count equally. No node links to itself
 
 <a id="laplacian" class="chapter-anchor"></a>
 
-## 2. Turn the wiring into A, D and L
+## 2. Describe the graph with matrices
 
-<p class="chapter-tag">one comparison, written for every node</p>
+<p class="chapter-tag">what A, D and L do to node values</p>
 
 ### Start with one node's comparison
 
@@ -122,9 +122,9 @@ We now have a matrix that compares values at connected nodes. Before combining t
 
 <a id="boundary" class="chapter-anchor"></a>
 
-## 3. Measure how weakly a group connects
+## 3. Measure how well groups connect
 
-<p class="chapter-tag">crossing links relative to group size</p>
+<p class="chapter-tag">count crossing links relative to group size</p>
 
 Our graph is **connected**: you can follow edges from any node to any other. Yet removing just two links separates it into two groups of four nodes. We want to measure how weakly a group connects to the rest of the network.
 
@@ -160,9 +160,9 @@ Our +1 and −1 labels already mark a proposed division. Next we will use those 
 
 <a id="energy" class="chapter-anchor"></a>
 
-## 4. Use node values to test a division
+## 4. Measure differences across connected nodes
 
-<p class="chapter-tag">from crossing links to squared differences</p>
+<p class="chapter-tag">energy: add the squared differences across edges</p>
 
 Chapter 3 judged a division by its crossing links relative to group size. Our labels from Chapter 1 already tell us which links cross: +1 marks nodes 1–4, and −1 marks nodes 5–8. A crossing link joins opposite signs.
 
@@ -263,9 +263,9 @@ But shrinking every value also lowers the energy, even when the arrangement stay
 
 <a id="fair" class="chapter-anchor"></a>
 
-## 5. Make the comparison fair
+## 5. Compare node patterns at the same scale
 
-<p class="chapter-tag">a better arrangement, or just smaller numbers?</p>
+<p class="chapter-tag">subtract the average and fix the squared spread</p>
 
 Chapter 4 gave us energy: the total squared disagreement across the edges. We want to find node values that keep this total small. But first we need to distinguish a better arrangement from simply using smaller numbers.
 
@@ -356,9 +356,9 @@ Our starting candidate is the **hard split**: four values of about +0.354 and fo
 
 <a id="adjust" class="chapter-anchor"></a>
 
-## 6. Improve the first pattern
+## 6. Lower energy by adjusting node values
 
-<p class="chapter-tag">can a gentler boundary lower the total?</p>
+<p class="chapter-tag">balance differences within and between the groups</p>
 
 Our first pattern has energy 1. We will try to lower it by bringing the values closer together where the two groups meet. The wiring stays fixed. Every pattern we compare will have mean zero and squared spread 1.
 
@@ -487,9 +487,9 @@ The numerator adds the two sources of disagreement. The denominator keeps the co
 
 <a id="second" class="chapter-anchor"></a>
 
-## 7. Can any pattern do better?
+## 7. Find the pattern with the lowest energy
 
-<p class="chapter-tag">why the second eigenvector wins</p>
+<p class="chapter-tag">why the second eigenvector gives the minimum</p>
 
 The slider found energy about 0.764 while keeping pairs of nodes equal and the two halves as mirror images. Could a pattern outside that family do better? We need an argument that covers every possible assignment of node values.
 
@@ -642,9 +642,9 @@ We now have the node values that minimize energy. Chapter 8 asks how to use thos
 
 <a id="cut" class="chapter-anchor"></a>
 
-## 8. Turn the answer back into a cut
+## 8. Use an eigenvector to divide the graph
 
-<p class="chapter-tag">use the values to propose two groups</p>
+<p class="chapter-tag">try thresholds and compare the resulting cuts</p>
 
 The minimum-energy pattern is a list of numbers. To make a cut, we still have to decide which nodes belong on each side. We will use the numbers to propose cuts, then count the original graph’s crossing edges to judge them.
 
@@ -756,9 +756,9 @@ Nodes with equal values move together, and we score the cut after the whole grou
 
 <a id="cheeger" class="chapter-anchor"></a>
 
-## 9. What the eigenvalue says about unseen cuts
+## 9. Connect eigenvalues to cut scores
 
-<p class="chapter-tag">could another cut be much better?</p>
+<p class="chapter-tag">how Cheeger's inequality bounds the best possible cut score</p>
 
 Chapter 8 found a cut with two crossing edges and four nodes on each side, giving a score of **2/4 = 0.5**. Recall that **h(G)** is the lowest score among all cuts. We want to know how much lower an unseen cut could score.
 
@@ -861,9 +861,9 @@ A larger λ₂ raises the lower bound on every cut score. That makes it useful f
 
 <a id="expansion" class="chapter-anchor"></a>
 
-## 10. Rewire the graph to improve expansion
+## 10. Keep networks well connected as they grow
 
-<p class="chapter-tag">stronger boundaries with the same link budget</p>
+<p class="chapter-tag">rewiring and expanders with a fixed number of links per router</p>
 
 So far, we have searched a fixed graph for low-scoring cuts to find its bottlenecks. When designing a network, we want **even its lowest cut score to be high**. Every group containing up to half the nodes should have substantial connections to the rest, relative to its size.
 
@@ -953,9 +953,9 @@ This is what “bounded away from zero” means: there is one positive lower lim
 
 <a id="gap" class="chapter-anchor"></a>
 
-## 11. Recognize the gap in another matrix
+## 11. Compare adjacency and Laplacian eigenvalues
 
-<p class="chapter-tag">follow the same pattern through A and L</p>
+<p class="chapter-tag">translate between the two matrices and their gaps on a regular graph</p>
 
 For our original graph, the second Laplacian eigenvalue is about 0.764. A paper using the adjacency matrix would instead report a second eigenvalue of about 2.236. Both numbers describe the same graph. We need to know which matrix a number belongs to before using it.
 
@@ -1093,9 +1093,9 @@ Chapter 12 returns to the practical goal: using well-connected graphs in a netwo
 
 <a id="rng" class="chapter-anchor"></a>
 
-## 12. Bring the ideas back to RNG
+## 12. Apply graph theory to RNG's network design
 
-<p class="chapter-tag">connect the cut guarantee to cabling and routing</p>
+<p class="chapter-tag">connect cut guarantees to capacity, cabling and routing</p>
 
 **RNG** is a flat data-center network design that mixes planned and randomized router connections. Its use of expander graphs connects to Chapter 10's goal: keep groups well connected with limited links per router. [RNG §§1–2](https://arxiv.org/html/2604.15261v3#S1)
 
