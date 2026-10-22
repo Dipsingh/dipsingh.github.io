@@ -117,8 +117,6 @@
 .visual-primer .turn-controls .transformation-actions button{background:#fff;color:var(--ink);padding:7px 12px}
 .visual-primer .turn-controls p{margin:8px 0}
 .visual-primer .unit-score-line{font-size:17px}.visual-primer .unit-score-line strong{font:700 24px/1.3 var(--label);color:var(--teal)}
-.visual-primer .resize-experiment .interactive-controls{margin-top:14px;border:1.6px solid var(--ink);border-radius:var(--wobble);border-top-style:solid}
-.visual-primer .resize-experiment .figure{margin-top:18px}
 .visual-primer .art .art-mobile{display:none}
 @media(max-width:600px){
  .visual-primer{font-size:17.5px;line-height:1.7}

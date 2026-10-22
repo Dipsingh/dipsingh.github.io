@@ -165,7 +165,6 @@ const Sk=(()=>{
 // strokes as the static SVG (same seeds, same wobble), in both responsive copies.
 (()=>{
  const angleControl=document.getElementById('turn-angle');
- const lengthControl=document.getElementById('input-length');
  const diagrams=[...document.querySelectorAll('svg[data-unit-experiment]')];
  if(!angleControl||!diagrams.length)return;
  const initialDegrees=Math.atan2(1,3)*180/Math.PI,sqrt2=Math.sqrt(2);
@@ -189,16 +188,10 @@ const Sk=(()=>{
   const mx=2*vx+vy,my=vx+2*vy;
   const score=vx*mx+vy*my;
   const c1=(vx-vy)/sqrt2,c2=(vx+vy)/sqrt2,share1=c1*c1,share2=c2*c2;
-  const length=lengthControl?Number(lengthControl.value):1,norm=length*length;
   write('angle-output',round(degrees,1)+'°');
   write('unit-score-output',round(score,3));
-  write('length-output',round(length,2));
-  write('norm-output',round(norm,3));
-  write('score-output',round(norm*score,3));
-  write('ratio-output',round(score,3));
   write('component-shares',round(share1*100,1)+'% of squared length along u₁; '+round(share2*100,1)+'% along u₂');
-  angleControl.setAttribute('aria-valuetext',round(degrees,1)+' degrees from the positive horizontal axis; unit-input score '+round(score,3));
-  if(lengthControl)lengthControl.setAttribute('aria-valuetext','Copy length '+round(length,2)+'; raw score '+round(norm*score,3)+'; quotient '+round(score,3));
+  angleControl.setAttribute('aria-valuetext',round(degrees,1)+' degrees from the positive horizontal axis; Rayleigh quotient '+round(score,3));
   for(const svg of diagrams){
    const role=n=>svg.querySelector(`[data-role="${n}"]`);
    const plot=role('output-plot'),O=[Number(plot.dataset.originX),Number(plot.dataset.originY)],S=Number(plot.dataset.scale);
@@ -233,7 +226,7 @@ const Sk=(()=>{
    role('coefficient-2').innerHTML=Sk.markup('c₂ = '+round(c2,3),19);
    role('share-1').textContent=round(share1*100,1)+'%';
    role('share-2').textContent=round(share2*100,1)+'%';
-   role('unit-score').textContent='Unit-input score: '+round(score,3);
+   role('unit-score').textContent='R(v) = '+round(score,3);
    const pointer=role('score-pointer');
    set(pointer,{cx:Sk.fmt(Number(pointer.dataset.left)+share2*(Number(pointer.dataset.right)-Number(pointer.dataset.left)))});
    const strip=role('score-strip');
@@ -243,13 +236,12 @@ const Sk=(()=>{
     set(role('score-dot'),{cx:Sk.fmt(sx),cy:Sk.fmt(sy)});
     set(role('score-hair'),{d:'M '+Sk.fmt(sx)+' '+Sk.fmt(B)+' L '+Sk.fmt(sx)+' '+Sk.fmt(sy)});
    }
-   Object.assign(svg.dataset,{angle:String(degrees),vx:String(vx),vy:String(vy),score:String(score),c1:String(c1),c2:String(c2),share1:String(share1),share2:String(share2),copyLength:String(length),copyScore:String(norm*score)});
+   Object.assign(svg.dataset,{angle:String(degrees),vx:String(vx),vy:String(vy),score:String(score),c1:String(c1),c2:String(c2),share1:String(share1),share2:String(share2)});
    const desc=svg.querySelector('desc');
-   if(desc)desc.textContent='The dot on the score chart sits at '+round(degrees,1)+' degrees and height '+round(score,3)+'. The unit input v has ordinary coordinates ('+round(vx,3)+', '+round(vy,3)+'). Its output Mv is ('+round(mx,3)+', '+round(my,3)+'). The output component along v is '+round(score,3)+' times v. The perpendicular remainder starts at that component’s tip and ends at Mv. The signed eigenvector coefficients are '+round(c1,3)+' and '+round(c2,3)+'; their squared-length shares are '+round(share1*100,1)+' percent and '+round(share2*100,1)+' percent. The unit-input score is '+round(score,3)+'. The closer view shows the same unit input. The optional resized copy has length '+round(length,2)+' and raw score '+round(norm*score,3)+', with the same quotient '+round(score,3)+'; it does not alter the unit-input picture.';
+   if(desc)desc.textContent='The dot on the quotient chart sits at '+round(degrees,1)+' degrees and height '+round(score,3)+'. The unit input v has ordinary coordinates ('+round(vx,3)+', '+round(vy,3)+'). Its output Mv is ('+round(mx,3)+', '+round(my,3)+'). The blue projection R(v)v is '+round(score,3)+' times v. The perpendicular remainder starts at that projection’s tip and ends at Mv. The signed eigenvector coefficients are '+round(c1,3)+' and '+round(c2,3)+'; their squared-length shares are '+round(share1*100,1)+' percent and '+round(share2*100,1)+' percent. The Rayleigh quotient R(v) is '+round(score,3)+'. The closer view shows the same unit input.';
   }
  }
  angleControl.addEventListener('input',update);
- if(lengthControl)lengthControl.addEventListener('input',update);
  for(const [id,degrees] of [['turn-u1',-45],['turn-running',initialDegrees],['turn-u2',45]]){
   const button=document.getElementById(id);
   if(button)button.addEventListener('click',()=>{angleControl.value=String(degrees);update();});
