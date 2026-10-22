@@ -1,8 +1,8 @@
 <figure class="figure"><div class="art art-responsive" tabindex="0" role="group" aria-label="Illustration; panels stack on small screens"><div class="art-desktop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 508" role="img" aria-labelledby="fig31-title fig31-desc">
-<title id="fig31-title">A shared shift is invisible to the bumpiness score</title><desc id="fig31-desc">Four lists drawn as bars on one shared scale. The list 3, 1, 2 has steps 2 and 1 and scores 5. Everyone plus 5, that is 8, 6, 7: the bars are taller but the steps are still 2 and 1, score 5. Minus the average 2, that is 1, -1, 0: steps 2 and 1 again, score 5. All equal, 2, 2, 2: no steps, score 0.</desc>
+<title id="fig31-title">Centering keeps the neighboring differences</title><desc id="fig31-desc">Four lists drawn as bars on one shared scale. The original list (3, 1, 2), the shifted list (8, 6, 7), and the centered list (1, -1, 0) have neighboring changes of magnitude 2 and 1. All three have bumpiness 5. The flat list (2, 2, 2) has no neighboring changes and bumpiness zero. Subtracting the average preserves every neighboring difference.</desc>
 <rect width="760" height="508" fill="#fff"/>
-<text x="24" y="36" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="22" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">Shift every number, and the score can&#x27;t tell</text>
-<text x="24" y="64" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#5c6670" text-anchor="start">Add the same amount to every entry: the steps don&#x27;t change, so the score doesn&#x27;t either.</text>
+<text x="24" y="36" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="22" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">Same differences, same bumpiness</text>
+<text x="24" y="64" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#5c6670" text-anchor="start">Adding or subtracting the same amount keeps all neighboring differences unchanged.</text>
 <g transform="translate(10 104)">
 <text x="180" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">the list: 3, 1, 2</text>
 <path d="M 46 114.4 L 55.9 114.6 L 65.9 114.7 L 75.8 114.8 L 85.7 114.7 L 95.6 114.5 L 105.6 114.3 L 115.5 114.2 L 125.4 114.1 L 135.3 114.1 L 145.3 114.2 L 155.2 114.3 L 165.1 114.4 L 175 114.4 L 185 114.3 L 194.9 114 L 204.8 113.7 L 214.7 113.4 L 224.7 113.2 L 234.6 113 L 244.5 113.1 L 254.4 113.2 L 264.4 113.5 L 274.3 113.8 L 284.2 114 L 294.1 114.2 L 304.1 114.3 L 314 114.4" fill="none" stroke="#5c6670" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -25,10 +25,10 @@
 <path d="M 253 106.9 L 261 106.9" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 253 99.3 L 261 99.3" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="248" y="108.1" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(390 104)">
-<text x="180" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">everyone + 5: 8, 6, 7</text>
+<text x="180" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">add 5 to each: 8, 6, 7</text>
 <path d="M 46 114.4 L 55.9 114.6 L 65.9 114.7 L 75.8 114.8 L 85.7 114.7 L 95.6 114.5 L 105.6 114.3 L 115.5 114.2 L 125.4 114.1 L 135.3 114.1 L 145.3 114.2 L 155.2 114.3 L 165.1 114.4 L 175 114.4 L 185 114.3 L 194.9 114 L 204.8 113.7 L 214.7 113.4 L 224.7 113.2 L 234.6 113 L 244.5 113.1 L 254.4 113.2 L 264.4 113.5 L 274.3 113.8 L 284.2 114 L 294.1 114.2 L 304.1 114.3 L 314 114.4" fill="none" stroke="#5c6670" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 63 54 L 71.5 54 L 80 53.4 L 88.5 53.8 L 97 54 L 96.9 62.6 L 96.5 71.3 L 96.5 79.9 L 96.6 88.5 L 96.5 97.2 L 96.8 105.8 L 97 114.4 L 88.5 114 L 80 114.2 L 71.5 114.4 L 63 114.4 L 62.9 105.8 L 62.9 97.2 L 62.5 88.5 L 62.2 79.9 L 62.6 71.3 L 62.9 62.6 L 63 54 Z" fill="#e8eff7" stroke="none"/>
 <path d="M 63 54 L 71.5 54 L 80 53.4 L 88.5 53.8 L 97 54 L 96.9 62.6 L 96.5 71.3 L 96.5 79.9 L 96.6 88.5 L 96.5 97.2 L 96.8 105.8 L 97 114.4 L 88.5 114 L 80 114.2 L 71.5 114.4 L 63 114.4 L 62.9 105.8 L 62.9 97.2 L 62.5 88.5 L 62.2 79.9 L 62.6 71.3 L 62.9 62.6 L 63 54 Z" fill="none" stroke="#1f1f1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -49,7 +49,7 @@
 <path d="M 253 69.1 L 261 69.1" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 253 61.6 L 261 61.6" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="248" y="70.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(10 280)">
 <text x="180" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">minus the average 2: 1, −1, 0</text>
@@ -71,7 +71,7 @@
 <path d="M 253 122 L 261 122" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 253 114.4 L 261 114.4" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="248" y="123.2" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(390 280)">
 <text x="180" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">all equal: 2, 2, 2</text>
@@ -89,16 +89,16 @@
 <text x="130" y="93.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="middle" font-weight="700">0</text>
 <path d="M 197 99.3 L 206.4 99.3 L 215.9 99.8 L 225.3 99.9 L 234.7 99.7 L 244.1 99.8 L 253.6 99.5 L 263 99.3" fill="none" stroke="#b65b27" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
 <text x="230" y="93.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="middle" font-weight="700">0</text>
-<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#b3261e" text-anchor="middle" font-weight="700">score = 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 0</text>
+<text x="180" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#b3261e" text-anchor="middle" font-weight="700">bumpiness = 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 0</text>
 </g>
-<text x="380" y="494" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">Only the steps count. Subtracting the average loses nothing the score can see.</text>
-</svg></div><div class="art-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 912" role="img" aria-labelledby="fig31m-title fig31m-desc">
-<title id="fig31m-title">A shared shift is invisible to the bumpiness score</title><desc id="fig31m-desc">Four lists drawn as bars on one shared scale. The list 3, 1, 2 has steps 2 and 1 and scores 5. Everyone plus 5, that is 8, 6, 7: the bars are taller but the steps are still 2 and 1, score 5. Minus the average 2, that is 1, -1, 0: steps 2 and 1 again, score 5. All equal, 2, 2, 2: no steps, score 0.</desc>
-<rect width="380" height="912" fill="#fff"/>
-<text x="20" y="34" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="21" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">Shift every number, and the</text>
-<text x="20" y="62" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="21" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">score can&#x27;t tell</text>
-<text x="20" y="88" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="14.5" fill="#5c6670" text-anchor="start">Add the same amount to every entry: the steps</text>
-<text x="20" y="108" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="14.5" fill="#5c6670" text-anchor="start">don&#x27;t change, so the score doesn&#x27;t either.</text>
+<text x="380" y="494" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">Centering keeps the neighboring differences, so the bumpiness stays the same.</text>
+</svg></div><div class="art-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 895" role="img" aria-labelledby="fig31m-title fig31m-desc">
+<title id="fig31m-title">Centering keeps the neighboring differences</title><desc id="fig31m-desc">Four lists drawn as bars on one shared scale. The original list (3, 1, 2), the shifted list (8, 6, 7), and the centered list (1, -1, 0) have neighboring changes of magnitude 2 and 1. All three have bumpiness 5. The flat list (2, 2, 2) has no neighboring changes and bumpiness zero. Subtracting the average preserves every neighboring difference.</desc>
+<rect width="380" height="895" fill="#fff"/>
+<text x="20" y="34" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="21" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">Same differences,</text>
+<text x="20" y="62" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="21" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em">same bumpiness</text>
+<text x="20" y="88" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="14.5" fill="#5c6670" text-anchor="start">Adding or subtracting the same amount</text>
+<text x="20" y="108" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="14.5" fill="#5c6670" text-anchor="start">keeps all neighboring differences unchanged.</text>
 <g transform="translate(20 128)">
 <text x="170" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">the list: 3, 1, 2</text>
 <path d="M 36 114.4 L 45.9 114.5 L 55.9 114.8 L 65.8 115.1 L 75.7 115.4 L 85.6 115.6 L 95.6 115.7 L 105.5 115.6 L 115.4 115.4 L 125.3 115.1 L 135.3 114.8 L 145.2 114.5 L 155.1 114.4 L 165 114.4 L 175 114.4 L 184.9 114.4 L 194.8 114.3 L 204.7 114 L 214.7 113.7 L 224.6 113.4 L 234.5 113.2 L 244.4 113.2 L 254.4 113.3 L 264.3 113.5 L 274.2 113.9 L 284.1 114.2 L 294.1 114.4 L 304 114.4" fill="none" stroke="#5c6670" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -121,10 +121,10 @@
 <path d="M 243 106.9 L 251 106.9" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 243 99.3 L 251 99.3" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="238" y="108.1" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(20 300)">
-<text x="170" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">everyone + 5: 8, 6, 7</text>
+<text x="170" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">add 5 to each: 8, 6, 7</text>
 <path d="M 36 114.4 L 45.9 114.5 L 55.9 114.8 L 65.8 115.1 L 75.7 115.4 L 85.6 115.6 L 95.6 115.7 L 105.5 115.6 L 115.4 115.4 L 125.3 115.1 L 135.3 114.8 L 145.2 114.5 L 155.1 114.4 L 165 114.4 L 175 114.4 L 184.9 114.4 L 194.8 114.3 L 204.7 114 L 214.7 113.7 L 224.6 113.4 L 234.5 113.2 L 244.4 113.2 L 254.4 113.3 L 264.3 113.5 L 274.2 113.9 L 284.1 114.2 L 294.1 114.4 L 304 114.4" fill="none" stroke="#5c6670" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 53 54 L 61.5 54.2 L 70 53.6 L 78.5 53.7 L 87 54 L 86.7 62.6 L 86.7 71.3 L 86.3 79.9 L 86.6 88.5 L 87.2 97.2 L 87.1 105.8 L 87 114.4 L 78.5 114.7 L 70 114.8 L 61.5 114.6 L 53 114.4 L 53 105.8 L 52.9 97.2 L 52.8 88.5 L 52.3 79.9 L 52.4 71.3 L 52.9 62.6 L 53 54 Z" fill="#e8eff7" stroke="none"/>
 <path d="M 53 54 L 61.5 54.2 L 70 53.6 L 78.5 53.7 L 87 54 L 86.7 62.6 L 86.7 71.3 L 86.3 79.9 L 86.6 88.5 L 87.2 97.2 L 87.1 105.8 L 87 114.4 L 78.5 114.7 L 70 114.8 L 61.5 114.6 L 53 114.4 L 53 105.8 L 52.9 97.2 L 52.8 88.5 L 52.3 79.9 L 52.4 71.3 L 52.9 62.6 L 53 54 Z" fill="none" stroke="#1f1f1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -145,7 +145,7 @@
 <path d="M 243 69.1 L 251 69.1" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 243 61.6 L 251 61.6" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="238" y="70.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(20 472)">
 <text x="170" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">minus the average 2: 1, −1, 0</text>
@@ -167,7 +167,7 @@
 <path d="M 243 122 L 251 122" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 243 114.4 L 251 114.4" fill="none" stroke="#b65b27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="238" y="123.2" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="end" font-weight="700">1</text>
-<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">score = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
+<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#177d75" text-anchor="middle" font-weight="700">bumpiness = 2<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 1<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 5</text>
 </g>
 <g transform="translate(20 644)">
 <text x="170" y="14" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15.5" fill="#1f1f1f" text-anchor="middle" font-weight="700">all equal: 2, 2, 2</text>
@@ -185,9 +185,8 @@
 <text x="120" y="93.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="middle" font-weight="700">0</text>
 <path d="M 187 99.3 L 196.4 99.6 L 205.9 99.8 L 215.3 99.7 L 224.7 100 L 234.1 99.8 L 243.6 99.3 L 253 99.3" fill="none" stroke="#b65b27" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
 <text x="220" y="93.3" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="13.5" fill="#b65b27" text-anchor="middle" font-weight="700">0</text>
-<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#b3261e" text-anchor="middle" font-weight="700">score = 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 0</text>
+<text x="170" y="158" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.5" fill="#b3261e" text-anchor="middle" font-weight="700">bumpiness = 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> + 0<tspan font-size="11.2" dy="-6.9">2</tspan><tspan dy="6.9">&#8203;</tspan> = 0</text>
 </g>
-<text x="190" y="854" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15" fill="#177d75" text-anchor="middle" font-weight="700">Only the steps count.</text>
-<text x="190" y="876" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15" fill="#177d75" text-anchor="middle" font-weight="700">Subtracting the average loses nothing the</text>
-<text x="190" y="898" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15" fill="#177d75" text-anchor="middle" font-weight="700">score can see.</text>
-</svg></div></div><figcaption><strong>A shared shift leaves raw bumpiness unchanged.</strong> The lists (3, 1, 2), (8, 6, 7), and (1, −1, 0) have the same neighboring differences, so all score 5 before dividing by squared length. A flat list has no neighboring differences and scores zero.</figcaption></figure>
+<text x="190" y="854" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15" fill="#177d75" text-anchor="middle" font-weight="700">Centering keeps the differences.</text>
+<text x="190" y="876" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="15" fill="#177d75" text-anchor="middle" font-weight="700">The bumpiness stays the same.</text>
+</svg></div></div><figcaption><strong>A shared shift leaves raw bumpiness unchanged.</strong> The lists (3, 1, 2), (8, 6, 7), and (1, −1, 0) have the same neighboring differences, so all have bumpiness 5 before dividing by squared length. A flat list has no neighboring differences and bumpiness zero.</figcaption></figure>

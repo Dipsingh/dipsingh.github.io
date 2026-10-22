@@ -778,119 +778,84 @@ For any **real symmetric matrix**, every nonzero input's quotient is a weighted 
 
 This gives us a way to find the minimum without checking every direction: find the smallest eigenvalue and an eigenvector that goes with it. The eigenvalue tells us the minimum value; the eigenvector tells us an input direction that achieves it. [Spielman, Chapter 2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=47).
 
-<details markdown="1">
-<summary>Optional: why the symmetry condition matters</summary>
-
-Symmetry lets us split the input into perpendicular eigenvector pieces. That is what makes the squared-length shares work as weights in an average.
-
-For comparison, the nonsymmetric matrix A from Chapter 8 has rows <span class="math">(1, 1)</span> and <span class="math">(0, 2)</span>. Its eigenvalues are 1 and 2. Its quotient can go below 1 and above 2, as the chart shows:
-
-{% include visual-primer/linear/figure-45.html %}
-
-Each eigenvector of A still gives its eigenvalue as the quotient. Other directions give values as low as about 0.79 and as high as about 2.21. So A's eigenvectors do not give the minimum and maximum. Its eigenvector pieces are not perpendicular, and the weighted-average rule we used for M does not apply.
-
-</details>
-
 Next, we will use this idea to find the smoothest pattern in a list.
 
 <a id="mean-plane" class="chapter-anchor"></a>
 
-## 13. Remove the average to reveal the pattern
+## 13. Finding the smoothest pattern in a list
 
-### Measure how bumpy a list is
+Now we can use eigenvectors to find a smooth pattern in a list. We will compare how neighboring entries differ, while accounting for the list's average and size.
 
-Now let's use a quadratic form to compare patterns in a list. We will measure **bumpiness**: square the difference between each neighboring pair and add. Smaller values mean neighboring entries are closer.
+### Measure the differences between neighbors
 
-Take the three-entry list <span class="math">z = (3, 1, 2)</span>. Its bumpiness is:
+Take the three-entry list <span class="math">z = (3, 1, 2)</span>. It drops by 2, then rises by 1. To measure its **bumpiness**, square those two changes and add:
 
-<div class="equation" role="math" aria-label="The bumpiness is 3 minus 1 squared plus 1 minus 2 squared, which equals 5">(3 − 1)² + (1 − 2)² = 4 + 1 = 5</div>
+<div class="equation" role="math" aria-label="The bumpiness of 3 comma 1 comma 2 is 3 minus 1 squared plus 1 minus 2 squared, which equals 5">(3 − 1)² + (1 − 2)² = 4 + 1 = 5</div>
 
-A step up and a step down of the same size contribute equally. Larger steps contribute more. Because we add squares, the result can never be negative.
+Squaring makes a rise and a fall of the same size count equally. Bigger changes contribute more. A flat list, such as <span class="math">(2, 2, 2)</span>, has bumpiness zero because its neighbors are equal.
 
-This measurement is a quadratic form, written <span class="math">zᵀBz</span>, for a new symmetric matrix B.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> B acts on three-entry lists, so it is different from our earlier two-by-two M. We can use its eigenvector directions to find the smoothest pattern.
+The matrix for this measurement is a new symmetric matrix B. It acts on three-entry lists, and its quadratic form <span class="math">zᵀBz</span> is exactly the bumpiness we just calculated.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> We will use B for the rest of this chapter.
 
-<details markdown="1">
-<summary>Optional: compare bumpiness for a few lists</summary>
+### Remove the shared level
 
-{% include visual-primer/linear/figure-35.html %}
+If we search for the least bumpiness among all lists, a flat list wins with zero. To study variation, we remove each list's flat part: its average, repeated in every entry.
 
-</details>
+Our list's average is <span class="math">(3 + 1 + 2)/3 = 2</span>. Subtract 2 from every entry and call the remaining pattern r:
 
-A flat list scores zero, even if its entries are nonzero. As in Chapter 10, the lowest score identifies a direction the matrix ignores. To study the variation within a list, we first remove its shared level. Then we can compare the remaining patterns at the same size.
+<div class="equation" role="math" aria-label="Subtracting the average gives r equals 3 minus 2 comma 1 minus 2 comma 2 minus 2, which is 1 comma minus 1 comma zero">r = (3 − 2, 1 − 2, 2 − 2)<br>= (1, −1, 0)</div>
 
-### Separate the shared level from the pattern
+The entries now say: one above the average, one below it, and one equal to it. This is called **centering**. Centered entries always add to zero.
 
-Our list <span class="math">z = (3, 1, 2)</span> has average 2. Subtract 2 from every entry:
-
-<div class="equation" role="math" aria-label="The list 3 comma 1 comma 2 is its shared average 2 comma 2 comma 2 plus the centered pattern 1 comma minus 1 comma zero">(3, 1, 2) = (2, 2, 2) + (1, −1, 0)</div>
-
-The first part is the shared level. The second tells us how far each entry is above or below the average. Subtracting the average is called **centering**. The centered entries always add to zero.
-
-{% include visual-primer/linear/figure-46.html %}
-
-Centering preserves the differences between neighboring entries. The raw bumpiness is therefore still 5:
-
-<div class="equation" role="math" aria-label="The centered list has bumpiness 4 plus 1, which equals 5">(1 − (−1))² + ((−1) − 0)² = 4 + 1 = 5</div>
+Subtracting the same number from every entry leaves all neighboring differences unchanged. Our centered pattern still has bumpiness 5. Adding 5 to the original list gives <span class="math">(8, 6, 7)</span>, with the same differences too. Its average is 7, so centering it also gives <span class="math">(1, −1, 0)</span>.
 
 {% include visual-primer/linear/figure-47.html %}
 
-**This preserves raw bumpiness, not necessarily the quotient.** Subtracting an average changes the input's squared length. We center first because we want that length to measure only the variation around the mean.
+A flat list becomes <span class="math">(0, 0, 0)</span> after centering. There is no variation left to compare, and dividing by its squared length would mean dividing by zero. From now on, we consider **centered patterns with nonzero length**.
 
-### Centering and normalizing do different jobs
+### Compare the remaining patterns at the same size
 
-<div class="table-wrap" markdown="1">
+A small pattern can have low bumpiness simply because its changes are small. We need the same correction as in Chapter 11: divide by squared length.
 
-| Step | What we do | Why we do it |
-| --- | --- | --- |
-| Center | Subtract the average from every entry. | Remove the shared level. |
-| Normalize | Divide the centered list by its length. | Give each remaining pattern the same size. |
+For <span class="math">r = (1, −1, 0)</span>, the squared length is <span class="math">1² + (−1)² + 0² = 2</span>. Its Rayleigh quotient for B is:
 
-</div>
+<div class="equation" role="math" aria-label="The Rayleigh quotient of r is its bumpiness, 5, divided by its squared length, 2, which equals 2.5">R(r) = <span class="frac"><span>5</span><span>2</span></span> = 2.5</div>
 
-Our centered list is <span class="math">r = (1, −1, 0)</span>, with squared length 2. We could normalize it to <span class="math">r/√2</span>. Or use Chapter 11's shortcut and divide its raw score by its squared length:
+This is the bumpiness r would have after resizing it to length one. Centering removes the shared level; dividing by squared length accounts for the size of the remaining variation.
 
-<div class="equation" role="math" aria-label="The centered pattern has fair bumpiness 5 divided by 2, which equals 2.5">Fair bumpiness = 5/2 = 2.5</div>
+**The order matters.** A large shared level would increase the squared length without changing the neighboring differences. It could make the quotient small even though the pattern had not become smoother. We center first so the denominator measures only the variation around the average.
 
-A flat list leaves the zero vector after centering. There is then no remaining pattern to normalize, and its quotient is undefined. Our search considers **nonzero, centered patterns**.
+### Find the smoothest centered pattern
 
-<details markdown="1">
-<summary>Optional: why subtracting the average is a projection</summary>
+Compare r with two other centered patterns:
 
-The all-equal direction is <span class="math">h = (1, 1, 1)</span>. The shared part <span class="math">p = (2, 2, 2)</span> lies along it. Our remainder r is perpendicular to h because <span class="math">r · h = 1 − 1 + 0 = 0</span>. This is the same projection split as in Chapter 5.
-
-To find the shared part directly, write it as <span class="math">(a, a, a)</span>. Requiring the remainder to be perpendicular to h gives <span class="math">(3 − a) + (1 − a) + (2 − a) = 0</span>, so <span class="math">a = 2</span>. For any list, this calculation gives its average.
-
-Three-entry centered lists satisfy <span class="math">r₁ + r₂ + r₃ = 0</span>. The first two entries can vary freely; the third is then fixed. They form a plane perpendicular to h. Requiring length one selects a circle inside that plane.
-
-{% include visual-primer/linear/figure-48.html %}
-
-We now have another circle of candidate directions, just as in Chapter 11, but every point on this circle already has average zero.
-
-</details>
-
-### Which centered pattern is smoothest?
-
-For our bumpiness matrix B, the raw score is the sum of squared neighboring differences. Its fair score divides that sum by the centered input's squared length.
-
-The ramp <span class="math">(1, 0, −1)</span> has raw bumpiness 2 and squared length 2, so it scores 1. The zigzag <span class="math">(1, −2, 1)</span> has raw bumpiness 18 and squared length 6, so it scores 3.
+- The **ramp**, <span class="math">(1, 0, −1)</span>, goes down in two equal steps. Its bumpiness is <span class="math">1² + 1² = 2</span>, and its squared length is 2. Its quotient is <span class="math">2/2 = 1</span>.
+- The **zigzag**, <span class="math">(1, −2, 1)</span>, drops by 3 and rises by 3. Its bumpiness is <span class="math">3² + 3² = 18</span>, and its squared length is 6. Its quotient is <span class="math">18/6 = 3</span>.
 
 {% include visual-primer/linear/figure-49.html %}
 
-The ramp and zigzag are perpendicular eigenvectors of B, with eigenvalues 1 and 3.<sup class="fnref"><a href="#fn-26" id="fnref-26" data-fn="26" aria-expanded="false" aria-label="Footnote 26">[26]</a></sup> Together they describe every centered three-entry pattern. Each such pattern's quotient is a weighted average of 1 and 3.
+The ramp and zigzag are perpendicular eigenvectors of B, with eigenvalues 1 and 3.<sup class="fnref"><a href="#fn-26" id="fnref-26" data-fn="26" aria-expanded="false" aria-label="Footnote 26">[26]</a></sup> Every centered three-entry pattern can be split into a ramp piece and a zigzag piece.
 
-Therefore **the lowest quotient among centered patterns is 1, achieved by the ramp direction**. Its reverse is equally smooth. Our centered list has 25% of its squared length along the ramp and 75% along the zigzag, giving <span class="math">0.25 × 1 + 0.75 × 3 = 2.5</span>.
+That lets us use Chapter 12's argument: each centered pattern's quotient is a weighted average of 1 and 3. It cannot go below 1, and the ramp reaches 1. **The ramp is therefore the smoothest centered pattern when we compare at the same size.** Resizing or reversing it leaves its quotient unchanged.
 
 ### Why the second-smallest eigenvalue appears
 
-B has eigenvalues 0, 1, and 3. The flat direction has eigenvalue 0. Centering removes that entire component from every candidate, leaving the directions with eigenvalues 1 and 3.
+B has three perpendicular eigenvector directions:
 
-The smallest remaining eigenvalue is 1, which was the **second-smallest eigenvalue** of B. We often call it λ₂. Its eigenvector gives the smoothest centered pattern for this score.
+<div class="table-wrap" markdown="1">
 
-This explains the step used in the next primer: remove a known flat component, then find the smoothest remaining pattern. On a network, such patterns help reveal groups of strongly connected points. [Spielman, Chapters 1–2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=40).
+| Direction | Eigenvalue | After centering |
+| --- | --- | --- |
+| Flat: (1, 1, 1) | 0 | Removed |
+| Ramp: (1, 0, −1) | 1 | Kept |
+| Zigzag: (1, −2, 1) | 3 | Kept |
 
-Keep the two example matrices separate. For this bumpiness matrix B, the flat direction has the smallest eigenvalue, 0. For our earlier matrix M, the all-equal direction has the largest eigenvalue, 3. Centering always removes the average; which eigenvalue it removes depends on the matrix.
+</div>
 
-{% include visual-primer/linear/figure-50.html %}
+Centering removes the flat component, leaving only the ramp and zigzag pieces. The smallest remaining eigenvalue is 1. In B's full list of eigenvalues—0, 1, 3—it is the **second-smallest**, called λ₂ when we number them from smallest to largest.
+
+For B, λ₂ gives the minimum quotient after the flat component has been removed. Its eigenvector gives the smoothest remaining pattern.
+
+The next primer extends this idea to a network: measure squared differences across connected points, remove the shared level, and look for a smooth pattern. Such patterns can help reveal groups of strongly connected points. [Spielman, Chapters 1–2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=40).
 
 <aside class="recap" aria-labelledby="recap-title" markdown="1">
 
@@ -906,7 +871,7 @@ Keep the two example matrices separate. For this bumpiness matrix B, the flat di
 6. For a unit input v, the dot product v · Mv measures the signed amount of output along the input. For our symmetric matrix, it is a weighted average of the eigenvalues, using the input's shares of squared length. The same calculation for any input is the quadratic form Q(v) = v · Mv; its raw value also depends on input size. Bumpiness is another example of a quadratic form.
 7. When no score is negative, zero means “nothing this score counts”: the input lies entirely in directions the matrix sends to zero.
 8. The Rayleigh quotient, raw score divided by squared length, is the unit-input score for an arrow of any length. For our M it's a wave between 1 and 3, and the eigenvectors hit the two ends. The smallest eigenvalue is the lowest score; its eigenvector is the direction that gets it.
-9. A shared shift moves a list along the all-equal direction. Centering (subtracting the average) removes that direction, and normalizing fixes the size. What's left is the pattern, and the search runs inside the plane of centered lists with the same tools: for the bumpiness score, the smoothest non-flat pattern is the ramp, with the second-smallest eigenvalue, 1.
+9. Centering subtracts a list's average, removing its flat component. Dividing bumpiness by the centered list's squared length compares the remaining patterns at the same size. For our three-entry bumpiness matrix B, removing the flat direction leaves the ramp with the smallest quotient, 1: B's second-smallest eigenvalue.
 
 </aside>
 
@@ -920,7 +885,7 @@ Keep the two example matrices separate. For this bumpiness matrix B, the flat di
 
 </aside>
 
-<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Footnotes</h2><ol><li id="fn-1"><span class="fn-text">The search term is <em>spectral clustering</em>. The same idea ranks web pages, finds communities in social networks, and segments images. All of it starts with the question in this paragraph.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li><li id="fn-2"><span class="fn-text">Hi. Footnotes hold the jokes that didn't fit in the main text, plus the occasional “technically…” that keeps everything honest.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li><li id="fn-3"><span class="fn-text">Unlike most directions you get from relatives, these work no matter where you start.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li><li id="fn-4"><span class="fn-text">William Rowan Hamilton gave “scalar” and “vector” their mathematical meanings in the mid-1840s, while developing his quaternions. Real numbers, he explained, sit on a single scale running from negative to positive infinity. “Vector” comes from the Latin for “carrier.”</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li><li id="fn-5"><span class="fn-text">This is why the rule “add 1 to every entry” isn't linear in this sense, even though in one dimension f(x) = x + 1 draws a perfectly straight line. It moves the origin. That kind of rule is called <em>affine</em>, and someone will point this out if you get it wrong.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li><li id="fn-6"><span class="fn-text">For two nonzero arrows in the plane, “orthogonal” and “perpendicular” mean the same thing. “Orthogonal” also works in more dimensions, and for things like functions, where “perpendicular” starts to sound odd. Technically the zero vector is orthogonal to everything, which is about as meaningful as it sounds.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li><li id="fn-7"><span class="fn-text">√10 ≈ 3.162 is close enough to π that Zhang Heng in 2nd-century China and Brahmagupta in 7th-century India both used it as a value for π. We are not doing that here.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li><li id="fn-8"><span class="fn-text">The zero vector can't be normalized: its length is zero, and dividing by zero remains, as ever, not allowed.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li><li id="fn-9"><span class="fn-text">Without the right angle there would be an extra cross term: ‖p + r‖² = ‖p‖² + 2 p · r + ‖r‖². Here p · r = 0, so it vanishes.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li><li id="fn-10"><span class="fn-text">The wobble in the hand-drawn grid is drawn on the plane itself, so M transforms the wobbles along with everything else. That's what a linear map does to any drawing you make on the plane. (The arrow tips sit exactly where the math says, though.)</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li><li id="fn-11"><span class="fn-text">“Eigen” is German for “own,” as in “the matrix's own vectors.” English borrowed half the word and never gave it back.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li><li id="fn-12"><span class="fn-text">Keep applying M and almost every arrow swings closer and closer to the q₂ line, because each application triples the q₂ component and leaves the q₁ component alone. Repeating a matrix to find its dominant eigenvector is called the <em>power method</em>; Google's original PageRank was computed this way. (The “almost”: arrows exactly on the q₁ line have no q₂ component to triple, so they stay put.)</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li><li id="fn-13"><span class="fn-text">Flipping still counts as staying on the line. The arrow is on the same line through the origin, just facing the other way down the hallway.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li><li id="fn-14"><span class="fn-text">David Hilbert made “spectrum” the standard word in the early 1900s (Wilhelm Wirtinger had borrowed it from optics a few years before). A couple of decades later, quantum mechanics showed that the lines in atomic spectra really are computed from eigenvalues. Hilbert reportedly said he'd used the name with no idea it would apply to the actual spectra of physics. The word went from optics to math and straight back again.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li><li id="fn-15"><span class="fn-text">Of which there are a lot. Uncountably many, in fact.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li><li id="fn-16"><span class="fn-text">Rotation by 180° is sneakier: it flips every arrow, which counts as staying on the line, so every nonzero arrow is an eigenvector with eigenvalue −1.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li><li id="fn-17"><span class="fn-text">Remember the job interview in Chapter 6? x started explaining that it turns a little, and M said “Next!” The chart there says how little: about 17°. That turn is the sideways part in the picture.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li><li id="fn-18"><span class="fn-text">For a three-entry list z, B has rows (1, −1, 0), (−1, 2, −1) and (0, −1, 1). Multiplying gives zᵀBz = z₁² + 2z₂² + z₃² − 2z₁z₂ − 2z₂z₃ = (z₁ − z₂)² + (z₂ − z₃)². The next primer builds this kind of matrix from a network.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li><li id="fn-19"><span class="fn-text">One input, three different answers. Linear algebra is like this sometimes.</span> <a class="fn-back" href="#fnref-19" aria-label="Back to footnote 19 in the text">↩</a></li><li id="fn-20"><span class="fn-text">Positive semidefinite is the matrix version of “no complaints.” Not necessarily any compliments. Just no complaints.</span> <a class="fn-back" href="#fnref-20" aria-label="Back to footnote 20 in the text">↩</a></li><li id="fn-21"><span class="fn-text">An almost-vertical unit input can have a score as close to zero as we like. Removing the vertical component restricts the comparison to the perpendicular, horizontal direction.</span> <a class="fn-back" href="#fnref-21" aria-label="Back to footnote 21 in the text">↩</a></li><li id="fn-22"><span class="fn-text">Without nonnegativity, a zero can be a coincidence. The matrix with rows (1, 0) and (0, −1) gives (1, 1) a score of 1 − 1 = 0, yet sends it to (1, −1), not to zero.</span> <a class="fn-back" href="#fnref-22" aria-label="Back to footnote 22 in the text">↩</a></li><li id="fn-23"><span class="fn-text">Named after Lord Rayleigh, who also explained why the sky is blue and shared in the discovery of argon, which won him the 1904 Nobel Prize in Physics. He was having a good few decades.</span> <a class="fn-back" href="#fnref-23" aria-label="Back to footnote 23 in the text">↩</a></li><li id="fn-24"><span class="fn-text">For our x, ‖Mx‖/‖x‖ = √74/√10 ≈ 2.72, which is bigger than R(x) = 2.6. The sideways remainder adds length without adding anything along x.</span> <a class="fn-back" href="#fnref-24" aria-label="Back to footnote 24 in the text">↩</a></li><li id="fn-25"><span class="fn-text">Mathematicians call this the <em>variational characterization</em> of eigenvalues: “variational” because it comes from varying the direction and looking for the lowest and highest values. Physics is full of these. A soap film settles into a shape that (locally) minimizes its area, and light follows a path whose travel time is stationary, which is usually a minimum.</span> <a class="fn-back" href="#fnref-25" aria-label="Back to footnote 25 in the text">↩</a></li><li id="fn-26"><span class="fn-text">Using the matrix B defined in this chapter: B(1, 0, −1) = (1, 0, −1): eigenvalue 1. B(1, −2, 1) = (3, −6, 3): eigenvalue 3. The flat list is the third eigenvector, B(1, 1, 1) = (0, 0, 0): eigenvalue 0. And (1, 0, −1) · (1, −2, 1) = 1 + 0 − 1 = 0, so the two in the plane are perpendicular, as the spectral theorem promised.</span> <a class="fn-back" href="#fnref-26" aria-label="Back to footnote 26 in the text">↩</a></li></ol></section>
+<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Footnotes</h2><ol><li id="fn-1"><span class="fn-text">The search term is <em>spectral clustering</em>. The same idea ranks web pages, finds communities in social networks, and segments images. All of it starts with the question in this paragraph.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li><li id="fn-2"><span class="fn-text">Hi. Footnotes hold the jokes that didn't fit in the main text, plus the occasional “technically…” that keeps everything honest.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li><li id="fn-3"><span class="fn-text">Unlike most directions you get from relatives, these work no matter where you start.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li><li id="fn-4"><span class="fn-text">William Rowan Hamilton gave “scalar” and “vector” their mathematical meanings in the mid-1840s, while developing his quaternions. Real numbers, he explained, sit on a single scale running from negative to positive infinity. “Vector” comes from the Latin for “carrier.”</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li><li id="fn-5"><span class="fn-text">This is why the rule “add 1 to every entry” isn't linear in this sense, even though in one dimension f(x) = x + 1 draws a perfectly straight line. It moves the origin. That kind of rule is called <em>affine</em>, and someone will point this out if you get it wrong.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li><li id="fn-6"><span class="fn-text">For two nonzero arrows in the plane, “orthogonal” and “perpendicular” mean the same thing. “Orthogonal” also works in more dimensions, and for things like functions, where “perpendicular” starts to sound odd. Technically the zero vector is orthogonal to everything, which is about as meaningful as it sounds.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li><li id="fn-7"><span class="fn-text">√10 ≈ 3.162 is close enough to π that Zhang Heng in 2nd-century China and Brahmagupta in 7th-century India both used it as a value for π. We are not doing that here.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li><li id="fn-8"><span class="fn-text">The zero vector can't be normalized: its length is zero, and dividing by zero remains, as ever, not allowed.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li><li id="fn-9"><span class="fn-text">Without the right angle there would be an extra cross term: ‖p + r‖² = ‖p‖² + 2 p · r + ‖r‖². Here p · r = 0, so it vanishes.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li><li id="fn-10"><span class="fn-text">The wobble in the hand-drawn grid is drawn on the plane itself, so M transforms the wobbles along with everything else. That's what a linear map does to any drawing you make on the plane. (The arrow tips sit exactly where the math says, though.)</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li><li id="fn-11"><span class="fn-text">“Eigen” is German for “own,” as in “the matrix's own vectors.” English borrowed half the word and never gave it back.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li><li id="fn-12"><span class="fn-text">Keep applying M and almost every arrow swings closer and closer to the q₂ line, because each application triples the q₂ component and leaves the q₁ component alone. Repeating a matrix to find its dominant eigenvector is called the <em>power method</em>; Google's original PageRank was computed this way. (The “almost”: arrows exactly on the q₁ line have no q₂ component to triple, so they stay put.)</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li><li id="fn-13"><span class="fn-text">Flipping still counts as staying on the line. The arrow is on the same line through the origin, just facing the other way down the hallway.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li><li id="fn-14"><span class="fn-text">David Hilbert made “spectrum” the standard word in the early 1900s (Wilhelm Wirtinger had borrowed it from optics a few years before). A couple of decades later, quantum mechanics showed that the lines in atomic spectra really are computed from eigenvalues. Hilbert reportedly said he'd used the name with no idea it would apply to the actual spectra of physics. The word went from optics to math and straight back again.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li><li id="fn-15"><span class="fn-text">Of which there are a lot. Uncountably many, in fact.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li><li id="fn-16"><span class="fn-text">Rotation by 180° is sneakier: it flips every arrow, which counts as staying on the line, so every nonzero arrow is an eigenvector with eigenvalue −1.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li><li id="fn-17"><span class="fn-text">Remember the job interview in Chapter 6? x started explaining that it turns a little, and M said “Next!” The chart there says how little: about 17°. That turn is the sideways part in the picture.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li><li id="fn-18"><span class="fn-text">For a three-entry list z, B has rows (1, −1, 0), (−1, 2, −1) and (0, −1, 1). Multiplying gives zᵀBz = z₁² + 2z₂² + z₃² − 2z₁z₂ − 2z₂z₃ = (z₁ − z₂)² + (z₂ − z₃)². The next primer builds this kind of matrix from a network.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li><li id="fn-19"><span class="fn-text">One input, three different answers. Linear algebra is like this sometimes.</span> <a class="fn-back" href="#fnref-19" aria-label="Back to footnote 19 in the text">↩</a></li><li id="fn-20"><span class="fn-text">Positive semidefinite is the matrix version of “no complaints.” Not necessarily any compliments. Just no complaints.</span> <a class="fn-back" href="#fnref-20" aria-label="Back to footnote 20 in the text">↩</a></li><li id="fn-21"><span class="fn-text">An almost-vertical unit input can have a score as close to zero as we like. Removing the vertical component restricts the comparison to the perpendicular, horizontal direction.</span> <a class="fn-back" href="#fnref-21" aria-label="Back to footnote 21 in the text">↩</a></li><li id="fn-22"><span class="fn-text">Without nonnegativity, a zero can be a coincidence. The matrix with rows (1, 0) and (0, −1) gives (1, 1) a score of 1 − 1 = 0, yet sends it to (1, −1), not to zero.</span> <a class="fn-back" href="#fnref-22" aria-label="Back to footnote 22 in the text">↩</a></li><li id="fn-23"><span class="fn-text">Named after Lord Rayleigh, who also explained why the sky is blue and shared in the discovery of argon, which won him the 1904 Nobel Prize in Physics. He was having a good few decades.</span> <a class="fn-back" href="#fnref-23" aria-label="Back to footnote 23 in the text">↩</a></li><li id="fn-24"><span class="fn-text">For our x, ‖Mx‖/‖x‖ = √74/√10 ≈ 2.72, which is bigger than R(x) = 2.6. The sideways remainder adds length without adding anything along x.</span> <a class="fn-back" href="#fnref-24" aria-label="Back to footnote 24 in the text">↩</a></li><li id="fn-25"><span class="fn-text">Mathematicians call this the <em>variational characterization</em> of eigenvalues: “variational” because it comes from varying the direction and looking for the lowest and highest values. Physics is full of these. A soap film settles into a shape that (locally) minimizes its area, and light follows a path whose travel time is stationary, which is usually a minimum.</span> <a class="fn-back" href="#fnref-25" aria-label="Back to footnote 25 in the text">↩</a></li><li id="fn-26"><span class="fn-text">Using the matrix B defined in this chapter: B(1, 0, −1) = (1, 0, −1): eigenvalue 1. B(1, −2, 1) = (3, −6, 3): eigenvalue 3. The flat direction has eigenvalue 0: B(1, 1, 1) = (0, 0, 0). Also, (1, 0, −1) · (1, −2, 1) = 1 + 0 − 1 = 0, so the ramp and zigzag are perpendicular.</span> <a class="fn-back" href="#fnref-26" aria-label="Back to footnote 26 in the text">↩</a></li></ol></section>
 
 <footer class="credits">
 <p>The stick figures, comics and charts are original drawings, made in the general style of <a href="https://xkcd.com/">xkcd</a> as a tribute. This page is not affiliated with or endorsed by xkcd or Randall Munroe. Every figure from the original primer has been redrawn with the same coordinates, and the figures new to this edition use the same running example; the wobble moves the middle of each line, never its endpoints.</p>
