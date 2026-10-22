@@ -1,52 +1,13 @@
 ---
 layout: visual-primer
 title: "A Visual Primer on Spectral Graph Theory"
-date: 2026-10-20 00:00:02 -0700
-permalink: /Spectral-Graph-Theory-Visual-Primer/
 primer: spectral
-excerpt: "Understand graph Laplacians, smooth node patterns, the second eigenvalue, and spectral cuts with worked examples and interactive figures."
 ---
 
-**Part 2 of a two-part visual series.** <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">Read Part 1: A Primer on Linear Algebra</a>.
+> "When we try to pick out anything by itself, we find it hitched to everything else in the Universe." - John Muir
 
-<p class="eyebrow" markdown="1">Spectral graph theory · Primer 2 · Stick-figure edition</p>
-
-<p class="deck" markdown="1">Eight routers, twelve links, and one number that knows where the network is weak.</p>
-
-<p class="promise" markdown="1">Same math as the original primer. More pictures, a few jokes, and a reason for every step.</p>
-
-A network is a set of routers and the links between them. Every router in ours has three links. That sounds sturdy, and locally it is. It says nothing about whether a whole *group* of routers can be nearly cut off from the rest. This primer is about finding that out from the wiring alone.
-
-Here's the question the whole primer builds toward. Pick any group of routers. Count the links that leave the group, and divide by the group's size. Which group gets the lowest number? A low number means a bottleneck: many routers, few ways out. Checking every group is hopeless once a network has a few dozen routers. So we'll do something sneakier. We'll write the wiring as a matrix. We'll give every router a number and score the whole pattern of numbers by how much it disagrees across links. Then one number from the matrix, its second eigenvalue, will tell us how weak the weakest boundary can be. Everything in this primer is a tool for that search.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup>
-
-If you read <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">Primer 1</a>, you have met eigenvectors, perpendicular components, quadratic forms, and the Rayleigh quotient. Here we use those tools to measure how much neighboring nodes disagree. We will introduce centering, which removes a shared level, and see why the second-smallest eigenvalue matters for a network. If you haven't read it, that's fine too. Every tool is rebuilt when it's needed, with a picture.
-
-<aside class="howto" aria-label="How to read this page" markdown="1">
-
-**How to read this page.** Every idea comes with a picture; read the picture first and the words second. Little bracketed numbers are footnotes<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup>: click one and it pops up. Two figures have sliders; they work offline, and a drawn version of each is nearby for phones and printouts. Comics have bonus alt-text: hover over the comic, or tap “alt-text” underneath it.
-
-</aside>
-
-{% include visual-primer/spectral/figure-01.html %}
-
-{% include visual-primer/spectral/figure-02.html %}
-
-<nav aria-label="Contents"><span>In this post</span><ol>
-<li><a href="#graph">Start with the graph</a> <i>three friends each, two doors out</i></li>
-<li><a href="#laplacian">Turn the wiring into A, D and L</a> <i>three machines at one node</i></li>
-<li><a href="#boundary">What does “connected” leave out?</a> <i>a path exists; so what</i></li>
-<li><a href="#energy">Use node values to test a division</a> <i>count the disagreements</i></li>
-<li><a href="#fair">Make the comparison fair</a> <i>what to hold fixed</i></li>
-<li><a href="#adjust">Improve the first pattern</a> <i>meet in the middle</i></li>
-<li><a href="#second">Can any pattern do better?</a> <i>you can't average below the smallest</i></li>
-<li><a href="#cut">Turn the answer back into a cut</a> <i>the graph on a line</i></li>
-<li><a href="#cheeger">What the eigenvalue says about unseen cuts</a> <i>a floor nobody can dig under</i></li>
-<li><a href="#expansion">Rewire the graph to improve expansion</a> <i>same links, no bottleneck</i></li>
-<li><a href="#gap">Recognize the gap in another matrix</a> <i>one graph, two numbers</i></li>
-<li><a href="#rng">Bring the ideas back to RNG</a> <i>a good graph still needs a map</i></li>
-</ol></nav>
-
-<a id="graph" class="chapter-anchor"></a>
+## Provide Context
+Todo: 
 
 ## 1. Start with the graph
 
