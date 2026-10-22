@@ -678,107 +678,60 @@ For a symmetric matrix with both positive and negative eigenvalues, contribution
 
 <a id="rayleigh" class="chapter-anchor"></a>
 
-## 11. Compare directions at the same size
+## 11. Compare directions without resizing
 
-### Compare directions without resizing every input
+In Chapter 9, we resized each input to length one before comparing directions. We can get the same measurement directly from the original input, using one division.
 
-In Chapter 9, we resized each input to length one before comparing directions. We can get the same comparison directly from the original input, using one division.
+### One direction, two lengths
 
-Our input x has raw score 26. Half of x has raw score 6.5, even though it points in exactly the same direction. The raw score still includes input size:
+Our input <span class="math">x = (3, 1)</span> has raw score 26. Half of x is <span class="math">x/2 = (1.5, 0.5)</span>, with raw score 6.5. The shorter arrow points in exactly the same direction, but its raw score is smaller.
 
-{% include visual-primer/linear/figure-39.html %}
-
-When an input's length doubles, both its raw score and its squared length multiply by four. Their ratio stays the same. This ratio is called the **Rayleigh quotient**, written R(x).<sup class="fnref"><a href="#fn-23" id="fnref-23" data-fn="23" aria-expanded="false" aria-label="Footnote 23">[23]</a></sup> “Quotient” simply means the result of a division.
-
-<div class="equation" role="math" aria-label="R of x equals Q of x divided by squared length, which equals x transpose M x divided by x transpose x">R(x) = <span class="frac"><span>Q(x)</span><span>‖x‖²</span></span> = <span class="frac"><span>xᵀMx</span><span>xᵀx</span></span></div>
-
-For x, it is <span class="math">26/10 = 2.6</span>. For half of x, it is <span class="math">6.5/2.5 = 2.6</span>. **The quotient is the score the same direction would get at length one.** The input must be nonzero, so the denominator is not zero.
+Now divide each raw score by the input's squared length:
 
 <div class="table-wrap" markdown="1">
 
-| Input | Squared length | Raw score | Quotient |
+| Input | Raw score | Squared length | After dividing |
 | --- | --- | --- | --- |
-| x̂ = (3, 1)/√10 | 1 | 2.6 | 2.6 |
-| x/2 = (1.5, 0.5) | 2.5 | 6.5 | 2.6 |
-| x = (3, 1) | 10 | 26 | 2.6 |
-| 2x = (6, 2) | 40 | 104 | 2.6 |
+| x | 26 | 10 | 2.6 |
+| x/2 | 6.5 | 2.5 | 2.6 |
 
 </div>
 
-<details markdown="1">
-<summary>Optional: see why dividing by squared length works</summary>
-
-A unit version of x is <span class="math">x/‖x‖</span>. Its output is <span class="math">Mx/‖x‖</span>. Dotting them divides the original score by <span class="math">‖x‖ × ‖x‖ = ‖x‖²</span>. That is exactly the Rayleigh quotient.
+Both give 2.6. Dividing by squared length removes the effect of input size, so the two arrows get the same result.
 
 {% include visual-primer/linear/figure-40.html %}
 
-</details>
+### Why divide by squared length?
 
-### Turn the input and watch the score change
+Normalizing an input divides it by its length. Its output is divided by the same amount. The dot product multiplies entries from both arrows, so the result is divided by length twice—once for the input and once for the output. Together, those two factors give <span class="math">‖x‖ × ‖x‖ = ‖x‖²</span>.
 
-Every input in the next experiment has length one. Drag to turn it, or use the buttons to select our running direction and the two eigenvector directions.
+We can therefore calculate the measurement for a unit input without actually resizing the arrow:
+
+<div class="equation" role="math" aria-label="R of x equals the raw score Q of x divided by the squared length of x">R(x) = <span class="frac"><span>Q(x)</span><span>‖x‖²</span></span></div>
+
+This is called the **Rayleigh quotient**. “Quotient” means the result of a division.<sup class="fnref"><a href="#fn-23" id="fnref-23" data-fn="23" aria-expanded="false" aria-label="Footnote 23">[23]</a></sup>
+
+**R(x) is the measurement that the same direction would have at length one.** For our x, it is <span class="math">26/10 = 2.6</span>, the result we found in Chapter 9 for x̂. The input must be nonzero, because we cannot divide by a squared length of zero.
+
+### Turn the input and watch R change
+
+Call the unit input in the next picture v. Since its squared length is 1, <span class="math">R(v) = Q(v)</span>. It starts at <span class="math">v = x̂</span>, our running direction.
+
+Click **“Along u₁”**, then **“Along u₂.”** The quotient changes from 1 to 3. Now choose **“Along x̂”**: it gives 2.6. Use the slider to explore other directions.
 
 {% include visual-primer/linear/figure-41.html %}
 
-Along u₁, the quotient is 1. Along u₂, it is 3. Along x̂, it is 2.6. At an eigenvector, the dashed sideways remainder disappears because the whole output stays on the input's line.
+The blue arrow, <span class="math">R(v)v</span>, is the output's projection onto the input line. For any nonzero input x, the same rule gives the projection <span class="math">R(x)x</span>. The full output can also have a sideways part, so R(x) is generally different from the ratio of the full output length to the input length.<sup class="fnref"><a href="#fn-24" id="fnref-24" data-fn="24" aria-expanded="false" aria-label="Footnote 24">[24]</a></sup> At an eigenvector, the sideways part disappears.
 
-<details class="resize-experiment" markdown="1">
-<summary>What if we resize a copy of the input?</summary>
+### What changes when you turn?
 
-Keep the circle experiment at length one. Here we resize a separate copy of its current input. The copy and all its pieces change length together; the unit reference arrows stay fixed.
-
-<div class="interactive-controls">
-<div class="control-row"><label for="input-length">Length of the input copy</label><output id="length-output" for="input-length">1</output><input id="input-length" type="range" min="0.25" max="2" step="0.05" value="1" aria-describedby="resize-instruction"></div>
-<div class="readouts" aria-live="polite" aria-atomic="true"><div class="readout"><span>Copy's squared length</span><strong id="norm-output">1</strong></div><div class="readout"><span>Copy's raw score</span><strong id="score-output">2.6</strong></div><div class="readout"><span>Copy's quotient</span><strong id="ratio-output">2.6</strong></div></div>
-<p id="resize-instruction">Changing the copy's length changes its raw score and its squared length by the same factor, so their ratio doesn't budge. The circle picture above keeps showing the unit input.</p>
-</div>
-
-For the original x, halving its length lowers the score from 26 to 6.5 and the squared length from 10 to 2.5. Both ratios are still 2.6. The shrink ray strikes out.
-
-</details>
-
-### Read the quotient from the shares
-
-This is the same weighted average we found in Chapter 9. For our symmetric M, multiply each eigenvalue by its share of the input's squared length and add.
-
-Our x has squared-length shares <span class="math">2/10 = 0.2</span> and <span class="math">8/10 = 0.8</span>:
+Chapter 9 showed that the measurement is a weighted average of the eigenvalues. Our original x and its unit version x̂ both have 20% of their squared length along u₁ and 80% along u₂:
 
 <div class="equation" role="math" aria-label="R of x is 0.2 times 1 plus 0.8 times 3, which equals 2.6">R(x) = 0.2 × 1 + 0.8 × 3 = 2.6</div>
 
-The shares are never negative and always add to one. **Turning the input changes the shares. Resizing it leaves them unchanged.** This explains why the quotient compares directions fairly.
+Resizing an arrow scales both pieces together, keeping those shares unchanged. Turning it can change the shares. **Resizing leaves the quotient unchanged; turning can change it.**
 
-<details markdown="1">
-<summary>Optional: why the graph has a wave shape</summary>
-
-As the unit input turns, its projections on the eigenvector lines change smoothly. Squaring their lengths gives the changing shares. If s is the share along u₂, the other share is <span class="math">1 − s</span>, so the score is <span class="math">1 × (1 − s) + 3 × s = 1 + 2s</span>.
-
-{% include visual-primer/linear/figure-42.html %}
-
-If θ is the input's angle from the horizontal axis, its u₂ share is <span class="math">cos²(θ − 45°)</span>. The score is therefore <span class="math">2 + sin(2θ)</span>. You do not need this trigonometry to use the weighted-average rule.
-
-</details>
-
-<details markdown="1">
-<summary>Optional: what the quotient measures in the output picture</summary>
-
-The output's projection onto the input line is <span class="math">R(x)x</span>. For our example this is <span class="math">2.6x = (7.8, 2.6)</span>. The remaining step to <span class="math">Mx = (7, 5)</span> is <span class="math">(−0.8, 2.4)</span>, perpendicular to x.
-
-To check the formula, call the projection multiplier k. Its remainder <span class="math">Mx − kx</span> must have dot product zero with x. Thus <span class="math">x · Mx = k(x · x)</span>, giving <span class="math">k = R(x)</span>.
-
-The quotient measures the output along the input's line. It is generally different from the ratio of the full output length to the input length, because the full output can also have a sideways part.<sup class="fnref"><a href="#fn-24" id="fnref-24" data-fn="24" aria-expanded="false" aria-label="Footnote 24">[24]</a></sup>
-
-</details>
-
-<details markdown="1">
-<summary>Optional: the same weighted average in more dimensions</summary>
-
-For a real symmetric matrix, choose perpendicular unit eigenvectors uᵢ. Let cᵢ be the input's coefficient along uᵢ, and λᵢ its eigenvalue. The index i identifies a direction; Σ means to add over all directions.
-
-The squared length is <span class="math">Σᵢ cᵢ²</span>, and the raw score is <span class="math">Σᵢ λᵢcᵢ²</span>. Each share is <span class="math">wᵢ = cᵢ² / Σⱼ cⱼ²</span>. Therefore <span class="math">R(x) = Σᵢ wᵢλᵢ</span>: the same weighted-average rule.
-
-</details>
-
-The experiment suggests where the smallest and largest scores occur. Next, the weighted-average rule will prove it for every direction.
+The experiment suggests where the smallest and largest quotients occur. Next, we will use the weighted-average rule to prove that the eigenvector directions reach both limits.
 
 <a id="minimum" class="chapter-anchor"></a>
 
