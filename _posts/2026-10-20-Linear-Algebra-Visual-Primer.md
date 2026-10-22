@@ -468,7 +468,9 @@ Consider A with rows <span class="math">(1, 1)</span> and <span class="math">(0,
 
 **Perpendicular directions let us measure one piece at a time.** When we project x onto the u₁ line, the u₂ piece contributes zero along that direction. So the projection gives us exactly the u₁ piece. The same works the other way around.
 
-For A, we can still split the input into two pieces: <span class="math">x = (2, 0) + (1, 1)</span>. But both pieces include some horizontal movement: two steps from (2, 0) and one from (1, 1). Projecting x onto the horizontal line picks up all three steps, giving (3, 0). It does not isolate the first piece, (2, 0).
+For A, the two complete pieces are (2, 0) and (1, 1). Add their coordinates to get the input: <span class="math">x = (2 + 1, 0 + 1) = (3, 1)</span>.
+
+Projecting x onto the horizontal line keeps its horizontal coordinate, 3, and sets its vertical coordinate to zero. That gives (3, 0). The horizontal coordinate includes 2 from the first piece and 1 from the second. So the projection combines contributions from both pieces, instead of recovering just the first piece, (2, 0).
 
 {% include visual-primer/linear/figure-26.html %}
 
