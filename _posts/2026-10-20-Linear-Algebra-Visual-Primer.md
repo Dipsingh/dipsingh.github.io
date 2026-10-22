@@ -384,18 +384,20 @@ The figure compares **before: q₁ and q₂** with **after: u₁ and u₂**. Fro
 
 {% include visual-primer/linear/figure-22.html %}
 
-Because u₁ and u₂ have length one, a coefficient's absolute value is the length of its piece. Squaring the coefficient gives that piece's squared length. Because these unit arrows are also perpendicular, dot products give the coefficients of the two pieces:
+Each reference arrow is one unit long, so the coefficient tells us the length of its piece. The sign only tells us the direction: 3 means a length of 3 along the reference arrow, while −3 means the same length in the opposite direction.
+
+Squaring the coefficient gives the piece’s squared length. Since u₁ and u₂ are perpendicular unit arrows, we find each coefficient by taking a dot product:
 
 <div class="table-wrap" markdown="1">
 
-| Reference | Coefficient | Squared length of the piece |
+| Reference arrow | Coefficient | Squared length of the piece |
 | --- | --- | --- |
-| u₁ | c₁ = x · u₁ = √2 | c₁² = 2 |
-| u₂ | c₂ = x · u₂ = 2√2 | c₂² = 8 |
+| u₁ | c₁ = x · u₁ = √2 | (√2)² = 2 |
+| u₂ | c₂ = x · u₂ = 2√2 | (2√2)² = 8 |
 
 </div>
 
-A basis with perpendicular, length-one arrows is called **orthonormal**. The word packages the two properties we just used.
+Together, u₁ and u₂ form an **orthonormal basis**. This simply means the reference arrows are perpendicular to each other and each has length one.
 
 ### Why does our matrix allow this?
 
@@ -405,11 +407,57 @@ M has matching entries across its main diagonal: the upper-right and lower-left 
 
 The **spectral theorem** says that every real symmetric matrix has an orthonormal basis of eigenvectors, with real eigenvalues. We can choose enough perpendicular unit eigenvectors to describe every input.
 
-For M, the recipe is now simple: project the input onto the u₁ and u₂ lines, multiply each piece by its eigenvalue, then add the results.
+For our two-dimensional example, this means we can write any input as:
+
+<div class="equation" role="math" aria-label="x equals c1 times u1 plus c2 times u2">x = c₁u₁ + c₂u₂</div>
+
+The **coefficients c₁ and c₂ are numbers**: they tell us how many steps to take along each unit arrow. The **components c₁u₁ and c₂u₂ are the actual arrows** that add up to x. Because u₁ and u₂ are perpendicular unit arrows, dot products give us the coefficients:
+
+<div class="equation" role="math" aria-label="c1 equals x dot u1; c2 equals x dot u2">c₁ = x · u₁<br>c₂ = x · u₂</div>
+
+Let’s work through two inputs using the same unit arrows, <span class="math">u₁ = (1, −1)/√2</span> and <span class="math">u₂ = (1, 1)/√2</span>.
+
+**Example 1: x = (3, 1)**
+
+First, find the coefficients. The dot product with u₁ subtracts the second coordinate from the first and divides by √2. The dot product with u₂ adds the coordinates and divides by √2:
+
+<div class="equation" role="math" aria-label="c1 equals x dot u1, which is 3 minus 1 divided by square root 2, giving square root 2; c2 equals x dot u2, which is 3 plus 1 divided by square root 2, giving 2 square root 2">c₁ = x · u₁ = (3 − 1)/√2 = √2<br>c₂ = x · u₂ = (3 + 1)/√2 = 2√2</div>
+
+Now multiply each coefficient by its unit arrow to get the two pieces. The √2 factors cancel:
+
+<div class="equation" role="math" aria-label="c1 u1 equals square root 2 times 1 comma minus 1 divided by square root 2, giving 1 comma minus 1; c2 u2 equals 2 square root 2 times 1 comma 1 divided by square root 2, giving 2 comma 2">c₁u₁ = √2 × (1, −1)/√2 = (1, −1)<br>c₂u₂ = 2√2 × (1, 1)/√2 = (2, 2)</div>
+
+Adding the pieces gives our input back: <span class="math">x = (1, −1) + (2, 2) = (3, 1)</span>.
+
+Now apply M. Its **eigenvalues are 1 along u₁ and 3 along u₂**, so it leaves the first piece unchanged and triples the second:
+
+<div class="equation" role="math" aria-label="M x equals 1 times the component c1 u1 plus 3 times the component c2 u2; this is 1 times 1 comma minus 1 plus 3 times 2 comma 2, giving 7 comma 5">Mx = 1 × (c₁u₁) + 3 × (c₂u₂)<br>= 1 × (1, −1) + 3 × (2, 2)<br>= (1, −1) + (6, 6) = (7, 5)</div>
+
+The figure shows this example. On the left, M acts on unit arrows. On the right, it applies the same eigenvalues to the complete pieces of <span class="math">x = (3, 1)</span>.
 
 {% include visual-primer/linear/figure-24.html %}
 
+**Example 2: x = (4, 2)**
+
+Use the same dot products with the new input:
+
+<div class="equation" role="math" aria-label="c1 equals x dot u1, which is 4 minus 2 divided by square root 2, giving square root 2; c2 equals x dot u2, which is 4 plus 2 divided by square root 2, giving 3 square root 2">c₁ = x · u₁ = (4 − 2)/√2 = √2<br>c₂ = x · u₂ = (4 + 2)/√2 = 3√2</div>
+
+Turn those numbers into the two component arrows:
+
+<div class="equation" role="math" aria-label="c1 u1 equals square root 2 times 1 comma minus 1 divided by square root 2, giving 1 comma minus 1; c2 u2 equals 3 square root 2 times 1 comma 1 divided by square root 2, giving 3 comma 3">c₁u₁ = √2 × (1, −1)/√2 = (1, −1)<br>c₂u₂ = 3√2 × (1, 1)/√2 = (3, 3)</div>
+
+They add up to the new input: <span class="math">x = (1, −1) + (3, 3) = (4, 2)</span>.
+
+M still uses eigenvalues 1 and 3. Apply them to these new pieces:
+
+<div class="equation" role="math" aria-label="M x equals 1 times 1 comma minus 1 plus 3 times 3 comma 3, which is 1 comma minus 1 plus 9 comma 9, giving 10 comma 8">Mx = 1 × (1, −1) + 3 × (3, 3)<br>= (1, −1) + (9, 9) = (10, 8)</div>
+
+In both examples, c₁ is √2. But c₂ changes from 2√2 to 3√2, so the second component changes from (2, 2) to (3, 3). **The coefficients describe the input; the eigenvalues describe how M scales its pieces.** The eigenvalues stay the same because we are using the same M.
+
 Each eigenvector piece stays on its own line. The complete input can still turn. For a different symmetric matrix, a multiplier can also be negative, reversing a piece, or zero, removing it.
+
+We’ll return to our original input <span class="math">x = (3, 1)</span> for the rest of the primer.
 
 <details markdown="1">
 <summary>Optional: what can go wrong without symmetry?</summary>
