@@ -13,11 +13,9 @@ Todo:
 
 <p class="chapter-tag">three friends each, two doors out</p>
 
-<p class="why" markdown="1">**Why we need this.** Everything later is built on one small network. Before any matrix appears we need to read its wiring, name its parts, and see with our own eyes the weakness we'll spend the primer learning to detect.</p>
-
 ### Eight routers, twelve links
 
-Here is the graph we'll follow through the whole story. It has eight nodes, numbered 1 to 8, and twelve edges. An edge joins a pair of nodes, and two nodes joined by an edge are *neighbours*. Think of a node as a router and an edge as a cable between two routers. “Graph” is just the mathematician's word for a wiring diagram.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
+We will use one small network to see how a group of routers can have very few connections to the rest. Its graph has eight nodes, numbered 1 to 8, and twelve edges. An edge joins a pair of nodes, and two nodes joined by an edge are *neighbours*. Think of a node as a router and an edge as a cable between two routers. “Graph” is just the mathematician's word for a wiring diagram.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup>
 
 {% include visual-primer/spectral/figure-03.html %}
 
@@ -33,7 +31,7 @@ Now imagine using this graph as a network. Every router has three neighbours. Ye
 
 ### Paint one side, then write it down
 
-That is the question we'll follow. Start with this proposed division and run a *paint check*: give every node in one group the value +1 and every node in the other the value −1. These are temporary labels for testing the division. They don't change the wiring and they aren't traffic rates.
+To study this division, give every node in one group the value +1 and every node in the other the value −1. We'll call this a *paint check*. These are temporary labels for testing the division. They don't change the wiring and they aren't traffic rates.
 
 One value at every node is what we'll call a *pattern*. Collect the values in node-number order and you get a vector, <span class="math">x</span>. Its entry <span class="math">x₃</span> is the value at node 3, here +1. The entry has nothing to do with where node 3 sits on the page.
 
@@ -47,11 +45,9 @@ All our edges run both ways and count the same. There are no edges from a node t
 
 <p class="chapter-tag">three machines at one node</p>
 
-<p class="why" markdown="1">**The question.** How can we compare each node’s value with the values at its neighbours? We will do the calculation at one node first. Then A and D will organize the two parts so that L = D − A performs the comparison at every node.</p>
-
 ### Start with one node's comparison
 
-Node 3 holds +1. Its neighbours 1 and 2 also hold +1, and its neighbour 5 holds −1. Subtract each neighbour's value from node 3's own value, then add the three results:
+To find where the two groups meet, we can compare each node's value with its neighbours' values. Start with node 3, which holds +1. Its neighbours 1 and 2 also hold +1, and its neighbour 5 holds −1. Subtract each neighbour's value from node 3's own value, then add the three results:
 
 <div class="equation" role="math" aria-label="At node 3, one minus one, plus one minus one, plus one minus negative one, equals two.">(1 − 1) + (1 − 1) + (1 − (−1)) = 2</div>
 
@@ -85,7 +81,7 @@ A node's degree is the number of 1s in its row of A. Every row here has three, s
 
 ### L = D − A: the difference
 
-D supplies the copies of the node's own value. A supplies the neighbours' sum. Subtracting one output from the other gives exactly the comparison we started with. At node 3 it is 3 − 1 = 2. Call the matrix that does this subtraction <span class="math">L = D − A</span>. It is the graph's *Laplacian*.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
+D supplies the copies of the node's own value. A supplies the neighbours' sum. Subtracting one output from the other gives exactly the comparison we started with. At node 3 it is 3 − 1 = 2. Call the matrix that does this subtraction <span class="math">L = D − A</span>. It is the graph's *Laplacian*.<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup>
 
 {% include visual-primer/spectral/figure-09.html %}
 
@@ -107,8 +103,6 @@ Adding all the entries of Lx gives zero: each edge’s difference appears positi
 
 <p class="chapter-tag">a path exists; so what</p>
 
-<p class="why" markdown="1">**The question.** A path exists between every pair of nodes. Does that mean every group has plenty of connections to the rest? We need a score that accounts for both the number of outward links and the group’s size.</p>
-
 Our graph is *connected*: you can walk from any node to any other along edges. But the two links between the halves show how little that promises. A path exists; the path is just very easy to cut.
 
 To compare proposed divisions we need two numbers: how many edges leave a group, and how big the group is. Call the chosen group of nodes <span class="math">S</span>. Its *boundary*, written <span class="math">∂S</span>, is the set of edges with one end inside S and one end outside. Separating S from the rest is a *cut*. Vertical bars, as in <span class="math">|S|</span> or <span class="math">|∂S|</span>, mean “how many”.
@@ -123,7 +117,7 @@ Why the smaller side? Cutting one node away from our graph severs three edges: t
 
 Our four-against-four cut scores <span class="math">2/4 = 0.5</span>. Is there a group with an even lower score? The lowest score anywhere in the graph is called its *edge expansion*. We write G for the graph and <span class="math">h(G)</span> for its edge expansion. A small h(G) means some group has few ways out for its size.
 
-Scoring one proposed group was easy. Finding the lowest score over *every* group is the hard part. Checking all nonempty groups of up to half the nodes gives 162 candidate groups for eight nodes, representing 127 distinct cuts. For forty nodes, the number of candidate groups exceeds 600 billion.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
+Scoring one proposed group was easy. Finding the lowest score over *every* group is the hard part. Checking all nonempty groups of up to half the nodes gives 162 candidate groups for eight nodes, representing 127 distinct cuts. For forty nodes, the number of candidate groups exceeds 600 billion.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
 {% include visual-primer/spectral/figure-12.html %}
 
@@ -135,9 +129,7 @@ The matrices give us a different way in. Our +1 and −1 paint already marks a p
 
 <p class="chapter-tag">one number for all the edge disagreements</p>
 
-<p class="why" markdown="1">**The question.** We have a value at every node. How can we combine the disagreements across all the links into one useful number?</p>
-
-Start with the painting from Chapter 1: +1 at nodes 1–4 and −1 at nodes 5–8. We want a calculation that notices where an edge joins different values.
+Start with the painting from Chapter 1: +1 at nodes 1–4 and −1 at nodes 5–8. We want one number that adds up the disagreement across all the edges. Each edge should contribute according to how different its two endpoint values are.
 
 ### Let each edge contribute one amount
 
@@ -146,7 +138,7 @@ For one edge, subtract the value at one end from the value at the other, then sq
 - **Equal values:** the difference is zero, so the contribution is zero.
 - **Values +1 and −1:** the difference is 2 or −2, depending on the reading direction. Either way, its square is 4.
 
-Add these contributions over all the edges, counting each edge once. We call the total the pattern’s **energy**. Here, energy measures disagreement between node values.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
+Add these contributions over all the edges, counting each edge once. We call the total the pattern’s **energy**. Here, energy measures disagreement between node values.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
 
 <div class="equation" role="math" aria-label="Energy equals the sum of squared differences across edges, counting each edge once.">energy = sum of squared differences across edges</div>
 
@@ -188,7 +180,7 @@ Multiplying matching entries and adding is a **dot product**. The notation xᵀL
 
 <div class="equation" role="math" aria-label="E of x equals x transpose L x, which equals the sum over edges of x i minus x j squared.">E(x) = xᵀLx = ∑<sub>edges {i, j}</sub> (xᵢ − xⱼ)²</div>
 
-We now have two ways to compute one quantity: add the squared edge gaps, or use the Laplacian and a dot product. The answer is always nonnegative.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup>
+We now have two ways to compute one quantity: add the squared edge gaps, or use the Laplacian and a dot product. The answer is always nonnegative.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
 
 ### Next, let the values change
 
@@ -223,8 +215,6 @@ There is a different calculation that is easy to confuse with energy: squaring t
 ## 5. Make the comparison fair
 
 <p class="chapter-tag">a better arrangement, or just smaller numbers?</p>
-
-<p class="why" markdown="1">**The question.** If we change the node values and the energy goes down, how do we know we have found a better pattern?</p>
 
 Chapter 4 gave us a way to measure disagreement: take the difference across each edge, square it, and add the results. We want to arrange the values so that this energy is small. Before we start searching, we need to make the comparison fair.
 
@@ -262,7 +252,7 @@ Both patterns above have variation 8. The grouped pattern has energy 8; the alte
 
 Suppose we add 10 to every value. The two levels +1 and −1 become 11 and 9. Their difference is still 2. Every edge sees exactly the same gap as before, so the energy is unchanged.
 
-We do not need to treat these as separate candidates. Subtract the average from every value. In this example the average is 10, so we get +1 and −1 again. In general, the result always has **mean zero**, while every difference between nodes stays the same.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup>
+We do not need to treat these as separate candidates. Subtract the average from every value. In this example the average is 10, so we get +1 and −1 again. In general, the result always has **mean zero**, while every difference between nodes stays the same.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
 
 Mean zero means that the positive and negative values add up to zero. It does not require equal numbers of positive and negative nodes.
 
@@ -274,7 +264,7 @@ For four +1 values and four −1 values, there are eight squares equal to 1. The
 
 Dividing the values by √8 divides every squared gap by 8 too. The grouped pattern’s energy goes from 8 to **1**. The alternating pattern’s energy goes from 24 to **3**. Their relative quality has not changed; they are now on our agreed scale.
 
-We choose total spread **1** for convenience.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup> Any fixed positive amount would work. It is the *sum of the squares* that must equal 1. The individual values can still differ and change.
+We choose total spread **1** for convenience.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup> Any fixed positive amount would work. It is the *sum of the squares* that must equal 1. The individual values can still differ and change.
 
 ### The search now has two simple rules
 
@@ -327,9 +317,7 @@ If the graph has disconnected pieces, each piece can hold its own constant value
 
 <p class="chapter-tag">can a gentler boundary lower the total?</p>
 
-<p class="why" markdown="1">**The question.** Our first allowed pattern has energy 1. Can we change the node values to lower that energy while keeping the same overall spread?</p>
-
-We will try one simple idea: bring the values closer together at the boundary between the two groups. The wiring stays fixed. We are changing only the numbers assigned to the nodes.
+Our first pattern has energy 1. To lower it, we will try bringing the values closer together at the boundary between the two groups. We will keep the mean at zero and the total squared spread at 1, so the comparison stays fair. The wiring stays fixed; we change only the numbers assigned to the nodes.
 
 ### Start by finding where the disagreement is
 
@@ -441,15 +429,13 @@ The numerator adds the two sources of disagreement. The denominator keeps the co
 
 <p class="chapter-tag">why the second eigenvector wins</p>
 
-<p class="why" markdown="1">**The question.** Chapter 6 found a pattern with energy about 0.764. How do we know that some completely different pattern cannot do better?</p>
-
-The slider tried one particular way of arranging the eight node values. It kept pairs of nodes equal and kept the two halves as mirror images. We could also try patterns that break those rules. Perhaps giving every node its own value would lower the energy further.
+The slider found a pattern with energy about 0.764 by trying one particular way of arranging the eight node values. It kept pairs of nodes equal and kept the two halves as mirror images. We could also try patterns that break those rules. Perhaps giving every node its own value would lower the energy further.
 
 This chapter explains why it cannot. We will stay with the same eight-node graph and build up to one idea: **every allowed pattern has an energy that is a weighted average of certain basic energies. The smallest available one is about 0.764.**
 
 ### First, remember what we are comparing
 
-A **pattern** is one number at each node. Its **energy** measures the disagreement across the edges: for each edge, take the difference between its two endpoint values, square it, and add all those squares.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup>
+A **pattern** is one number at each node. Its **energy** measures the disagreement across the edges: for each edge, take the difference between its two endpoint values, square it, and add all those squares.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup>
 
 We want small differences across edges, while keeping some spread across the whole graph. Chapter 5 made the comparison fair with two rules:
 
@@ -464,9 +450,9 @@ There are infinitely many ways to choose eight node values. How could we reason 
 
 The useful fact is that the Laplacian L gives us a set of eight special **building-block patterns**. Every possible assignment of values can be made by adding suitable amounts of these eight patterns together. Each building block is itself a whole list of eight node values.
 
-These special patterns are called **eigenvectors**. Apply L to one, and its shape stays the same: every entry is multiplied by the same number. That multiplier is its **eigenvalue**.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
+These special patterns are called **eigenvectors**. Apply L to one, and its shape stays the same: every entry is multiplied by the same number. That multiplier is its **eigenvalue**.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup>
 
-Why can we use them as a complete set of building blocks? Our edges are undirected, so L is symmetric. A result from linear algebra guarantees that we can choose eight eigenvectors that are perpendicular to one another and together describe every pattern.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup> The optional algebra below explains why that perpendicularity matters.
+Why can we use them as a complete set of building blocks? Our edges are undirected, so L is symmetric. A result from linear algebra guarantees that we can choose eight eigenvectors that are perpendicular to one another and together describe every pattern.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> The optional algebra below explains why that perpendicularity matters.
 
 We scale each building block so that its squared entries add up to 1. At that size, **its eigenvalue is also its energy**. We can therefore put the building blocks in order, from the lowest energy to the highest:
 
@@ -482,7 +468,7 @@ We scale each building block so that its squared entries add up to 1. At that si
 
 </div>
 
-These energies are calculated from this graph’s wiring. We have not chosen them to make the example work. Four different building blocks can have the same energy, as happens here with 4.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup>
+These energies are calculated from this graph’s wiring. We have not chosen them to make the example work. Four different building blocks can have the same energy, as happens here with 4.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
 
 ### Why the zero-energy pattern is set aside
 
@@ -518,7 +504,7 @@ We label the eigenvalues in increasing order: λ₁, λ₂, and so on. The flat 
 
 <div class="equation" role="math" aria-label="Lambda two equals three minus the square root of five, approximately 0.764.">λ₂ = 3 − √5 ≈ 0.764<small>the lowest energy of any mean-zero pattern with total squared spread 1</small></div>
 
-What does u₂ look like? It is the slider’s winning pattern from Chapter 6, at t ≈ 0.618.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup> Its values, rounded to three decimal places, are:
+What does u₂ look like? It is the slider’s winning pattern from Chapter 6, at t ≈ 0.618.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup> Its values, rounded to three decimal places, are:
 
 <div class="table-wrap" markdown="1">
 
@@ -535,7 +521,7 @@ The boundary values sit closer to zero than the interior values. That is the com
 
 **u₂ is the pattern: one value per node. λ₂ is the number: the energy that pattern achieves.** The subscript 2 means second in the ordered list of eigenvectors or eigenvalues. It does not mean node 2.
 
-An eigenvector for λ₂ is called a **Fiedler vector**, and λ₂ is called the graph’s **algebraic connectivity**.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup> Reversing every sign gives an equally good pattern, since squared differences do not change.
+An eigenvector for λ₂ is called a **Fiedler vector**, and λ₂ is called the graph’s **algebraic connectivity**.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup> Reversing every sign gives an equally good pattern, since squared differences do not change.
 
 The slider found the best pattern because this particular family included u₂. A different restricted family might miss it. The eigenvector argument is what lets us rule out a better answer anywhere else.
 
@@ -567,7 +553,7 @@ The same reasoning works for an undirected graph of any size. With 100,000 nodes
 
 On a connected graph, zero energy forces every pair of neighbours to agree. That agreement travels through the graph until all nodes have the same value. So the flat direction is the only zero-energy direction, and λ₂ is positive.
 
-If the graph has two disconnected pieces, each piece can hold its own constant value. One can sit above zero and the other below, chosen so the overall mean is zero. No edge connects the pieces, so no edge sees a difference. After rescaling, this is an allowed pattern with energy zero. A second zero eigenvalue appears, and λ₂ becomes zero.<sup class="fnref"><a href="#fn-16" id="fnref-16" data-fn="16" aria-expanded="false" aria-label="Footnote 16">[16]</a></sup>
+If the graph has two disconnected pieces, each piece can hold its own constant value. One can sit above zero and the other below, chosen so the overall mean is zero. No edge connects the pieces, so no edge sees a difference. After rescaling, this is an allowed pattern with energy zero. A second zero eigenvalue appears, and λ₂ becomes zero.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
 
 {% include visual-primer/spectral/figure-23.html %}
 
@@ -580,8 +566,6 @@ We now have the node values that minimize energy. Chapter 8 asks how to use thos
 ## 8. Turn the answer back into a cut
 
 <p class="chapter-tag">use the values to propose two groups</p>
-
-<p class="why" markdown="1">**The question.** Chapter 7 gave us eight useful node values. How do we turn those values into a division of the routers?</p>
 
 The minimum-energy pattern is a list of numbers. To make a cut, we still have to decide which nodes belong on each side. We will use the numbers to propose cuts, then count the original graph’s crossing edges to judge them.
 
@@ -654,7 +638,7 @@ There are four distinct values, leaving three gaps between them. Moving a thresh
 
 A threshold also cannot separate two nodes with exactly equal values. They stay together. Moving beyond all the values would put every node on one side, which is not a valid cut.
 
-Trying the gaps in order and comparing their scores is called a **sweep**. With n nodes, there are at most n − 1 such cuts. Our four distinct values give three, compared with 127 distinct cuts of the eight-node graph.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup>
+Trying the gaps in order and comparing their scores is called a **sweep**. With n nodes, there are at most n − 1 such cuts. Our four distinct values give three, compared with 127 distinct cuts of the eight-node graph.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup>
 
 ### What did the sweep establish?
 
@@ -697,9 +681,7 @@ Nodes with equal values move as a group, and we score the cut after the whole gr
 
 <p class="chapter-tag">could another cut be much better?</p>
 
-<p class="why" markdown="1">**The question.** Chapter 8 found a cut scoring 0.5. Could a cut we have not checked have a much lower score?</p>
-
-Finding a cut tells us what is possible. To know how good it is, we also need a limit on what any other cut could achieve. Chapter 7’s minimum energy gives us such a limit.
+Chapter 8 found a cut scoring 0.5. To know how good it is, we need a limit on how much lower any other cut could score. Chapter 7’s minimum energy gives us such a limit.
 
 ### What does the score 0.5 mean?
 
@@ -757,7 +739,7 @@ For our kind of graph—undirected, with every node having the same degree d—t
 
 <div class="equation" role="math" aria-label="Lambda two divided by two is at most h of G, which is at most the square root of two d lambda two."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ √(2dλ₂)<small>h(G) is the lowest cut score; λ₂ comes from L = D − A</small></div>
 
-This is a form of **Cheeger’s inequality**.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> Read its two sides separately:
+This is a form of **Cheeger’s inequality**.<sup class="fnref"><a href="#fn-16" id="fnref-16" data-fn="16" aria-expanded="false" aria-label="Footnote 16">[16]</a></sup> Read its two sides separately:
 
 - **The left side limits every cut.** No cut scores below λ₂/2.
 - **The right side guarantees that a cut exists.** At least one cut scores no more than √(2dλ₂). Other cuts can score much higher.
@@ -816,9 +798,7 @@ A larger λ₂ raises the lower bound on every cut score. That makes it useful f
 
 <p class="chapter-tag">stronger boundaries with the same link budget</p>
 
-<p class="why" markdown="1">**The question.** Can we make the network harder to split without giving each router more links?</p>
-
-So far, we have used the graph to detect weak boundaries. Now we can use the same ideas to compare designs. The goal is to give every group enough connections to the rest of the network for its size.
+So far, we have used the graph to detect weak boundaries. Now we can use the same ideas to compare designs. The goal is to strengthen the weakest boundaries while keeping the number of links at each router fixed.
 
 ### Keep the hardware budget fixed
 
@@ -864,7 +844,7 @@ The group gets larger while its outward connections stay at two. Its cut score k
 
 ### An expander family keeps the boundary guarantee as it grows
 
-An **expander family** is a sequence of increasingly large graphs with a fixed degree and an expansion score that stays above some fixed positive number.<sup class="fnref"><a href="#fn-19" id="fnref-19" data-fn="19" aria-expanded="false" aria-label="Footnote 19">[19]</a></sup>
+An **expander family** is a sequence of increasingly large graphs with a fixed degree and an expansion score that stays above some fixed positive number.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup>
 
 For example, a guarantee h(G) ≥ 0.5 would mean that every group of k nodes, up to half the network, has at least 0.5k edges leaving it—no matter how large the network becomes. The number 0.5 is just an illustration; what matters is that the guaranteed ratio does not shrink toward zero.
 
@@ -902,9 +882,7 @@ This is what “bounded away from zero” means: there is one positive lower lim
 
 <p class="chapter-tag">follow the same pattern through A and L</p>
 
-<p class="why" markdown="1">**The question.** We have used the Laplacian’s second eigenvalue. Why do some papers describe the same graph using adjacency eigenvalues instead?</p>
-
-For our regular graph, the two descriptions translate directly into one another. We will follow the same node patterns through both matrices and see where the different numbers come from.
+We have described the graph using eigenvalues of the Laplacian L. Some papers use eigenvalues of the adjacency matrix A instead. For our regular graph, these two descriptions translate directly into one another. Following the same node patterns through both matrices shows where the different numbers come from.
 
 ### Recall what the two matrices do
 
@@ -1026,7 +1004,7 @@ A constant x becomes a y whose entries are proportional to √dᵢ. That is why 
 <details markdown="1">
 <summary>Optional: what the name Ramanujan adds</summary>
 
-A connected d-regular graph is called **Ramanujan** when all its nontrivial adjacency eigenvalues have absolute value at most 2√(d − 1). The flat pattern’s eigenvalue d is excluded; for a bipartite graph, −d is excluded too.<sup class="fnref"><a href="#fn-20" id="fnref-20" data-fn="20" aria-expanded="false" aria-label="Footnote 20">[20]</a></sup>
+A connected d-regular graph is called **Ramanujan** when all its nontrivial adjacency eigenvalues have absolute value at most 2√(d − 1). The flat pattern’s eigenvalue d is excluded; for a bipartite graph, −d is excluded too.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup>
 
 This condition checks the whole nontrivial adjacency spectrum, including negative eigenvalues. It is more specific than checking only the gap d − α₂.
 
@@ -1041,8 +1019,6 @@ RNG uses the expansion properties of random-like graphs. Its paper does not clai
 ## 12. Bring the ideas back to RNG
 
 <p class="chapter-tag">a good graph still needs a map</p>
-
-<p class="why" markdown="1">**The question.** How do these graph ideas help us understand RNG’s data-center network? We will connect three things: the topology’s outward links, the cabling that realizes them, and the routing that uses them.</p>
 
 A data-center fabric carries traffic between many different groups of endpoints. A strong connection across one convenient division is therefore not enough. We want every group to have enough links to the rest, while staying within the routers’ port limits. That is the expansion goal from Chapter 10, and it motivates RNG’s use of random-like wiring. [RNG §2](https://arxiv.org/html/2604.15261v3#S2)
 
@@ -1076,11 +1052,9 @@ When reading the results, ask which question each piece of evidence answers. **T
 
 We started by asking how to find a weak boundary. The question led to three local operations: collect the neighbours, repeat the node's own value, take the difference. We used them to test a division, to let its values bend, and to find the least-energy pattern, whose energy is λ₂. Cheeger then connected that number back to the boundaries we cared about, and expansion turned the detector into a design goal. The graph is the map. Routing still has to drive.
 
-<aside class="recap" aria-labelledby="recap-title" markdown="1">
-
 <a id="recap-title"></a>
 
-## The whole primer on one sticky note
+## Review
 
 1. A graph is nodes and edges; a pattern is one value per node. A collects the neighbours' values, D repeats a node's own value once per link, and <span class="math">L = D − A</span> asks how far a node stands above its neighbourhood.
 2. A cut's score is crossing edges divided by the smaller side. The lowest score over all groups is the edge expansion h(G), and checking every group is hopeless.
@@ -1092,21 +1066,37 @@ We started by asking how to find a weak boundary. The question led to three loca
 8. Cheeger: <span class="math">λ₂/2 ≤ h(G) ≤ √(2dλ₂)</span>. A cheap cut gives a cheap pattern, and a cheap pattern gives a cheap cut. Here 0.382 ≤ h(G) ≤ 0.5, and checking all 127 cuts gives exactly 0.5.
 9. Expansion means every group has links out in proportion to its size. Rewiring the same twelve links raised h from 0.5 to 1 and λ₂ from 0.764 to 2. Adjacency eigenvalues tell the same story in another dialect, α = d − λ. A good graph is a map; routing still has to drive.
 
-</aside>
-
-<aside class="source-note" aria-label="Sources and further reading" markdown="1">
-
-**Sources and further reading**
+## Sources and further reading
 
 1. [Bernardi et al., *RNG: Flat Datacenter Networks at Scale*](https://arxiv.org/abs/2604.15261v3), version 3, 21 May 2026. The network discussion above follows this version.
 2. [Daniel Spielman, *Spectral and Algebraic Graph Theory*](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf). A fuller development of Laplacians, the minimum argument, and graph partitioning.
 3. [Hoory, Linial and Wigderson, *Expander Graphs and Their Applications*](https://www.math.ias.edu/~avi/BOOKS/expanderbookr1.pdf). Expansion, spectral bounds, and the equal-degree form of Cheeger's inequality used here.
 4. [Joel Friedman, *A Proof of Alon's Second Eigenvalue Conjecture and Related Problems*](https://arxiv.org/abs/cs/0405020). The near-Ramanujan behaviour of random regular graphs.
-5. <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">Primer 1, stick-figure edition.</a> Dot products, projection, eigenvectors, the Rayleigh quotient and centering, on one arrow and one 2 × 2 matrix.
+5. <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">A Primer on Linear Algebra.</a> Dot products, projection, eigenvectors, and the Rayleigh quotient, using a running example with one vector and one 2 × 2 matrix.
 
-</aside>
-
-<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Footnotes</h2><ol><li id="fn-1"><span class="fn-text">The search term is <em>spectral graph theory</em>: “spectral” because eigenvalues are a matrix's spectrum, “graph” because that's the mathematician's word for dots joined by lines. The same ideas cluster data, rank web pages and cut images into regions. Here they size up a network.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li><li id="fn-2"><span class="fn-text">Hi. Footnotes hold the jokes that didn't fit in the main text, plus the occasional “technically…” that keeps everything honest.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li><li id="fn-3"><span class="fn-text">Nothing to do with charts. The word was borrowed in 1878 by J. J. Sylvester, who was drawing molecules as dots and lines and wanted a name for the drawings.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li><li id="fn-4"><span class="fn-text">Named after Laplace because it is the wiring-diagram cousin of his operator from physics, which also measures how far a value sits from the average of its surroundings. Books that want to be precise call this one the <em>combinatorial</em> Laplacian; Chapter 11 meets a cousin that divides by degree.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li><li id="fn-5"><span class="fn-text">For eight nodes, the nonempty groups of size at most four number 8 + 28 + 56 + 70 = 162. A four-versus-four cut appears twice in that list, once for each side, so these groups describe 127 distinct cuts. In general, n nodes have 2^(n − 1) − 1 nontrivial cuts when swapping the sides is counted as the same cut. For forty nodes, there are 618,679,078,297 groups of size at most twenty, representing 549,755,813,887 distinct cuts.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li><li id="fn-6"><span class="fn-text">The word is borrowed from physics, where a spring stores energy proportional to the square of its stretch. Picture every link as a spring between the two values at its ends. Our springs are never allowed to relax.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li><li id="fn-7"><span class="fn-text">A symmetric matrix whose energy is never negative is called <em>positive semidefinite</em>. L is symmetric because every edge runs both ways. Both facts matter in Chapter 7, where the eigenvectors take over.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li><li id="fn-8"><span class="fn-text"><em>Centering</em> removes the component along the all-equal direction. Subtracting the mean does this one value at a time.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li><li id="fn-9"><span class="fn-text">A pattern rescaled to variation 1 is called <em>normalized</em>. We will mostly say “rescaled”.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li><li id="fn-10"><span class="fn-text">Here, each undirected edge is counted once: E(x) = ∑{i,j} (xᵢ − xⱼ)² = xᵀLx. With mean zero, the variation is ∑ᵢ xᵢ². These are the same energy and variation used in Chapters 4–6.</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li><li id="fn-11"><span class="fn-text">“Eigen” is German for “own”: a pattern the matrix treats as its own. Primer 1 drew eigenvectors as arrows that a matrix only stretched. Here each arrow has eight entries, so we read those entries as values on eight nodes.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li><li id="fn-12"><span class="fn-text">This is the spectral theorem, drawn in Primer 1's Chapter 8 for a 2 × 2 matrix. For eight nodes the picture has eight perpendicular directions instead of two, and nothing else changes.</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li><li id="fn-13"><span class="fn-text">When an eigenvalue repeats, any nonzero mixture of eigenvectors belonging to it is another eigenvector with that eigenvalue. We choose perpendicular, length-1 building blocks within that space. If λ₂ repeats, several independent directions achieve the same minimum.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li><li id="fn-14"><span class="fn-text">The slider's pattern is an eigenvector exactly when t² + t − 1 = 0, which gives t = (√5 − 1)/2 ≈ 0.618, one over the golden ratio. The eigenvalue that comes with it is 2 − 2t = 3 − √5.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li><li id="fn-15"><span class="fn-text">After Miroslav Fiedler, who studied λ₂ in a 1973 paper and showed that it is zero exactly when the graph is disconnected, and that bigger values go with graphs that are harder to split.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li><li id="fn-16"><span class="fn-text">More generally, the number of zero Laplacian eigenvalues is the number of connected components. Each component can hold its own constant value without any edge disagreement. Centering removes one shared-level direction; if the graph is disconnected, other zero-energy directions remain.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li><li id="fn-17"><span class="fn-text">A threshold can be placed between consecutive distinct values. With k distinct values, there are k − 1 nontrivial threshold cuts, and k is at most the number of nodes n. These are only the cuts obtained from one ordering. Equal values stay together; reversing the ordering gives the same divisions with their sides swapped.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li><li id="fn-18"><span class="fn-text">Jeff Cheeger proved the original version in 1970 for curved surfaces, where it bounds the smallest vibration frequency by how thin the surface's narrowest neck is. Jozef Dodziuk, and Noga Alon with Vitali Milman, carried it over to graphs in the mid-1980s. The form used here is the one in the survey by Hoory, Linial and Wigderson, linked below.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li><li id="fn-19"><span class="fn-text">Mark Pinsker named expanders in 1973, in a paper about building telephone switching networks with few connections; Leonid Bassalygo had studied the same objects just before. Random regular graphs turned out to be expanders almost always, and explicit constructions took another decade.</span> <a class="fn-back" href="#fnref-19" aria-label="Back to footnote 19 in the text">↩</a></li><li id="fn-20"><span class="fn-text">The name is a joke that stuck: the first explicit constructions, by Lubotzky, Phillips and Sarnak and independently by Margulis in 1988, relied on a conjecture of Ramanujan's about number theory. The graphs themselves have nothing to do with him.</span> <a class="fn-back" href="#fnref-20" aria-label="Back to footnote 20 in the text">↩</a></li></ol></section>
+<section class="footnotes" aria-labelledby="footnotes-title">
+<h2 id="footnotes-title">Footnotes</h2>
+<ol>
+<li id="fn-1"><span class="fn-text">Nothing to do with charts. The word was borrowed in 1878 by J. J. Sylvester, who was drawing molecules as dots and lines and wanted a name for the drawings.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li>
+<li id="fn-2"><span class="fn-text">Named after Laplace because it is the wiring-diagram cousin of his operator from physics, which also measures how far a value sits from the average of its surroundings. Books that want to be precise call this one the <em>combinatorial</em> Laplacian; Chapter 11 meets a cousin that divides by degree.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li>
+<li id="fn-3"><span class="fn-text">For eight nodes, the nonempty groups of size at most four number 8 + 28 + 56 + 70 = 162. A four-versus-four cut appears twice in that list, once for each side, so these groups describe 127 distinct cuts. In general, n nodes have 2^(n − 1) − 1 nontrivial cuts when swapping the sides is counted as the same cut. For forty nodes, there are 618,679,078,297 groups of size at most twenty, representing 549,755,813,887 distinct cuts.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li>
+<li id="fn-4"><span class="fn-text">The word is borrowed from physics, where a spring stores energy proportional to the square of its stretch. Picture every link as a spring between the two values at its ends. Our springs are never allowed to relax.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li>
+<li id="fn-5"><span class="fn-text">A symmetric matrix whose energy is never negative is called <em>positive semidefinite</em>. L is symmetric because every edge runs both ways. Both facts matter in Chapter 7, where the eigenvectors take over.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li>
+<li id="fn-6"><span class="fn-text"><em>Centering</em> removes the component along the all-equal direction. Subtracting the mean does this one value at a time.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li>
+<li id="fn-7"><span class="fn-text">A pattern rescaled to variation 1 is called <em>normalized</em>. We will mostly say “rescaled”.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li>
+<li id="fn-8"><span class="fn-text">Here, each undirected edge is counted once: E(x) = ∑{i,j} (xᵢ − xⱼ)² = xᵀLx. With mean zero, the variation is ∑ᵢ xᵢ². These are the same energy and variation used in Chapters 4–6.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li>
+<li id="fn-9"><span class="fn-text">“Eigen” is German for “own”: a pattern the matrix treats as its own. Primer 1 drew eigenvectors as arrows that a matrix only stretched. Here each arrow has eight entries, so we read those entries as values on eight nodes.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li>
+<li id="fn-10"><span class="fn-text">This is the spectral theorem, drawn in Primer 1's Chapter 8 for a 2 × 2 matrix. For eight nodes the picture has eight perpendicular directions instead of two, and nothing else changes.</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li>
+<li id="fn-11"><span class="fn-text">When an eigenvalue repeats, any nonzero mixture of eigenvectors belonging to it is another eigenvector with that eigenvalue. We choose perpendicular, length-1 building blocks within that space. If λ₂ repeats, several independent directions achieve the same minimum.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li>
+<li id="fn-12"><span class="fn-text">The slider's pattern is an eigenvector exactly when t² + t − 1 = 0, which gives t = (√5 − 1)/2 ≈ 0.618, one over the golden ratio. The eigenvalue that comes with it is 2 − 2t = 3 − √5.</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li>
+<li id="fn-13"><span class="fn-text">After Miroslav Fiedler, who studied λ₂ in a 1973 paper and showed that it is zero exactly when the graph is disconnected, and that bigger values go with graphs that are harder to split.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li>
+<li id="fn-14"><span class="fn-text">More generally, the number of zero Laplacian eigenvalues is the number of connected components. Each component can hold its own constant value without any edge disagreement. Centering removes one shared-level direction; if the graph is disconnected, other zero-energy directions remain.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li>
+<li id="fn-15"><span class="fn-text">A threshold can be placed between consecutive distinct values. With k distinct values, there are k − 1 nontrivial threshold cuts, and k is at most the number of nodes n. These are only the cuts obtained from one ordering. Equal values stay together; reversing the ordering gives the same divisions with their sides swapped.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li>
+<li id="fn-16"><span class="fn-text">Jeff Cheeger proved the original version in 1970 for curved surfaces, where it bounds the smallest vibration frequency by how thin the surface's narrowest neck is. Jozef Dodziuk, and Noga Alon with Vitali Milman, carried it over to graphs in the mid-1980s. The form used here is the one in the survey by Hoory, Linial and Wigderson, linked below.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li>
+<li id="fn-17"><span class="fn-text">Mark Pinsker named expanders in 1973, in a paper about building telephone switching networks with few connections; Leonid Bassalygo had studied the same objects just before. Random regular graphs turned out to be expanders almost always, and explicit constructions took another decade.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li>
+<li id="fn-18"><span class="fn-text">The name is a joke that stuck: the first explicit constructions, by Lubotzky, Phillips and Sarnak and independently by Margulis in 1988, relied on a conjecture of Ramanujan's about number theory. The graphs themselves have nothing to do with him.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li>
+</ol>
+</section>
 
 <footer class="credits">
 <p>The stick figures, comics and charts are original drawings, made in the general style of <a href="https://xkcd.com/">xkcd</a> as a tribute. This page is not affiliated with or endorsed by xkcd or Randall Munroe. Every figure from the original primer has been redrawn with the same coordinates and data, and the figures new to this edition use the same eight-node graph, with every number computed from it and checked in code; the wobble moves the middle of each line, never its endpoints. The two eight-node graphs and the three-node path are teaching examples, not sampled RNG topologies.</p>
