@@ -15,7 +15,7 @@ Todo:
 
 Suppose we walk three units right and one unit up. The vector <span class="math">x = (3, 1)</span> is a record of that trip. Start at the origin, and you can draw it as an arrow ending at the point (3, 1).
 
-We can draw the same movement starting anywhere. As long as the arrow still goes three right and one up, it's still (3, 1). A vector's entries describe *changes* in coordinates, not a fixed starting point.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
+We can draw the same movement starting anywhere. As long as the arrow still goes three right and one up, it's still (3, 1). A vector's entries describe *changes* in coordinates, not a fixed starting point.<sup class="fnref"><a href="#fn-1" id="fnref-1" data-fn="1" aria-expanded="false" aria-label="Footnote 1">[1]</a></sup>
 
 Order matters: (1, 3) means one right and three up, which is a different trip. In the ordinary coordinate pictures, the first entry is always the horizontal movement and the second is the vertical one.
 
@@ -23,7 +23,7 @@ Order matters: (1, 3) means one right and three up, which is a different trip. I
 
 Multiply both entries by two and we get <span class="math">2x = (6, 2)</span>: the same direction, twice as far. Multiply by ½ and it's half as long.
 
-A negative multiplier also flips the arrow around: −x goes three units left and one unit down. A number we multiply a vector by is called a *scalar*,<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup> and we apply the same number to every entry.
+A negative multiplier also flips the arrow around: −x goes three units left and one unit down. A number we multiply a vector by is called a *scalar*,<sup class="fnref"><a href="#fn-2" id="fnref-2" data-fn="2" aria-expanded="false" aria-label="Footnote 2">[2]</a></sup> and we apply the same number to every entry.
 
 {% include visual-primer/linear/figure-03.html %}
 
@@ -69,7 +69,7 @@ Two habits of M make it predictable, and the next picture shows both. On the lef
 
 {% include visual-primer/linear/figure-07.html %}
 
-Together, these two properties make M *linear*. They let us chop an input into pieces, push each piece through separately, and glue the results back together. We'll do that constantly. They also mean zero in gives zero out: M never moves the origin.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
+Together, these two properties make M *linear*. They let us chop an input into pieces, push each piece through separately, and glue the results back together. We'll do that constantly. They also mean zero in gives zero out: M never moves the origin.<sup class="fnref"><a href="#fn-3" id="fnref-3" data-fn="3" aria-expanded="false" aria-label="Footnote 3">[3]</a></sup>
 
 ### Read the columns to see where the unit steps go
 
@@ -101,7 +101,7 @@ For two nonzero vectors, a positive dot product means the angle between them is 
 
 {% include visual-primer/linear/figure-09.html %}
 
-**If two vectors are perpendicular, their dot product is zero.** We'll use this rule constantly, starting with finding a perpendicular remainder. Vectors with a zero dot product are called *orthogonal*, which is “perpendicular” wearing a lab coat.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
+**If two vectors are perpendicular, their dot product is zero.** We'll use this rule constantly, starting with finding a perpendicular remainder. Vectors with a zero dot product are called *orthogonal*, which is “perpendicular” wearing a lab coat.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
 
 {% include visual-primer/linear/figure-10.html %}
 
@@ -142,7 +142,7 @@ The length doubles, but the squared length becomes four times as large. To get t
 
 ### Find length from the coordinates
 
-For our arrow (3, 1), the horizontal and vertical steps make a right triangle, so Pythagoras gives squared length <span class="math">3² + 1² = 10</span>. Its length is √10, about 3.16.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup>
+For our arrow (3, 1), the horizontal and vertical steps make a right triangle, so Pythagoras gives squared length <span class="math">3² + 1² = 10</span>. Its length is √10, about 3.16.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
 
 Dotting x with itself adds up those same squared coordinates. We write the length of x as ‖x‖, with double bars. It's also called the Euclidean norm:
 
@@ -158,7 +158,7 @@ Our x has length √10, so dividing every coordinate by √10 makes its length o
 
 {% include visual-primer/linear/figure-12.html %}
 
-As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called normalization.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> Keep that word in mind. In Chapter 8 we'll normalize something else, and the difference will matter.
+As a check, x̂ has squared length <span class="math">9/10 + 1/10 = 1</span>. Dividing a nonzero vector by its length is called normalization.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup> Keep that word in mind. In Chapter 8 we'll normalize something else, and the difference will matter.
 
 <details markdown="1">
 <summary>How the dot product includes both length and angle</summary>
@@ -253,7 +253,7 @@ Because p and r meet at a right angle, Pythagoras applies. Their squared lengths
 
 <div class="equation" role="math" aria-label="The squared length of x is 8 plus 2, which equals 10">‖x‖² = ‖p‖² + ‖r‖² = 8 + 2 = 10</div>
 
-This will help us measure how much of an input lies in each of two perpendicular directions.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup>
+This will help us measure how much of an input lies in each of two perpendicular directions.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup>
 
 <a id="eigenvectors" class="chapter-anchor"></a>
 
@@ -281,7 +281,7 @@ Compare our input <span class="math">x = (3, 1)</span> with two diagonal arrows,
 
 ### Name the arrow and the number
 
-A nonzero arrow that the matrix multiplies by one number is an **eigenvector**.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup> That number is its **eigenvalue**. In symbols:
+A nonzero arrow that the matrix multiplies by one number is an **eigenvector**.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup> That number is its **eigenvalue**. In symbols:
 
 <div class="equation" role="math" aria-label="M times the eigenvector v equals its eigenvalue lambda times v">Mv = λv</div>
 
@@ -293,7 +293,7 @@ Read this as: “applying M to v has the same effect as multiplying v by λ.” 
 
 Any nonzero multiple of q₁ is still an eigenvector with eigenvalue 1. Any nonzero multiple of q₂ still has eigenvalue 3. Making an arrow longer does not change which eigenvector line it lies on.
 
-For other matrices, a negative eigenvalue reverses the arrow along the same line.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup> A zero eigenvalue sends a nonzero arrow to the origin. The zero arrow itself is excluded: multiplying it by any number gives zero, so it cannot identify a particular multiplier.
+For other matrices, a negative eigenvalue reverses the arrow along the same line.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> A zero eigenvalue sends a nonzero arrow to the origin. The zero arrow itself is excluded: multiplying it by any number gives zero, so it cannot identify a particular multiplier.
 
 <details markdown="1">
 <summary>Optional: check every direction, and apply M more than once</summary>
@@ -302,9 +302,9 @@ The chart shows how much M turns an arrow for each starting direction. The two e
 
 {% include visual-primer/linear/figure-18.html %}
 
-Other arrows turn toward the q₂ line, by at most 30° in one application. Repeated applications move them closer to that line unless they started exactly on q₁.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup>
+Other arrows turn toward the q₂ line, by at most 30° in one application. Repeated applications move them closer to that line unless they started exactly on q₁.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
 
-Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>. An eigenvector direction is sometimes called a mode, and the list of eigenvalues, including repeats, is called the spectrum.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
+Along q₂, each application multiplies by 3. Two applications multiply by <span class="math">3 × 3 = 9</span>. An eigenvector direction is sometimes called a mode, and the list of eigenvalues, including repeats, is called the spectrum.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup>
 
 The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors and eigenvalues](https://www.3blue1brown.com/lessons/eigenvalues/).
 
@@ -360,7 +360,7 @@ The arrows e₁ and 2e₁ fail both tests. They only reach the horizontal line, 
 
 </details>
 
-We can now understand every input from the matrix's responses along its eigenvector lines.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup> Next, we will see why perpendicular reference directions are especially useful.
+We can now understand every input from the matrix's responses along its eigenvector lines.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup> Next, we will see why perpendicular reference directions are especially useful.
 
 <a id="symmetry" class="chapter-anchor"></a>
 
@@ -527,7 +527,7 @@ Now dot the unit input with its output:
 
 <div class="equation" role="math" aria-label="x hat dotted with M x hat equals 3 times 7 plus 1 times 5, all divided by 10, which equals 2.6">x̂ · Mx̂ = <span class="frac"><span>3 × 7 + 1 × 5</span><span>10</span></span> = 2.6</div>
 
-**The output goes 2.6 units along the input's direction.** Its projection is the arrow <span class="math">2.6x̂</span>. The full output also has a sideways part, so 2.6 is not its full length.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup> The measurement is signed: a negative result would mean the projection points opposite to the input.
+**The output goes 2.6 units along the input's direction.** Its projection is the arrow <span class="math">2.6x̂</span>. The full output also has a sideways part, so 2.6 is not its full length.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup> The measurement is signed: a negative result would mean the projection points opposite to the input.
 
 {% include visual-primer/linear/figure-28.html %}
 
@@ -587,7 +587,7 @@ For the original x, the squared coefficients are 2 and 8, adding to 10. Its raw 
 
 {% include visual-primer/linear/figure-31.html %}
 
-The output arrow, the raw score, and the output's squared length are three different things:<sup class="fnref"><a href="#fn-19" id="fnref-19" data-fn="19" aria-expanded="false" aria-label="Footnote 19">[19]</a></sup>
+The output arrow, the raw score, and the output's squared length are three different things:<sup class="fnref"><a href="#fn-16" id="fnref-16" data-fn="16" aria-expanded="false" aria-label="Footnote 16">[16]</a></sup>
 
 <div class="table-wrap" markdown="1">
 
@@ -657,7 +657,7 @@ For real symmetric matrices, these properties have standard names:
 
 </div>
 
-M is positive definite. N is positive semidefinite: its results are never negative, and vertical inputs give zero. Every positive definite matrix also counts as positive semidefinite, since a positive result is never negative.<sup class="fnref"><a href="#fn-20" id="fnref-20" data-fn="20" aria-expanded="false" aria-label="Footnote 20">[20]</a></sup>
+M is positive definite. N is positive semidefinite: its results are never negative, and vertical inputs give zero. Every positive definite matrix also counts as positive semidefinite, since a positive result is never negative.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup>
 
 The eigenvalues give a quick test. All positive means positive definite; all zero or positive means positive semidefinite. M has eigenvalues 1 and 3. N has eigenvalue 1 along the horizontal line and 0 along the vertical line.
 
@@ -665,14 +665,14 @@ The eigenvalues give a quick test. All positive means positive definite; all zer
 
 If we look for N's smallest measurement among unit inputs, a vertical input gives zero. We have found a direction N removes.
 
-To study what N keeps, **remove the vertical component first**. Then compare the remaining nonzero horizontal arrows at length one. They all give 1, because N leaves them unchanged. We will use this idea again in Chapter 13: remove a component the matrix ignores, then compare the remaining patterns.<sup class="fnref"><a href="#fn-21" id="fnref-21" data-fn="21" aria-expanded="false" aria-label="Footnote 21">[21]</a></sup>
+To study what N keeps, **remove the vertical component first**. Then compare the remaining nonzero horizontal arrows at length one. They all give 1, because N leaves them unchanged.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup>
 
 <details markdown="1">
 <summary>Optional: does a zero score always mean zero output?</summary>
 
 For a positive semidefinite matrix, yes. Each eigenvector piece contributes its eigenvalue times its squared coefficient. All contributions are zero or positive, so a total of zero means every contribution is zero. Every nonzero piece must lie along an eigenvector with eigenvalue zero, and the matrix sends all those pieces to zero.
 
-For a symmetric matrix with both positive and negative eigenvalues, contributions can cancel, giving a zero score even when the output is nonzero.<sup class="fnref"><a href="#fn-22" id="fnref-22" data-fn="22" aria-expanded="false" aria-label="Footnote 22">[22]</a></sup> In that case, the output is perpendicular to the input, so their dot product is zero.
+For a symmetric matrix with both positive and negative eigenvalues, contributions can cancel, giving a zero score even when the output is nonzero.<sup class="fnref"><a href="#fn-19" id="fnref-19" data-fn="19" aria-expanded="false" aria-label="Footnote 19">[19]</a></sup> In that case, the output is perpendicular to the input, so their dot product is zero.
 
 </details>
 
@@ -709,7 +709,7 @@ We can therefore calculate the measurement for a unit input without actually res
 
 <div class="equation" role="math" aria-label="R of x equals the raw score Q of x divided by the squared length of x">R(x) = <span class="frac"><span>Q(x)</span><span>‖x‖²</span></span></div>
 
-Dividing the raw score by the input's squared length gives the **Rayleigh quotient**.<sup class="fnref"><a href="#fn-23" id="fnref-23" data-fn="23" aria-expanded="false" aria-label="Footnote 23">[23]</a></sup> For our example, <span class="math">R(x) = 26/10 = 2.6</span>.
+Dividing the raw score by the input's squared length gives the **Rayleigh quotient**.<sup class="fnref"><a href="#fn-20" id="fnref-20" data-fn="20" aria-expanded="false" aria-label="Footnote 20">[20]</a></sup> For our example, <span class="math">R(x) = 26/10 = 2.6</span>.
 
 **R(x) is the measurement that the same direction would have at length one.** This is the same result we found in Chapter 9 for x̂. The input must be nonzero, because we cannot divide by a squared length of zero.
 
@@ -721,7 +721,7 @@ Click **“Along u₁”**, then **“Along u₂.”** The quotient changes from
 
 {% include visual-primer/linear/figure-41.html %}
 
-The blue arrow, <span class="math">R(v)v</span>, is the output's projection onto the input line. For any nonzero input x, the same rule gives the projection <span class="math">R(x)x</span>. The full output can also have a sideways part, so R(x) is generally different from the ratio of the full output length to the input length.<sup class="fnref"><a href="#fn-24" id="fnref-24" data-fn="24" aria-expanded="false" aria-label="Footnote 24">[24]</a></sup> At an eigenvector, the sideways part disappears.
+The blue arrow, <span class="math">R(v)v</span>, is the output's projection onto the input line. For any nonzero input x, the same rule gives the projection <span class="math">R(x)x</span>. The full output can also have a sideways part, so R(x) is generally different from the ratio of the full output length to the input length.<sup class="fnref"><a href="#fn-21" id="fnref-21" data-fn="21" aria-expanded="false" aria-label="Footnote 21">[21]</a></sup> At an eigenvector, the sideways part disappears.
 
 ### What changes when you turn?
 
@@ -774,106 +774,22 @@ Resizing or reversing an arrow leaves its quotient unchanged. Every nonzero arro
 For any **real symmetric matrix**, every nonzero input's quotient is a weighted average of its eigenvalues. The same argument works however many entries the input has:
 
 - The **smallest eigenvalue** is the minimum quotient. An eigenvector with that eigenvalue reaches it.
-- The **largest eigenvalue** is the maximum quotient. An eigenvector with that eigenvalue reaches it.<sup class="fnref"><a href="#fn-25" id="fnref-25" data-fn="25" aria-expanded="false" aria-label="Footnote 25">[25]</a></sup>
+- The **largest eigenvalue** is the maximum quotient. An eigenvector with that eigenvalue reaches it.<sup class="fnref"><a href="#fn-22" id="fnref-22" data-fn="22" aria-expanded="false" aria-label="Footnote 22">[22]</a></sup>
 
 This gives us a way to find the minimum without checking every direction: find the smallest eigenvalue and an eigenvector that goes with it. The eigenvalue tells us the minimum value; the eigenvector tells us an input direction that achieves it. [Spielman, Chapter 2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=47).
 
-Next, we will use this idea to find the smoothest pattern in a list.
-
-<a id="mean-plane" class="chapter-anchor"></a>
-
-## 13. Finding the smoothest pattern in a list
-
-Now we can use eigenvectors to find a smooth pattern in a list. We will compare how neighboring entries differ, while accounting for the list's average and size.
-
-### Measure the differences between neighbors
-
-Take the three-entry list <span class="math">z = (3, 1, 2)</span>. It drops by 2, then rises by 1. To measure its **bumpiness**, square those two changes and add:
-
-<div class="equation" role="math" aria-label="The bumpiness of 3 comma 1 comma 2 is 3 minus 1 squared plus 1 minus 2 squared, which equals 5">(3 − 1)² + (1 − 2)² = 4 + 1 = 5</div>
-
-Squaring makes a rise and a fall of the same size count equally. Bigger changes contribute more. A flat list, such as <span class="math">(2, 2, 2)</span>, has bumpiness zero because its neighbors are equal.
-
-The matrix for this measurement is a new symmetric matrix B. It acts on three-entry lists, and its quadratic form <span class="math">zᵀBz</span> is exactly the bumpiness we just calculated.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> We will use B for the rest of this chapter.
-
-### Remove the shared level
-
-If we search for the least bumpiness among all lists, a flat list wins with zero. To study variation, we remove each list's flat part: its average, repeated in every entry.
-
-Our list's average is <span class="math">(3 + 1 + 2)/3 = 2</span>. Subtract 2 from every entry and call the remaining pattern r:
-
-<div class="equation" role="math" aria-label="Subtracting the average gives r equals 3 minus 2 comma 1 minus 2 comma 2 minus 2, which is 1 comma minus 1 comma zero">r = (3 − 2, 1 − 2, 2 − 2)<br>= (1, −1, 0)</div>
-
-The entries now say: one above the average, one below it, and one equal to it. This is called **centering**. Centered entries always add to zero.
-
-Subtracting the same number from every entry leaves all neighboring differences unchanged. Our centered pattern still has bumpiness 5. Adding 5 to the original list gives <span class="math">(8, 6, 7)</span>, with the same differences too. Its average is 7, so centering it also gives <span class="math">(1, −1, 0)</span>.
-
-{% include visual-primer/linear/figure-47.html %}
-
-A flat list becomes <span class="math">(0, 0, 0)</span> after centering. There is no variation left to compare, and dividing by its squared length would mean dividing by zero. From now on, we consider **centered patterns with nonzero length**.
-
-### Compare the remaining patterns at the same size
-
-A small pattern can have low bumpiness simply because its changes are small. We need the same correction as in Chapter 11: divide by squared length.
-
-For <span class="math">r = (1, −1, 0)</span>, the squared length is <span class="math">1² + (−1)² + 0² = 2</span>. Its Rayleigh quotient for B is:
-
-<div class="equation" role="math" aria-label="The Rayleigh quotient of r is its bumpiness, 5, divided by its squared length, 2, which equals 2.5">R(r) = <span class="frac"><span>5</span><span>2</span></span> = 2.5</div>
-
-This is the bumpiness r would have after resizing it to length one. Centering removes the shared level; dividing by squared length accounts for the size of the remaining variation.
-
-**The order matters.** A large shared level would increase the squared length without changing the neighboring differences. It could make the quotient small even though the pattern had not become smoother. We center first so the denominator measures only the variation around the average.
-
-### Find the smoothest centered pattern
-
-Compare r with two other centered patterns:
-
-- The **ramp**, <span class="math">(1, 0, −1)</span>, goes down in two equal steps. Its bumpiness is <span class="math">1² + 1² = 2</span>, and its squared length is 2. Its quotient is <span class="math">2/2 = 1</span>.
-- The **zigzag**, <span class="math">(1, −2, 1)</span>, drops by 3 and rises by 3. Its bumpiness is <span class="math">3² + 3² = 18</span>, and its squared length is 6. Its quotient is <span class="math">18/6 = 3</span>.
-
-{% include visual-primer/linear/figure-49.html %}
-
-The ramp and zigzag are perpendicular eigenvectors of B, with eigenvalues 1 and 3.<sup class="fnref"><a href="#fn-26" id="fnref-26" data-fn="26" aria-expanded="false" aria-label="Footnote 26">[26]</a></sup> Every centered three-entry pattern can be split into a ramp piece and a zigzag piece.
-
-That lets us use Chapter 12's argument: each centered pattern's quotient is a weighted average of 1 and 3. It cannot go below 1, and the ramp reaches 1. **The ramp is therefore the smoothest centered pattern when we compare at the same size.** Resizing or reversing it leaves its quotient unchanged.
-
-### Why the second-smallest eigenvalue appears
-
-B has three perpendicular eigenvector directions:
-
-<div class="table-wrap" markdown="1">
-
-| Direction | Eigenvalue | After centering |
-| --- | --- | --- |
-| Flat: (1, 1, 1) | 0 | Removed |
-| Ramp: (1, 0, −1) | 1 | Kept |
-| Zigzag: (1, −2, 1) | 3 | Kept |
-
-</div>
-
-Centering removes the flat component, leaving only the ramp and zigzag pieces. The smallest remaining eigenvalue is 1. In B's full list of eigenvalues—0, 1, 3—it is the **second-smallest**, called λ₂ when we number them from smallest to largest.
-
-For B, λ₂ gives the minimum quotient after the flat component has been removed. Its eigenvector gives the smoothest remaining pattern.
-
-The next primer extends this idea to a network: measure squared differences across connected points, remove the shared level, and look for a smooth pattern. Such patterns can help reveal groups of strongly connected points. [Spielman, Chapters 1–2](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=40).
-
-<aside class="recap" aria-labelledby="recap-title" markdown="1">
-
 <a id="recap-title"></a>
 
-## The whole primer on one sticky note
+## Review
 
-1. A vector is a movement. A matrix is a linear arrow machine: rows compute the output, columns show where the unit steps land.
-2. A zero dot product means orthogonal (for nonzero arrows, perpendicular). Dotting with a unit arrow measures the signed component along it.
-3. Projection finds the closest point on a line. The remainder is perpendicular, so squared lengths add.
-4. An eigenvector is a nonzero arrow that M only scales: <span class="math">Mv = λv</span>. Here, q₁ has λ₁ = 1 and q₂ has λ₂ = 3.
-5. A real symmetric matrix only stretches, along perpendicular eigenlines: that's the spectral theorem. In coordinates built from its unit eigenvectors, M multiplies each coordinate by its eigenvalue, and the pieces don't overlap: shadows find them and their squared lengths add.
-6. For a unit input v, the dot product v · Mv measures the signed amount of output along the input. For our symmetric matrix, it is a weighted average of the eigenvalues, using the input's shares of squared length. The same calculation for any input is the quadratic form Q(v) = v · Mv; its raw value also depends on input size. Bumpiness is another example of a quadratic form.
-7. When no score is negative, zero means “nothing this score counts”: the input lies entirely in directions the matrix sends to zero.
-8. The Rayleigh quotient, raw score divided by squared length, is the unit-input score for an arrow of any length. For our M it's a wave between 1 and 3, and the eigenvectors hit the two ends. The smallest eigenvalue is the lowest score; its eigenvector is the direction that gets it.
-9. Centering subtracts a list's average, removing its flat component. Dividing bumpiness by the centered list's squared length compares the remaining patterns at the same size. For our three-entry bumpiness matrix B, removing the flat direction leaves the ramp with the smallest quotient, 1: B's second-smallest eigenvalue.
-
-</aside>
+1. A vector describes a movement. A matrix gives a rule for transforming it: each row calculates one output entry, and each column shows where an ordinary unit step lands.
+2. A dot product combines length and alignment. When one arrow has length one, the dot product tells us how far the other arrow goes along its direction, including the sign. A zero dot product means two nonzero arrows are perpendicular.
+3. Projection finds the closest point on a line. For a unit reference u, the projection is <span class="math">p = (x · u)u</span>. The remaining piece is perpendicular to p, so the two pieces' squared lengths add to x's squared length.
+4. An eigenvector is a nonzero arrow that a matrix scales: <span class="math">Mv = λv</span>. The eigenvalue λ tells us the scale factor. Our M leaves u₁ unchanged and triples u₂, so their eigenvalues are 1 and 3.
+5. A real symmetric matrix has a basis of perpendicular unit eigenvectors. Split an input into pieces along these directions, multiply each piece by its eigenvalue, and add the results to get the output. This is the spectral theorem in action.
+6. The quadratic form <span class="math">Q(x) = x · Mx</span> takes the dot product of an input and its output. For a unit input, it measures the signed amount of output along the input's direction. For other inputs, the result also depends on input size.
+7. A real symmetric matrix with no negative eigenvalues is positive semidefinite: Q(x) is never negative. For such a matrix, Q(x) = 0 means the matrix sends x to zero.
+8. For any nonzero input, the Rayleigh quotient <span class="math">R(x) = Q(x)/‖x‖²</span> gives the measurement for that direction at length one. For a real symmetric matrix, its smallest and largest eigenvalues are the minimum and maximum quotients. Their eigenvectors give directions that reach those limits.
 
 <aside class="source-note" aria-label="References" markdown="1">
 
@@ -885,7 +801,33 @@ The next primer extends this idea to a network: measure squared differences acro
 
 </aside>
 
-<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Footnotes</h2><ol><li id="fn-1"><span class="fn-text">The search term is <em>spectral clustering</em>. The same idea ranks web pages, finds communities in social networks, and segments images. All of it starts with the question in this paragraph.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li><li id="fn-2"><span class="fn-text">Hi. Footnotes hold the jokes that didn't fit in the main text, plus the occasional “technically…” that keeps everything honest.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li><li id="fn-3"><span class="fn-text">Unlike most directions you get from relatives, these work no matter where you start.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li><li id="fn-4"><span class="fn-text">William Rowan Hamilton gave “scalar” and “vector” their mathematical meanings in the mid-1840s, while developing his quaternions. Real numbers, he explained, sit on a single scale running from negative to positive infinity. “Vector” comes from the Latin for “carrier.”</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li><li id="fn-5"><span class="fn-text">This is why the rule “add 1 to every entry” isn't linear in this sense, even though in one dimension f(x) = x + 1 draws a perfectly straight line. It moves the origin. That kind of rule is called <em>affine</em>, and someone will point this out if you get it wrong.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li><li id="fn-6"><span class="fn-text">For two nonzero arrows in the plane, “orthogonal” and “perpendicular” mean the same thing. “Orthogonal” also works in more dimensions, and for things like functions, where “perpendicular” starts to sound odd. Technically the zero vector is orthogonal to everything, which is about as meaningful as it sounds.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li><li id="fn-7"><span class="fn-text">√10 ≈ 3.162 is close enough to π that Zhang Heng in 2nd-century China and Brahmagupta in 7th-century India both used it as a value for π. We are not doing that here.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li><li id="fn-8"><span class="fn-text">The zero vector can't be normalized: its length is zero, and dividing by zero remains, as ever, not allowed.</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li><li id="fn-9"><span class="fn-text">Without the right angle there would be an extra cross term: ‖p + r‖² = ‖p‖² + 2 p · r + ‖r‖². Here p · r = 0, so it vanishes.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li><li id="fn-10"><span class="fn-text">The wobble in the hand-drawn grid is drawn on the plane itself, so M transforms the wobbles along with everything else. That's what a linear map does to any drawing you make on the plane. (The arrow tips sit exactly where the math says, though.)</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li><li id="fn-11"><span class="fn-text">“Eigen” is German for “own,” as in “the matrix's own vectors.” English borrowed half the word and never gave it back.</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li><li id="fn-12"><span class="fn-text">Keep applying M and almost every arrow swings closer and closer to the q₂ line, because each application triples the q₂ component and leaves the q₁ component alone. Repeating a matrix to find its dominant eigenvector is called the <em>power method</em>; Google's original PageRank was computed this way. (The “almost”: arrows exactly on the q₁ line have no q₂ component to triple, so they stay put.)</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li><li id="fn-13"><span class="fn-text">Flipping still counts as staying on the line. The arrow is on the same line through the origin, just facing the other way down the hallway.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li><li id="fn-14"><span class="fn-text">David Hilbert made “spectrum” the standard word in the early 1900s (Wilhelm Wirtinger had borrowed it from optics a few years before). A couple of decades later, quantum mechanics showed that the lines in atomic spectra really are computed from eigenvalues. Hilbert reportedly said he'd used the name with no idea it would apply to the actual spectra of physics. The word went from optics to math and straight back again.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li><li id="fn-15"><span class="fn-text">Of which there are a lot. Uncountably many, in fact.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li><li id="fn-16"><span class="fn-text">Rotation by 180° is sneakier: it flips every arrow, which counts as staying on the line, so every nonzero arrow is an eigenvector with eigenvalue −1.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li><li id="fn-17"><span class="fn-text">Remember the job interview in Chapter 6? x started explaining that it turns a little, and M said “Next!” The chart there says how little: about 17°. That turn is the sideways part in the picture.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li><li id="fn-18"><span class="fn-text">For a three-entry list z, B has rows (1, −1, 0), (−1, 2, −1) and (0, −1, 1). Multiplying gives zᵀBz = z₁² + 2z₂² + z₃² − 2z₁z₂ − 2z₂z₃ = (z₁ − z₂)² + (z₂ − z₃)². The next primer builds this kind of matrix from a network.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li><li id="fn-19"><span class="fn-text">One input, three different answers. Linear algebra is like this sometimes.</span> <a class="fn-back" href="#fnref-19" aria-label="Back to footnote 19 in the text">↩</a></li><li id="fn-20"><span class="fn-text">Positive semidefinite is the matrix version of “no complaints.” Not necessarily any compliments. Just no complaints.</span> <a class="fn-back" href="#fnref-20" aria-label="Back to footnote 20 in the text">↩</a></li><li id="fn-21"><span class="fn-text">An almost-vertical unit input can have a score as close to zero as we like. Removing the vertical component restricts the comparison to the perpendicular, horizontal direction.</span> <a class="fn-back" href="#fnref-21" aria-label="Back to footnote 21 in the text">↩</a></li><li id="fn-22"><span class="fn-text">Without nonnegativity, a zero can be a coincidence. The matrix with rows (1, 0) and (0, −1) gives (1, 1) a score of 1 − 1 = 0, yet sends it to (1, −1), not to zero.</span> <a class="fn-back" href="#fnref-22" aria-label="Back to footnote 22 in the text">↩</a></li><li id="fn-23"><span class="fn-text">Named after Lord Rayleigh, who also explained why the sky is blue and shared in the discovery of argon, which won him the 1904 Nobel Prize in Physics. He was having a good few decades.</span> <a class="fn-back" href="#fnref-23" aria-label="Back to footnote 23 in the text">↩</a></li><li id="fn-24"><span class="fn-text">For our x, ‖Mx‖/‖x‖ = √74/√10 ≈ 2.72, which is bigger than R(x) = 2.6. The sideways remainder adds length without adding anything along x.</span> <a class="fn-back" href="#fnref-24" aria-label="Back to footnote 24 in the text">↩</a></li><li id="fn-25"><span class="fn-text">Mathematicians call this the <em>variational characterization</em> of eigenvalues: “variational” because it comes from varying the direction and looking for the lowest and highest values. Physics is full of these. A soap film settles into a shape that (locally) minimizes its area, and light follows a path whose travel time is stationary, which is usually a minimum.</span> <a class="fn-back" href="#fnref-25" aria-label="Back to footnote 25 in the text">↩</a></li><li id="fn-26"><span class="fn-text">Using the matrix B defined in this chapter: B(1, 0, −1) = (1, 0, −1): eigenvalue 1. B(1, −2, 1) = (3, −6, 3): eigenvalue 3. The flat direction has eigenvalue 0: B(1, 1, 1) = (0, 0, 0). Also, (1, 0, −1) · (1, −2, 1) = 1 + 0 − 1 = 0, so the ramp and zigzag are perpendicular.</span> <a class="fn-back" href="#fnref-26" aria-label="Back to footnote 26 in the text">↩</a></li></ol></section>
+<section class="footnotes" aria-labelledby="footnotes-title">
+<h2 id="footnotes-title">Footnotes</h2>
+<ol>
+<li id="fn-1"><span class="fn-text">Unlike most directions you get from relatives, these work no matter where you start.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li>
+<li id="fn-2"><span class="fn-text">William Rowan Hamilton gave “scalar” and “vector” their mathematical meanings in the mid-1840s, while developing his quaternions. Real numbers, he explained, sit on a single scale running from negative to positive infinity. “Vector” comes from the Latin for “carrier.”</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li>
+<li id="fn-3"><span class="fn-text">This is why the rule “add 1 to every entry” isn't linear in this sense, even though in one dimension f(x) = x + 1 draws a perfectly straight line. It moves the origin. That kind of rule is called <em>affine</em>, and someone will point this out if you get it wrong.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li>
+<li id="fn-4"><span class="fn-text">For two nonzero arrows in the plane, “orthogonal” and “perpendicular” mean the same thing. “Orthogonal” also works in more dimensions, and for things like functions, where “perpendicular” starts to sound odd. Technically the zero vector is orthogonal to everything, which is about as meaningful as it sounds.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li>
+<li id="fn-5"><span class="fn-text">√10 ≈ 3.162 is close enough to π that Zhang Heng in 2nd-century China and Brahmagupta in 7th-century India both used it as a value for π. We are not doing that here.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li>
+<li id="fn-6"><span class="fn-text">The zero vector can't be normalized: its length is zero, and dividing by zero remains, as ever, not allowed.</span> <a class="fn-back" href="#fnref-6" aria-label="Back to footnote 6 in the text">↩</a></li>
+<li id="fn-7"><span class="fn-text">Without the right angle there would be an extra cross term: ‖p + r‖² = ‖p‖² + 2 p · r + ‖r‖². Here p · r = 0, so it vanishes.</span> <a class="fn-back" href="#fnref-7" aria-label="Back to footnote 7 in the text">↩</a></li>
+<li id="fn-8"><span class="fn-text">The wobble in the hand-drawn grid is drawn on the plane itself, so M transforms the wobbles along with everything else. That's what a linear map does to any drawing you make on the plane. (The arrow tips sit exactly where the math says, though.)</span> <a class="fn-back" href="#fnref-8" aria-label="Back to footnote 8 in the text">↩</a></li>
+<li id="fn-9"><span class="fn-text">“Eigen” is German for “own,” as in “the matrix's own vectors.” English borrowed half the word and never gave it back.</span> <a class="fn-back" href="#fnref-9" aria-label="Back to footnote 9 in the text">↩</a></li>
+<li id="fn-10"><span class="fn-text">Flipping still counts as staying on the line. The arrow is on the same line through the origin, just facing the other way down the hallway.</span> <a class="fn-back" href="#fnref-10" aria-label="Back to footnote 10 in the text">↩</a></li>
+<li id="fn-11"><span class="fn-text">Keep applying M and almost every arrow swings closer and closer to the q₂ line, because each application triples the q₂ component and leaves the q₁ component alone. Repeating a matrix to find its dominant eigenvector is called the <em>power method</em>; Google's original PageRank was computed this way. (The “almost”: arrows exactly on the q₁ line have no q₂ component to triple, so they stay put.)</span> <a class="fn-back" href="#fnref-11" aria-label="Back to footnote 11 in the text">↩</a></li>
+<li id="fn-12"><span class="fn-text">David Hilbert made “spectrum” the standard word in the early 1900s (Wilhelm Wirtinger had borrowed it from optics a few years before). A couple of decades later, quantum mechanics showed that the lines in atomic spectra really are computed from eigenvalues. Hilbert reportedly said he'd used the name with no idea it would apply to the actual spectra of physics. The word went from optics to math and straight back again.</span> <a class="fn-back" href="#fnref-12" aria-label="Back to footnote 12 in the text">↩</a></li>
+<li id="fn-13"><span class="fn-text">Of which there are a lot. Uncountably many, in fact.</span> <a class="fn-back" href="#fnref-13" aria-label="Back to footnote 13 in the text">↩</a></li>
+<li id="fn-14"><span class="fn-text">Rotation by 180° is sneakier: it flips every arrow, which counts as staying on the line, so every nonzero arrow is an eigenvector with eigenvalue −1.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li>
+<li id="fn-15"><span class="fn-text">Remember the job interview in Chapter 6? x started explaining that it turns a little, and M said “Next!” The chart there says how little: about 17°. That turn is the sideways part in the picture.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li>
+<li id="fn-16"><span class="fn-text">One input, three different answers. Linear algebra is like this sometimes.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li>
+<li id="fn-17"><span class="fn-text">Positive semidefinite is the matrix version of “no complaints.” Not necessarily any compliments. Just no complaints.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li>
+<li id="fn-18"><span class="fn-text">An almost-vertical unit input can have a score as close to zero as we like. Removing the vertical component restricts the comparison to the perpendicular, horizontal direction.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li>
+<li id="fn-19"><span class="fn-text">Without nonnegativity, a zero can be a coincidence. The matrix with rows (1, 0) and (0, −1) gives (1, 1) a score of 1 − 1 = 0, yet sends it to (1, −1), not to zero.</span> <a class="fn-back" href="#fnref-19" aria-label="Back to footnote 19 in the text">↩</a></li>
+<li id="fn-20"><span class="fn-text">Named after Lord Rayleigh, who also explained why the sky is blue and shared in the discovery of argon, which won him the 1904 Nobel Prize in Physics. He was having a good few decades.</span> <a class="fn-back" href="#fnref-20" aria-label="Back to footnote 20 in the text">↩</a></li>
+<li id="fn-21"><span class="fn-text">For our x, ‖Mx‖/‖x‖ = √74/√10 ≈ 2.72, which is bigger than R(x) = 2.6. The sideways remainder adds length without adding anything along x.</span> <a class="fn-back" href="#fnref-21" aria-label="Back to footnote 21 in the text">↩</a></li>
+<li id="fn-22"><span class="fn-text">Mathematicians call this the <em>variational characterization</em> of eigenvalues: “variational” because it comes from varying the direction and looking for the lowest and highest values. Physics is full of these. A soap film settles into a shape that (locally) minimizes its area, and light follows a path whose travel time is stationary, which is usually a minimum.</span> <a class="fn-back" href="#fnref-22" aria-label="Back to footnote 22 in the text">↩</a></li>
+</ol>
+</section>
 
 <footer class="credits">
 <p>The stick figures, comics and charts are original drawings, made in the general style of <a href="https://xkcd.com/">xkcd</a> as a tribute. This page is not affiliated with or endorsed by xkcd or Randall Munroe. Every figure from the original primer has been redrawn with the same coordinates, and the figures new to this edition use the same running example; the wobble moves the middle of each line, never its endpoints.</p>
