@@ -760,35 +760,29 @@ Nodes with equal values move together, and we score the cut after the whole grou
 
 <p class="chapter-tag">could another cut be much better?</p>
 
-Chapter 8 found a cut scoring 0.5. To know how good it is, we need a limit on how much lower any other cut could score. Chapter 7’s minimum energy gives us such a limit.
+Chapter 8 found a cut with two crossing edges and four nodes on each side, giving a score of **2/4 = 0.5**. Recall that **h(G)** is the lowest score among all cuts. We want to know how much lower an unseen cut could score.
 
-### What does the score 0.5 mean?
-
-A cut divides the nodes into two nonempty groups. Its score is the number of edges crossing between the groups, divided by the number of nodes in the smaller group:
-
-<div class="equation" role="math" aria-label="Cut score equals crossing edges divided by nodes in the smaller group.">cut score = <span class="frac"><span>crossing edges</span><span>nodes in the smaller group</span></span></div>
-
-A low score reveals a bottleneck: relatively few links connect the smaller group to the rest of the network.
-
-Our cut puts four nodes on each side, with two edges connecting the sides. Its score is 2/4 = **0.5**. Call the lowest score among *all* cuts **h(G)**. We have found a candidate for that minimum; we have not yet established the exact minimum.
-
-Keep the two measurements in view. Chapter 7 found the lowest **pattern energy**, λ₂ ≈ 0.764. Chapter 8 found a **cut score** of 0.5. Pattern energy adds squared differences across edges. A cut score counts crossing edges and accounts for group size. This chapter connects those measurements.
+Chapter 7 found the lowest **pattern energy**, λ₂ ≈ 0.764. Energy adds squared differences across edges; a cut score counts crossing edges and divides by the smaller group size. To connect the two measurements, we will turn a cut into a pattern.
 
 ### A cut can be turned into a pattern
 
 Imagine someone hands us a proposed cut. Give every node on one side the same value, and every node on the other side a different value.
 
-Every edge within a group now joins equal values, so it contributes zero energy. **Only edges crossing between the groups contribute energy.** This is the useful connection: a cut with few crossing edges can give us a low-energy pattern.
+Every edge within a group joins equal values, so it contributes zero energy. **Only edges crossing between the groups contribute energy.**
 
 We must still follow Chapter 7’s rules. Subtract the mean, then rescale the values so their squares add up to 1. The result is an allowed pattern, so its energy cannot be below λ₂.
 
-We have already done this for the division into two halves. Its rescaled pattern is Chapter 6’s hard split, with energy 1. The cut score is 0.5, and the pattern energy is twice that score.
+After centering and rescaling, the pattern's energy can be written as two terms:
 
-The same construction works for unequal groups too. The arithmetic gives this useful rule:
+<div class="equation" role="math" aria-label="Rescaled pattern energy equals crossing edges divided by the number of nodes in the smaller group, plus crossing edges divided by the number of nodes in the larger group.">rescaled pattern energy<br>= <span class="frac"><span>crossing edges</span><span>nodes in smaller group</span></span><br>+ <span class="frac"><span>crossing edges</span><span>nodes in larger group</span></span></div>
+
+The first term is the cut score. The second counts the same crossing edges but divides by the larger group size, so it cannot be greater than the first. **Adding the two terms gives at most twice the cut score.** The optional calculation below derives this energy formula.
+
+For our two halves, the terms are equal: **2/4 + 2/4 = 1**. This is Chapter 6's hard-split energy. Its cut score is 0.5, and its energy is exactly twice that. With unequal group sizes, the second term is smaller, so the energy is less than twice the score.
+
+Every cut therefore gives us an allowed pattern satisfying:
 
 <div class="equation" role="math" aria-label="The energy of the allowed pattern made from a cut is at most twice that cut's score.">energy of the pattern made from a cut<br>≤ 2 × that cut’s score</div>
-
-For equal-sized groups it is exactly twice the score. For unequal groups it is less. The optional calculation below shows why.
 
 ### Try an impossibly good cut
 
@@ -802,15 +796,23 @@ The same argument applies to every cut. Since the pattern’s energy is at least
 
 This is the **lower bound**. It applies even to cuts we never examine. A sufficiently low-scoring cut would contradict the minimum energy we already know.
 
+### How close is our cut to the best possible score?
+
+Every cut scores at least about 0.382. We also have an actual cut scoring 0.5, so the best score cannot be above 0.5. Together, these facts give:
+
+<div class="equation" role="math" aria-label="The best cut score is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5<small>the lower limit is about 0.382; the upper limit comes from our cut</small></div>
+
+This answers our opening question: **no unseen cut can improve on 0.5 by more than about 0.118**. We obtained that guarantee without checking every cut.
+
 ### Does low energy also guarantee a low-scoring cut?
 
 So far, we have gone from a cut to a pattern. The other direction asks: if λ₂ is small, must a low-scoring cut exist?
 
-The answer is yes, although proving it takes more work. A low-energy pattern tends to assign similar values to connected nodes. Those values might change gradually across the graph, so we cannot simply assume that they form two obvious groups.
+The answer is yes. The pattern's values may change gradually across the graph, so we use a threshold sweep to look for a cut, as in Chapter 8.
 
-Instead, sort the nodes by value and move a threshold through them, as in Chapter 8. An edge crosses the resulting cut only when the threshold lies between its two endpoint values. Close endpoint values leave only a narrow interval of thresholds that separate them.
+An edge crosses the cut only when the threshold lies between its two endpoint values. Low energy keeps the sum of squared gaps small, and a small gap leaves only a narrow interval of thresholds that separate that edge's endpoints.
 
-That explains why low energy is useful. The theorem also accounts for the sizes of the groups and proves that **at least one threshold gives a cut with a bounded score**. It does not require every threshold to work well.
+That is the intuition. A full proof must also account for group sizes. It establishes that **at least one threshold cut has a score no greater than √(2dλ₂)**, where d is the number of links at each node. A smaller λ₂ makes this guarantee stronger.
 
 ### Cheeger’s inequality puts both directions together
 
@@ -823,49 +825,35 @@ This is a form of **Cheeger’s inequality**.<sup class="fnref"><a href="#fn-16"
 - **The left side limits every cut.** No cut scores below λ₂/2.
 - **The right side guarantees that a cut exists.** At least one cut scores no more than √(2dλ₂). Other cuts can score much higher.
 
-Here each node has three links, so d = 3. Using λ₂ ≈ 0.764, the theorem places the best cut score between approximately **0.382 and 2.141**.
+Here d = 3. Using λ₂ ≈ 0.764, the theorem alone gives a range from about **0.382 to 2.141**. Our actual cut provides the tighter upper bound of **0.5**. The theorem's upper bound is a general guarantee; a cut we find can do much better.
 
-### What does that tell us about the cut we found?
+### What establishes the exact answer?
 
-We already have a cut scoring 0.5. That gives a much tighter upper bound than 2.141: the best cut cannot score more than a cut we actually hold.
-
-Combining the eigenvalue’s lower bound with our actual cut gives:
-
-<div class="equation" role="math" aria-label="The best cut score is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5<small>the lower limit is about 0.382; the upper limit comes from our cut</small></div>
-
-These bounds tell us how much improvement could remain: no other cut can improve on 0.5 by more than about 0.118. We obtained that guarantee without searching through all the cuts.
-
-To establish the exact best score, we need further evidence. For this small graph, checking all 127 distinct cuts is affordable. That check finds no cut below 0.5, so **h(G) = 0.5 exactly**.
+Our range leaves open whether some cut scores between about 0.382 and 0.5. For this small graph, we can check all 127 distinct cuts. That check finds none below 0.5, establishing **h(G) = 0.5 exactly**.
 
 {% include visual-primer/spectral/figure-27.html %}
-
-The three statements come from different evidence. The eigenvalue limits every cut. The sweep supplies one actual cut. The exhaustive check confirms the exact answer in this small example.
 
 <details markdown="1">
 <summary>Optional: see how cuts and node values connect</summary>
 
-The left picture starts with our cut into two halves. Its values are shown before centering and rescaling; the mean is already zero. The right picture starts with the Fiedler values and shows how a threshold turns them into a cut.
+The first panel starts with our cut into two halves. The +1 and −1 values already have mean zero; the panel shows how rescaling changes their energy from 8 to 1. The second panel starts with Fiedler values and shows which edges a threshold separates.
 
 {% include visual-primer/spectral/figure-28.html %}
 
 </details>
 
 <details markdown="1">
-<summary>Optional: why the factor of two appears</summary>
+<summary>Optional: derive the cut-pattern energy</summary>
 
 Let the graph have n nodes. Suppose the smaller group contains s nodes, the other group contains n − s nodes, and b edges cross between them. The cut score is b/s.
 
 Start with value 1 on the smaller group and 0 on the other group. The mean is s/n. Subtracting it gives value 1 − s/n on the smaller group and −s/n on the other. The mean is now zero, and every crossing edge still has a gap of 1.
 
-The energy is therefore b. The total squared spread is s(n − s)/n. To find the energy after rescaling that spread to 1, divide energy by spread:
+The energy is therefore b. The total squared spread is the sum of s copies of (1 − s/n)² and n − s copies of (s/n)². This simplifies to s(n − s)/n. To find the energy after rescaling that spread to 1, divide energy by squared spread:
 
-<div class="equation" role="math" aria-label="The rescaled pattern energy equals b over s plus b over n minus s.">rescaled pattern energy = <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>n − s</span></span></div>
+<div class="equation" role="math" aria-label="The rescaled pattern energy equals b n divided by s times n minus s, which equals b over s plus b over n minus s.">rescaled pattern energy<br>= <span class="frac"><span>bn</span><span>s(n − s)</span></span> = <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>n − s</span></span></div>
 
-The first term is the cut score. Because the other group is at least as large as the smaller group, the second term is no greater than the first. Their sum is therefore at most twice the cut score. For equal-sized groups the two terms are equal, giving exactly twice the score.
-
-For our cut, b = 2 and both groups have 4 nodes. The pattern energy is 2/4 + 2/4 = 1, while the cut score is 2/4 = 0.5. This is why the two numbers differ.
-
-Finally, Chapter 7’s minimum is no larger than this candidate’s energy: λ₂ ≤ rescaled pattern energy ≤ 2 × cut score. Dividing by 2 gives the lower bound for every cut.
+This is the two-term formula used above. Since s ≤ n − s, the second term is no greater than b/s, the cut score. Combining this with Chapter 7's minimum gives λ₂ ≤ rescaled pattern energy ≤ 2 × cut score.
 
 </details>
 
@@ -877,7 +865,9 @@ A larger λ₂ raises the lower bound on every cut score. That makes it useful f
 
 <p class="chapter-tag">stronger boundaries with the same link budget</p>
 
-So far, we have used the graph to detect weak boundaries. Now we can use the same ideas to compare designs. The goal is to strengthen the weakest boundaries while keeping the number of links at each router fixed.
+So far, we have searched a fixed graph for low-scoring cuts to find its bottlenecks. When designing a network, we want **even its lowest cut score to be high**. Every group containing up to half the nodes should have substantial connections to the rest, relative to its size.
+
+The same change in perspective applies to λ₂. Within one graph, it is the lowest allowed pattern energy. When we change the wiring, a larger λ₂ raises the guaranteed lower bound on every cut score. We will compare two designs with the same number of links per router.
 
 ### Keep the hardware budget fixed
 
@@ -887,7 +877,9 @@ Connecting every router to every other would provide more ways out, but it would
 
 {% include visual-primer/spectral/figure-29.html %}
 
-Both graphs above have the same link budget. In the rewired graph, the weakest cut has four crossing links for four nodes, so **h(G) rises from 0.5 to 1**. The wiring makes better use of the available links.
+In the rewired graph, the highlighted group is **{1, 2, 5, 6}**. Four links leave it: 1–8, 2–3, 4–5 and 6–7. There are four nodes on each side, giving a cut score of **4/4 = 1**.
+
+This cut shows that the rewired graph's minimum score is no greater than 1. We still need to rule out a weaker boundary elsewhere.
 
 ### How do we know another group is not hiding a weak boundary?
 
@@ -897,15 +889,17 @@ The rewired graph has **λ₂ = 2**. Therefore:
 
 <div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two, which equals one for the rewired graph.">every cut score ≥ λ₂/2 = 1</div>
 
-Take any group containing k nodes, with k no larger than half the graph. Since its crossing-edge count divided by k must be at least 1, **at least k edges leave that group**.
+We have a cut scoring 1, and the eigenvalue proves that no cut scores below 1. Together, these establish **h(G) = 1**. The weakest cut score has doubled from 0.5 to 1, with twelve links in each design.
 
-For example, every group of four nodes has at least four outward links. This is a statement about the group’s total boundary, not about how many outward links each individual node has.
+What does that guarantee mean for a group of routers? Take any group containing k nodes, up to half the network. Its crossing-edge count divided by k is at least 1, so **at least k links leave that group**.
 
-A cut scoring exactly 1 exists in this graph, so the lower bound is attained: h(G) = 1. The eigenvalue rules out every worse bottleneck at once.
+For example, every group of four nodes has at least four outward links in total. Those links can be distributed unevenly among the group's nodes.
 
 ### Now ask whether the advantage survives as the network grows
 
-A good eight-router example is useful, but real networks grow. Could the boundary of a large group become relatively thinner even though each router keeps the same number of links?
+A good eight-router design is useful, but real networks grow. We now keep the **number of links per router** fixed while increasing the number of routers. The total number of links grows with the network.
+
+Could a large group's outward connections fail to keep up with its size?
 
 A ring shows how that can happen. Each router has two neighbours, whatever the ring’s size. Choose a consecutive half of an even-sized ring. Only two links leave that half:
 
@@ -923,11 +917,13 @@ The group gets larger while its outward connections stay at two. Its cut score k
 
 ### An expander family keeps the boundary guarantee as it grows
 
-An **expander family** is a sequence of increasingly large graphs with a fixed degree and an expansion score that stays above some fixed positive number.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup>
+We want every group containing up to half the nodes to retain a number of outward links proportional to its size, even as the network grows.
 
-For example, a guarantee h(G) ≥ 0.5 would mean that every group of k nodes, up to half the network, has at least 0.5k edges leaving it—no matter how large the network becomes. The number 0.5 is just an illustration; what matters is that the guaranteed ratio does not shrink toward zero.
+For example, suppose we guarantee at least half as many outward links as nodes in each such group. A group of 100 nodes would have at least 50 links out; a group of 1,000 would have at least 500. The same guarantee would hold for every graph in the growing sequence. In symbols, **h(G) ≥ 0.5** throughout.
 
-For graphs with the same fixed degree, Cheeger’s inequality lets us express this through λ₂. If λ₂ stays above a fixed positive level as the graphs grow, then its lower bound on every cut stays positive too. The other side of Cheeger’s inequality gives the converse.
+An **expander family** is a sequence of increasingly large graphs with the same fixed degree and this kind of guarantee: h(G) stays above one fixed positive number.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup> The number need not be 0.5. What matters is that it does not shrink toward zero as the graphs grow.
+
+Chapter 9 gives us a way to establish that guarantee. If λ₂ stays above a fixed positive number, then h(G) ≥ λ₂/2 gives a fixed positive lower bound on every cut score. The optional section below explains the connection in both directions.
 
 ### What does this provide for a network?
 
@@ -961,33 +957,37 @@ This is what “bounded away from zero” means: there is one positive lower lim
 
 <p class="chapter-tag">follow the same pattern through A and L</p>
 
-We have described the graph using eigenvalues of the Laplacian L. Some papers use eigenvalues of the adjacency matrix A instead. For our regular graph, these two descriptions translate directly into one another. Following the same node patterns through both matrices shows where the different numbers come from.
+For our original graph, the second Laplacian eigenvalue is about 0.764. A paper using the adjacency matrix would instead report a second eigenvalue of about 2.236. Both numbers describe the same graph. We need to know which matrix a number belongs to before using it.
+
+Because every node here has three neighbours, one subtraction translates between the two descriptions.
 
 ### Recall what the two matrices do
 
-A adds up the neighbours’ values. L compares a node with its neighbours: it takes degree times the node’s own value and subtracts that neighbours’ sum.
+A adds up the neighbours' values. L takes three times the node's own value and subtracts that sum.
 
 Every node here has degree three, so:
 
 <div class="equation" role="math" aria-label="For every pattern x, L x equals three x minus A x.">Lx = 3x − Ax</div>
 
-This is a relation between two outputs for the same input pattern. Once we know one output, we can find the other.
+Both matrices receive the same input pattern x. Once we know one output, this equation gives the other.
 
 ### Try the flat pattern first
 
-Give every node the same value. Each has three neighbours holding that value, so A returns three copies of the original pattern. Its adjacency eigenvalue is **3**.
+Give every node the value 1. A adds three neighbouring ones at every node, returning 3 everywhere. It multiplies the whole flat pattern by **3**.
 
-L then takes three copies of the pattern and subtracts those same three copies. It returns zero, so its Laplacian eigenvalue is **0**.
+L subtracts those neighbour sums from three times each node's own value: 3 − 3 = 0 everywhere. Its multiplier for the flat pattern is **0**.
 
-One pattern has two different multipliers because A and L perform different operations on it.
+Rescaling this flat pattern to the unit vector u₁ leaves its multipliers unchanged: 3 under A and 0 under L.
 
 ### Now try the winning pattern from Chapter 7
 
-For u₂, we already know that L returns approximately 0.764 copies of the pattern.
+Chapter 7 found that L multiplies every entry of u₂ by about 0.764. Rearrange our rule to find what A does:
 
-But L’s output is three copies minus A’s output. For that subtraction to leave 0.764 copies, A must return approximately **3 − 0.764 = 2.236 copies**.
+<div class="equation" role="math" aria-label="A applied to u two equals three u two minus L applied to u two, approximately three minus 0.764 times u two, or 2.236 times u two.">Au₂ = 3u₂ − Lu₂<br>≈ (3 − 0.764)u₂ = 2.236u₂</div>
 
-So the same u₂ is an eigenvector of A as well:
+A also leaves the pattern's proportions unchanged, multiplying every entry by about **2.236**. So u₂ is an eigenvector of both matrices, with a different eigenvalue for each.
+
+Here are the first three patterns from Chapter 7 and their multipliers:
 
 <div class="table-wrap" markdown="1">
 
@@ -995,50 +995,44 @@ So the same u₂ is an eigenvector of A as well:
 | --- | --- | --- |
 | Flat pattern u₁ | 3 | 0 |
 | Winning pattern u₂ | ≈ 2.236 | ≈ 0.764 |
+| Next pattern u₃ | 1 | 2 |
 
 </div>
 
-For each row, the two multipliers add up to three. The graph and the node pattern have not changed.
-
-### The “gap” is the difference between the first two adjacency eigenvalues
-
-The largest adjacency eigenvalue is 3, belonging to the flat pattern. The second largest is approximately 2.236. The gap between them is:
-
-<div class="equation" role="math" aria-label="The adjacency spectral gap is approximately three minus 2.236, or 0.764. Its exact value is lambda two, equal to three minus the square root of five.">3 − 2.236 ≈ 0.764<small>the exact gap is λ₂ = 3 − √5</small></div>
-
-The adjacency description measures down from 3; the Laplacian description measures up from zero. Both give the same gap.
-
-### The dictionary for a regular graph
-
-If every node has degree d, then L = dI − A. Here I is the identity matrix, which returns its input unchanged. A pattern with adjacency multiplier α has Laplacian multiplier d − α.
-
-We write α for an adjacency eigenvalue and λ for a Laplacian eigenvalue. Order the adjacency values from largest to smallest, α₁, α₂, and so on. Their Laplacian partners run from smallest to largest, because subtracting from d reverses the order.
-
-<div class="equation" role="math" aria-label="For a d-regular graph, d minus the second-largest adjacency eigenvalue equals the second-smallest Laplacian eigenvalue.">d − α₂ = λ₂<small>α₂: second-largest adjacency eigenvalue<br>λ₂: second-smallest Laplacian eigenvalue</small></div>
-
-At the same degree d, a smaller α₂ means a larger λ₂, and therefore a stronger lower bound on every cut score. This translation lets us use Chapter 9’s reasoning even when a paper reports adjacency eigenvalues.
-
-The simple subtraction rule depends on every node having the same degree. The optional sections below explain degree normalization and what changes when degrees differ.
-
-<details markdown="1">
-<summary>Optional: see the translation for all eight patterns</summary>
-
-Each line in the figure connects two multipliers for one pattern. Moving downward through A’s eigenvalues moves upward through L’s eigenvalues. Each paired set adds up to three.
+In every row, the two multipliers add up to three. The figure connects the paired values for these same three patterns:
 
 {% include visual-primer/spectral/figure-31.html %}
 
-</details>
+### Which number is the spectral gap?
+
+The adjacency value 2.236 is a multiplier. To get the **spectral gap** used here, subtract it from the largest adjacency eigenvalue, 3:
+
+<div class="equation" role="math" aria-label="The adjacency spectral gap is approximately three minus 2.236, or 0.764. Its exact value is lambda two, equal to three minus the square root of five.">3 − 2.236 ≈ 0.764<small>the exact gap is λ₂ = 3 − √5</small></div>
+
+For A, the gap runs from its largest eigenvalue down to its second largest. For L, it runs from zero up to λ₂. **Both gaps are about 0.764.**
+
+### The same rule works at any fixed degree
+
+If every node has degree d, then L = dI − A. Here I is the identity matrix, which returns its input unchanged. A pattern with adjacency multiplier α has Laplacian multiplier d − α.
+
+We use **α** for an adjacency eigenvalue and **λ** for a Laplacian eigenvalue. List the adjacency values from largest to smallest. The largest is α₁ = d; the second largest is α₂. Subtracting each from d reverses that order, giving the Laplacian values from smallest to largest.
+
+<div class="equation" role="math" aria-label="For a d-regular graph, d minus the second-largest adjacency eigenvalue equals the second-smallest Laplacian eigenvalue.">d − α₂ = λ₂<small>α₂: second-largest adjacency eigenvalue<br>λ₂: second-smallest Laplacian eigenvalue</small></div>
+
+For the rewired graph in Chapter 10, d = 3 and λ₂ = 2. Its second adjacency eigenvalue is therefore **α₂ = 3 − 2 = 1**. At the same degree, a smaller α₂ gives a larger λ₂ and a stronger lower bound on every cut score.
+
+When a paper reports an eigenvalue, identify the matrix and its scale first. For an adjacency eigenvalue on a regular graph, subtract from d before applying Chapter 9's Laplacian bounds. The optional sections cover other conventions you may encounter.
 
 <details markdown="1">
 <summary>Optional: why some papers divide the gap by the degree</summary>
 
-L adds the local differences at a node. Dividing L by d gives their average instead. For a regular graph, L/d is the **normalized Laplacian**.
+L adds a node's differences from its d neighbours. Dividing by d turns that sum into an average. For a regular graph, the matrix L/d is called the **normalized Laplacian**. Here we are rescaling the matrix; the node pattern stays the same.
 
 Dividing a matrix by d divides each eigenvalue by d. If we call the second normalized eigenvalue μ₂, then:
 
 <div class="equation" role="math" aria-label="Mu two equals lambda two divided by d, which for this graph is approximately 0.764 divided by three, or 0.255.">μ₂ = λ₂/d ≈ 0.764/3 ≈ 0.255</div>
 
-The graph is the same. The reported number uses a different scale. When reading a spectral gap, first check which matrix is being used and whether the value has been divided by the degree.
+So 0.764 and 0.255 can both describe this graph's gap, on different scales. Check whether a reported gap has been divided by the degree before comparing numbers.
 
 </details>
 
@@ -1047,15 +1041,17 @@ The graph is the same. The reported number uses a different scale. When reading 
 
 Our group of four nodes has two links leading out. Its cut score is 2/4 = 0.5 outward links per node.
 
-Now ask a related question: what fraction of the group’s available connections lead outside? Each node has three connection ends, giving 4 × 3 = 12 ends in total. Five internal links use ten of those ends, two per internal link. Only two ends lead out.
+We can instead measure the fraction of the group's connections that lead outside. Count each end of a link attached to a node in the group. Four nodes with three connections each give **4 × 3 = 12 connection ends**.
+
+Five links are internal, using two ends each: ten ends in total. The two crossing links use one end each inside the group. Only those two ends lead outside.
 
 {% include visual-primer/spectral/figure-32.html %}
 
-The outward fraction is therefore 2/12 = **1/6**. The minimum such fraction over all cuts is the graph’s **conductance**, written φ(G). We use the side with the smaller total number of connection ends.
+The outward fraction is **2/12 = 1/6**. For each cut, use the group with fewer connection ends. The lowest fraction across all cuts is the graph's **conductance**, written φ(G).
 
 When every node has degree d, counting connection ends multiplies each group’s node count by d. So φ(G) = h(G)/d. In our graph, φ(G) = 0.5/3 = 1/6.
 
-Conductance pairs naturally with the normalized eigenvalue μ₂ = λ₂/d. Dividing Chapter 9’s bounds by d gives:
+The change is in the denominator: h(G) counts outward links per node; φ(G) counts the fraction of connection ends leading out. Write μ₂ = λ₂/d for the normalized eigenvalue. Dividing Chapter 9's bounds by d gives:
 
 <div class="equation" role="math" aria-label="Mu two divided by two is at most conductance, which is at most the square root of twice mu two.">μ₂/2 ≤ φ(G) ≤ √(2μ₂)</div>
 
@@ -1066,30 +1062,32 @@ We have changed both measurements to a scale relative to degree. The relationshi
 <details markdown="1">
 <summary>Optional: what changes when nodes have different degrees?</summary>
 
-The original identity L = D − A still holds. So does the energy formula xᵀLx = ∑(xᵢ − xⱼ)², and a constant pattern still has zero energy. But D is no longer one number times I, so we cannot translate eigenvalues by subtracting them all from one common degree.
+L = D − A and the energy formula still hold. But there is no single degree d to subtract from every adjacency eigenvalue, so our simple translation no longer works.
 
 For conductance, count a group’s connection ends by adding its node degrees. This sum is called its **volume**. A cut’s conductance is its crossing-edge count divided by the smaller of the two group volumes.
 
-The matching pattern calculation also weights nodes by degree. Assuming no isolated nodes, use weighted mean zero, ∑ᵢ dᵢxᵢ = 0, and weighted squared spread ∑ᵢ dᵢxᵢ² = 1. A higher-degree node contributes more to these totals.
+The matching pattern calculation gives each node weight equal to its degree. A node with six links counts twice as much as one with three. With dᵢ denoting node i's degree, the two constraints become:
 
-To express the calculation using an ordinary symmetric matrix, set yᵢ = √dᵢ xᵢ. The weighted squared spread of x becomes the ordinary squared length of y, and the matrix is the symmetric normalized Laplacian:
+<div class="equation" role="math" aria-label="The degree-weighted sum of node values is zero, and the degree-weighted sum of squared values is one.">∑ᵢ dᵢxᵢ = 0<br>∑ᵢ dᵢxᵢ² = 1</div>
+
+The first removes the degree-weighted mean. The second fixes the degree-weighted squared spread. This calculation can be expressed using the **symmetric normalized Laplacian**:
 
 <div class="equation" role="math" aria-label="The symmetric normalized Laplacian is D to the minus one half, times L, times D to the minus one half.">D<sup>−1/2</sup> L D<sup>−1/2</sup></div>
 
-A constant x becomes a y whose entries are proportional to √dᵢ. That is why this matrix’s zero eigenvector is not flat when the degrees differ. The change comes from the new coordinates. [Spielman’s text](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf) develops these versions in detail.
+Assuming no isolated nodes, D<sup>−1/2</sup> is a diagonal matrix with entry 1/√dᵢ at node i. Multiplying on both sides scales the corresponding rows and columns. When all degrees equal d, the result is just L/d. [Spielman's text, §10.5](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=121) explains the change of coordinates behind this formula.
 
 </details>
 
 <details markdown="1">
 <summary>Optional: what the name Ramanujan adds</summary>
 
-A connected d-regular graph is called **Ramanujan** when all its nontrivial adjacency eigenvalues have absolute value at most 2√(d − 1). The flat pattern’s eigenvalue d is excluded; for a bipartite graph, −d is excluded too.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup>
+The gap above uses only the second-largest adjacency eigenvalue. **Ramanujan** is a stronger spectral condition: for a connected d-regular graph, every nontrivial adjacency eigenvalue must have absolute value at most **2√(d − 1)**.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> Absolute value means ignoring the sign, so negative eigenvalues count too. Exclude the flat pattern's eigenvalue d; if the graph is bipartite, also exclude −d.
 
-This condition checks the whole nontrivial adjacency spectrum, including negative eigenvalues. It is more specific than checking only the gap d − α₂.
+For degree three, the limit is **2√2 ≈ 2.828**. Our original graph's nontrivial adjacency values are √5, 1, four copies of −1, and −√5. Their absolute values all lie below that limit, so this small graph meets the condition. Its expansion is still h(G) = 0.5: the label does not mean that every cut has a high score at every size.
 
-The threshold is a benchmark for growing graphs at fixed degree. Ramanujan graphs stay within it. Random regular graphs approach this bound with high probability as their size grows, but that does not make every random graph Ramanujan. [Friedman’s result](https://arxiv.org/abs/cs/0405020) gives the probabilistic statement.
+The limit is an important benchmark for large graphs at fixed degree. [Friedman's result](https://arxiv.org/abs/cs/0405020) allows an arbitrarily small positive amount above it, with probability tending to one as a random regular graph grows. That does not establish the exact Ramanujan condition for every sampled graph.
 
-RNG uses the expansion properties of random-like graphs. Its paper does not claim an exact Ramanujan construction. Strong expansion can be useful without that particular certificate.
+Chapter 12 returns to the practical goal: using well-connected graphs in a network.
 
 </details>
 
@@ -1097,39 +1095,53 @@ RNG uses the expansion properties of random-like graphs. Its paper does not clai
 
 ## 12. Bring the ideas back to RNG
 
-<p class="chapter-tag">a good graph still needs a map</p>
+<p class="chapter-tag">connect the cut guarantee to cabling and routing</p>
 
-A data-center fabric carries traffic between many different groups of endpoints. A strong connection across one convenient division is therefore not enough. We want every group to have enough links to the rest, while staying within the routers’ port limits. That is the expansion goal from Chapter 10, and it motivates RNG’s use of random-like wiring. [RNG §2](https://arxiv.org/html/2604.15261v3#S2)
+**RNG** is a flat data-center network design that mixes planned and randomized router connections. Its use of expander graphs connects to Chapter 10's goal: keep groups well connected with limited links per router. [RNG §§1–2](https://arxiv.org/html/2604.15261v3#S1)
 
-Traffic leaving a group must cross its boundary. The combined capacity of those boundary links limits how much can leave, regardless of the routing scheme. With equal-capacity links, counting the outward links tells us their total capacity. The spectral argument helps us reason about these boundaries across the whole topology.
+### What does a cut mean for traffic?
+
+Our node values were a mathematical tool for finding weak cuts. To interpret a cut as capacity, give each link a transmission rate.
+
+Suppose the two links between our example's halves each carry 100 Gb/s in each direction. Traffic leaving either half has at most **2 × 100 = 200 Gb/s** of boundary capacity available. Every route to the other half must cross that boundary.
+
+Expansion measures how much boundary a group has relative to its size. A lower bound on h(G) therefore guarantees outward link capacity for every group of up to half the nodes, when links have equal capacity. The spectral gap helps establish that guarantee across the graph.
+
+Boundary capacity sets a limit on outgoing traffic. The throughput actually achieved also depends on the routes used and the traffic sharing them.
 
 ### Random-like wiring has to fit real cabling
 
-RNG connects routers using a mixture of planned and randomized choices. The paper calls the resulting topology *quasi-random*. Splitting fabric-facing ports into lanes lets one physical port provide separate links to different neighbours. Those logical connections must also be practical to cable.
+The graph records which routers connect. A physical installation must also get the fibres between those routers.
 
-The paper’s ShuffleBox design maps fibre pairs through passive optical connections. It changes where fibres connect, without forwarding packets. A router-to-router connection passing through this passive hardware is still one logical link in our graph.
+RNG calls its wiring *quasi-random*. Its **ShuffleBoxes** map fibre pairs through passive hardware. They connect fibres without forwarding packets, so a router-to-router connection through them remains one logical link. [RNG §6](https://arxiv.org/html/2604.15261v3#S6)
 
 {% include visual-primer/spectral/figure-33.html %}
 
-The authors report that their cabling-constrained construction retains the spectral gap of unconstrained random graphs in their analysis. This connects the physical design back to the expansion goal. The result is about their construction; it is not a guarantee for every possible cabling layout. [RNG §6](https://arxiv.org/html/2604.15261v3#S6)
+The authors report that their construction retains the spectral gap of unconstrained random graphs in their analysis. [RNG §6](https://arxiv.org/html/2604.15261v3#S6) The relevant test is whether a graph built under cabling constraints still has a strong spectral gap.
 
 ### A good graph still needs a routing method
 
-The topology makes paths available. Routing decides which paths traffic actually takes. If two routes exist but the forwarding rules always choose the same one, the other route contributes no useful traffic carrying capacity for that traffic.
+The drawing below has two routes from a to b: through p or through q. If forwarding always chooses p, the links through q carry none of that traffic. Their presence in the graph alone does not make them useful.
 
 {% include visual-primer/spectral/figure-34.html %}
 
-RNG’s routing scheme, **Spraypoint**, spreads traffic across source neighbours and then uses forwarding rules organized around destinations and waypoints. This is how the design tries to turn available paths into useful path diversity. The paper analyzes its performance together with the topology and a traffic model. [RNG §5](https://arxiv.org/html/2604.15261v3#S5)
+RNG's routing scheme, **Spraypoint**, makes all source neighbours eligible first hops. Later forwarding rules guide traffic through selected intermediate routers called **waypoints** toward the destination. This spreads traffic across departures from the source and approaches to the destination. [RNG §5](https://arxiv.org/html/2604.15261v3#S5)
 
-<p class="note" markdown="1">One notation clash to watch for in the paper: its routing parameter h counts eligible next hops in Spraypoint. It is not this primer's h(G), the edge expansion.</p>
+In that section of the paper, h counts eligible next hops after the first step; this primer's h(G) means edge expansion.
 
-The final design must fit port counts, oversubscription targets, and forwarding-memory limits. RNG also uses separate server and edge meshes, with connecting ports distributed across their routers. The spectral argument helps assess the topology; these additional engineering choices determine how the system is built and operated. [RNG §7.4](https://arxiv.org/html/2604.15261v3#S7.SS4), [§8](https://arxiv.org/html/2604.15261v3#S8)
+### What can we conclude from each result?
 
-When reading the results, ask which question each piece of evidence answers. **The spectral gap** gives bounds on cuts. **The routing analysis** studies what Spraypoint achieves under its assumptions. **The measurements** show how the deployed system performs in the tested conditions.
+The spectral calculation answers a question about the wiring. To assess the complete network, we also need evidence about how traffic uses that wiring:
+
+- **Spectral gap:** gives bounds on the graph's cut scores.
+- **Routing analysis:** estimates what the routing method achieves under its graph and traffic assumptions.
+- **Measurements:** show performance for the configurations and traffic that were tested.
+
+RNG develops routing models and evaluates fabrics built under practical port and forwarding-memory limits. [RNG §7](https://arxiv.org/html/2604.15261v3#S7), [§9](https://arxiv.org/html/2604.15261v3#S9) Those results address questions beyond the cut guarantee.
 
 {% include visual-primer/spectral/figure-35.html %}
 
-We started by asking how to find a weak boundary. The question led to three local operations: collect the neighbours, repeat the node's own value, take the difference. We used them to test a division, to let its values bend, and to find the least-energy pattern, whose energy is λ₂. Cheeger then connected that number back to the boundaries we cared about, and expansion turned the detector into a design goal. The graph is the map. Routing still has to drive.
+We began with two links joining two groups of routers. Node values let us measure that weakness, eigenvectors found the lowest-energy pattern, and Cheeger's inequality connected its energy to cut scores. These tools help us assess the wiring. Cabling and routing turn that wiring into a working network.
 
 <a id="recap-title"></a>
 
@@ -1143,7 +1155,7 @@ We started by asking how to find a weak boundary. The question led to three loca
 6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and squared spread 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
 7. Sort the nodes by Fiedler value, sweep a threshold through the gaps, score each cut by crossing edges over the smaller side. Four distinct values give three gaps; the second one gives 0.5. A sweep tests the prefixes of one ordering, not every group.
 8. Cheeger: <span class="math">λ₂/2 ≤ h(G) ≤ √(2dλ₂)</span>. A cheap cut gives a cheap pattern, and a cheap pattern gives a cheap cut. Here 0.382 ≤ h(G) ≤ 0.5, and checking all 127 cuts gives exactly 0.5.
-9. Expansion means every group has links out in proportion to its size. Rewiring the same twelve links raised h from 0.5 to 1 and λ₂ from 0.764 to 2. Adjacency eigenvalues tell the same story in another dialect, α = d − λ. A good graph is a map; routing still has to drive.
+9. Expansion bounds the links leaving every group of up to half the nodes, relative to its size. Our rewiring raised h(G) from 0.5 to 1 and λ₂ from about 0.764 to 2, with twelve links in each design. For a regular graph, an adjacency eigenvalue α corresponds to a Laplacian eigenvalue λ = d − α. The topology supplies possible routes; forwarding rules determine which carry traffic.
 
 ## Sources and further reading
 
@@ -1172,7 +1184,7 @@ We started by asking how to find a weak boundary. The question led to three loca
 <li id="fn-14"><span class="fn-text">More generally, the number of zero Laplacian eigenvalues is the number of connected components. Each component can hold its own constant value without any edge disagreement. Centering removes one shared-level direction; if the graph is disconnected, other zero-energy directions remain.</span> <a class="fn-back" href="#fnref-14" aria-label="Back to footnote 14 in the text">↩</a></li>
 <li id="fn-15"><span class="fn-text">A threshold can be placed between consecutive distinct values. With k distinct values, there are k − 1 nontrivial threshold cuts, and k is at most the number of nodes n. These are only the cuts obtained from one ordering. Equal values stay together; reversing the ordering gives the same divisions with their sides swapped.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li>
 <li id="fn-16"><span class="fn-text">Jeff Cheeger proved the original version in 1970 for curved surfaces, where it bounds the smallest vibration frequency by how thin the surface's narrowest neck is. Jozef Dodziuk, and Noga Alon with Vitali Milman, carried it over to graphs in the mid-1980s. The form used here is the one in the survey by Hoory, Linial and Wigderson, linked below.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li>
-<li id="fn-17"><span class="fn-text">Mark Pinsker named expanders in 1973, in a paper about building telephone switching networks with few connections; Leonid Bassalygo had studied the same objects just before. Random regular graphs turned out to be expanders almost always, and explicit constructions took another decade.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li>
+<li id="fn-17"><span class="fn-text">Early work by Leonid Bassalygo and Mark Pinsker connected expanders to sparse communication networks. In 1973, Pinsker used a probabilistic argument to show their existence, and Grigory Margulis gave the first explicit construction. See the survey by Hoory, Linial and Wigderson in Sources and further reading.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li>
 <li id="fn-18"><span class="fn-text">The name is a joke that stuck: the first explicit constructions, by Lubotzky, Phillips and Sarnak and independently by Margulis in 1988, relied on a conjecture of Ramanujan's about number theory. The graphs themselves have nothing to do with him.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li>
 </ol>
 </section>
