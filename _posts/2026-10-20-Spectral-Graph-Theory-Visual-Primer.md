@@ -518,91 +518,60 @@ We have checked only the cuts from this ordering, so we have not proved that no 
 
 <a id="cheeger" class="chapter-anchor"></a>
 
-## 9. Connect eigenvalues to cut scores
+## 9. How close is our cut to the best possible?
 
-<p class="chapter-tag">how Cheeger's inequality bounds the best possible cut score</p>
+<p class="chapter-tag">use λ₂ to bound the best cut score</p>
 
-Chapter 8 found a cut with two crossing edges and four nodes on each side, giving a score of **2/4 = 0.5**. Recall that **h(G)** is the lowest score among all cuts. We want to know how much lower an unseen cut could score.
+Chapter 8 found a cut with score **0.5**, but we checked only three candidates. Could another cut score much lower? The eigenvalue λ₂ helps us answer that without checking every cut. Recall that **h(G)** means the lowest score among all cuts.
 
-Chapter 7 found the lowest **pattern energy**, λ₂ ≈ 0.764. Energy adds squared differences across edges; a cut score counts crossing edges and divides by the smaller group size. To connect the two measurements, we will turn a cut into a pattern.
+### Turn a cut into a pattern
 
-### A cut can be turned into a pattern
+Chapter 7 gave us a rule: **every mean-zero pattern whose squared values add to 1 has energy at least λ₂ ≈ 0.764**. To use that rule, we turn a proposed cut into one of these patterns.
 
-Imagine someone hands us a proposed cut. Give every node on one side the same value, and every node on the other side a different value.
+Give every node on one side value 1 and every node on the other side value 0. Then subtract the mean and rescale so the squared values add to 1.
 
-Every edge within a group joins equal values, so it contributes zero energy. **Only edges crossing between the groups contribute energy.**
+Nodes in the same group still have equal values, so edges within a group contribute zero energy. **Only crossing edges contribute.** The resulting energy is:
 
-We must still follow Chapter 7’s rules. Subtract the mean, then rescale the values so their squares add up to 1. The result is an allowed pattern, so its energy cannot be below λ₂.
+<div class="equation" role="math" aria-label="Pattern energy equals crossing edges divided by the number of nodes in the smaller group, plus crossing edges divided by the number of nodes in the larger group.">pattern energy<br>= <span class="frac"><span>crossing edges</span><span>nodes in smaller group</span></span><br>+ <span class="frac"><span>crossing edges</span><span>nodes in larger group</span></span></div>
 
-After centering and rescaling, the pattern's energy can be written as two terms:
+The first term is the cut score. The second divides the same edge count by a group at least as large, so it is no bigger than the first. **The energy is therefore at most twice the cut score.** The optional calculation below shows where the formula comes from.
 
-<div class="equation" role="math" aria-label="Rescaled pattern energy equals crossing edges divided by the number of nodes in the smaller group, plus crossing edges divided by the number of nodes in the larger group.">rescaled pattern energy<br>= <span class="frac"><span>crossing edges</span><span>nodes in smaller group</span></span><br>+ <span class="frac"><span>crossing edges</span><span>nodes in larger group</span></span></div>
+For our two halves, the energy is **2/4 + 2/4 = 1**. This matches the hard-split energy from Chapter 6 and is twice the cut score of 0.5.
 
-The first term is the cut score. The second counts the same crossing edges but divides by the larger group size, so it cannot be greater than the first. **Adding the two terms gives at most twice the cut score.** The optional calculation below derives this energy formula.
+### Rule out scores that are too low
 
-For our two halves, the terms are equal: **2/4 + 2/4 = 1**. This is Chapter 6's hard-split energy. Its cut score is 0.5, and its energy is exactly twice that. With unequal group sizes, the second term is smaller, so the energy is less than twice the score.
+Suppose someone claims to have found a cut scoring **0.1**. It would give us an allowed pattern with energy at most **0.2**. But the lowest possible energy is about **0.764**. So that cut cannot exist.
 
-Every cut therefore gives us an allowed pattern satisfying:
+For any cut, twice its score must be large enough to reach λ₂. Dividing by two gives:
 
-<div class="equation" role="math" aria-label="The energy of the allowed pattern made from a cut is at most twice that cut's score.">energy of the pattern made from a cut<br>≤ 2 × that cut’s score</div>
+<div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two.">every cut score ≥ <span class="frac"><span>λ₂</span><span>2</span></span><small>for our graph, λ₂/2 ≈ 0.382</small></div>
 
-### Try an impossibly good cut
+This is a **lower bound**: a limit that no cut score can fall below, including cuts we have never examined.
 
-Suppose someone claims to have found a cut scoring **0.1**. Our construction would turn it into an allowed pattern with energy at most **0.2**.
+### Put limits on the best score
 
-But Chapter 7 proved that every allowed pattern has energy at least about **0.764**. The proposed cut would produce a pattern below that proven minimum. Therefore, that cut cannot exist.
+No cut scores below about **0.382**. We also found a cut scoring **0.5**, so the lowest score cannot be higher than that. This gives an **upper bound** of 0.5.
 
-The same argument applies to every cut. Since the pattern’s energy is at least λ₂ and at most twice the cut score, we get:
+Together, these two facts narrow down the answer without checking every cut:
 
-<div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two.">every cut score ≥ <span class="frac"><span>λ₂</span><span>2</span></span><small>for our graph, this lower limit is approximately 0.382</small></div>
+<div class="equation" role="math" aria-label="The lowest cut score h of G is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5<small>the lower limit is about 0.382; the upper limit comes from our cut</small></div>
 
-This is the **lower bound**. It applies even to cuts we never examine. A sufficiently low-scoring cut would contradict the minimum energy we already know.
+### Cheeger's inequality gives both limits
 
-### How close is our cut to the best possible score?
+Eigenvalues also give an upper bound, even before we find a cut. For an undirected graph with exactly d links at every node, **Cheeger's inequality** gives:<sup class="fnref"><a href="#fn-16" id="fnref-16" data-fn="16" aria-expanded="false" aria-label="Footnote 16">[16]</a></sup>
 
-Every cut scores at least about 0.382. We also have an actual cut scoring 0.5, so the best score cannot be above 0.5. Together, these facts give:
+<div class="equation" role="math" aria-label="Lambda two divided by two is at most h of G, which is at most the square root of two d lambda two."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ √(2dλ₂)<small>λ₂ comes from L = D − A</small></div>
 
-<div class="equation" role="math" aria-label="The best cut score is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5<small>the lower limit is about 0.382; the upper limit comes from our cut</small></div>
+- **Left:** every cut scores at least λ₂/2.
+- **Right:** at least one cut scores no more than √(2dλ₂).
 
-This answers our opening question: **no unseen cut can improve on 0.5 by more than about 0.118**. We obtained that guarantee without checking every cut.
+Here d = 3, so the theorem's upper bound is about **2.141**. Our actual cut gives a much tighter upper bound of **0.5**. The theorem provides a guarantee; finding a cut can improve it.
 
-### Does low energy also guarantee a low-scoring cut?
+### Check the exact answer for our small graph
 
-So far, we have gone from a cut to a pattern. The other direction asks: if λ₂ is small, must a low-scoring cut exist?
-
-The answer is yes. The pattern's values may change gradually across the graph, so we use a threshold sweep to look for a cut, as in Chapter 8.
-
-An edge crosses the cut only when the threshold lies between its two endpoint values. Low energy keeps the sum of squared gaps small, and a small gap leaves only a narrow interval of thresholds that separate that edge's endpoints.
-
-That is the intuition. A full proof must also account for group sizes. It establishes that **at least one threshold cut has a score no greater than √(2dλ₂)**, where d is the number of links at each node. A smaller λ₂ makes this guarantee stronger.
-
-### Cheeger’s inequality puts both directions together
-
-For our kind of graph—undirected, with every node having the same degree d—the two guarantees can be written as:
-
-<div class="equation" role="math" aria-label="Lambda two divided by two is at most h of G, which is at most the square root of two d lambda two."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ √(2dλ₂)<small>h(G) is the lowest cut score; λ₂ comes from L = D − A</small></div>
-
-This is a form of **Cheeger’s inequality**.<sup class="fnref"><a href="#fn-16" id="fnref-16" data-fn="16" aria-expanded="false" aria-label="Footnote 16">[16]</a></sup> Read its two sides separately:
-
-- **The left side limits every cut.** No cut scores below λ₂/2.
-- **The right side guarantees that a cut exists.** At least one cut scores no more than √(2dλ₂). Other cuts can score much higher.
-
-Here d = 3. Using λ₂ ≈ 0.764, the theorem alone gives a range from about **0.382 to 2.141**. Our actual cut provides the tighter upper bound of **0.5**. The theorem's upper bound is a general guarantee; a cut we find can do much better.
-
-### What establishes the exact answer?
-
-Our range leaves open whether some cut scores between about 0.382 and 0.5. For this small graph, we can check all 127 distinct cuts. That check finds none below 0.5, establishing **h(G) = 0.5 exactly**.
+The bounds still leave room for a score below 0.5. For our eight-node graph, a computer can check all **127 distinct cuts**. That check finds none below 0.5, establishing **h(G) = 0.5 exactly**.
 
 {% include visual-primer/spectral/figure-27.html %}
-
-<details markdown="1">
-<summary>Optional: see how cuts and node values connect</summary>
-
-The first panel starts with our cut into two halves. The +1 and −1 values already have mean zero; the panel shows how rescaling changes their energy from 8 to 1. The second panel starts with Fiedler values and shows which edges a threshold separates.
-
-{% include visual-primer/spectral/figure-28.html %}
-
-</details>
 
 <details markdown="1">
 <summary>Optional: derive the cut-pattern energy</summary>
@@ -619,7 +588,7 @@ This is the two-term formula used above. Since s ≤ n − s, the second term is
 
 </details>
 
-A larger λ₂ raises the lower bound on every cut score. That makes it useful for network design: it can certify that no group has a very sparse connection to the rest. Chapter 10 explores how changing the wiring can improve that guarantee.
+A larger λ₂ raises the guaranteed minimum cut score, ruling out groups with too few links to the rest relative to their size. Chapter 10 uses this guarantee to compare network designs.
 
 <a id="expansion" class="chapter-anchor"></a>
 
