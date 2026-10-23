@@ -378,7 +378,7 @@ Chapter 4 calculated energy as the dot product of the input and its output. For 
 
 <div class="equation" role="math" aria-label="For a unit eigenvector u, energy equals u dot lambda u, which equals lambda times u dot u, or lambda times one.">E(u) = u · (λu)<br>= λ(u · u) = λ × 1 = λ</div>
 
-**A unit eigenvector's energy equals its eigenvalue.** Here are the energies of our eight building blocks:
+**A unit eigenvector's energy equals its eigenvalue.** These eigenvalues were calculated from L using a computer and are listed from smallest to largest:
 
 <div class="table-wrap" markdown="1">
 
@@ -396,11 +396,13 @@ Different eigenvectors can share an eigenvalue, as u₄ through u₇ do here.<su
 
 ### Why do we skip the first eigenvector?
 
-The first eigenvector, u₁, gives every node the same value, so its energy is zero. But centering this flat pattern leaves all zeros. Their squares cannot add to 1, so it fails our rules.
+The first eigenvector, u₁, is a **flat pattern**: every node has the same value. No edge sees a difference, so its energy is zero.
 
-The other seven eigenvectors already have mean zero. They are perpendicular to u₁, whose entries are all equal. Their dot product with u₁ is a constant times the sum of their entries; for that dot product to be zero, the entries must add to zero.
+But our rules require both **mean zero** and **squared values adding to 1**. For a flat pattern to have mean zero, every value would have to be zero. Then their squares add to 0, not 1. **A flat pattern cannot meet both rules.**
 
-Including any nonzero amount of u₁ would change the mean. **Every mean-zero pattern therefore uses only u₂ through u₈.**
+The other seven eigenvectors are perpendicular to the flat pattern, which means their positive and negative entries balance: they add up to zero. Scaling or combining these patterns keeps the mean at zero.
+
+Adding any nonzero amount of u₁ would shift every node's value by the same amount, making the mean positive or negative. **So our allowed patterns use only u₂ through u₈.**
 
 ### Could mixing patterns lower the energy further?
 
