@@ -538,9 +538,11 @@ As in our earlier examples, give one side value **+1** and the other value **−
 
 The eight squared values add to **4 × (+1)² + 4 × (−1)² = 8**. To make that total 1, divide every value by √8. The new values are **+1/√8 and −1/√8**. Each square is now 1/8, and eight copies add to 1.
 
-Now calculate the energy. An edge inside a group joins equal values, so its contribution is zero. A crossing edge joins +1/√8 to −1/√8. Its difference is 2/√8, so its contribution is:
+Now calculate the energy. Recall that **Chapter 4 defined energy as the sum of squared differences across edges**. An edge inside a group joins equal values, so its difference is zero and it contributes zero energy.
 
-<div class="equation" role="math" aria-label="Each crossing edge contributes the square of two divided by the square root of eight, which is four eighths, or one half.">energy per crossing edge<br>= (2/√8)² = 4/8 = 1/2</div>
+A crossing edge joins +1/√8 to −1/√8, giving a **difference of 2/√8**. To calculate its **energy contribution, we square that difference**:
+
+<div class="equation" role="math" aria-label="Energy per crossing edge equals the difference squared: the square of two divided by the square root of eight, which is four eighths, or one half.">energy per crossing edge<br>= (difference)²<br>= (2/√8)² = 4/8 = 1/2</div>
 
 There are two crossing edges, each contributing 1/2. The total energy is **2 × 1/2 = 1**, matching Chapter 6's hard-split energy. The cut score is **2/4 = 0.5**.
 
