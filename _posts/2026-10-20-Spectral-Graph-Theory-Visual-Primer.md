@@ -204,16 +204,6 @@ This works for any node values:
 
 The ∑ means “add over all edges, counting each once.” The dot product and the squared differences give the same energy, which is always nonnegative.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
 
-<details markdown="1">
-<summary>Optional: the same edge calculation with any two values</summary>
-
-For an edge joining nodes i and j, use their values xᵢ and xⱼ in place of +1 and −1. Its two contributions to the dot product are:
-
-<div class="equation" role="math" aria-label="x i times x i minus x j, plus x j times x j minus x i, equals x i minus x j squared.">xᵢ(xᵢ − xⱼ) + xⱼ(xⱼ − xᵢ) = (xᵢ − xⱼ)²</div>
-
-The two endpoint contributions add to exactly one squared gap. Summing over all edges gives <span class="math">xᵀLx = E(x)</span>.
-
-</details>
 
 ### Let the node values change
 
@@ -227,90 +217,60 @@ But simply shrinking every value also lowers energy. Chapter 5 shows how to keep
 
 ## 5. Compare node patterns at the same scale
 
-<p class="chapter-tag">subtract the average and fix the squared spread</p>
+<p class="chapter-tag">subtract the average, then rescale the values</p>
 
-Chapter 4 gave us energy: the total squared disagreement across the edges. We want to find node values that keep this total small. But first we need to distinguish a better arrangement from simply using smaller numbers.
+Our +1 and −1 pattern has energy 8. Halve every value and the energy falls to 2: each gap halves, so each squared gap becomes one quarter as large. The same nodes still form the same two groups. We have only made their labels smaller.
 
-### Low energy alone is not enough
+We could keep shrinking, or simply put zero everywhere and get zero energy. To learn something about the wiring, **we need to compare patterns at a fixed scale**. We prepare each pattern in two steps.
 
-Give every node zero and the energy is zero. That works on any graph, so it tells us nothing about where the network might divide into groups.
+### Step 1: subtract the average
 
-Requiring different values does not solve the problem either. Our four +1 values and four −1 values give energy 8. Halve every value and the energy falls to 2: the gaps halve, so their squares become one quarter as large. We could keep shrinking the numbers without changing their arrangement.
+We care about differences between nodes. A level shared by all of them should not count toward the pattern's size.
 
-**We need to hold the overall spread fixed, then look for the arrangement with the least disagreement across edges.**
+Suppose four nodes hold 11 and four hold 9. Their average is 10. Subtract 10 from every value and we get four +1s and four −1s. Every gap stays the same, so the energy stays the same too.
 
-### Measure spread separately from energy
+This is called **centering**.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup> The new average, or **mean**, is zero. The values add up to zero; this does not require equal numbers of positive and negative values.
 
-We will measure **squared spread** by subtracting the average from each node value, squaring each result, and adding them. This primer also calls that quantity **variation**. It measures how far the values lie from their average, regardless of which nodes are connected.
+### Step 2: make the squared values add up to 1
 
-**Energy** uses the wiring: it adds the squared differences between values at the ends of each edge.
+Once the average is zero, square each node value and add. We call this total the **squared spread**: it measures the total squared distance from the average.
 
-Rearranging the same values leaves their squared spread unchanged, but can change their energy. Chapter 4's two patterns show the difference:
+Our eight values are +1 or −1, so their squares add to 8. Rearranging those values keeps that total unchanged, even when the energy changes:
 
 {% include visual-primer/spectral/figure-16.html %}
 
-To compare any patterns fairly, we will prepare each one in two steps. **Subtracting the average removes a level shared by all nodes. Rescaling fixes the squared spread, so shrinking cannot count as an improvement.**
+We will give every pattern squared spread **1**. Any fixed positive total would work; 1 is convenient.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup>
 
-### First, subtract the average
+To make the total 1, divide every centered value by the square root of the squared spread. Here that means dividing by **√8**. Each square is then divided by 8:
 
-Suppose we add 10 to every value. The levels +1 and −1 become 11 and 9. Their gap is still 2, so the energy is unchanged. Their distances from the new average, 10, are also unchanged.
+<div class="equation" role="math" aria-label="Eight values, each with square one eighth, have a total squared spread of one.">8 × (1/√8)² = 8 × 1/8 = 1</div>
 
-Subtract the average, 10, and we get +1 and −1 again. This is called **centering**. It gives every pattern mean zero while preserving every edge difference and the squared spread.<sup class="fnref"><a href="#fn-6" id="fnref-6" data-fn="6" aria-expanded="false" aria-label="Footnote 6">[6]</a></sup>
+The values become about **+0.354 and −0.354**. The edge gaps are also divided by √8, so the energy is divided by 8: our two-halves pattern now has energy **1**, while the alternating pattern has energy **3**.
 
-Mean zero means the values add up to zero. The numbers of positive and negative values need not be equal.
+Now try the halved pattern. Its eight values are ±½, with squares adding to 2. Divide them by √2 and we get **exactly the same final values**, since <span class="math">(½)/√2 = 1/√8</span>. Its energy also becomes 1. Starting with smaller labels no longer improves the result.
 
-### Then, make the squared spread equal to 1
-
-After centering, the average is zero. Subtracting it leaves each value unchanged, so the squared spread is just the sum of the squared values.
-
-Our eight values each have square 1, so their squares add to 8. Divide every value by √8. Each square becomes 1/8, and the eight squares now add to <span class="math">8 × (1/8) = 1</span>. The node values become approximately +0.354 and −0.354.
-
-Every edge gap is divided by √8 too, so every squared gap is divided by 8. The grouped pattern's energy changes from 8 to **1**; the alternating pattern's changes from 24 to **3**. Both are now compared at squared spread 1.
-
-We choose 1 for convenience; any fixed positive amount would work.<sup class="fnref"><a href="#fn-7" id="fnref-7" data-fn="7" aria-expanded="false" aria-label="Footnote 7">[7]</a></sup> It is the **sum of the squares** that equals 1. Each node can still have its own value.
-
-### The search now has two simple rules
+### The two rules we will use from now on
 
 <div class="equation" role="math" aria-label="The node values have mean zero, and their squares add up to one.">mean of the node values = 0<br>sum of their squared values = 1</div>
 
-An all-equal pattern becomes all zeros when centered. Its squared spread is zero, so it cannot satisfy the second rule. Any pattern with some differences can be centered and rescaled to satisfy both.
+The second rule fixes the total; individual nodes can still have different values. An all-equal pattern becomes all zeros after centering, so it cannot meet that rule.
 
-We can now search for the lowest energy while holding the squared spread fixed. A lower energy must come from how the differences are arranged across the graph.
-
-<details markdown="1">
-<summary>Optional: see shifting and shrinking side by side</summary>
-
-{% include visual-primer/spectral/figure-17.html %}
-
-</details>
+Every pattern with some differences can meet both rules. We can then look for the arrangement with the lowest energy.
 
 <details markdown="1">
-<summary>Optional: the formulas and a shortcut</summary>
+<summary>Optional: compare without rescaling every value</summary>
 
-Let x̄ be the average of the node values, and V their squared spread:
+There is a shortcut: **divide energy by squared spread**. This gives the energy a pattern would have after centering and rescaling, as long as its squared spread is positive.
 
-<div class="equation" role="math" aria-label="V equals the sum over nodes of the squared difference between the node value and the mean.">V = ∑ᵢ (xᵢ − x̄)²</div>
-
-Subtracting the mean preserves V and every edge difference. If V > 0, dividing the centered values by √V makes their squared spread 1 and divides their energy by V.
-
-So **energy divided by squared spread** gives the energy a pattern would have after centering and rescaling. The hard split gives 8/8 = 1. Halving its values gives 2/2 = 1. Shifting them from ±1 to 9 and 11 gives 8/8 = 1, because their squared distances from the average are still the same.
+For the original pattern, that is 8/8 = 1. For the halved pattern, it is 2/2 = 1. The figure also shows why adding the same amount to every value leaves this ratio unchanged:
 
 {% include visual-primer/spectral/figure-18.html %}
 
-When x already has mean zero, its squared spread is <span class="math">xᵀx</span>. We can then write the comparison as:
+Using centered values x, the energy is <span class="math">xᵀLx</span> and the squared spread is <span class="math">xᵀx</span>. Their ratio is the **Rayleigh quotient**:
 
 <div class="equation" role="math" aria-label="For our comparison, x has mean zero and is nonzero. R of x equals x transpose L x divided by x transpose x.">R(x) = <span class="frac"><span>xᵀLx</span><span>xᵀx</span></span><small>here, x contains the centered values and is nonzero</small></div>
 
-This expression is the **Rayleigh quotient**. It is defined for any nonzero vector, but our comparison uses centered values. For the shifted pattern, the raw sum of squares is 808, while the squared spread around its average is 8. We must subtract the average before using <span class="math">xᵀx</span> as our denominator.
-
-</details>
-
-<details markdown="1">
-<summary>Optional: can an allowed pattern ever have zero energy?</summary>
-
-On our connected graph, zero energy requires every pair of neighbours to agree. That agreement travels through the whole graph, forcing a flat pattern. Our two rules exclude it.
-
-If the graph has disconnected pieces, each piece can hold its own constant value. The pieces can have different levels without any edge disagreement. We can then have mean zero, squared spread 1, and zero energy. This will help explain the meaning of a zero second eigenvalue in Chapter 7.
+The quotient is defined for any nonzero vector, but this comparison uses **centered** values. For the 9-and-11 pattern, subtract 10 before using xᵀx. That gives squared spread 8; squaring the original values would give 808 and include the shared level we wanted to remove.
 
 </details>
 
