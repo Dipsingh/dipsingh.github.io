@@ -546,15 +546,19 @@ A crossing edge joins +1/√8 to −1/√8, giving a **difference of 2/√8**. T
 
 There are two crossing edges, each contributing 1/2. The total energy is **2 × 1/2 = 1**, matching Chapter 6's hard-split energy. The cut score is **2/4 = 0.5**.
 
-For any cut, call the smaller group size **s**, the larger group size **t**, and the number of crossing edges **b**. The same centering and rescaling makes each crossing edge contribute **1/s + 1/t**. In our example, that is **1/4 + 1/4 = 1/2**. The optional derivation below shows why this also works for unequal groups.
+For any cut, call the smaller group size **s**, the larger group size **t**, and the number of crossing edges **b**.
 
-Multiplying by the number of crossing edges gives:
+After centering and rescaling, the squared difference across **one crossing edge** is **1/s + 1/t**. This is its energy contribution. In our example, that gives **1/4 + 1/4 = 1/2 per crossing edge**, matching the calculation above.
 
-<div class="equation" role="math" aria-label="Pattern energy equals b times the sum of one over s and one over t, which equals b over s plus b over t.">pattern energy<br>= b(1/s + 1/t)<br>= <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>t</span></span></div>
+All **b crossing edges** connect the same two group values, so each contributes that same amount. To get the **total energy**, multiply the energy per edge by b:
+
+<div class="equation" role="math" aria-label="Total pattern energy equals b times the sum of one over s and one over t, which equals b over s plus b over t.">total pattern energy<br>= b(1/s + 1/t)<br>= <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>t</span></span></div>
 
 **Each crossing edge is counted once.** The two fractions appear when we expand the multiplication; we are still adding the edges' energy contributions.
 
 The first fraction, **b/s**, is the cut score because s is the smaller group size. The second divides the same edge count by t, which is at least as large, so **b/t ≤ b/s**. That is why **the pattern's energy is at most twice the cut score**. Equal-sized groups give exactly twice, as in our example.
+
+The optional derivation below shows why the energy per crossing edge is 1/s + 1/t for any group sizes, including unequal ones.
 
 ### Rule out scores that are too low
 
