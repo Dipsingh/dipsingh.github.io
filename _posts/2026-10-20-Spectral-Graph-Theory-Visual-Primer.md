@@ -526,17 +526,33 @@ Chapter 8 found a cut with score **0.5**, but we checked only three candidates. 
 
 ### Turn a cut into a pattern
 
-Chapter 7 gave us a rule: **every mean-zero pattern whose squared values add to 1 has energy at least λ₂ ≈ 0.764**. To use that rule, we turn a proposed cut into one of these patterns.
+Chapter 7 showed that **λ₂ is the lowest possible energy among patterns with mean zero and squared values adding to 1**. Every pattern meeting those two rules has energy at least λ₂.
 
-Give every node on one side value 1 and every node on the other side value 0. Then subtract the mean and rescale so the squared values add to 1.
+For our particular graph, **λ₂ ≈ 0.764**.
 
-Nodes in the same group still have equal values, so edges within a group contribute zero energy. **Only crossing edges contribute.** The resulting energy is:
+To use this minimum to reason about cut scores, we first turn a proposed cut into a pattern that follows those two rules.
 
-<div class="equation" role="math" aria-label="Pattern energy equals crossing edges divided by the number of nodes in the smaller group, plus crossing edges divided by the number of nodes in the larger group.">pattern energy<br>= <span class="frac"><span>crossing edges</span><span>nodes in smaller group</span></span><br>+ <span class="frac"><span>crossing edges</span><span>nodes in larger group</span></span></div>
+Start with the cut we found: **four nodes on each side, with two crossing edges**.
 
-The first term is the cut score. The second divides the same edge count by a group at least as large, so it is no bigger than the first. **The energy is therefore at most twice the cut score.** The optional calculation below shows where the formula comes from.
+Give one side value 1 and the other value 0. The mean is 0.5, so subtracting it leaves **+0.5 on one side and −0.5 on the other**.
 
-For our two halves, the energy is **2/4 + 2/4 = 1**. This matches the hard-split energy from Chapter 6 and is twice the cut score of 0.5.
+The eight squared values currently add to **4 × (0.5)² + 4 × (−0.5)² = 2**. To make that total 1, divide every value by √2. The new values are **+1/√8 and −1/√8**. Each square is now 1/8, and eight copies add to 1.
+
+Now calculate the energy. An edge inside a group joins equal values, so its contribution is zero. A crossing edge joins +1/√8 to −1/√8. Its difference is 2/√8, so its contribution is:
+
+<div class="equation" role="math" aria-label="Each crossing edge contributes the square of two divided by the square root of eight, which is four eighths, or one half.">energy per crossing edge<br>= (2/√8)² = 4/8 = 1/2</div>
+
+There are two crossing edges, each contributing 1/2. The total energy is **2 × 1/2 = 1**, matching Chapter 6's hard-split energy. The cut score is **2/4 = 0.5**.
+
+For any cut, call the smaller group size **s**, the larger group size **t**, and the number of crossing edges **b**. The same centering and rescaling makes each crossing edge contribute **1/s + 1/t**. In our example, that is **1/4 + 1/4 = 1/2**. The optional derivation below shows why this also works for unequal groups.
+
+Multiplying by the number of crossing edges gives:
+
+<div class="equation" role="math" aria-label="Pattern energy equals b times the sum of one over s and one over t, which equals b over s plus b over t.">pattern energy<br>= b(1/s + 1/t)<br>= <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>t</span></span></div>
+
+**Each crossing edge is counted once.** The two fractions appear when we expand the multiplication; we are still adding the edges' energy contributions.
+
+The first fraction, **b/s**, is the cut score because s is the smaller group size. The second divides the same edge count by t, which is at least as large, so **b/t ≤ b/s**. That is why **the pattern's energy is at most twice the cut score**. Equal-sized groups give exactly twice, as in our example.
 
 ### Rule out scores that are too low
 
@@ -576,7 +592,7 @@ The bounds still leave room for a score below 0.5. For our eight-node graph, a c
 <details markdown="1">
 <summary>Optional: derive the cut-pattern energy</summary>
 
-Let the graph have n nodes. Suppose the smaller group contains s nodes, the other group contains n − s nodes, and b edges cross between them. The cut score is b/s.
+Let the graph have n nodes. The smaller group contains s nodes, the larger group contains t = n − s nodes, and b edges cross between them. The cut score is b/s.
 
 Start with value 1 on the smaller group and 0 on the other group. The mean is s/n. Subtracting it gives value 1 − s/n on the smaller group and −s/n on the other. The mean is now zero, and every crossing edge still has a gap of 1.
 
