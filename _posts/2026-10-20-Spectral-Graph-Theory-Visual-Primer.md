@@ -358,38 +358,27 @@ This formula reaches its minimum at <span class="math">t = (√5 − 1)/2 ≈ 0.
 
 <p class="chapter-tag">why the second eigenvector gives the minimum</p>
 
-The slider found energy about 0.764 while keeping pairs of nodes equal and the two halves as mirror images. Could a pattern outside that family do better? We need an argument that covers every possible assignment of node values.
+The slider found energy about **0.764**, but explored only a limited set of patterns. Could we do better by letting all eight node values vary independently?
 
-The key is to describe every pattern using the Laplacian's eigenvectors. We will see why **every allowed pattern's energy is an average of their energies**, and why that average cannot fall below about 0.764.
+We still require **mean zero** and **squared values adding to 1**. Energy is still the sum of squared differences across the edges.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> Eigenvectors will let us compare every pattern that follows these rules.
 
-### First, remember what we are comparing
+### What makes an eigenvector useful here?
 
-A **pattern** assigns one value to each node. Its **energy** adds the squared differences across the edges.<sup class="fnref"><a href="#fn-8" id="fnref-8" data-fn="8" aria-expanded="false" aria-label="Footnote 8">[8]</a></sup> We compare patterns that follow Chapter 5's two rules:
+An **eigenvector** is a special pattern: applying L multiplies every entry by the same number, called its **eigenvalue**.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup> This is the idea from the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#eigenvectors), now with eight entries—one value per node.
 
-- **Mean zero:** remove the level shared by all nodes.
-- **Squared values adding to 1:** fix the squared spread, so shrinking cannot count as an improvement.
+Because our edges are undirected, L is symmetric. The spectral theorem lets us choose eight mutually perpendicular eigenvectors that can build **any pattern**: scale them, then add their matching node values.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> Here, perpendicular means their dot product is zero. It describes the lists of node values, rather than angles in the network drawing.
 
-The hard split has energy 1. The slider reached about 0.764. We want the minimum among all patterns obeying these rules.
+We give each eigenvector **unit length**, so its squared entries add to 1. We name them <span class="math">u₁, u₂, …, u₈</span>, ordered by their eigenvalues <span class="math">λ₁, λ₂, …, λ₈</span> from smallest to largest. A subscript identifies a whole pattern in this list, not a node.
 
-### Eigenvectors give us eight building blocks
-
-In the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#eigenvectors), our vectors had two entries. Here a vector has eight entries, one value per node. The eigenvector idea is the same: **apply L, and every entry is multiplied by the same number**. The pattern is an eigenvector; that multiplier is its eigenvalue.<sup class="fnref"><a href="#fn-9" id="fnref-9" data-fn="9" aria-expanded="false" aria-label="Footnote 9">[9]</a></sup>
-
-Our edges are undirected, so L is symmetric. The spectral theorem from linear algebra tells us that we can choose eight mutually perpendicular eigenvectors and use them to describe every pattern.<sup class="fnref"><a href="#fn-10" id="fnref-10" data-fn="10" aria-expanded="false" aria-label="Footnote 10">[10]</a></sup> Each eigenvector is a whole eight-node pattern. Multiplying these patterns by coefficients and adding their matching entries lets us build any assignment of values.
-
-We scale each eigenvector to **unit length**, meaning its squared entries add to 1. We name them <span class="math">u₁, u₂, …, u₈</span>, ordered by their eigenvalues <span class="math">λ₁, λ₂, …, λ₈</span> from smallest to largest. The subscript identifies a pattern in this list, not a node.
-
-For example, u₂ is the pattern we found with the slider. Applying L multiplies all its values by <span class="math">λ₂ ≈ 0.764</span>:
+The picture shows u₂. Applying L multiplies every value by <span class="math">λ₂ ≈ 0.764</span>:
 
 {% include visual-primer/spectral/figure-22.html %}
 
-### Why a unit eigenvector's energy equals its eigenvalue
-
-Chapter 4 wrote energy as the dot product of a pattern and its output. For an eigenvector u, that output is λu. Its energy is therefore λ times the sum of its squared entries. We chose that sum to be 1:
+Chapter 4 calculated energy as the dot product of the input and its output. For an eigenvector u, the output is λu. Since its squared entries add to 1:
 
 <div class="equation" role="math" aria-label="For a unit eigenvector u, energy equals u dot lambda u, which equals lambda times u dot u, or lambda times one.">E(u) = u · (λu)<br>= λ(u · u) = λ × 1 = λ</div>
 
-**u₂ is a pattern with eight entries. λ₂ is one number: its multiplier under L and, at unit length, its energy.** Here are all eight eigenvalues for our graph:
+**A unit eigenvector's energy equals its eigenvalue.** Here are the energies of our eight building blocks:
 
 <div class="table-wrap" markdown="1">
 
@@ -403,109 +392,54 @@ Chapter 4 wrote energy as the dot product of a pattern and its output. For an ei
 
 </div>
 
-These numbers come from L, which records the graph's wiring. Different eigenvectors can have the same eigenvalue, as the four entries with energy 4 show.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
+Different eigenvectors can share an eigenvalue, as u₄ through u₇ do here.<sup class="fnref"><a href="#fn-11" id="fnref-11" data-fn="11" aria-expanded="false" aria-label="Footnote 11">[11]</a></sup>
 
-### Why the zero-energy pattern is set aside
+### Why do we skip the first eigenvector?
 
-The first eigenvector, u₁, is flat: every node holds the same value. Every edge joins equal values, giving energy zero.
+The first eigenvector, u₁, gives every node the same value, so its energy is zero. But centering this flat pattern leaves all zeros. Their squares cannot add to 1, so it fails our rules.
 
-Center it and every value becomes zero. Its squared spread is then zero, so it cannot satisfy our two rules.
+The other seven eigenvectors already have mean zero. They are perpendicular to u₁, whose entries are all equal. Their dot product with u₁ is a constant times the sum of their entries; for that dot product to be zero, the entries must add to zero.
 
-The other seven eigenvectors are perpendicular to u₁. Since u₁ has the same entry everywhere, a dot product with u₁ is just a constant times the sum of the other pattern's entries. Perpendicularity makes that dot product zero, so **each of the other eigenvectors has entries that add to zero**.
+Including any nonzero amount of u₁ would change the mean. **Every mean-zero pattern therefore uses only u₂ through u₈.**
 
-Adding any amount of u₁ would add a shared level. The mean-zero rule requires its coefficient to be zero, leaving **u₂ through u₈** as the building blocks for allowed patterns. The lowest energy among them is about 0.764.
+### Could mixing patterns lower the energy further?
 
-### What happens when we mix the remaining patterns?
-
-We still need to check whether combining these patterns could lower the energy further. Take this example:
+Of the remaining eigenvectors, u₂ has the lowest energy. But could a mixture do better? Try:
 
 <div class="equation" role="math" aria-label="x equals 0.6 times u two plus 0.8 times u three.">x = 0.6u₂ + 0.8u₃</div>
 
-The numbers 0.6 and 0.8 are **coefficients**. Each multiplies a whole eight-node pattern. Since these unit eigenvectors are perpendicular, their contributions to squared spread add:
+The **coefficients** 0.6 and 0.8 multiply whole patterns. Because the patterns are perpendicular and have unit length, the mixture's squared spread is <span class="math">0.6² + 0.8² = 0.36 + 0.64 = 1</span>. Its mean is also zero, so it meets both rules.
 
-<div class="table-wrap" markdown="1">
-
-| Pattern | Coefficient | Share of squared spread |
-| --- | --- | --- |
-| u₂ | 0.6 | 0.6² = 0.36, or 36% |
-| u₃ | 0.8 | 0.8² = 0.64, or 64% |
-
-</div>
-
-The shares add to 1, so the mixture has squared spread 1. It also has mean zero because both building blocks do.
-
-L only rescales each eigenvector, so the pieces remain perpendicular after applying L. Their contributions to the energy dot product add too: each squared coefficient multiplies that eigenvector's energy.
+Their energy contributions add too. L only rescales each eigenvector, and in the dot product <span class="math">x · Lx</span>, terms pairing u₂ with u₃ are zero because the two are perpendicular. Each remaining term is the eigenvalue times the square of its coefficient:
 
 <div class="equation" role="math" aria-label="The energy of x is approximately 0.36 times 0.764 plus 0.64 times 2, which is approximately 1.555.">E(x) ≈ 0.36 × 0.764 + 0.64 × 2<br>≈ 1.555</div>
 
-**The coefficients are 0.6 and 0.8; the energy weights are their squares, 0.36 and 0.64.** These percentages describe shares of squared spread. Each building block still assigns a value to every node.
+This is a **weighted average**: 36% of the squared spread uses the pattern with energy about 0.764, and 64% uses the pattern with energy 2. Mixing in the higher-energy pattern raises the total.
 
-This is a **weighted average**: 36% at energy about 0.764 and 64% at energy 2. Mixing in the higher-energy pattern has raised the total above 0.764.
+The same rule covers **every allowed pattern**. Its coefficients may be positive or negative, but their squares are nonnegative and add to 1. They weight the eigenvalues in the energy calculation. An average with these weights cannot fall below the smallest eigenvalue available: **λ₂**.
 
-The same rule applies to any allowed mixture of u₂ through u₈. Its coefficients can be positive or negative, but their squares are nonnegative and add to 1. The energy is the weighted average of the corresponding eigenvalues.
+### What does this tell us about the slider?
 
-**An average cannot be smaller than the smallest number being averaged.** Here that smallest energy is about 0.764. This reasoning covers every allowed pattern, because every one is a mixture of these building blocks.
-
-There are two parts to the conclusion. No allowed pattern can go lower than the energy of u₂. And u₂ itself is allowed and reaches that energy. Together, these facts establish the minimum.
-
-### The minimum is λ₂
-
-The smallest eigenvalue left after removing the flat pattern is λ₂. It gives the minimum energy under our two rules:
+No allowed pattern can have energy below λ₂, and u₂ itself meets our rules and reaches it. We have found the minimum:
 
 <div class="equation" role="math" aria-label="Lambda two equals three minus the square root of five, approximately 0.764.">λ₂ = 3 − √5 ≈ 0.764<small>the lowest energy of any mean-zero pattern with total squared spread 1</small></div>
 
-What does u₂ look like? It is the slider’s winning pattern from Chapter 6, at t ≈ 0.618.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup> Its values, rounded to three decimal places, are:
-
-<div class="table-wrap" markdown="1">
-
-| Nodes | Value at each node |
-| --- | --- |
-| 1 and 2: left interior | +0.425 |
-| 3 and 4: left boundary | +0.263 |
-| 5 and 6: right boundary | −0.263 |
-| 7 and 8: right interior | −0.425 |
-
-</div>
-
-The boundary values sit closer to zero than the interior values. That is the compromise we saw in Chapter 6: it reduces disagreement between the groups while allowing some disagreement inside them.
+The pattern **u₂** is the slider's winning pattern from Chapter 6, at t ≈ 0.618.<sup class="fnref"><a href="#fn-12" id="fnref-12" data-fn="12" aria-expanded="false" aria-label="Footnote 12">[12]</a></sup> The slider succeeded because its limited set of patterns included u₂. The eigenvector argument shows that letting all eight values vary independently cannot improve on it.
 
 An eigenvector for λ₂ is called a **Fiedler vector**, and λ₂ is called the graph’s **algebraic connectivity**.<sup class="fnref"><a href="#fn-13" id="fnref-13" data-fn="13" aria-expanded="false" aria-label="Footnote 13">[13]</a></sup> Reversing every sign gives an equally good pattern, since squared differences do not change.
 
-The slider found the best pattern because this particular family included u₂. A different restricted family might miss it. The eigenvector argument is what lets us rule out a better answer anywhere else.
-
 <details markdown="1">
-<summary>Optional: the weighted-average formula for all seven patterns</summary>
+<summary>Optional: what if the graph is disconnected?</summary>
 
-Write an allowed pattern as a mixture of the seven available building blocks:
+On our connected graph, zero energy would require equal values at both ends of every edge. Following the links makes all eight values equal. Our rules exclude that flat pattern, so λ₂ is positive.
 
-<div class="equation" role="math" aria-label="x equals c two u two plus all the remaining terms through c eight u eight.">x = c₂u₂ + ⋯ + c₈u₈</div>
-
-The coefficients c₂ through c₈ multiply whole patterns. Perpendicularity makes their squared-length contributions add. Every pattern here has mean zero, so squared length is also squared spread. Our fixed-spread rule says:
-
-<div class="equation" role="math" aria-label="c two squared plus all the remaining squared amounts through c eight squared equals one.">c₂² + ⋯ + c₈² = 1</div>
-
-Chapter 4 wrote energy as x · Lx. L multiplies each eigenvector uᵢ by its own eigenvalue λᵢ. When we expand the dot product, terms involving two different eigenvectors vanish because those vectors are perpendicular. What remains is:
-
-<div class="equation" role="math" aria-label="Energy equals lambda two times c two squared plus all the remaining terms through lambda eight times c eight squared.">E(x) = λ₂c₂² + ⋯ + λ₈c₈²</div>
-
-The weights cᵢ² are nonnegative and add to 1. Every λᵢ here is at least λ₂, giving <span class="math">E(x) ≥ λ₂</span>. Choosing <span class="math">x = u₂</span> gives equality.
-
-</details>
-
-<details markdown="1">
-<summary>Optional: what if the graph has more nodes, or is disconnected?</summary>
-
-The same reasoning works for an undirected graph of any size. With 100,000 nodes, there are 100,000 building blocks. Removing the shared level leaves 99,999. The weighted-average argument still gives the minimum immediately once the eigenvalues are ordered; it does not require trying every possible pattern.
-
-On a connected graph, zero energy forces every pair of neighbours to agree. That agreement travels through the graph until all nodes have the same value. So the flat direction is the only zero-energy direction, and λ₂ is positive.
-
-If the graph has two disconnected pieces, each piece can hold its own constant value. One can sit above zero and the other below, chosen so the overall mean is zero. No edge connects the pieces, so no edge sees a difference. After rescaling, this is an allowed pattern with energy zero. A second zero eigenvalue appears, and λ₂ becomes zero.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
+Now remove the two crossing links. Put +1/√8 on the four nodes in one half and −1/√8 on the other four. The mean is zero and the squares add to 1, but every remaining edge joins equal values. We have an allowed pattern with **zero energy**, so **λ₂ = 0**.<sup class="fnref"><a href="#fn-14" id="fnref-14" data-fn="14" aria-expanded="false" aria-label="Footnote 14">[14]</a></sup>
 
 {% include visual-primer/spectral/figure-23.html %}
 
 </details>
 
-We now have the node values that minimize energy. Chapter 8 asks how to use those values to propose a division into two groups. Finding the best real-valued pattern and finding the best cut are separate steps.
+We now have the node values that minimize energy. Chapter 8 turns those values into candidate divisions and checks their cut scores. **Finding the lowest-energy pattern and finding the best cut are separate steps.**
 
 <a id="cut" class="chapter-anchor"></a>
 
