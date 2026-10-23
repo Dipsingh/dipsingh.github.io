@@ -282,84 +282,37 @@ Our starting candidate is the **hard split**: four values of about +0.354 and fo
 
 <p class="chapter-tag">balance differences within and between the groups</p>
 
-Our first pattern has energy 1. We will try to lower it by bringing the values closer together where the two groups meet. The wiring stays fixed. Every pattern we compare will have mean zero and squared spread 1.
+Chapter 5 left us with the **hard split**: about +0.354 at nodes 1–4 and −0.354 at nodes 5–8, with energy 1. We will change the node values to see whether we can lower that energy. The wiring stays fixed.
 
-### Start by finding where the disagreement is
+### Which node values will we change?
 
-In the hard split, nodes 1–4 all have value about +0.354, and nodes 5–8 all have value about −0.354.
+Only the two crossing links, 3–5 and 4–6, join different values. All the starting energy comes from those two gaps.
 
-All ten edges within the groups join equal values, so they contribute no energy. The two edges between the groups carry all the disagreement. Each contributes 0.5, giving total energy **1**.
+Call their endpoints—nodes **3, 4, 5 and 6**—the **boundary nodes**. The other four are the **interior nodes**.
 
-We will start by reducing those two gaps.
+Bringing the boundary values toward zero reduces the gaps between the groups. It also creates gaps between boundary and interior nodes inside each group. We want the adjustment that gives the **lowest total energy** across all edges.
 
-### Bring the boundary values closer to zero
+### Try the slider
 
-The crossing edges join nodes 3 to 5 and nodes 4 to 6. Call these four nodes the **boundary nodes**. The other four—1, 2, 7 and 8—are the **interior nodes**.
+The slider uses **t** to set each boundary value as a fraction of its group's interior value:
 
-Move the positive boundary values down toward zero and the negative boundary values up toward zero. The ends of each crossing edge become closer in value, so those edges contribute less energy.
+- **t = 1:** the values are equal, giving our starting hard split.
+- **t = ½:** the boundary value is half the interior value.
+- **t = 0:** the boundary value is zero.
 
-But now the boundary nodes differ from the interior nodes in their own group. Eight internal edges that previously contributed zero begin to contribute energy.
+The slider automatically rescales all eight values so their squares still add to 1. The matching positive and negative values keep the average at zero. For example, at t = ½, interior values are about ±0.447 and boundary values about ±0.224. **t specifies their ratio; the displayed numbers are the actual node values.**
 
-This is the trade-off: **we reduce disagreement between the groups by creating some disagreement inside them.** Because energy squares the gaps, reducing a large gap can outweigh the cost of introducing several smaller ones. We have to add the contributions to find out.
-
-### Keep the comparison fair while the values change
-
-Moving only the boundary values toward zero would also reduce the squared spread. To keep it at 1, we must rescale all eight values.
-
-For a first trial, make each boundary value half as large as the interior value in its group. Before rescaling, we can write this as <span class="math">(1, 1, ½, ½, −½, −½, −1, −1)</span>. The mean is zero, and the squares add to <span class="math">4 × 1 + 4 × ¼ = 5</span>.
-
-Divide every value by √5 to make the squares add to 1. Here are the resulting values compared with our starting pattern:
-
-<div class="table-wrap" markdown="1">
-
-| Pattern | Interior values | Boundary values | Energy |
-| --- | --- | --- | --- |
-| Hard split | ±0.354 | ±0.354 | 1 |
-| Boundary values half as large | ±0.447 | ±0.224 | 0.8 |
-
-</div>
-
-The values shown are rounded. Positive values stay in the first group and negative values stay in the second. The boundary values move toward zero, while the interior values move farther from zero to keep the squared spread at 1. We are changing how the spread is distributed across the graph.
-
-### Use t to choose the relative size
-
-The slider calls this boundary-to-interior ratio **t**:
-
-- **t = 1:** boundary and interior values have equal size. This is the hard split.
-- **t = ½:** each boundary value is half its group’s interior value.
-- **t = 0:** every boundary value is zero.
-
-At t = ½, the rescaled boundary values are about ±0.224, not ±½. **t describes a ratio, not a node's value.** Each slider setting rescales all eight values together, preserving that ratio and keeping the squared spread at 1. The matched positive and negative values keep the mean at zero.
-
-### Try the experiment
-
-Start at the hard split, then try t = ½ and t = 0. Watch the **total energy**. Orange edges show disagreement between the groups; teal edges show disagreement inside them. The displayed values have already been rescaled.
+Try t = ½, then t = 0, then **“Best slider setting.”** Watch how the energy inside the groups and between them adds up to the total.
 
 {% include visual-primer/spectral/figure-19.html %}
 
-### Why moving partway helps
+### Why moving too far increases energy
 
-At **t = ½**, the energy on the crossing edges falls from 1 to 0.4. We have saved 0.6. The new disagreement inside the groups costs 0.4, so the total is **0.8**.
-
-The saving is larger than the new cost. Because the squared spread is still 1, the lower energy comes from redistributing the values across the graph.
-
-### Why moving all the way to zero is worse
-
-At **t = 0**, the two crossing edges join zeros, so their energy is zero. But the total energy has risen to **2**.
-
-To keep the squared spread at 1, the four interior values are now +0.5, +0.5, −0.5 and −0.5. Eight edges join one of these values to a boundary value of zero. Each has a squared gap of 0.25, and eight contributions of 0.25 add up to 2.
-
-Eliminating all disagreement between the groups creates too much disagreement inside them. Every edge contributes to the same total.
-
-### Find the best balance
-
-Moving partway helped; moving all the way to zero went too far. Now try **“Best in this family.”** The lowest total in this experiment occurs at **t ≈ 0.618**: boundary values about 62% as large as interior values. The energy is approximately **0.764**.
-
-The columns below separate the two sources of energy:
+These settings show the two contributions:
 
 <div class="table-wrap" markdown="1">
 
-| Boundary ratio t | Inside groups | Between groups | Total energy |
+| Boundary ratio t | Energy inside groups | Energy between groups | Total energy |
 | --- | --- | --- | --- |
 | 1: hard split | 0 | 1 | 1 |
 | ½ | 0.4 | 0.4 | 0.8 |
@@ -368,42 +321,34 @@ The columns below separate the two sources of energy:
 
 </div>
 
-### What improved, and what stayed the same?
+At t = ½, the saving between the groups outweighs the new energy inside them. At t = 0, the boundary nodes all hold zero, but the interior values are ±0.5. Eight internal edges now have a gap of 0.5, contributing <span class="math">8 × 0.5² = 2</span>. Removing the crossing gaps has made the total worse.
 
-The **pattern's energy** fell from 1 to about 0.764. Its positive nodes are still 1–4 and its negative nodes are still 5–8. Dividing by sign therefore gives the same cut: two crossing links for four nodes, with **cut score 0.5**.
+The best balance occurs at **t ≈ 0.618**: boundary values about 62% as large as interior values. This gives the slider's lowest energy, about **0.764**.
 
-We have found a smoother pattern on the same graph. Once the node values can differ within each group, energy accounts for those differences too; it no longer just counts crossing links. Later we will use the pattern's values to suggest cuts.
+### What the experiment tells us
 
-The slider also explored only one family. It kept certain pairs of nodes equal and made the two halves mirror each other. Other patterns could give all eight nodes different values.
+At the best setting, nodes 1–4 are still positive and nodes 5–8 are still negative. Dividing by sign gives the same two groups and the same **cut score of 0.5**. The lower energy describes a smoother pattern on the unchanged graph.
 
-**Could a pattern outside this family have energy below 0.764?** The experiment alone cannot answer that. Chapter 7 will show why no allowed pattern can do better.
+The slider explores only a limited family of patterns. Within each half, the two boundary nodes share a value, as do the two interior nodes. The other half uses opposite signs. Other patterns could give all eight nodes different values.
+
+Could one of those patterns have energy below 0.764? Chapter 7 will answer that question using eigenvectors.
 
 <details markdown="1">
-<summary>Optional: see the rescaling at t = ½</summary>
+<summary>Optional: how the slider calculates the values and energy</summary>
+
+Before rescaling, write the values in node-number order as <span class="math">(1, 1, t, t, −t, −t, −1, −1)</span>. Their squares add to <span class="math">4 + 4t²</span>. Following Chapter 5, divide every value by <span class="math">√(4 + 4t²)</span> to make that total 1.
+
+For t = ½, the total before rescaling is <span class="math">4 + 4 × ¼ = 5</span>. Dividing by √5 gives the interior values ±0.447 and boundary values ±0.224, rounded:
 
 {% include visual-primer/spectral/figure-20.html %}
 
-</details>
+Before rescaling, eight internal edges have gap 1 − t, and two crossing edges have gap 2t. Their squared gaps add to <span class="math">8(1 − t)² + 8t²</span>. The remaining edges, 1–2 and 7–8, have zero gap.
 
-<details markdown="1">
-<summary>Optional: compare the four settings visually</summary>
-
-{% include visual-primer/spectral/figure-21.html %}
-
-</details>
-
-<details markdown="1">
-<summary>Optional: the formula behind the experiment</summary>
-
-Before rescaling, write the pattern as (1, 1, t, t, −t, −t, −1, −1). Its squared spread is 4 + 4t².
-
-Eight internal edges have gap 1 − t, so their combined energy is 8(1 − t)². Two crossing edges have gap 2t, giving combined energy 8t². The other two edges, 1–2 and 7–8, join equal values and contribute zero.
-
-Divide the energy by the squared spread to get the energy after rescaling:
+Chapter 5's shortcut gives the energy after rescaling: divide by the squared spread.
 
 <div class="equation" role="math" aria-label="E of t equals eight times the square of one minus t plus eight times t squared, all divided by four plus four times t squared.">E(t) = <span class="frac"><span>8(1 − t)² + 8t²</span><span>4 + 4t²</span></span></div>
 
-The numerator adds the two sources of disagreement. The denominator keeps the comparison at squared spread 1. The minimum over the slider's settings occurs at t = (√5 − 1)/2 ≈ 0.618, with energy 3 − √5 ≈ 0.764.
+This formula reaches its minimum at <span class="math">t = (√5 − 1)/2 ≈ 0.618</span>, with energy <span class="math">3 − √5 ≈ 0.764</span>.
 
 </details>
 
