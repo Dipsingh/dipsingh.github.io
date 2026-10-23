@@ -164,85 +164,45 @@ Our +1 and −1 labels already mark a proposed division. Next we will use those 
 
 <p class="chapter-tag">energy: add the squared differences across edges</p>
 
-Chapter 3 judged a division by its crossing links relative to group size. Our labels from Chapter 1 already tell us which links cross: +1 marks nodes 1–4, and −1 marks nodes 5–8. A crossing link joins opposite signs.
+Our +1 and −1 labels mark the two groups. We will now use differences between node values to measure the links crossing between them. Later, this same calculation will let us search for useful divisions by adjusting the values.
 
-### From crossing links to squared differences
+### Add the squared differences
 
-For each edge, subtract the value at one end from the value at the other, then square the difference:
+For each edge, subtract the value at one end from the value at the other, then square the difference. Add these results, counting each edge once. This total is the pattern's **energy**, written <span class="math">E(x)</span>.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
 
-- **Equal values:** the difference is zero, so the contribution is zero.
-- **Values +1 and −1:** the difference is 2 or −2, depending on the reading direction. Either way, its square is 4.
+With our labels:
 
-Squaring makes each contribution nonnegative and independent of which way we read the edge. Positive and negative differences cannot cancel.
+- **Within a group:** equal values give a difference of 0, contributing 0.
+- **Between groups:** +1 and −1 give a difference of 2 or −2, contributing 4 either way.
 
-Add the contributions, counting each edge once. We call this total the pattern's **energy**, written <span class="math">E(x)</span>. It measures how different the values are across the graph's edges.<sup class="fnref"><a href="#fn-4" id="fnref-4" data-fn="4" aria-expanded="false" aria-label="Footnote 4">[4]</a></sup>
+Squaring prevents positive and negative differences from cancelling. For these labels, **energy is four times the number of crossing links**.
 
-<div class="equation" role="math" aria-label="Energy equals the sum of squared differences across edges, counting each edge once.">energy = sum of squared differences across edges</div>
-
-With our +1 and −1 labels, **energy is four times the number of crossing links**. Every crossing link contributes 4; every other link contributes zero.
-
-### Compare two divisions
-
-In our two-halves pattern, only edges 3–5 and 4–6 join opposite signs. The energy is <span class="math">2 × 4 = 8</span>.
-
-Now alternate the signs in node-number order: +1, −1, +1, −1, and so on. We still have four nodes of each sign, but six edges cross between the groups. The energy is <span class="math">6 × 4 = 24</span>.
+Our two halves have two crossing links, giving energy <span class="math">2 × 4 = 8</span>. Alternating the signs in node-number order gives six crossing links and energy <span class="math">6 × 4 = 24</span>:
 
 {% include visual-primer/spectral/figure-13.html %}
 
-Here is how energy connects to Chapter 3's cut score:
-
-<div class="table-wrap" markdown="1">
-
-| Arrangement | Crossing links | Cut score | Energy |
-| --- | --- | --- | --- |
-| Two halves | 2 | 2 ÷ 4 = 0.5 | 2 × 4 = 8 |
-| Alternating signs | 6 | 6 ÷ 4 = 1.5 | 6 × 4 = 24 |
-
-</div>
-
-Both divisions have four nodes on each side, so fewer crossing links means both a lower cut score and lower energy. For divisions with different group sizes, we must also account for size; energy alone does not do that.
-
-Squared differences also work when node values are not limited to +1 and −1. They make large gaps especially costly: a gap of 3 contributes 9, while three gaps of 1 contribute only 3 in total. Later we will use this calculation to look for patterns that change more gently across the links.
-
-<details markdown="1">
-<summary>Optional: three pictures explaining the squared differences</summary>
-
-{% include visual-primer/spectral/figure-14.html %}
-
-</details>
+Both divisions have four nodes on each side, so lower energy also means a lower cut score here. If group sizes differ, energy alone is not enough to compare the cuts.
 
 ### The Laplacian computes the same energy
 
-Chapter 2 gave us Lx: one result per node, found by adding its differences from its neighbours. Simply adding all the Lx entries gives zero. Each edge appears at both ends with opposite differences, so those contributions cancel.
+Chapter 2 gave us Lx: at each node, it adds that node's differences from its neighbours. Adding all the Lx entries would give zero, because each edge contributes opposite differences at its two ends.
 
-Instead, multiply each node's value by its own Lx result, then add. Multiplying matching entries and adding is a **dot product**. Here it is <span class="math">x · (Lx)</span>, also written <span class="math">xᵀLx</span>. This is the input–output dot product from the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#quadratic), with L as the matrix.
+Instead, **multiply each node's value by its own Lx result, then add**. This is the dot product <span class="math">x · (Lx)</span>, also written <span class="math">xᵀLx</span>—the input–output calculation from the [linear algebra primer]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}#quadratic).
 
-To see why this recovers the energy, follow just edge 3–5. It joins +1 to −1, so its squared gap is 4. In the dot product, this edge contributes at both ends:
+Follow edge 3–5, which joins +1 to −1. Its contribution to the dot product comes from both ends:
 
-- **At node 3:** its value +1 multiplies the difference +2, giving <span class="math">(+1) × (+2) = 2</span>.
-- **At node 5:** its value −1 multiplies the difference −2, giving <span class="math">(−1) × (−2) = 2</span>.
+- **At node 3:** <span class="math">(+1) × (+2) = 2</span>.
+- **At node 5:** <span class="math">(−1) × (−2) = 2</span>.
 
-Together, these give <span class="math">2 + 2 = 4</span>, exactly one squared gap for this edge. Edge 4–6 contributes another 4. Every other edge joins equal values and contributes zero.
+Together, <span class="math">2 + 2 = 4</span> recovers the edge's squared difference. Edge 4–6 contributes another 4; all other edges contribute zero. The total is again **8**.
 
 {% include visual-primer/spectral/figure-15.html %}
 
-The full calculation, using one product per node, is:
-
-<div class="table-wrap" markdown="1">
-
-| Nodes | Value | Lx result | Product at each node |
-| --- | --- | --- | --- |
-| 1, 2, 7, 8 | +1 or −1 | 0 | 0 |
-| 3, 4 | +1 | +2 | 2 |
-| 5, 6 | −1 | −2 | 2 |
-
-</div>
-
-The four nonzero products add to 8, the same energy we found from the edges. This equality works for any node values:
+This works for any node values:
 
 <div class="equation" role="math" aria-label="E of x equals x transpose L x, which equals the sum over edges of x i minus x j squared.">E(x) = xᵀLx = ∑<sub>edges {i, j}</sub> (xᵢ − xⱼ)²</div>
 
-The summation means to add one squared difference per edge. We can calculate energy directly from those gaps or through the Laplacian; both methods give the same nonnegative total.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
+The ∑ means “add over all edges, counting each once.” The dot product and the squared differences give the same energy, which is always nonnegative.<sup class="fnref"><a href="#fn-5" id="fnref-5" data-fn="5" aria-expanded="false" aria-label="Footnote 5">[5]</a></sup>
 
 <details markdown="1">
 <summary>Optional: the same edge calculation with any two values</summary>
@@ -255,11 +215,13 @@ The two endpoint contributions add to exactly one squared gap. Summing over all 
 
 </details>
 
-### Next, let the values change
+### Let the node values change
 
-The labels +1 and −1 force each node into one of two groups. Allowing values between them, such as 0.3 or −0.6, lets us adjust a pattern gradually. We will look for a pattern with low energy, then use its values to suggest a division of the graph.
+We can now allow values such as 0.3 or −0.6 and adjust a pattern gradually. Energy then measures differences within groups too, rather than just counting crossing links.
 
-But shrinking every value also lowers the energy, even when the arrangement stays the same. Before searching, we need a way to compare patterns fairly. Chapter 5 sets that up.
+Squaring makes large gaps costly: one gap of 3 contributes 9, while three gaps of 1 contribute only 3 in total. This gives us a reason to look for patterns whose values change gently across edges.
+
+But simply shrinking every value also lowers energy. Chapter 5 shows how to keep the comparison fair before we begin that search.
 
 <a id="fair" class="chapter-anchor"></a>
 
