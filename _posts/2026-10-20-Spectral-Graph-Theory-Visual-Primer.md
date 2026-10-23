@@ -451,13 +451,11 @@ We now have the node values that minimize energy. Chapter 8 turns those values i
 
 <p class="chapter-tag">try thresholds and compare the resulting cuts</p>
 
-The minimum-energy pattern is a list of numbers. To make a cut, we still have to decide which nodes belong on each side. We will use the numbers to propose cuts, then count the original graph’s crossing edges to judge them.
+Chapter 7 gave each node a value. To turn those values into two groups, we will **put the nodes in order, try a dividing line in each gap, and compare the resulting cut scores**.
 
-### Put the nodes in order by their values
+### Put the nodes in order
 
-An edge with a large gap between its endpoint values contributes a lot of energy. The Fiedler pattern minimizes total energy, so it tends to keep connected nodes close in value. Sorting the nodes by these values gives us a useful place to look for a division.
-
-Sort the nodes from the most negative value to the most positive:
+The Fiedler pattern minimizes energy, so it tends to keep connected nodes close in value. Sorting by these values gives us a useful place to look for a division:
 
 <div class="table-wrap" markdown="1">
 
@@ -472,37 +470,29 @@ Sort the nodes from the most negative value to the most positive:
 
 The values are rounded here. In this graph, the two nodes in each pair have exactly equal values.
 
-Choose a number between two different node values. This number is the **threshold**: put every node whose value is below it into one group, and the remaining nodes into the other. Moving the threshold changes group membership while the wiring and node values stay fixed.
+Place a dividing line between two values. Nodes below it form one group; nodes above it form the other. The number marking that line is called the **threshold**. Moving the line changes the groups while the wiring and node values stay fixed.
 
-Zero is one possible threshold. The best cut may come from another gap, so we will try each gap and compare the cut scores.
+The exact number is unimportant: **any threshold in the same gap gives the same cut**. For example, −0.34 and −0.35 both lie between −0.425 and −0.263 and select the same nodes.
 
-### Try one threshold completely
+Four distinct values leave **three gaps**, so we have three candidate cuts. Nodes with equal values stay together. A line outside all the values would leave one group empty, which is not a valid cut.
 
-Choose **−0.34**, which lies between −0.425 and −0.263. Nodes 7 and 8 have value −0.425, below the threshold. Every other node has a higher value. The chosen group is therefore **{7, 8}**, with nodes 1–6 on the other side.
+Trying the gaps in order and comparing the cut scores is called a **sweep**.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup>
 
-Look back at the original graph. Four edges leave {7, 8}: 5–7, 5–8, 6–7 and 6–8. The smaller group has two nodes, so the cut score is:
+### Try the three dividing lines
 
-<div class="equation" role="math" aria-label="The first cut has four crossing edges divided by two nodes on the smaller side, giving score two.">cut score = <span class="frac"><span>4 crossing edges</span><span>2 nodes on the smaller side</span></span> = 2</div>
+Start at **−0.34**. Only nodes 7 and 8 have values below it, so one group is **{7, 8}** and the other contains nodes 1–6.
 
-That is one complete candidate: the threshold proposes the groups, and the original edges determine the score.
+Four edges leave {7, 8}: 5–7, 5–8, 6–7 and 6–8. The smaller group has two nodes, so:
 
-### Move it once and see what changes
+<div class="equation" role="math" aria-label="The first cut has four crossing edges divided by two nodes on the smaller side, giving score two.">cut score = <span class="frac"><span>4</span><span>2</span></span> = 2</div>
 
-Move the threshold to **0**, between −0.263 and +0.263. Nodes 5 and 6 now fall below it and join the chosen group: **{5, 6, 7, 8}**.
+Now move the line to **0**. Nodes 5 and 6 join the selected group, making it **{5, 6, 7, 8}**.
 
-The four edges we just counted no longer cross the cut. Both ends of each now lie inside the chosen group. Only edges 3–5 and 4–6 leave it.
-
-We now have two crossing edges and four nodes on each side. The score is **2/4 = 0.5**, an improvement over 2.
+The four edges we just counted are now inside the group. Only edges 3–5 and 4–6 cross the cut. With two crossing edges and four nodes on each side, the score improves to **2/4 = 0.5**:
 
 {% include visual-primer/spectral/figure-24.html %}
 
-Adding nodes has reduced the number of crossing edges. We find the score by checking the wiring for each proposed group.
-
-### Check the remaining gap
-
-Choose **+0.34**, between +0.263 and +0.425. Nodes 3 and 4 join the chosen group, giving **{3, 4, 5, 6, 7, 8}**, with {1, 2} on the other side.
-
-Four edges cross this division. Although the chosen group has six nodes, the *smaller* group has two. The score is therefore **4/2 = 2**.
+Finally, move the line to **+0.34**. The selected group becomes **{3, 4, 5, 6, 7, 8}**, leaving {1, 2} on the other side. Four edges cross. Although six nodes are selected, the **smaller group has two**, so the score is **4/2 = 2**.
 
 <div class="table-wrap" markdown="1">
 
@@ -514,50 +504,17 @@ Four edges cross this division. Although the chosen group has six nodes, the *sm
 
 </div>
 
-Try the three positions below. Follow which nodes change sides and which original edges become crossing edges.
+Try the three positions below and watch which nodes change sides and which edges cross.
 
 {% include visual-primer/spectral/figure-25.html %}
 
-### Why are there only three candidates?
+### What did we find?
 
-There are four distinct values, leaving three gaps between them. Any threshold within the same gap selects the same nodes. For example, −0.34 and −0.35 both select {7, 8}.
+The middle gap gives the lowest score **among these three cuts: 0.5**.
 
-A threshold also cannot separate two nodes with exactly equal values. They stay together. Moving beyond all the values would put every node on one side, which is not a valid cut.
+That does not contradict Chapter 7's minimum energy of about 0.764. **Energy and cut score measure different things:** energy adds squared differences between connected node values; the cut score counts crossing edges and divides by the smaller group size.
 
-Trying the gaps in order and comparing their scores is called a **sweep**. With n nodes, there are at most n − 1 threshold cuts. Here we check three, out of the graph's 127 possible cuts.<sup class="fnref"><a href="#fn-15" id="fnref-15" data-fn="15" aria-expanded="false" aria-label="Footnote 15">[15]</a></sup>
-
-### What did the sweep establish?
-
-The second threshold gives the best cut **among these three candidates**, with score 0.5.
-
-Chapter 7 proved the lowest possible **pattern energy**, about 0.764. The sweep found a **cut score** of 0.5 by checking only the cuts from this ordering. That does not establish the best score across all cuts.
-
-We therefore have a good candidate and a new question: **could a cut outside this list score much lower?** Chapter 9 uses λ₂ to limit how much better an unseen cut could be.
-
-<details markdown="1">
-<summary>Optional: see all three candidate cuts side by side</summary>
-
-{% include visual-primer/spectral/figure-26.html %}
-
-</details>
-
-<details markdown="1">
-<summary>Optional: signs, scale, and group sizes</summary>
-
-Reversing every sign reverses the ordering and swaps the sides of the sweep cuts. Their scores do not change. Multiplying all values by a positive number stretches the value axis while leaving the ordering and the candidate groups unchanged.
-
-Mean zero does not require equal numbers of positive and negative entries. A few large positive values can balance many small negative ones. The balanced winning cut here comes from this graph’s symmetry.
-
-</details>
-
-<details markdown="1">
-<summary>Optional: does a sweep need to recount every edge for every cut?</summary>
-
-No. When a node moves into the chosen group, only its incident edges can change crossing status. An edge to a node already inside stops crossing; an edge to a node still outside starts crossing. The sweep can update its crossing count as it moves.
-
-Nodes with equal values move together, and we score the cut after the whole group has moved.
-
-</details>
+We have checked only the cuts from this ordering, so we have not proved that no other cut could do better. Chapter 9 uses λ₂ to limit how much better an unseen cut could be.
 
 <a id="cheeger" class="chapter-anchor"></a>
 
