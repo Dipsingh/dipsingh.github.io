@@ -508,10 +508,6 @@ Finally, move the line to **+0.34**. The selected group becomes **{3, 4, 5, 6, 7
 
 </div>
 
-Try the three positions below and watch which nodes change sides and which edges cross.
-
-{% include visual-primer/spectral/figure-25.html %}
-
 ### What did we find?
 
 The middle gap gives the lowest score **among these three cuts: 0.5**.
