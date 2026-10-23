@@ -93,6 +93,31 @@ const Sk=(()=>{
  if (soft) soft.addEventListener('input',updateSoft);
  [['soft-hard',1],['soft-half',.5],['soft-zero',0],['soft-best',best]].forEach(([id,t])=>document.getElementById(id)?.addEventListener('click',()=>{soft.value=t;updateSoft();}));
  const cut=document.getElementById('cut-position'),f=data.weak.fiedler;
+ const divider=document.getElementById('threshold-line-position');
+ function updateThresholdLine(){
+  const threshold=Number(divider.value),chosen=f.map((value,i)=>value<threshold?i:-1).filter(i=>i>=0);
+  const others=f.map((value,i)=>value>=threshold?i:-1).filter(i=>i>=0);
+  const members='Below: '+chosen.map(i=>i+1).join(', ')+'. Other group: '+others.map(i=>i+1).join(', ')+'.';
+  write('threshold-line-output',fmt(threshold,2));write('threshold-line-members',members);
+  divider.setAttribute('aria-valuetext','Threshold '+fmt(threshold,2)+'. '+members);
+  document.querySelectorAll('svg[data-threshold-line]').forEach(svg=>{
+   const x=Number(svg.dataset.origin)+Number(svg.dataset.scale)*threshold,line=svg.querySelector('[data-divider]');
+   line.setAttribute('x1',x);line.setAttribute('x2',x);
+   svg.dataset.selected=JSON.stringify(chosen);svg.dataset.threshold=threshold;
+   svg.querySelectorAll('[data-threshold-node]').forEach(node=>{
+    const selected=chosen.includes(Number(node.dataset.thresholdNode));
+    node.setAttribute('fill',selected?'#eaf1f8':'white');node.setAttribute('stroke',selected?colors.blue:colors.muted);
+   });
+   svg.querySelectorAll('[data-threshold-node-label]').forEach(label=>label.setAttribute('fill',chosen.includes(Number(label.dataset.thresholdNodeLabel))?colors.blue:colors.muted));
+   svg.querySelectorAll('[data-threshold-gap]').forEach(gap=>{
+    const selected=threshold>Number(gap.dataset.min)&&threshold<=Number(gap.dataset.max);
+    gap.querySelector('rect').setAttribute('fill',selected?'#e5f3f0':'#f5f6f7');
+    gap.querySelector('text').setAttribute('fill',selected?colors.teal:colors.muted);
+   });
+   svg.querySelector('desc').textContent='Nodes are positioned at their Fiedler-vector values. The divider is at '+fmt(threshold,2)+'. '+members+' Equal-valued nodes are stacked and always stay in the same group. Moving the divider within one gap keeps the groups unchanged.';
+  });
+ }
+ if(divider){divider.addEventListener('input',updateThresholdLine);updateThresholdLine();}
  function updateCut(){
   const p=Number(cut.value),threshold=[(-f[0]-f[2])/2,0,(f[0]+f[2])/2][p];
   const chosen=new Set(f.map((v,i)=>v<threshold?i:-1).filter(i=>i>=0));

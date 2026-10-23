@@ -472,7 +472,9 @@ The Fiedler pattern minimizes energy, so it tends to keep connected nodes close 
 
 The values are rounded here. In this graph, the two nodes in each pair have exactly equal values.
 
-Place a dividing line between two values. Nodes below it form one group; nodes above it form the other. The number marking that line is called the **threshold**. Moving the line changes the groups while the wiring and node values stay fixed.
+Place a dividing line between two values. Its position is the **threshold**: nodes with smaller values go into one group, and the rest go into the other. On the number line below, the smaller values are to the left of the divider. Moving the line changes the groups while the wiring and node values stay fixed.
+
+{% include visual-primer/spectral/figure-36.html %}
 
 The exact number is unimportant: **any threshold in the same gap gives the same cut**. For example, −0.34 and −0.35 both lie between −0.425 and −0.263 and select the same nodes.
 
