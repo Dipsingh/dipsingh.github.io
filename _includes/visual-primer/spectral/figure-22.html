@@ -1,4 +1,4 @@
-<figure class="figure"><div class="art art-responsive" tabindex="0" role="group" aria-label="Illustration; panels stack on small screens"><div class="art-desktop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 512" role="img" aria-labelledby="13-pattern-action-title 13-pattern-action-desc"><title id="13-pattern-action-title">Applying L scales every value in an eigenvector pattern</title><desc id="13-pattern-action-desc">Input u2 has node values approximately 0.425, 0.425, 0.263, 0.263, minus 0.263, minus 0.263, minus 0.425, minus 0.425. The output L u2 multiplies every one by lambda2, approximately 0.764. The two plots have the same vertical scale. Their horizontal axis is node ID; it does not show positions in the network.</desc><rect width="760" height="512" fill="white"/>
+<figure class="figure"><div class="art art-responsive" tabindex="0" role="group" aria-label="Illustration; panels stack on small screens"><div class="art-desktop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 512" role="img" aria-labelledby="13-pattern-action-title 13-pattern-action-desc"><title id="13-pattern-action-title">Applying L scales every value in an eigenvector pattern</title><desc id="13-pattern-action-desc">Input u2 has node values approximately 0.425, 0.425, 0.263, 0.263, minus 0.263, minus 0.263, minus 0.425, minus 0.425. The output L u2 multiplies every one by lambda2, approximately 0.764, giving node values approximately 0.325, 0.325, 0.201, 0.201, minus 0.201, minus 0.201, minus 0.325, minus 0.325. Brackets label the shared value of each pair of nodes, rounded to three decimal places. The two plots have the same vertical scale. Their horizontal axis is node ID; it does not show positions in the network.</desc><rect width="760" height="512" fill="white"/>
 <text x="20" y="32" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="24" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em"><tspan font-family="&#x27;Playpen Sans&#x27;,&#x27;Chalkboard SE&#x27;,&#x27;Comic Sans MS&#x27;,cursive" font-weight="700" word-spacing="0">L</tspan> changes the size, not the pattern</text>
 <text x="20" y="65" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18.1" fill="#5c6670" text-anchor="start">Every node value is multiplied by the same number: λ<tspan font-size="12.3" dy="4.3">2</tspan><tspan dy="-4.3">&#8203;</tspan> ≈ 0.764.</text>
 <g transform="translate(10 88)">
@@ -36,6 +36,16 @@
 <line x1="332" y1="296" x2="332" y2="301" stroke="#5c6670" stroke-width="1" stroke-linecap="round"/>
 <text x="332" y="322" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#1f1f1f" text-anchor="middle">8</text>
 <text x="193" y="350" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="middle">Node ID</text>
+<g data-node-values="input" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18" fill="#245e9b" text-anchor="middle" font-weight="700">
+<path d="M 54 107.5 V 112.5 H 93.7 V 107.5" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="73.8" y="132.5" data-nodes="1 2">+0.425</text>
+<path d="M 133.4 141.3 V 146.3 H 173.1 V 141.3" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="153.3" y="166.3" data-nodes="3 4">+0.263</text>
+<path d="M 212.9 234.7 V 229.7 H 252.6 V 234.7" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="232.8" y="220.7" data-nodes="5 6">−0.263</text>
+<path d="M 292.3 268.5 V 263.5 H 332 V 268.5" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="312.1" y="254.5" data-nodes="7 8">−0.425</text>
+</g>
 </g>
 <g transform="translate(400 88)">
 <text x="20" y="25" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="20.9" fill="#b65b27" text-anchor="start" font-weight="700">Output: L u<tspan font-size="14.2" dy="5">2</tspan><tspan dy="-5">&#8203;</tspan></text>
@@ -72,9 +82,19 @@
 <line x1="332" y1="296" x2="332" y2="301" stroke="#5c6670" stroke-width="1" stroke-linecap="round"/>
 <text x="332" y="322" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#1f1f1f" text-anchor="middle">8</text>
 <text x="193" y="350" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="middle">Node ID</text>
+<g data-node-values="output" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18" fill="#b65b27" text-anchor="middle" font-weight="700">
+<path d="M 54 128.4 V 133.4 H 93.7 V 128.4" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="73.8" y="153.4" data-nodes="1 2">+0.325</text>
+<path d="M 133.4 154.2 V 159.2 H 173.1 V 154.2" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="153.3" y="179.2" data-nodes="3 4">+0.201</text>
+<path d="M 212.9 221.8 V 216.8 H 252.6 V 221.8" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="232.8" y="207.8" data-nodes="5 6">−0.201</text>
+<path d="M 292.3 247.6 V 242.6 H 332 V 247.6" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="312.1" y="233.6" data-nodes="7 8">−0.325</text>
 </g>
-<text x="20" y="485" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="start">These axes show node values. They do not show positions in the network.</text>
-</svg></div><div class="art-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 904" role="img" aria-labelledby="13-pattern-action-mobile-title 13-pattern-action-mobile-desc"><title id="13-pattern-action-mobile-title">Applying L scales every value in an eigenvector pattern</title><desc id="13-pattern-action-mobile-desc">Input u2 has node values approximately 0.425, 0.425, 0.263, 0.263, minus 0.263, minus 0.263, minus 0.425, minus 0.425. The output L u2 multiplies every one by lambda2, approximately 0.764. The two plots have the same vertical scale. Their horizontal axis is node ID; it does not show positions in the network.</desc><rect width="380" height="904" fill="white"/>
+</g>
+<text x="20" y="485" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="start">Each bracket labels both nodes. Values are rounded to three decimal places.</text>
+</svg></div><div class="art-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 904" role="img" aria-labelledby="13-pattern-action-mobile-title 13-pattern-action-mobile-desc"><title id="13-pattern-action-mobile-title">Applying L scales every value in an eigenvector pattern</title><desc id="13-pattern-action-mobile-desc">Input u2 has node values approximately 0.425, 0.425, 0.263, 0.263, minus 0.263, minus 0.263, minus 0.425, minus 0.425. The output L u2 multiplies every one by lambda2, approximately 0.764, giving node values approximately 0.325, 0.325, 0.201, 0.201, minus 0.201, minus 0.201, minus 0.325, minus 0.325. Brackets label the shared value of each pair of nodes, rounded to three decimal places. The two plots have the same vertical scale. Their horizontal axis is node ID; it does not show positions in the network.</desc><rect width="380" height="904" fill="white"/>
 <text x="20" y="32" font-family="'Humor Sans','Comic Sans MS','Chalkboard SE',cursive" font-size="24" fill="#1f1f1f" text-anchor="start" word-spacing="-0.18em"><tspan font-family="&#x27;Playpen Sans&#x27;,&#x27;Chalkboard SE&#x27;,&#x27;Comic Sans MS&#x27;,cursive" font-weight="700" word-spacing="0">L</tspan> keeps this pattern</text>
 <text x="20" y="64" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18.1" fill="#5c6670" text-anchor="start">Every node value is multiplied</text>
 <text x="20" y="91" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18.1" fill="#5c6670" text-anchor="start">by the same number: λ<tspan font-size="12.3" dy="4.3">2</tspan><tspan dy="-4.3">&#8203;</tspan> ≈ 0.764.</text>
@@ -113,6 +133,16 @@
 <line x1="332" y1="296" x2="332" y2="301" stroke="#5c6670" stroke-width="1" stroke-linecap="round"/>
 <text x="332" y="322" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#1f1f1f" text-anchor="middle">8</text>
 <text x="193" y="350" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="middle">Node ID</text>
+<g data-node-values="input" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18" fill="#245e9b" text-anchor="middle" font-weight="700">
+<path d="M 54 107.5 V 112.5 H 93.7 V 107.5" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="73.8" y="132.5" data-nodes="1 2">+0.425</text>
+<path d="M 133.4 141.3 V 146.3 H 173.1 V 141.3" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="153.3" y="166.3" data-nodes="3 4">+0.263</text>
+<path d="M 212.9 234.7 V 229.7 H 252.6 V 234.7" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="232.8" y="220.7" data-nodes="5 6">−0.263</text>
+<path d="M 292.3 268.5 V 263.5 H 332 V 268.5" fill="none" stroke="#245e9b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="312.1" y="254.5" data-nodes="7 8">−0.425</text>
+</g>
 </g>
 <g transform="translate(10 493)">
 <text x="20" y="25" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="20.9" fill="#b65b27" text-anchor="start" font-weight="700">Output: L u<tspan font-size="14.2" dy="5">2</tspan><tspan dy="-5">&#8203;</tspan></text>
@@ -149,6 +179,16 @@
 <line x1="332" y1="296" x2="332" y2="301" stroke="#5c6670" stroke-width="1" stroke-linecap="round"/>
 <text x="332" y="322" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#1f1f1f" text-anchor="middle">8</text>
 <text x="193" y="350" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="17.1" fill="#5c6670" text-anchor="middle">Node ID</text>
+<g data-node-values="output" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="18" fill="#b65b27" text-anchor="middle" font-weight="700">
+<path d="M 54 128.4 V 133.4 H 93.7 V 128.4" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="73.8" y="153.4" data-nodes="1 2">+0.325</text>
+<path d="M 133.4 154.2 V 159.2 H 173.1 V 154.2" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="153.3" y="179.2" data-nodes="3 4">+0.201</text>
+<path d="M 212.9 221.8 V 216.8 H 252.6 V 221.8" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="232.8" y="207.8" data-nodes="5 6">−0.201</text>
+<path d="M 292.3 247.6 V 242.6 H 332 V 247.6" fill="none" stroke="#b65b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="312.1" y="233.6" data-nodes="7 8">−0.325</text>
 </g>
-<text x="20" y="879" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.1" fill="#5c6670" text-anchor="start">These axes show values, not graph positions.</text>
-</svg></div></div><figcaption>Applying L to u₂ multiplies every entry by λ₂ ≈ 0.764. Both plots use the same scale. The horizontal axis gives node numbers; the vertical axis gives their values.</figcaption></figure>
+</g>
+<text x="20" y="879" font-family="'Playpen Sans','Chalkboard SE','Comic Sans MS',cursive" font-size="16.1" fill="#5c6670" text-anchor="start">Each bracket labels both nodes (rounded).</text>
+</svg></div></div><figcaption>Applying L to u₂ multiplies every entry by λ₂ ≈ 0.764. Each bracket gives the value at both nodes, rounded to three decimal places. Both plots use the same scale. The horizontal axis gives node numbers; the vertical axis gives their values.</figcaption></figure>
