@@ -404,7 +404,9 @@ Including any nonzero amount of u₁ would change the mean. **Every mean-zero pa
 
 ### Could mixing patterns lower the energy further?
 
-Of the remaining eigenvectors, u₂ has the lowest energy. But could a mixture do better? Try:
+No. A mixture's energy is a **weighted average** of the eigenvalues. However we choose the proportions, giving any weight to an eigenvalue above λ₂ raises the average above λ₂. **The minimum comes from putting all the weight on the smallest available eigenvalue.** For our graph, that means using only u₂.
+
+Here is how that average appears in one mixture:
 
 <div class="equation" role="math" aria-label="x equals 0.6 times u two plus 0.8 times u three.">x = 0.6u₂ + 0.8u₃</div>
 
@@ -414,9 +416,9 @@ Their energy contributions add too. L only rescales each eigenvector, and in the
 
 <div class="equation" role="math" aria-label="The energy of x is approximately 0.36 times 0.764 plus 0.64 times 2, which is approximately 1.555.">E(x) ≈ 0.36 × 0.764 + 0.64 × 2<br>≈ 1.555</div>
 
-This is a **weighted average**: 36% of the squared spread uses the pattern with energy about 0.764, and 64% uses the pattern with energy 2. Mixing in the higher-energy pattern raises the total.
+Here, the weights are 36% at energy about 0.764 and 64% at energy 2. Sharing the weight with the higher-energy pattern raises the result to about 1.555.
 
-The same rule covers **every allowed pattern**. Its coefficients may be positive or negative, but their squares are nonnegative and add to 1. They weight the eigenvalues in the energy calculation. An average with these weights cannot fall below the smallest eigenvalue available: **λ₂**.
+Every allowed mixture follows this rule: the **squared coefficients are the weights**. They cannot be negative and add to 1, so they describe proportions of the total.
 
 ### What does this tell us about the slider?
 
