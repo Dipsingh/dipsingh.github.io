@@ -443,7 +443,7 @@ Now remove the two crossing links. Put +1/√8 on the four nodes in one half and
 
 </details>
 
-We now have the node values that minimize energy. Chapter 8 turns those values into candidate divisions and checks their cut scores. **Finding the lowest-energy pattern and finding the best cut are separate steps.**
+The entries of u₂ give the node values that minimize energy. Chapter 8 turns those values into candidate divisions and checks their cut scores. **Finding the lowest-energy pattern and finding the best cut are separate steps.**
 
 <a id="cut" class="chapter-anchor"></a>
 
@@ -451,7 +451,9 @@ We now have the node values that minimize energy. Chapter 8 turns those values i
 
 <p class="chapter-tag">try thresholds and compare the resulting cuts</p>
 
-Chapter 7 gave each node a value. To turn those values into two groups, we will **put the nodes in order, try a dividing line in each gap, and compare the resulting cut scores**.
+Chapter 7 found that **λ₂ ≈ 0.764** is the minimum energy under our two comparison rules. The corresponding **unit eigenvector u₂** contains the node values that achieve that energy, one entry per node.
+
+We will use those values to propose two groups: **put the nodes in order, try a dividing line in each gap, and compare the resulting cut scores**.
 
 ### Put the nodes in order
 
