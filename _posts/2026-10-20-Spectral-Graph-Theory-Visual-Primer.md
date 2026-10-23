@@ -534,9 +534,9 @@ To use this minimum to reason about cut scores, we first turn a proposed cut int
 
 Start with the cut we found: **four nodes on each side, with two crossing edges**.
 
-Give one side value 1 and the other value 0. The mean is 0.5, so subtracting it leaves **+0.5 on one side and −0.5 on the other**.
+As in our earlier examples, give one side value **+1** and the other value **−1**. With four nodes on each side, the mean is already zero.
 
-The eight squared values currently add to **4 × (0.5)² + 4 × (−0.5)² = 2**. To make that total 1, divide every value by √2. The new values are **+1/√8 and −1/√8**. Each square is now 1/8, and eight copies add to 1.
+The eight squared values add to **4 × (+1)² + 4 × (−1)² = 8**. To make that total 1, divide every value by √8. The new values are **+1/√8 and −1/√8**. Each square is now 1/8, and eight copies add to 1.
 
 Now calculate the energy. An edge inside a group joins equal values, so its contribution is zero. A crossing edge joins +1/√8 to −1/√8. Its difference is 2/√8, so its contribution is:
 
@@ -592,15 +592,15 @@ The bounds still leave room for a score below 0.5. For our eight-node graph, a c
 <details markdown="1">
 <summary>Optional: derive the cut-pattern energy</summary>
 
-Let the graph have n nodes. The smaller group contains s nodes, the larger group contains t = n − s nodes, and b edges cross between them. The cut score is b/s.
+Let the smaller group contain s nodes and the larger group contain t nodes, with n = s + t nodes in total. Suppose b edges cross between the groups. The cut score is b/s.
 
-Start with value 1 on the smaller group and 0 on the other group. The mean is s/n. Subtracting it gives value 1 − s/n on the smaller group and −s/n on the other. The mean is now zero, and every crossing edge still has a gap of 1.
+Start with value +1 on the smaller group and −1 on the larger group. The mean is (s − t)/n. Subtracting it gives **2t/n** on the smaller group and **−2s/n** on the larger group. The mean is now zero, and every crossing edge still has a gap of 2.
 
-The energy is therefore b. The total squared spread is the sum of s copies of (1 − s/n)² and n − s copies of (s/n)². This simplifies to s(n − s)/n. To find the energy after rescaling that spread to 1, divide energy by squared spread:
+Each crossing edge contributes 2² = 4, so the energy is **4b**. The squared values add to **s(2t/n)² + t(−2s/n)² = 4st/n**. To find the energy after rescaling that total to 1, divide the energy by this sum:
 
-<div class="equation" role="math" aria-label="The rescaled pattern energy equals b n divided by s times n minus s, which equals b over s plus b over n minus s.">rescaled pattern energy<br>= <span class="frac"><span>bn</span><span>s(n − s)</span></span> = <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>n − s</span></span></div>
+<div class="equation" role="math" aria-label="The rescaled pattern energy equals four b divided by four s t over n, which equals b n over s t, or b over s plus b over t.">rescaled pattern energy<br>= 4b ÷ (4st/n)<br>= <span class="frac"><span>bn</span><span>st</span></span> = <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>t</span></span></div>
 
-This is the two-term formula used above. Since s ≤ n − s, the second term is no greater than b/s, the cut score. Combining this with Chapter 7's minimum gives λ₂ ≤ rescaled pattern energy ≤ 2 × cut score.
+This is the two-term formula used above. Since s ≤ t, the second term is no greater than b/s, the cut score. Combining this with Chapter 7's minimum gives λ₂ ≤ rescaled pattern energy ≤ 2 × cut score.
 
 </details>
 
