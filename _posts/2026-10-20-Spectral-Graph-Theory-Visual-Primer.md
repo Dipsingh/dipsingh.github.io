@@ -11,8 +11,6 @@ Todo:
 
 ## 1. Find a bottleneck in a small network
 
-<p class="chapter-tag">eight routers, three links each, two links between groups</p>
-
 ### Eight routers, twelve links
 
 Our example has eight routers and twelve links. Every router has three links, yet only two links connect the two halves of the network. We want to understand that weakness and learn how to find similar ones in larger networks.
@@ -53,8 +51,6 @@ All our links work in both directions and count equally. No node links to itself
 <a id="laplacian" class="chapter-anchor"></a>
 
 ## 2. Describe the graph with matrices
-
-<p class="chapter-tag">what A, D and L do to node values</p>
 
 ### Start with one node's comparison
 
@@ -124,8 +120,6 @@ We now have a matrix that compares values at connected nodes. Before combining t
 
 ## 3. Measure how well groups connect
 
-<p class="chapter-tag">count crossing links relative to group size</p>
-
 Our graph is **connected**: you can follow edges from any node to any other. Yet removing just two links separates it into two groups of four nodes. We want to measure how weakly a group connects to the rest of the network.
 
 ### Count crossing links relative to group size
@@ -161,8 +155,6 @@ Our +1 and −1 labels already mark a proposed division. Next we will use those 
 <a id="energy" class="chapter-anchor"></a>
 
 ## 4. Measure differences across connected nodes
-
-<p class="chapter-tag">energy: add the squared differences across edges</p>
 
 Our +1 and −1 labels mark the two groups. We will now use differences between node values to measure the links crossing between them. Later, this same calculation will let us search for useful divisions by adjusting the values.
 
@@ -216,8 +208,6 @@ But simply shrinking every value also lowers energy. Chapter 5 shows how to keep
 <a id="fair" class="chapter-anchor"></a>
 
 ## 5. Compare node patterns at the same scale
-
-<p class="chapter-tag">subtract the average, then rescale the values</p>
 
 Our +1 and −1 pattern has energy 8. Halve every value and the energy falls to 2: each gap halves, so each squared gap becomes one quarter as large. The same nodes still form the same two groups. We have only made their labels smaller.
 
@@ -279,8 +269,6 @@ Our starting candidate is the **hard split**: four values of about +0.354 and fo
 <a id="adjust" class="chapter-anchor"></a>
 
 ## 6. Lower energy by adjusting node values
-
-<p class="chapter-tag">balance differences within and between the groups</p>
 
 Chapter 5 left us with the **hard split**: about +0.354 at nodes 1–4 and −0.354 at nodes 5–8, with energy 1. We will change the node values to see whether we can lower that energy. The wiring stays fixed.
 
@@ -355,8 +343,6 @@ This formula reaches its minimum at <span class="math">t = (√5 − 1)/2 ≈ 0.
 <a id="second" class="chapter-anchor"></a>
 
 ## 7. Find the pattern with the lowest energy
-
-<p class="chapter-tag">why the second eigenvector gives the minimum</p>
 
 The slider found energy about **0.764**, but explored only a limited set of patterns. Could we do better by letting all eight node values vary independently?
 
@@ -449,8 +435,6 @@ The entries of u₂ give the node values that minimize energy. Chapter 8 turns t
 
 ## 8. Use an eigenvector to divide the graph
 
-<p class="chapter-tag">try thresholds and compare the resulting cuts</p>
-
 Chapter 7 found that **λ₂ ≈ 0.764** is the minimum energy under our two comparison rules. The corresponding **unit eigenvector u₂** contains the node values that achieve that energy, one entry per node.
 
 We will use those values to propose two groups: **put the nodes in order, try a dividing line in each gap, and compare the resulting cut scores**.
@@ -519,8 +503,6 @@ We have checked only the cuts from this ordering, so we have not proved that no 
 <a id="cheeger" class="chapter-anchor"></a>
 
 ## 9. How close is our cut to the best possible?
-
-<p class="chapter-tag">use λ₂ to bound the best cut score</p>
 
 Chapter 8 found a cut with score **0.5**, but we checked only three candidates. Could another cut score much lower? The eigenvalue λ₂ helps us answer that without checking every cut. Recall that **h(G)** means the lowest score among all cuts.
 
@@ -609,8 +591,6 @@ A larger λ₂ raises the guaranteed minimum cut score, ruling out groups with t
 
 ## 10. Keep networks well connected as they grow
 
-<p class="chapter-tag">give larger groups proportionally more links out</p>
-
 So far, a low cut score has helped us find a network's bottleneck. When designing a network, we want to make that weakest connection stronger: **raise h(G), the lowest cut score**.
 
 We will first improve our eight-router graph by changing the wiring, then ask how to keep larger networks well connected without adding more links at each router.
@@ -639,16 +619,6 @@ A ring shows what can go wrong. Each router has two neighbours. But take a conse
 
 {% include visual-primer/spectral/figure-30.html %}
 
-<div class="table-wrap" markdown="1">
-
-| Routers in the ring | Nodes in the chosen half | Crossing links | Cut score |
-| --- | --- | --- | --- |
-| 8 | 4 | 2 | 0.5 |
-| 16 | 8 | 2 | 0.25 |
-| 32 | 16 | 2 | 0.125 |
-
-</div>
-
 More routers must share the same two links out, so the cut score falls. A fixed number of neighbours per router is not enough to prevent a bottleneck.
 
 ### Keep the same guarantee at every size
@@ -660,9 +630,21 @@ We want larger groups to have proportionally more links out. For example, suppos
 
 That is the guarantee **h(G) ≥ 0.5**. It must hold for every such group, at every network size.
 
-An **expander family** is a sequence of larger and larger graphs with a fixed number of links per node and one positive lower bound on h(G) that works for the whole sequence.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup> The bound need not be 0.5; it must simply stay fixed as the graphs grow.
+An **expander family** is a sequence of larger and larger graphs with a fixed number of links per node and one positive lower bound on h(G) that works for the whole sequence.<sup class="fnref"><a href="#fn-17" id="fnref-17" data-fn="17" aria-expanded="false" aria-label="Footnote 17">[17]</a></sup> The bound need not be 0.5. The actual h(G) can change from one graph to the next; what matters is that it never drops below the same positive minimum.
 
 Eigenvalues give us a way to prove this. For example, if every graph has **λ₂ ≥ 1**, Chapter 9 guarantees **h(G) ≥ 0.5** for all of them.
+
+### Examples with three links per router
+
+**Random regular graphs** choose the wiring randomly while giving every router the same number of links. We could keep that number at three as the network grows. For large networks, a uniformly sampled graph is very likely to have h(G) above a fixed positive minimum that does not depend on network size. The probability approaches 1 as the networks grow; an individual sample can still fail that guarantee. [Friedman's result](https://arxiv.org/abs/cs/0405020)
+
+**Ramanujan families** use a construction with a proven eigenvalue bound. There are families where we can keep doubling the number of routers, with three links per router throughout, while preserving that bound. It guarantees a positive minimum cut score that works at every step. Chapter 11 explains the eigenvalue condition behind the name. [Marcus, Spielman and Srivastava](https://arxiv.org/abs/1304.4132)
+
+Here are 12-router and 24-router examples of both approaches:
+
+{% include visual-primer/spectral/figure-37.html %}
+
+Random regular wiring also has a networking application: **Jellyfish**, a proposed data-center design, uses it to connect switches in its basic configuration. [Jellyfish paper](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final82.pdf)
 
 ### What does this give a network?
 
@@ -689,8 +671,6 @@ So, with the number of links per router fixed, we can use either λ₂ or h(G) t
 <a id="gap" class="chapter-anchor"></a>
 
 ## 11. Compare adjacency and Laplacian eigenvalues
-
-<p class="chapter-tag">the same patterns can have different eigenvalues</p>
 
 We have used the Laplacian eigenvalue **λ₂ ≈ 0.764** to study our original graph. A paper using the adjacency matrix might report **2.236** for the same graph. How do these numbers fit together?
 
@@ -809,8 +789,6 @@ We can now translate the eigenvalue numbers a paper reports. Chapter 12 connects
 <a id="rng" class="chapter-anchor"></a>
 
 ## 12. Apply graph theory to RNG's network design
-
-<p class="chapter-tag">connect cut guarantees to capacity, cabling and routing</p>
 
 **RNG** is a flat data-center network design that mixes planned and randomized router connections. Its use of expander graphs connects to Chapter 10's goal: keep groups well connected with limited links per router. [RNG §§1–2](https://arxiv.org/html/2604.15261v3#S1)
 

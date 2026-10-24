@@ -243,6 +243,14 @@
   font-weight: bold;
 }
 .post .visual-primer table { font-family: inherit; }
+.visual-primer .topology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+@media (max-width: 600px) {
+  .visual-primer .topology-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   .post .visual-primer h1,
   .post .visual-primer h2,
