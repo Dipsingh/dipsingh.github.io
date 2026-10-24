@@ -696,7 +696,11 @@ In both matrices, row 1 has zeros in columns 5–8: those nodes are not neighbou
 
 The values L subtracts are exactly the ones A adds. That is why **L's output = three times the node's input − A's output**. Here, this is about **3 × 1 − 2.236 = 0.764**.
 
-This rule works at every node because every node has three neighbours. For this eigenvector, A multiplies each node's value by about **2.236**. L therefore multiplies it by **3 − 2.236 ≈ 0.764**. The same pattern is an eigenvector of both matrices, with different eigenvalues:
+For the input vector x shown above, **A's output at every node is about 2.236 times that node's input value**. All eight entries change by the same multiplier, so A returns a resized copy of x. This is what it means for x to be an **eigenvector of A**, with an **eigenvalue of about 2.236**.
+
+Every node has three neighbours, so L starts with **three times the node's input value** and subtracts A's output. It subtracts about **2.236 times that value** from **3 times that value**, leaving about **0.764 times that value**.
+
+This multiplier also applies at every node, so L returns a resized copy of x too. That makes x an **eigenvector of L**, with an **eigenvalue of about 0.764**:
 
 <div class="equation" role="math" aria-label="For this eigenvector x, A x is approximately 2.236 x, and L x equals 3 x minus A x, approximately 0.764 x.">Ax ≈ 2.236x<br>Lx = 3x − Ax ≈ 0.764x</div>
 
