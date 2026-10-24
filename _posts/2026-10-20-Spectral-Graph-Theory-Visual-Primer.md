@@ -558,8 +558,6 @@ All **b crossing edges** connect the same two group values, so each contributes 
 
 The first fraction, **b/s**, is the cut score because s is the smaller group size. The second divides the same edge count by t, which is at least as large, so **b/t ≤ b/s**. That is why **the pattern's energy is at most twice the cut score**. Equal-sized groups give exactly twice, as in our example.
 
-The optional calculation below explains where the formula 1/s + 1/t comes from.
-
 ### Rule out scores that are too low
 
 Every cut can be turned into a pattern that follows our two rules: mean zero and squared values adding to 1. Its energy must then satisfy **both** of these limits:
@@ -575,13 +573,18 @@ The same reasoning applies to every cut. **Twice its score must be at least λ�
 
 For our graph, **λ₂/2 ≈ 0.382**. This is a **lower bound**: no cut can score below that limit, even one we have not examined.
 
-### Put limits on the best score
+### Narrow down the lowest cut score
 
-No cut scores below about **0.382**. We also found a cut scoring **0.5**, so the lowest score cannot be higher than that. This gives an **upper bound** of 0.5.
+We now know two things:
 
-Together, these two facts narrow down the answer without checking every cut:
+- **Every cut scores at least λ₂/2**, which is about 0.382 for our graph.
+- **We found a cut scoring 0.5**, so the lowest score must be 0.5 or less.
 
-<div class="equation" role="math" aria-label="The lowest cut score h of G is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5<small>the lower limit is about 0.382; the upper limit comes from our cut</small></div>
+Since **h(G) is the lowest score among all cuts**, these facts give:
+
+<div class="equation" role="math" aria-label="The lowest cut score h of G is between lambda two divided by two and 0.5."><span class="frac"><span>λ₂</span><span>2</span></span> ≤ h(G) ≤ 0.5</div>
+
+The lowest score therefore lies between **about 0.382 and 0.5**. Another cut might improve on 0.5, but it cannot go below λ₂/2. We have narrowed down the answer without checking every cut.
 
 ### Cheeger's inequality gives both limits
 
