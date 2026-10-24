@@ -686,7 +686,7 @@ This recovers Chapter 9's guarantee from an adjacency eigenvalue. The conversion
 
 ### Why does subtraction work?
 
-Follow **node 1**, whose neighbours are **nodes 2, 3 and 4**. Use Chapter 7's eigenvector, with every entry divided by node 1's original value. Node 1 now holds **1**. Scaling the whole vector this way keeps it an eigenvector with the same eigenvalues.
+Follow **node 1**, whose neighbours are **nodes 2, 3 and 4**. In Chapter 7, the value assigned to node 1 was about **0.425**. To make the arithmetic easier, divide every node's value by that original value. Node 1's value becomes **1**, because we divide it by itself. All the other values change in the same proportion; for example, node 3's value goes from about **0.263** to about **0.618**. The resulting vector is x below.
 
 **Row 1 of each matrix computes the output for node 1.** In the figure, match each entry across the highlighted row with the entry in the same position down x, multiply the pair, then add the results. Columns 2, 3 and 4 pick out the neighbours' values: **1, about 0.618 and about 0.618**.
 
