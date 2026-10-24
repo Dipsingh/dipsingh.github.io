@@ -767,9 +767,14 @@ Here A and L = D − A are the same adjacency and Laplacian matrices used throug
 <details markdown="1">
 <summary>Optional: how Ramanujan families give a cut guarantee</summary>
 
-Chapter 10 introduced Ramanujan families. With three links per router, their eigenvalue condition guarantees **α₂ ≤ 2√2**, about 2.828.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup>
+Chapter 10's **Ramanujan families** let the network grow while keeping three links per router.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> They come with a guarantee: **A's second-largest eigenvalue never exceeds 2√2, about 2.828**, at any size in the family.
 
-Our translation then gives **λ₂ ≥ 3 − 2√2**, about 0.172. Dividing by two guarantees **h(G) ≥ (3 − 2√2)/2**, about 0.086, at every size in the family. That fixed positive minimum is what Chapter 10 needed. The actual cut scores can be higher, as in the examples shown there.
+Use the same two steps as above:
+
+1. **Subtract from 3.** Even subtracting the largest allowed value leaves **3 − 2√2 ≈ 0.172**. So λ₂ is at least this much. A smaller adjacency eigenvalue would leave a larger gap.
+2. **Divide that lower bound by 2.** This guarantees that every cut scores at least **(3 − 2√2)/2 ≈ 0.086**.
+
+The useful part is that **this guaranteed lower bound stays the same as the networks grow**. Individual graphs can have higher cut scores, but none can fall below this fixed positive bound. That is what makes these graphs an expander family.
 
 </details>
 
