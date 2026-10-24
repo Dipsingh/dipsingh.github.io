@@ -711,7 +711,7 @@ For our graph, A's largest eigenvalue is **3**. Subtracting any A eigenvalue fro
 - **A's largest value is 3 itself.** Its distance from 3 is zero, so it gives L's smallest eigenvalue, **0**.
 - **A's next-largest value is about 2.236.** It is the next closest to 3, with a distance of about **0.764**. So it gives L's second-smallest eigenvalue, **λ₂ ≈ 0.764**.
 
-Every remaining A eigenvalue is farther below 3, so its corresponding L eigenvalue is larger than 0.764. That is why the order reverses: **larger A values leave smaller distances from 3**.
+For example, A's next eigenvalue is **1**, giving **3 − 1 = 2** for L. So A's eigenvalues decrease from **3** to about **2.236** to **1**, while L's eigenvalues increase from **0** to about **0.764** to **2**. We subtract a smaller number from 3 each time, so the result gets larger.
 
 The distance between A's largest and second-largest eigenvalues is called the **spectral gap** here. We just found that this distance becomes L's second-smallest eigenvalue, λ₂. Since L's smallest eigenvalue is zero, the gap between L's first two eigenvalues is also λ₂:
 
