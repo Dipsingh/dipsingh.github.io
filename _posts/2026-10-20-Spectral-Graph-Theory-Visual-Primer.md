@@ -6,8 +6,9 @@ primer: spectral
 
 > "When we try to pick out anything by itself, we find it hitched to everything else in the Universe." - John Muir
 
-## Provide Context
-Todo: 
+In a small network, we can often spot a bottleneck by looking at a drawing. With thousands of routers and links, that becomes much harder. Spectral graph theory helps us study how well different parts of a network connect by relating its structure to the eigenvalues of a matrix. AWS’s [RNG paper](https://arxiv.org/html/2604.15261v3) is a good read and a practical example: it uses the spectral gap to assess how well its network connects groups of routers. The subject has other uses, including finding clusters in data, but network design is the motivation here.
+
+My aim is to explain the ideas intuitively, using a small network, pictures, and calculations we can follow. We’ll build toward understanding bottlenecks, cuts, and what eigenvalues tell us about connections across a network. This builds on [A Primer on Linear Algebra]({{ '/Linear-Algebra-Visual-Primer/' | relative_url }}), so I’d suggest starting there if vectors, matrices, and eigenvalues are unfamiliar or you’d like a refresher.
 
 ## 1. Find a bottleneck in a small network
 
