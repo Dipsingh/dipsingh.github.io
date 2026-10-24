@@ -644,8 +644,6 @@ Here are 12-router and 24-router examples of both approaches:
 
 {% include visual-primer/spectral/figure-37.html %}
 
-Random regular wiring also has a networking application: **Jellyfish**, a proposed data-center design, uses it to connect switches in its basic configuration. [Jellyfish paper](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final82.pdf)
-
 ### What does this give a network?
 
 If all links have the same capacity, more links out mean more total capacity connecting a group to the rest. Expansion guarantees a minimum amount relative to the group's size.
