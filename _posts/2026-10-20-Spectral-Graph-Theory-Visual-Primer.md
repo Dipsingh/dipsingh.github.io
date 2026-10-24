@@ -734,7 +734,11 @@ This is the λ₂ we need for the cut guarantee: **every cut scores at least hal
 
 Both designs have **eight routers and twelve links**, with **three links per router**. We changed which routers connect. We can now use their adjacency eigenvalues to compare the cut scores each design guarantees.
 
-A's second-largest eigenvalue is about **2.236 for the original graph** and **1 for the rewired graph**. Starting with those numbers, follow the same two steps for each design:
+The figure shows both topologies and all eight eigenvalues of A and L for each one. The highlighted entries are **A's second-largest eigenvalue** and **L's second-smallest eigenvalue, λ₂**.
+
+{% include visual-primer/spectral/figure-39.html %}
+
+Read the highlighted value in each A list: about **2.236 for the original graph** and **1 for the rewired graph**. Starting with those numbers, follow the same two steps for each design:
 
 <div class="table-wrap" markdown="1">
 
