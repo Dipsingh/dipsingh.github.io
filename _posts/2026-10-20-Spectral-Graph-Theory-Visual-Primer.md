@@ -2,6 +2,11 @@
 layout: visual-primer
 title: "Understanding Networks Through Spectral Graph Theory"
 primer: spectral
+description: "A visual introduction to spectral graph theory, using a small network to explain cuts, eigenvalues, and network connectivity."
+image: /assets/visual-primers/images/spectral-graph-theory-preview.png
+image_width: 1200
+image_height: 627
+image_alt: "An eight-node network with twelve edges, highlighting node 3 and its three neighbours."
 ---
 
 > "When we try to pick out anything by itself, we find it hitched to everything else in the Universe." - John Muir
