@@ -732,24 +732,33 @@ This is the λ₂ we need for the cut guarantee: **every cut scores at least hal
 
 ### Compare the two network designs
 
-Both our original and rewired graphs have three links per router. Applying the same subtraction gives λ₂; dividing by two gives the cut-score lower bound:
+Both designs have **eight routers and twelve links**, with **three links per router**. We changed which routers connect. We can now use their adjacency eigenvalues to compare the cut scores each design guarantees.
+
+A's second-largest eigenvalue is about **2.236 for the original graph** and **1 for the rewired graph**. Starting with those numbers, follow the same two steps for each design:
 
 <div class="table-wrap" markdown="1">
 
-| Graph | A: second-largest | L: λ₂ | Cut bound |
-| --- | --- | --- | --- |
-| Original | ≈2.236 | ≈0.764 | ≈0.382 |
-| Rewired | 1 | 2 | 1 |
+| Calculation | Original | Rewired |
+| --- | --- | --- |
+| Start with A's second-largest eigenvalue | ≈2.236 | 1 |
+| Subtract from 3 to find λ₂ | 3 − 2.236 ≈ 0.764 | 3 − 1 = 2 |
+| Divide λ₂ by 2 to get the cut-score lower bound | 0.764 ÷ 2 ≈ 0.382 | 2 ÷ 2 = 1 |
 
 </div>
 
-At the same degree, **a smaller second-largest adjacency eigenvalue means a larger gap and a stronger cut guarantee**. The rewired graph's adjacency value of 1 therefore tells us that every cut scores at least 1, matching Chapter 10.
+The original graph guarantees **every cut scores at least about 0.382**. The rewired graph gives a stronger guarantee: **every cut scores at least 1**.
 
-For any graph where every node has d neighbours, the rule is the same. Write α₂ for A's second-largest eigenvalue:
+Recall that a cut's score is its crossing links divided by the number of routers in the smaller group. A score of at least 1 therefore means **at least as many crossing links as routers in that group**. In the rewired graph, every group of four routers must have at least four links to the other four. Our original graph had a group of four with only two links out.
+
+These bounds tell us a score that no cut can fall below. Our earlier checks found the actual minimum scores: **0.5 for the original graph** and **1 for the rewired graph**. The original bound of about 0.382 leaves some room below its actual minimum; the rewired bound reaches its minimum exactly.
+
+The improvement comes from changing the connections while keeping the same number of links. With three neighbours per node in both designs, **lowering A's second-largest eigenvalue raises λ₂ and the guaranteed cut score**.
+
+The number 3 in our subtraction came from the number of neighbours per node. For a graph with **d neighbours at every node**, replace 3 with d. Call A's second-largest eigenvalue **α₂**; this is the number that was about 2.236 or 1 in our examples. The same two steps become:
 
 <div class="equation" role="math" aria-label="Lambda two equals d minus alpha two. Every cut score is at least d minus alpha two divided by two.">λ₂ = d − α₂<br>every cut score ≥ (d − α₂)/2</div>
 
-This shortcut requires the same degree at every node and uses the ordinary matrices A and L = D − A.
+Here A and L = D − A are the same adjacency and Laplacian matrices used throughout the primer.
 
 <details markdown="1">
 <summary>Optional: how Ramanujan families give a cut guarantee</summary>
