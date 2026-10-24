@@ -686,17 +686,22 @@ This recovers Chapter 9's guarantee from an adjacency eigenvalue. The conversion
 
 ### Why does subtraction work?
 
-Recall Chapter 2: A adds each node's neighbours' values. L subtracts that sum from three times the node's own value:
+Follow **node 1** through the two calculations. To make the arithmetic easier, multiply all entries of our eigenvector by the same factor so node 1's value becomes **1**. This changes the scale of the pattern, but leaves its eigenvalues unchanged. Its neighbours, nodes 2, 3 and 4, now have values **1, about 0.618 and about 0.618**.
 
-<div class="equation" role="math" aria-label="L x equals three x minus A x for this degree-three graph.">Lx = 3x − Ax</div>
+- **A adds the neighbours' values:** 1 + 0.618 + 0.618 ≈ 2.236.
+- **L adds the differences from node 1:** (1 − 1) + (1 − 0.618) + (1 − 0.618) ≈ 0.764.
 
-If A multiplies an eigenvector by about 2.236, then L multiplies that same vector by about 3 − 2.236 = 0.764. **The pattern stays the same; the multiplier changes.** Subtracting from three reverses the order, so A's second-largest eigenvalue corresponds to L's second-smallest.
+In L's calculation, we use node 1's value **three times** and subtract each neighbour's value **once**. So we can get the same answer by subtracting A's output from three times node 1's value:
 
-A's largest eigenvalue is three: a flat pattern comes back three times as large because every node has three neighbours. The difference between this largest value and the second-largest is the **spectral gap** used here. For L, the same gap lies between its smallest eigenvalue, zero, and λ₂:
+<div class="equation" role="math" aria-label="At node one, L's output is three times one minus the neighbour sum, approximately three minus 2.236, or 0.764.">L's output at node 1<br>≈ 3 × 1 − 2.236 = 0.764</div>
+
+Now recall what an adjacency eigenvalue of about **2.236** means: **at every node**, A's output is about 2.236 times that node's input value. L therefore returns 3 times the input value minus 2.236 times the input value—about **0.764 times the input value**.
+
+Because that same multiplier applies at every node, **the Laplacian eigenvalue for this pattern is about 0.764**. In vector notation, the calculation we just followed is Lx = 3x − Ax.
+
+Subtracting a larger number from three leaves a smaller answer. A's largest eigenvalue, 3, therefore becomes L's smallest eigenvalue, 0. A's next-largest value, about 2.236, becomes L's next-smallest value, λ₂ ≈ 0.764. The **spectral gap** is the difference between those first two values:
 
 {% include visual-primer/spectral/figure-31.html %}
-
-The adjacency value **2.236** is one endpoint. The gap **0.764** is the number our cut rule needs.
 
 ### Compare the two network designs
 
