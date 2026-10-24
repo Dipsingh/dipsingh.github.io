@@ -706,12 +706,23 @@ This multiplier also applies at every node, so L returns a resized copy of x too
 
 ### Why does the second-largest become the second-smallest?
 
-For our graph, A's largest eigenvalue is **3**. Subtracting any A eigenvalue from 3 tells us **how far that value is below 3**. This distance is the corresponding L eigenvalue.
+For our eight-node graph, **A's eight eigenvalues, from largest to smallest**, are listed below. The decimals are rounded:
 
-- **A's largest value is 3 itself.** Its distance from 3 is zero, so it gives L's smallest eigenvalue, **0**.
-- **A's next-largest value is about 2.236.** It is the next closest to 3, with a distance of about **0.764**. So it gives L's second-smallest eigenvalue, **λ₂ ≈ 0.764**.
+**3, 2.236, 1, −1, −1, −1, −1, −2.236**
 
-For example, A's next eigenvalue is **1**, giving **3 − 1 = 2** for L. So A's eigenvalues decrease from **3** to about **2.236** to **1**, while L's eigenvalues increase from **0** to about **0.764** to **2**. We subtract a smaller number from 3 each time, so the result gets larger.
+Every node has three neighbours, so we get the corresponding L eigenvalues by **subtracting each of these numbers from 3**:
+
+- **3 − 3 = 0**
+- **3 − 2.236 ≈ 0.764**
+- **3 − 1 = 2**
+- **3 − (−1) = 4**. There are four −1s in A's list, so this gives four 4s in L's list.
+- **3 − (−2.236) ≈ 5.236**
+
+Reading the results in the same order gives **L's eight eigenvalues, from smallest to largest**:
+
+**0, 0.764, 2, 4, 4, 4, 4, 5.236**
+
+A's list goes down while L's list goes up: subtracting a smaller number from 3 leaves a larger result. In particular, **A's second-largest value, about 2.236, gives L's second-smallest value, λ₂ ≈ 0.764**.
 
 The distance between A's largest and second-largest eigenvalues is called the **spectral gap** here. We just found that this distance becomes L's second-smallest eigenvalue, λ₂. Since L's smallest eigenvalue is zero, the gap between L's first two eigenvalues is also λ₂:
 
