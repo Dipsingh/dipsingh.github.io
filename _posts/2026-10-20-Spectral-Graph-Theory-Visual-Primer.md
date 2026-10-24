@@ -706,23 +706,18 @@ This multiplier also applies at every node, so L returns a resized copy of x too
 
 ### Why does the second-largest become the second-smallest?
 
-The subtraction rule applies to every eigenvector. Start with A's eigenvalues in order from largest to smallest. Subtract each from three:
+For our graph, A's largest eigenvalue is **3**. Subtracting any A eigenvalue from 3 tells us **how far that value is below 3**. This distance is the corresponding L eigenvalue.
 
-<div class="table-wrap eigenvalue-conversion" markdown="1">
+- **A's largest value is 3 itself.** Its distance from 3 is zero, so it gives L's smallest eigenvalue, **0**.
+- **A's next-largest value is about 2.236.** It is the next closest to 3, with a distance of about **0.764**. So it gives L's second-smallest eigenvalue, **λ₂ ≈ 0.764**.
 
-| A's eigenvalue | Subtract from 3 | L's eigenvalue |
-| --- | --- | --- |
-| Largest: 3 | 3 − 3 = 0 | Smallest: 0 |
-| Second-largest: ≈2.236 | 3 − 2.236 ≈ 0.764 | Second-smallest: λ₂ ≈ 0.764 |
-| Next: 1 | 3 − 1 = 2 | Next: 2 |
+Every remaining A eigenvalue is farther below 3, so its corresponding L eigenvalue is larger than 0.764. That is why the order reverses: **larger A values leave smaller distances from 3**.
 
-</div>
-
-All the remaining A eigenvalues are smaller than 1, so they give L eigenvalues larger than 2. We can now see why **0.764 is second-smallest: zero is the only L eigenvalue below it**.
-
-Here, the **spectral gap** means the distance between A's two largest eigenvalues: **3 − 2.236 ≈ 0.764**. L has the same gap between its two smallest eigenvalues: **0.764 − 0 ≈ 0.764**. Since L starts at zero, this gap is simply λ₂:
+The distance between A's largest and second-largest eigenvalues is called the **spectral gap** here. We just found that this distance becomes L's second-smallest eigenvalue, λ₂. Since L's smallest eigenvalue is zero, the gap between L's first two eigenvalues is also λ₂:
 
 {% include visual-primer/spectral/figure-31.html %}
+
+This is the λ₂ we need for the cut guarantee: **every cut scores at least half this gap**.
 
 ### Compare the two network designs
 
