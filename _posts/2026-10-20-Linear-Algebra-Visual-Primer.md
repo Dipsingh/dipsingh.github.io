@@ -825,16 +825,13 @@ This gives us a way to find the minimum without checking every direction: find t
 
 <a id="recap-title"></a>
 
-## Review
+## What we learned
 
-1. A vector describes a movement. A matrix gives a rule for transforming it: each row calculates one output entry, and each column shows where an ordinary unit step lands.
-2. A dot product combines length and alignment. When one arrow has length one, the dot product tells us how far the other arrow goes along its direction, including the sign. A zero dot product means two nonzero arrows are perpendicular.
-3. Projection finds the closest point on a line. For a unit reference u, the projection is <span class="math">p = (x · u)u</span>. The remaining piece is perpendicular to p, so the two pieces' squared lengths add to x's squared length.
-4. An eigenvector is a nonzero arrow that a matrix scales: <span class="math">Mv = λv</span>. The eigenvalue λ tells us the scale factor. Our M leaves u₁ unchanged and triples u₂, so their eigenvalues are 1 and 3.
-5. A real symmetric matrix has a basis of perpendicular unit eigenvectors. Split an input into pieces along these directions, multiply each piece by its eigenvalue, and add the results to get the output. This is the spectral theorem in action.
-6. The quadratic form <span class="math">Q(x) = x · Mx</span> takes the dot product of an input and its output. For a unit input, it measures the signed amount of output along the input's direction. For other inputs, the result also depends on input size.
-7. A real symmetric matrix with no negative eigenvalues is positive semidefinite: Q(x) is never negative. For such a matrix, Q(x) = 0 means the matrix sends x to zero.
-8. For any nonzero input, the Rayleigh quotient <span class="math">R(x) = Q(x)/‖x‖²</span> gives the measurement for that direction at length one. For a real symmetric matrix, its smallest and largest eigenvalues are the minimum and maximum quotients. Their eigenvectors give directions that reach those limits.
+We started with arrows and a matrix that transforms them. By finding useful reference directions, we learned to break that transformation into simpler pieces. For a real symmetric matrix, we can choose perpendicular eigenvectors: each piece stays on its own line, and its eigenvalue tells us how the matrix scales it.
+
+That same picture helped us compare input directions. After removing the effect of input length, the measurement becomes a weighted average of the eigenvalues. Its smallest and largest values are therefore the smallest and largest eigenvalues, and their eigenvectors tell us which directions reach those limits.
+
+These ideas extend beyond arrows on a plane. In the [spectral graph theory primer]({{ '/Spectral-Graph-Theory-Visual-Primer/' | relative_url }}), a vector will assign values to nodes, and a matrix will describe their connections. The same tools will help us find bottlenecks and understand how well a network holds together.
 
 ## Further reading
 
