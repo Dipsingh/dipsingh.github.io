@@ -694,14 +694,6 @@ Follow **node 1**, whose neighbours are **nodes 2, 3 and 4**. Use Chapter 7's ei
 
 In both matrices, row 1 has zeros in columns 5–8: those nodes are not neighbours of node 1, so their values contribute nothing to this calculation.
 
-**A's row selects the three neighbours.** Multiply each input value by its A entry, then add. The zero leaves out node 1's own value:
-
-<div class="equation" role="math" aria-label="A's output at node one is approximately zero times one, plus one times one, plus one times 0.618, plus one times 0.618, which equals 2.236.">A's output at node 1<br>≈ 0 × 1 + 1 × 1<br>+ 1 × 0.618 + 1 × 0.618<br>= 2.236</div>
-
-**L's row counts node 1's value three times and subtracts each neighbour's value:**
-
-<div class="equation" role="math" aria-label="L's output at node one is approximately three times one minus one minus 0.618 minus 0.618, which equals 0.764.">L's output at node 1<br>≈ 3 × 1 − 1 − 0.618 − 0.618<br>= 0.764</div>
-
 The values L subtracts are exactly the ones A adds. That is why **L's output = three times the node's input − A's output**. Here, this is about **3 × 1 − 2.236 = 0.764**.
 
 This rule works at every node because every node has three neighbours. For this eigenvector, A multiplies each node's value by about **2.236**. L therefore multiplies it by **3 − 2.236 ≈ 0.764**. The same pattern is an eigenvector of both matrices, with different eigenvalues:
