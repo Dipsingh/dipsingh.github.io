@@ -638,7 +638,7 @@ Eigenvalues give us a way to prove this. For example, if every graph has **λ₂
 
 **Random regular graphs** choose the wiring randomly while giving every router the same number of links. We could keep that number at three as the network grows. For large networks, a uniformly sampled graph is very likely to have h(G) above a fixed positive minimum that does not depend on network size. The probability approaches 1 as the networks grow; an individual sample can still fail that guarantee. [Friedman's result](https://arxiv.org/abs/cs/0405020)
 
-**Ramanujan families** use a construction with a proven eigenvalue bound. There are families where we can keep doubling the number of routers, with three links per router throughout, while preserving that bound. It guarantees a positive minimum cut score that works at every step. Chapter 11 shows how this eigenvalue bound gives a cut guarantee. [Marcus, Spielman and Srivastava](https://arxiv.org/abs/1304.4132)
+**Ramanujan families** use a construction with a proven eigenvalue bound. There are families where we can keep doubling the number of routers, with three links per router throughout, while preserving that bound. It guarantees a positive minimum cut score that works at every step. [Marcus, Spielman and Srivastava](https://arxiv.org/abs/1304.4132)
 
 Here are 12-router and 24-router examples of both approaches:
 
@@ -764,93 +764,62 @@ The number 3 in our subtraction came from the number of neighbours per node. For
 
 Here A and L = D − A are the same adjacency and Laplacian matrices used throughout the primer.
 
-<details markdown="1">
-<summary>Optional: how Ramanujan families give a cut guarantee</summary>
-
-Chapter 10's **Ramanujan families** let the network grow while keeping three links per router.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> They come with a guarantee: **A's second-largest eigenvalue never exceeds 2√2, about 2.828**, at any size in the family.
-
-Use the same two steps as above:
-
-1. **Subtract from 3.** Even subtracting the largest allowed value leaves **3 − 2√2 ≈ 0.172**. So λ₂ is at least this much. A smaller adjacency eigenvalue would leave a larger gap.
-2. **Divide that lower bound by 2.** This guarantees that every cut scores at least **(3 − 2√2)/2 ≈ 0.086**.
-
-The useful part is that **this guaranteed lower bound stays the same as the networks grow**. Individual graphs can have higher cut scores, but none can fall below this fixed positive bound. That is what makes these graphs an expander family.
-
-</details>
-
-We can now turn an adjacency eigenvalue into a cut guarantee. Chapter 12 asks what that guarantee means for network capacity, cabling and routing.
+We can now turn an adjacency eigenvalue into a cut guarantee. Chapter 12 brings the ideas together and explains what they tell us about a network's weakest connections.
 
 <a id="rng" class="chapter-anchor"></a>
-
-## 12. Apply graph theory to RNG's network design
-
-**RNG** is a flat data-center network design that mixes planned and randomized router connections. Its use of expander graphs connects to Chapter 10's goal: keep groups well connected with limited links per router. [RNG §§1–2](https://arxiv.org/html/2604.15261v3#S1)
-
-### What does a cut mean for traffic?
-
-Our node values were a mathematical tool for finding weak cuts. To interpret a cut as capacity, give each link a transmission rate.
-
-Suppose the two links between our example's halves each carry 100 Gb/s in each direction. Traffic leaving either half has at most **2 × 100 = 200 Gb/s** of boundary capacity available. Every route to the other half must cross that boundary.
-
-Expansion measures how much boundary a group has relative to its size. A lower bound on h(G) therefore guarantees outward link capacity for every group of up to half the nodes, when links have equal capacity. The spectral gap helps establish that guarantee across the graph.
-
-Boundary capacity sets a limit on outgoing traffic. The throughput actually achieved also depends on the routes used and the traffic sharing them.
-
-### Random-like wiring has to fit real cabling
-
-The graph records which routers connect. A physical installation must also get the fibres between those routers.
-
-RNG calls its wiring *quasi-random*. Its **ShuffleBoxes** map fibre pairs through passive hardware. They connect fibres without forwarding packets, so a router-to-router connection through them remains one logical link. [RNG §6](https://arxiv.org/html/2604.15261v3#S6)
-
-{% include visual-primer/spectral/figure-33.html %}
-
-The authors report that their construction retains the spectral gap of unconstrained random graphs in their analysis. [RNG §6](https://arxiv.org/html/2604.15261v3#S6) The relevant test is whether a graph built under cabling constraints still has a strong spectral gap.
-
-### A good graph still needs a routing method
-
-The drawing below has two routes from a to b: through p or through q. If forwarding always chooses p, the links through q carry none of that traffic. Their presence in the graph alone does not make them useful.
-
-{% include visual-primer/spectral/figure-34.html %}
-
-RNG's routing scheme, **Spraypoint**, makes all source neighbours eligible first hops. Later forwarding rules guide traffic through selected intermediate routers called **waypoints** toward the destination. This spreads traffic across departures from the source and approaches to the destination. [RNG §5](https://arxiv.org/html/2604.15261v3#S5)
-
-In that section of the paper, h counts eligible next hops after the first step; this primer's h(G) means edge expansion.
-
-### What can we conclude from each result?
-
-The spectral calculation answers a question about the wiring. To assess the complete network, we also need evidence about how traffic uses that wiring:
-
-- **Spectral gap:** gives bounds on the graph's cut scores.
-- **Routing analysis:** estimates what the routing method achieves under its graph and traffic assumptions.
-- **Measurements:** show performance for the configurations and traffic that were tested.
-
-RNG develops routing models and evaluates fabrics built under practical port and forwarding-memory limits. [RNG §7](https://arxiv.org/html/2604.15261v3#S7), [§9](https://arxiv.org/html/2604.15261v3#S9) Those results address questions beyond the cut guarantee.
-
-{% include visual-primer/spectral/figure-35.html %}
-
-We began with two links joining two groups of routers. Node values let us measure that weakness, eigenvectors found the lowest-energy pattern, and Cheeger's inequality connected its energy to cut scores. These tools help us assess the wiring. Cabling and routing turn that wiring into a working network.
-
 <a id="recap-title"></a>
+<a id="conclusion"></a>
 
-## Review
+## 12. What we learned about network strength
 
-1. A graph is nodes and edges; a pattern is one value per node. A collects the neighbours' values, D repeats a node's own value once per link, and <span class="math">L = D − A</span> asks how far a node stands above its neighbourhood.
-2. A cut's score is crossing edges divided by the smaller side. The lowest score over all groups is the edge expansion h(G), and checking every group is hopeless.
-3. The energy <span class="math">E(x) = ∑(xᵢ − xⱼ)² = xᵀLx</span> counts squared disagreement across links. With +1 and −1 group labels, it is 4 times the crossing edges. It is never negative.
-4. Two conditions make the comparison fair: mean zero removes a shared level, and squared spread 1 prevents shrinking from counting as an improvement. Squared spread is the sum of squared distances from the mean. For a centered, nonzero pattern, dividing energy by squared spread gives the Rayleigh quotient <span class="math">xᵀLx / xᵀx</span>.
-5. Letting values bend helps. One number, t, moves the four boundary nodes toward zero, with a rescaling after every move. The energy falls from 1 to 0.764 at t = 0.618 and climbs to 2 at t = 0, because the interior edges start to disagree.
-6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and squared spread 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
-7. Sort the nodes by Fiedler value, sweep a threshold through the gaps, score each cut by crossing edges over the smaller side. Four distinct values give three gaps; the second one gives 0.5. A sweep tests the prefixes of one ordering, not every group.
-8. Cheeger: <span class="math">λ₂/2 ≤ h(G) ≤ √(2dλ₂)</span>. A cheap cut gives a cheap pattern, and a cheap pattern gives a cheap cut. Here 0.382 ≤ h(G) ≤ 0.5, and checking all 127 cuts gives exactly 0.5.
-9. Expansion bounds the links leaving every group of up to half the nodes, relative to its size. Our rewiring raised h(G) from 0.5 to 1 and λ₂ from about 0.764 to 2, with twelve links in each design. For a graph with d links at every node, the second-largest adjacency eigenvalue α₂ gives λ₂ = d − α₂ and a cut-score lower bound of λ₂/2. The topology supplies possible routes; forwarding rules determine which carry traffic.
+We began with eight routers and twelve links. Every router had three neighbours, yet only two links connected the two halves. Counting links at individual routers missed the weakness between whole groups.
+
+The primer gave us a way to describe that weakness, search for it, and put limits on how weak any division could be.
+
+### How the ideas fit together
+
+1. **The graph records the connections.** Nodes represent routers and edges represent links. A records which nodes are neighbours, D records their degrees, and L = D − A compares each node's assigned value with its neighbours' values.
+
+2. **A cut measures how well a group connects to the rest.** Its score is the number of crossing links divided by the size of the smaller group. The lowest score over all cuts is h(G), the graph's edge expansion. It describes the weakest division relative to group size.
+
+3. **Node values let us search beyond fixed groups.** We measure a pattern's energy by adding the squared differences across edges: E(x) = xᵀLx. We center the values and make their squares add to 1 so that shrinking the numbers cannot improve the comparison. For a centered, nonzero pattern, the Rayleigh quotient makes this same comparison by dividing its energy by the sum of its squared values.
+
+4. **Eigenvectors identify useful patterns.** Each is a pattern that L only multiplies by a number, its eigenvalue. Because L is symmetric, we can split patterns into perpendicular eigenvector pieces. For our connected graph, the lowest energy among the centered, unit-length patterns is λ₂, reached by the Fiedler vector u₂. Its entries give one value per node. Sorting those values and trying dividing lines between them produces candidate cuts, which we score using the actual links.
+
+5. **Eigenvalues give guarantees about cuts we have not checked.** Cheeger's inequality connects λ₂ to h(G); in particular, every cut scores at least λ₂/2. Any cut we find also gives an upper bound on h(G), because the minimum cannot exceed that cut's score. When every node has d neighbours, we can obtain λ₂ from A's second-largest eigenvalue α₂ using λ₂ = d − α₂.
+
+### What a stronger network means
+
+Here, strength means **every group of up to half the routers has enough links to the rest of the network relative to its size**. Raising h(G) improves the weakest division. A larger λ₂ gives a higher guaranteed minimum cut score.
+
+Our two designs showed the difference:
+
+<div class="table-wrap" markdown="1">
+
+| Measurement | Original | Rewired |
+| --- | --- | --- |
+| λ₂ | ≈0.764 | 2 |
+| Guaranteed lower bound, λ₂/2 | ≈0.382 | 1 |
+| Actual minimum cut score, h(G) | 0.5 | 1 |
+
+</div>
+
+The original graph's weakest cut had two crossing links for a group of four routers. In the rewired graph, **every group of four has at least four links out**. We doubled the minimum cut score while keeping the same eight routers, twelve links and three links per router.
+
+The table also separates a guarantee from an exact answer. For the original graph, the eigenvalue bound rules out scores below about 0.382; checking all cuts established the actual minimum of 0.5. For the rewired graph, the bound of 1 and a cut scoring 1 agree, establishing its minimum exactly.
+
+### Keep groups well connected as the network grows
+
+An expander family keeps the number of links per router fixed while maintaining one positive lower bound on h(G) across all its graphs. For any group of up to half the routers, the guaranteed number of outward links grows in proportion to its size. The connection between groups keeps pace with their size.
+
+We can now use node values and eigenvalues to find bottlenecks, bound the scores of unseen cuts, and compare how well different graphs connect their groups.
 
 ## Sources and further reading
 
-1. [Bernardi et al., *RNG: Flat Datacenter Networks at Scale*](https://arxiv.org/abs/2604.15261v3), version 3, 21 May 2026. The network discussion above follows this version.
-2. [Daniel Spielman, *Spectral and Algebraic Graph Theory*](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf). A fuller development of Laplacians, the minimum argument, and graph partitioning.
-3. [Hoory, Linial and Wigderson, *Expander Graphs and Their Applications*](https://www.math.ias.edu/~avi/BOOKS/expanderbookr1.pdf). Expansion, spectral bounds, and the equal-degree form of Cheeger's inequality used here.
-4. [Joel Friedman, *A Proof of Alon's Second Eigenvalue Conjecture and Related Problems*](https://arxiv.org/abs/cs/0405020). The near-Ramanujan behaviour of random regular graphs.
-5. <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">A Primer on Linear Algebra.</a> Dot products, projection, eigenvectors, and the Rayleigh quotient, using a running example with one vector and one 2 × 2 matrix.
+1. [Daniel Spielman, *Spectral and Algebraic Graph Theory*](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf). A fuller development of Laplacians, the minimum argument, and graph partitioning.
+2. [Hoory, Linial and Wigderson, *Expander Graphs and Their Applications*](https://www.math.ias.edu/~avi/BOOKS/expanderbookr1.pdf). Expansion, spectral bounds, and the equal-degree form of Cheeger's inequality used here.
+3. [Joel Friedman, *A Proof of Alon's Second Eigenvalue Conjecture and Related Problems*](https://arxiv.org/abs/cs/0405020). The near-Ramanujan behaviour of random regular graphs.
+4. <a href="{{ '/Linear-Algebra-Visual-Primer/' | relative_url }}">A Primer on Linear Algebra.</a> Dot products, projection, eigenvectors, and the Rayleigh quotient, using a running example with one vector and one 2 × 2 matrix.
 
 <section class="footnotes" aria-labelledby="footnotes-title">
 <h2 id="footnotes-title">Footnotes</h2>
@@ -872,7 +841,6 @@ We began with two links joining two groups of routers. Node values let us measur
 <li id="fn-15"><span class="fn-text">A threshold can be placed between consecutive distinct values. With k distinct values, there are k − 1 nontrivial threshold cuts, and k is at most the number of nodes n. These are only the cuts obtained from one ordering. Equal values stay together; reversing the ordering gives the same divisions with their sides swapped.</span> <a class="fn-back" href="#fnref-15" aria-label="Back to footnote 15 in the text">↩</a></li>
 <li id="fn-16"><span class="fn-text">Jeff Cheeger proved the original version in 1970 for curved surfaces, where it bounds the smallest vibration frequency by how thin the surface's narrowest neck is. Jozef Dodziuk, and Noga Alon with Vitali Milman, carried it over to graphs in the mid-1980s. The form used here is the one in the survey by Hoory, Linial and Wigderson, linked below.</span> <a class="fn-back" href="#fnref-16" aria-label="Back to footnote 16 in the text">↩</a></li>
 <li id="fn-17"><span class="fn-text">Early work by Leonid Bassalygo and Mark Pinsker connected expanders to sparse communication networks. In 1973, Pinsker used a probabilistic argument to show their existence, and Grigory Margulis gave the first explicit construction. See the survey by Hoory, Linial and Wigderson in Sources and further reading.</span> <a class="fn-back" href="#fnref-17" aria-label="Back to footnote 17 in the text">↩</a></li>
-<li id="fn-18"><span class="fn-text">The name is a joke that stuck: the first explicit constructions, by Lubotzky, Phillips and Sarnak and independently by Margulis in 1988, relied on a conjecture of Ramanujan's about number theory. The graphs themselves have nothing to do with him.</span> <a class="fn-back" href="#fnref-18" aria-label="Back to footnote 18 in the text">↩</a></li>
 </ol>
 </section>
 
