@@ -46,9 +46,9 @@ Scaling vectors and then adding them is called a **linear combination**. The mul
 
 <a id="operator" class="chapter-anchor"></a>
 
-## 2. A matrix as an operation
+## 2. How a matrix transforms a vector
 
-### Give the input two rules to follow
+### Build a matrix from two rules
 
 How do we turn one vector into another? Call the input entries x₁ and x₂. Each output entry gets its own rule:
 
@@ -147,7 +147,7 @@ So <span class="math">aᵀb</span> and <span class="math">a · b</span> are two 
 
 ## 4. Length and unit vectors
 
-### Length and squared length describe the same arrow
+### Length versus squared length
 
 To make an arrow one unit long, we first need to know its length. Squared length is just the length multiplied by itself.
 
@@ -200,7 +200,7 @@ Let θ be the angle between two nonzero arrows a and b. Then a · b = ‖a‖ �
 
 <a id="projection" class="chapter-anchor"></a>
 
-## 5. Projection
+## 5. Projection: find the part along a line
 
 ### Split one arrow into two useful pieces
 
@@ -245,7 +245,7 @@ The remaining arrow is $r=(1,-1)$, which is perpendicular to the diagonal. This 
 
 </details>
 
-### A unit arrow gives us a shortcut
+### Find a projection with a dot product
 
 Let u be an arrow of length one along the chosen line. Think of u as a one-unit step in that direction.
 
@@ -349,7 +349,7 @@ The moving-grid approach is inspired by [3Blue1Brown's lesson on eigenvectors an
 
 <a id="basis" class="chapter-anchor"></a>
 
-## 7. A different set of coordinates
+## 7. Describe the same vector in new coordinates
 
 ### Describe the same arrow using different steps
 
@@ -361,7 +361,7 @@ Using q₁ and q₂, x has coordinates <span class="math">(1, 2)</span>: one q�
 
 {% include visual-primer/linear/figure-19.html %}
 
-### Now let M act on the pieces
+### Transform each piece, then add
 
 M keeps the q₁ component the same and triples the q₂ component. So <span class="math">1q₁ + 2q₂</span> becomes <span class="math">1q₁ + 6q₂</span>. Using q₁ and q₂, the output coordinates are (1, 6). Adding the component arrows gives the output in ordinary coordinates:
 
@@ -401,7 +401,7 @@ We can now understand every input from the matrix's responses along its eigenvec
 
 <a id="symmetry" class="chapter-anchor"></a>
 
-## 8. Why perpendicular unit directions help
+## 8. Why perpendicular reference arrows help
 
 We can already transform x by splitting it along q₁ and q₂. Now we want an easy way to find those pieces for any input. Perpendicular unit reference arrows let us do that with dot products.
 
@@ -440,7 +440,7 @@ Our split is <span class="math">x = (1, −1) + (2, 2)</span>. The pieces are pe
 
 The first piece accounts for <span class="math">2/10 = 20%</span> of x's squared length, and the second accounts for <span class="math">8/10 = 80%</span>. These percentages describe **squared length**. We'll use these shares in Chapter 9 to compare input directions.
 
-### Why does our matrix allow this?
+### Why symmetry lets us choose perpendicular eigenvectors
 
 M has matching entries across its main diagonal: the upper-right and lower-left entries are both 1. A matrix with this mirror property is called **symmetric**. Turning its rows into columns gives the same matrix, written <span class="math">Mᵀ = M</span>.
 
@@ -533,14 +533,14 @@ We can still use nonperpendicular eigenvectors to split an input and scale its p
 </details>
 
 <details markdown="1">
-<summary>Optional: why different eigenvalues give perpendicular eigenvectors</summary>
+<summary>Optional: why eigenvectors with different eigenvalues are perpendicular for a symmetric matrix</summary>
 
 Let v and w be eigenvectors of a real symmetric matrix M, with eigenvalues α and β. Symmetry lets us move M from one side of the dot product to the other: vᵀMw = (Mv)ᵀw. Substituting Mw = βw and Mv = αv gives β(v · w) = α(v · w). If α and β are different, this can hold only when v · w = 0. So the vectors are perpendicular. The full spectral theorem also guarantees enough eigenvectors to form a basis, including when eigenvalues repeat; within a repeated eigenvalue's space we simply choose perpendicular ones.
 
 </details>
 
 <details markdown="1">
-<summary>Optional: two different things can be normalized</summary>
+<summary>Optional: resizing the reference arrows versus resizing the input</summary>
 
 **Normalize the references:** replace q₁ and q₂ with their unit versions u₁ and u₂. The input stays fixed, and its coefficients change.
 
@@ -554,7 +554,7 @@ For x, normalizing the input gives <span class="math">x̂ = (3, 1)/√10</span>.
 
 <a id="quadratic" class="chapter-anchor"></a>
 
-## 9. Measuring the output along the input
+## 9. Measure the output along the input’s direction
 
 Chapter 8 showed how to find the whole output arrow. Now we want to compare directions: **which input direction gives the most output along its own line, and which gives the least?** This will give us another way to understand the largest and smallest eigenvalues.
 
@@ -607,7 +607,7 @@ This is a **weighted average of the eigenvalues**: 20% of the weight goes to 1, 
 
 More share along u₁ moves the result toward 1; more along u₂ moves it toward 3. The shares cannot be negative and add to 100%, so the result always stays between 1 and 3. **The eigenvector directions give the smallest and largest amounts along the input.** We can find these limits without trying every possible direction.
 
-### Give the calculation a name
+### A name for the calculation: quadratic form
 
 The same input-output dot product can be calculated for an input of any length:
 
@@ -677,7 +677,7 @@ N leaves the horizontal input unchanged. It sends the vertical input <span class
 
 {% include visual-primer/linear/figure-36.html %}
 
-### What does N's measurement count?
+### The measurement depends only on the horizontal part
 
 For any input <span class="math">(a, b)</span>, the output is <span class="math">(a, 0)</span>. Their dot product is:
 
@@ -689,7 +689,7 @@ An entirely vertical arrow has <span class="math">a = 0</span>, so it gives zero
 
 {% include visual-primer/linear/figure-37.html %}
 
-### Two names for these behaviors
+### Positive and nonnegative results
 
 For real symmetric matrices, these properties have standard names:
 
@@ -706,7 +706,7 @@ M is positive definite. N is positive semidefinite: its results are never negati
 
 The eigenvalues give a quick test. All positive means positive definite; all zero or positive means positive semidefinite. M has eigenvalues 1 and 3. N has eigenvalue 1 along the horizontal line and 0 along the vertical line.
 
-### Why zero matters in a search
+### Find the directions the matrix sends to zero
 
 If we look for N's smallest measurement among unit inputs, a vertical input gives zero. We have found a direction N removes.
 
@@ -723,7 +723,7 @@ For a symmetric matrix with both positive and negative eigenvalues, contribution
 
 <a id="rayleigh" class="chapter-anchor"></a>
 
-## 11. Compare directions without resizing
+## 11. Compare directions regardless of length
 
 In Chapter 9, we resized each input to length one before comparing directions. We can get the same measurement directly from the original input, using one division.
 
@@ -758,7 +758,7 @@ Dividing the raw score by the input's squared length gives the **Rayleigh quotie
 
 **R(x) is the measurement that the same direction would have at length one.** This is the same result we found in Chapter 9 for x̂. The input must be nonzero, because we cannot divide by a squared length of zero.
 
-### Turn the input and watch R change
+### Turn the input and compare the results
 
 Call the unit input in the next picture v. Since its squared length is 1, <span class="math">R(v) = Q(v)</span>. It starts at <span class="math">v = x̂</span>, our running direction.
 
@@ -780,7 +780,7 @@ The experiment suggests where the smallest and largest quotients occur. Next, we
 
 <a id="minimum" class="chapter-anchor"></a>
 
-## 12. Finding the smallest and largest quotients
+## 12. Use eigenvalues to find the minimum and maximum
 
 Chapter 11 gave us a number for each direction. Now we want to find the smallest and largest possible values. For an input of length one, these tell us the least and most output along the input's own direction.
 
