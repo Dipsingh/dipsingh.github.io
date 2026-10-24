@@ -638,7 +638,7 @@ Eigenvalues give us a way to prove this. For example, if every graph has **λ₂
 
 **Random regular graphs** choose the wiring randomly while giving every router the same number of links. We could keep that number at three as the network grows. For large networks, a uniformly sampled graph is very likely to have h(G) above a fixed positive minimum that does not depend on network size. The probability approaches 1 as the networks grow; an individual sample can still fail that guarantee. [Friedman's result](https://arxiv.org/abs/cs/0405020)
 
-**Ramanujan families** use a construction with a proven eigenvalue bound. There are families where we can keep doubling the number of routers, with three links per router throughout, while preserving that bound. It guarantees a positive minimum cut score that works at every step. Chapter 11 explains the eigenvalue condition behind the name. [Marcus, Spielman and Srivastava](https://arxiv.org/abs/1304.4132)
+**Ramanujan families** use a construction with a proven eigenvalue bound. There are families where we can keep doubling the number of routers, with three links per router throughout, while preserving that bound. It guarantees a positive minimum cut score that works at every step. Chapter 11 shows how this eigenvalue bound gives a cut guarantee. [Marcus, Spielman and Srivastava](https://arxiv.org/abs/1304.4132)
 
 Here are 12-router and 24-router examples of both approaches:
 
@@ -670,119 +670,65 @@ So, with the number of links per router fixed, we can use either λ₂ or h(G) t
 
 ## 11. Compare adjacency and Laplacian eigenvalues
 
-We have used the Laplacian eigenvalue **λ₂ ≈ 0.764** to study our original graph. A paper using the adjacency matrix might report **2.236** for the same graph. How do these numbers fit together?
+Chapters 9 and 10 gave us a useful rule: **every cut scores at least λ₂/2**, where λ₂ is the second-smallest eigenvalue of the Laplacian L. A paper may instead report eigenvalues of the adjacency matrix A. How can we use those numbers to say something about bottlenecks?
 
-We will use **α for an eigenvalue of A** and **λ for an eigenvalue of L**. Because every node has three neighbours, the two values for the same eigenvector add up to three.
+### Turn an adjacency eigenvalue into a cut guarantee
 
-### Same pattern, different eigenvalues
+For our original graph, the **second-largest adjacency eigenvalue is about 2.236**. Every router has three neighbours. Subtract the reported value from three to get λ₂:
 
-A adds the neighbours' values. L subtracts that sum from three times the node's own value:
+<div class="equation" role="math" aria-label="Lambda two is approximately three minus 2.236, which is approximately 0.764.">λ₂ ≈ 3 − 2.236 ≈ 0.764</div>
 
-<div class="equation" role="math" aria-label="For every pattern x, L x equals three x minus A x.">Lx = 3x − Ax</div>
+Now apply the cut rule we already know:
 
-Chapter 7 found that L multiplies the pattern u₂ by about **0.764**. Rearranging the equation tells us what A does to that same pattern:
+<div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two, approximately 0.382.">every cut score ≥ λ₂/2 ≈ 0.382</div>
 
-<div class="equation" role="math" aria-label="A applied to u two equals three u two minus L applied to u two, approximately three minus 0.764 times u two, or 2.236 times u two.">Au₂ = 3u₂ − Lu₂<br>≈ (3 − 0.764)u₂ = 2.236u₂</div>
+This recovers Chapter 9's guarantee from an adjacency eigenvalue. The conversion is what lets us use the paper's number in our cut calculation.
 
-A multiplies every entry by about **2.236**. So **u₂ is an eigenvector of both matrices**, with a different eigenvalue for each.
+### Why does subtraction work?
 
-For the flat pattern u₁, A adds three equal neighbour values, giving a multiplier of 3. L sees no differences, giving a multiplier of 0. The first three patterns from Chapter 7 give:
+Recall Chapter 2: A adds each node's neighbours' values. L subtracts that sum from three times the node's own value:
 
-<div class="table-wrap" markdown="1">
+<div class="equation" role="math" aria-label="L x equals three x minus A x for this degree-three graph.">Lx = 3x − Ax</div>
 
-| Input pattern | A multiplies it by | L multiplies it by |
-| --- | --- | --- |
-| Flat pattern u₁ | 3 | 0 |
-| Winning pattern u₂ | ≈ 2.236 | ≈ 0.764 |
-| Next pattern u₃ | 1 | 2 |
+If A multiplies an eigenvector by about 2.236, then L multiplies that same vector by about 3 − 2.236 = 0.764. **The pattern stays the same; the multiplier changes.** Subtracting from three reverses the order, so A's second-largest eigenvalue corresponds to L's second-smallest.
 
-</div>
-
-Each row's multipliers add up to three. The figure joins the two values belonging to the same pattern:
+A's largest eigenvalue is three: a flat pattern comes back three times as large because every node has three neighbours. The difference between this largest value and the second-largest is the **spectral gap** used here. For L, the same gap lies between its smallest eigenvalue, zero, and λ₂:
 
 {% include visual-primer/spectral/figure-31.html %}
 
-### The gap is a difference between eigenvalues
+The adjacency value **2.236** is one endpoint. The gap **0.764** is the number our cut rule needs.
 
-For A, the **spectral gap** used here is the difference between its largest and second-largest eigenvalues. Those are 3 and about 2.236:
+### Compare the two network designs
 
-<div class="equation" role="math" aria-label="The adjacency spectral gap is approximately three minus 2.236, or 0.764. Its exact value is lambda two, equal to three minus the square root of five.">3 − 2.236 ≈ 0.764<small>the exact gap is λ₂ = 3 − √5</small></div>
+Both our original and rewired graphs have three links per router. Applying the same subtraction gives λ₂; dividing by two gives the cut-score lower bound:
 
-For L, the two smallest eigenvalues are 0 and about 0.764, so their gap is also **0.764**. The adjacency eigenvalue 2.236 is one endpoint of the gap; **the gap itself is λ₂ ≈ 0.764**.
+<div class="table-wrap" markdown="1">
 
-### Use the same rule at any degree
+| Graph | A: second-largest | L: λ₂ | Cut bound |
+| --- | --- | --- | --- |
+| Original | ≈2.236 | ≈0.764 | ≈0.382 |
+| Rewired | 1 | 2 | 1 |
 
-If every node has d neighbours, replace 3 by d: **Lx = dx − Ax**, so **λ = d − α** for each shared eigenvector.
+</div>
 
-We list A's eigenvalues from **largest to smallest** and L's from **smallest to largest**. A's largest value, α₁ = d, corresponds to L's smallest, λ₁ = 0. The next pair gives:
+At the same degree, **a smaller second-largest adjacency eigenvalue means a larger gap and a stronger cut guarantee**. The rewired graph's adjacency value of 1 therefore tells us that every cut scores at least 1, matching Chapter 10.
 
-<div class="equation" role="math" aria-label="For a d-regular graph, d minus the second-largest adjacency eigenvalue equals the second-smallest Laplacian eigenvalue.">d − α₂ = λ₂<small>α₂: second-largest adjacency eigenvalue<br>λ₂: second-smallest Laplacian eigenvalue</small></div>
+For any graph where every node has d neighbours, the rule is the same. Write α₂ for A's second-largest eigenvalue:
 
-For Chapter 10's rewired graph, d = 3 and λ₂ = 2, so **α₂ = 3 − 2 = 1**. At the same degree, a smaller α₂ means a larger λ₂ and a stronger lower bound on cut scores.
+<div class="equation" role="math" aria-label="Lambda two equals d minus alpha two. Every cut score is at least d minus alpha two divided by two.">λ₂ = d − α₂<br>every cut score ≥ (d − α₂)/2</div>
 
-When a paper reports a number, check **which matrix it uses and whether the number is an eigenvalue or a gap**. The optional sections explain other scales and terms you may encounter.
+This shortcut requires the same degree at every node and uses the ordinary matrices A and L = D − A.
 
 <details markdown="1">
-<summary>Optional: why some papers divide the gap by the degree</summary>
+<summary>Optional: how Ramanujan families give a cut guarantee</summary>
 
-L adds a node's differences from its d neighbours. Dividing by d turns the sum into an average. When every node has degree d, **L/d is the normalized Laplacian**. Its eigenvectors stay the same, and its eigenvalues are divided by d.
+Chapter 10 introduced Ramanujan families. With three links per router, their eigenvalue condition guarantees **α₂ ≤ 2√2**, about 2.828.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup>
 
-Calling its second eigenvalue μ₂ gives:
-
-<div class="equation" role="math" aria-label="Mu two equals lambda two divided by d, which for this graph is approximately 0.764 divided by three, or 0.255.">μ₂ = λ₂/d ≈ 0.764/3 ≈ 0.255</div>
-
-The gaps **0.764 and 0.255** describe the same graph on different scales. This divides the matrix by the degree; it does not change the length of the node pattern.
+Our translation then gives **λ₂ ≥ 3 − 2√2**, about 0.172. Dividing by two guarantees **h(G) ≥ (3 − 2√2)/2**, about 0.086, at every size in the family. That fixed positive minimum is what Chapter 10 needed. The actual cut scores can be higher, as in the examples shown there.
 
 </details>
 
-<details markdown="1">
-<summary>Optional: conductance measures the fraction of connections leading out</summary>
-
-Our four-node group has two links out, giving a cut score of **2/4 = 0.5 links per node**. Conductance uses a different denominator: **the number of connection ends inside the group**.
-
-Each of the four nodes has three connections, giving **4 × 3 = 12 ends**. Five internal links use ten of them, two per link. The two crossing links use the remaining two ends inside the group.
-
-So the fraction leading outside is **2/12 = 1/6**:
-
-{% include visual-primer/spectral/figure-32.html %}
-
-For each cut, use the group with fewer connection ends. The lowest outward fraction across all cuts is the graph's **conductance**, φ(G).
-
-When every node has degree d, this denominator is d times the node count, so **φ(G) = h(G)/d**. Here φ(G) = 0.5/3 = 1/6.
-
-Dividing the eigenvalue by d as well, with μ₂ = λ₂/d, puts Chapter 9's bounds on the same scale:
-
-<div class="equation" role="math" aria-label="Mu two divided by two is at most conductance, which is at most the square root of twice mu two.">μ₂/2 ≤ φ(G) ≤ √(2μ₂)</div>
-
-</details>
-
-<details markdown="1">
-<summary>Optional: what changes when nodes have different degrees?</summary>
-
-L = D − A still holds, but there is no single d to subtract from every adjacency eigenvalue. **The shortcut λ = d − α no longer applies.**
-
-For conductance, add the node degrees to count a group's connection ends. This sum is called its **volume**. Divide the crossing-edge count by the smaller of the two group volumes.
-
-The corresponding eigenvalue calculation uses the **symmetric normalized Laplacian**:
-
-<div class="equation" role="math" aria-label="The symmetric normalized Laplacian is D to the minus one half, times L, times D to the minus one half.">D<sup>−1/2</sup> L D<sup>−1/2</sup></div>
-
-Here dᵢ is node i's degree, assumed positive. The left factor divides its row by √dᵢ, and the right factor divides its column by √dᵢ. This accounts for each node's degree separately. When all degrees equal d, the result is L/d. [Spielman's text, §10.5](https://www.cs.yale.edu/homes/spielman/sagt/sagt.pdf#page=121) explains the details.
-
-</details>
-
-<details markdown="1">
-<summary>Optional: what the name Ramanujan adds</summary>
-
-The gap above uses the second-largest adjacency eigenvalue. The **Ramanujan** condition checks the negative values too: for a connected d-regular graph, every nontrivial adjacency eigenvalue must have **absolute value at most 2√(d − 1)**.<sup class="fnref"><a href="#fn-18" id="fnref-18" data-fn="18" aria-expanded="false" aria-label="Footnote 18">[18]</a></sup> Absolute value means ignoring the sign. Exclude d, the flat pattern's eigenvalue; also exclude −d if the graph is bipartite.
-
-For degree three, the limit is **2√2 ≈ 2.828**. Our original graph's largest nontrivial absolute value is **√5 ≈ 2.236**, so it qualifies. Yet its lowest cut score is still 0.5. The label does not tell us the exact cut score.
-
-For large random regular graphs at fixed degree, [Friedman's result](https://arxiv.org/abs/cs/0405020) allows any fixed positive margin above this limit, with probability tending to one as the graph grows. It does not guarantee that every sampled graph is exactly Ramanujan.
-
-</details>
-
-We can now translate the eigenvalue numbers a paper reports. Chapter 12 connects these mathematical guarantees to network capacity, cabling and routing.
+We can now turn an adjacency eigenvalue into a cut guarantee. Chapter 12 asks what that guarantee means for network capacity, cabling and routing.
 
 <a id="rng" class="chapter-anchor"></a>
 
@@ -846,7 +792,7 @@ We began with two links joining two groups of routers. Node values let us measur
 6. The reference patterns are the eigenvectors of L, the patterns L only rescales, and a length-1 eigenvector's energy is its eigenvalue. Every pattern with mean zero and squared spread 1 is a mixture of u₂ to u₈ whose shares add to 1, so its energy is a weighted average of their eigenvalues and cannot fall below the smallest, λ₂. u₂, the Fiedler vector, reaches it. Here λ₂ = 3 − √5 ≈ 0.764.
 7. Sort the nodes by Fiedler value, sweep a threshold through the gaps, score each cut by crossing edges over the smaller side. Four distinct values give three gaps; the second one gives 0.5. A sweep tests the prefixes of one ordering, not every group.
 8. Cheeger: <span class="math">λ₂/2 ≤ h(G) ≤ √(2dλ₂)</span>. A cheap cut gives a cheap pattern, and a cheap pattern gives a cheap cut. Here 0.382 ≤ h(G) ≤ 0.5, and checking all 127 cuts gives exactly 0.5.
-9. Expansion bounds the links leaving every group of up to half the nodes, relative to its size. Our rewiring raised h(G) from 0.5 to 1 and λ₂ from about 0.764 to 2, with twelve links in each design. For a regular graph, an adjacency eigenvalue α corresponds to a Laplacian eigenvalue λ = d − α. The topology supplies possible routes; forwarding rules determine which carry traffic.
+9. Expansion bounds the links leaving every group of up to half the nodes, relative to its size. Our rewiring raised h(G) from 0.5 to 1 and λ₂ from about 0.764 to 2, with twelve links in each design. For a graph with d links at every node, the second-largest adjacency eigenvalue α₂ gives λ₂ = d − α₂ and a cut-score lower bound of λ₂/2. The topology supplies possible routes; forwarding rules determine which carry traffic.
 
 ## Sources and further reading
 
@@ -860,7 +806,7 @@ We began with two links joining two groups of routers. Node values let us measur
 <h2 id="footnotes-title">Footnotes</h2>
 <ol>
 <li id="fn-1"><span class="fn-text">Nothing to do with charts. The word was borrowed in 1878 by J. J. Sylvester, who was drawing molecules as dots and lines and wanted a name for the drawings.</span> <a class="fn-back" href="#fnref-1" aria-label="Back to footnote 1 in the text">↩</a></li>
-<li id="fn-2"><span class="fn-text">Named after Laplace because it is the wiring-diagram cousin of his operator from physics, which also measures how far a value sits from the average of its surroundings. Books that want to be precise call this one the <em>combinatorial</em> Laplacian; Chapter 11 meets a cousin that divides by degree.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li>
+<li id="fn-2"><span class="fn-text">Named after Laplace because it is the wiring-diagram cousin of his operator from physics, which also measures how far a value sits from the average of its surroundings. Books that want to be precise call this one the <em>combinatorial</em> Laplacian.</span> <a class="fn-back" href="#fnref-2" aria-label="Back to footnote 2 in the text">↩</a></li>
 <li id="fn-3"><span class="fn-text">For eight nodes, the nonempty groups of size at most four number 8 + 28 + 56 + 70 = 162. A four-versus-four cut appears twice in that list, once for each side, so these groups describe 127 distinct cuts. In general, n nodes have 2^(n − 1) − 1 nontrivial cuts when swapping the sides is counted as the same cut. For forty nodes, there are 618,679,078,297 groups of size at most twenty, representing 549,755,813,887 distinct cuts.</span> <a class="fn-back" href="#fnref-3" aria-label="Back to footnote 3 in the text">↩</a></li>
 <li id="fn-4"><span class="fn-text">The name comes from physics: an ideal spring stores energy proportional to the square of its stretch. Here, energy is a mathematical measure of the differences between values at connected nodes.</span> <a class="fn-back" href="#fnref-4" aria-label="Back to footnote 4 in the text">↩</a></li>
 <li id="fn-5"><span class="fn-text">A symmetric matrix whose energy is never negative is called <em>positive semidefinite</em>. L is symmetric because every edge runs both ways. Both facts matter in Chapter 7, where the eigenvectors take over.</span> <a class="fn-back" href="#fnref-5" aria-label="Back to footnote 5 in the text">↩</a></li>
