@@ -558,17 +558,22 @@ All **b crossing edges** connect the same two group values, so each contributes 
 
 The first fraction, **b/s**, is the cut score because s is the smaller group size. The second divides the same edge count by t, which is at least as large, so **b/t ≤ b/s**. That is why **the pattern's energy is at most twice the cut score**. Equal-sized groups give exactly twice, as in our example.
 
-The optional derivation below shows why the energy per crossing edge is 1/s + 1/t for any group sizes, including unequal ones.
+The optional calculation below explains where the formula 1/s + 1/t comes from.
 
 ### Rule out scores that are too low
 
-Suppose someone claims to have found a cut scoring **0.1**. It would give us an allowed pattern with energy at most **0.2**. But the lowest possible energy is about **0.764**. So that cut cannot exist.
+Every cut can be turned into a pattern that follows our two rules: mean zero and squared values adding to 1. Its energy must then satisfy **both** of these limits:
 
-For any cut, twice its score must be large enough to reach λ₂. Dividing by two gives:
+- It is **at least λ₂**, the lowest possible energy.
+- It is **at most twice the cut score**, as we just showed.
 
-<div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two.">every cut score ≥ <span class="frac"><span>λ₂</span><span>2</span></span><small>for our graph, λ₂/2 ≈ 0.382</small></div>
+For our graph, **λ₂ ≈ 0.764**. Suppose a cut had a score of **0.1**. Its pattern would need an energy of at least λ₂, about **0.764**, but at most **2 × 0.1 = 0.2**. Both conditions cannot hold, so that cut cannot exist.
 
-This is a **lower bound**: a limit that no cut score can fall below, including cuts we have never examined.
+The same reasoning applies to every cut. **Twice its score must be at least λ₂.** Dividing by two gives:
+
+<div class="equation" role="math" aria-label="Every cut score is at least lambda two divided by two.">every cut score ≥ <span class="frac"><span>λ₂</span><span>2</span></span></div>
+
+For our graph, **λ₂/2 ≈ 0.382**. This is a **lower bound**: no cut can score below that limit, even one we have not examined.
 
 ### Put limits on the best score
 
