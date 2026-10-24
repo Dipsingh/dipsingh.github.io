@@ -671,14 +671,18 @@ If all links have the same capacity, more links out mean more total capacity con
 Routing and traffic still determine how well that capacity is used. Next, we will see how papers express the same eigenvalue information using the adjacency matrix.
 
 <details markdown="1">
-<summary>Optional: why the eigenvalue and cut guarantees go together</summary>
+<summary>Optional: two ways to check that growing networks stay well connected</summary>
 
-Cheeger's inequality connects the guarantees in both directions. With a fixed number d of links per node:
+Earlier, we used λ₂ to guarantee a minimum cut score. Cheeger's inequality also works in reverse: a guaranteed minimum cut score puts a lower limit on λ₂.
 
-- If every graph has λ₂ ≥ a for some fixed a > 0, then every graph has h(G) ≥ a/2.
-- If every graph has h(G) ≥ c for some fixed c > 0, rearranging h(G) ≤ √(2dλ₂) gives λ₂ ≥ c²/(2d).
+For example, suppose every router has three links, even as we build larger networks:
 
-In either case, one positive lower limit works for every graph in the family. This is what **bounded away from zero** means.
+- **From λ₂ to cut scores:** If every network has λ₂ ≥ 1, then every network has h(G) ≥ 0.5. Every group containing up to half the nodes therefore has at least half as many outward links as nodes.
+- **From cut scores to λ₂:** If every network has h(G) ≥ 0.5, then Cheeger's inequality gives λ₂ ≥ 0.5²/(2 × 3) = 1/24.
+
+These are lower limits, not the exact values. The limits differ, but neither shrinks as we add routers.
+
+So, with the number of links per router fixed, we can use either λ₂ or h(G) to prove that the networks stay well connected as they grow. Keeping a value above one fixed positive minimum is what **bounded away from zero** means.
 
 </details>
 
