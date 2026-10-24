@@ -603,21 +603,6 @@ The bounds still leave room for a score below 0.5. For our eight-node graph, a c
 
 {% include visual-primer/spectral/figure-27.html %}
 
-<details markdown="1">
-<summary>Optional: derive the cut-pattern energy</summary>
-
-Let the smaller group contain s nodes and the larger group contain t nodes, with n = s + t nodes in total. Suppose b edges cross between the groups. The cut score is b/s.
-
-Start with value +1 on the smaller group and −1 on the larger group. The mean is (s − t)/n. Subtracting it gives **2t/n** on the smaller group and **−2s/n** on the larger group. The mean is now zero, and every crossing edge still has a gap of 2.
-
-Each crossing edge contributes 2² = 4, so the energy is **4b**. The squared values add to **s(2t/n)² + t(−2s/n)² = 4st/n**. To find the energy after rescaling that total to 1, divide the energy by this sum:
-
-<div class="equation" role="math" aria-label="The rescaled pattern energy equals four b divided by four s t over n, which equals b n over s t, or b over s plus b over t.">rescaled pattern energy<br>= 4b ÷ (4st/n)<br>= <span class="frac"><span>bn</span><span>st</span></span> = <span class="frac"><span>b</span><span>s</span></span> + <span class="frac"><span>b</span><span>t</span></span></div>
-
-This is the two-term formula used above. Since s ≤ t, the second term is no greater than b/s, the cut score. Combining this with Chapter 7's minimum gives λ₂ ≤ rescaled pattern energy ≤ 2 × cut score.
-
-</details>
-
 A larger λ₂ raises the guaranteed minimum cut score, ruling out groups with too few links to the rest relative to their size. Chapter 10 uses this guarantee to compare network designs.
 
 <a id="expansion" class="chapter-anchor"></a>
@@ -652,6 +637,8 @@ Improving one small graph does not tell us how larger designs will behave. As we
 
 A ring shows what can go wrong. Each router has two neighbours. But take a consecutive half of the ring: **only two links connect it to the other half**, however large the ring becomes.
 
+{% include visual-primer/spectral/figure-30.html %}
+
 <div class="table-wrap" markdown="1">
 
 | Routers in the ring | Nodes in the chosen half | Crossing links | Cut score |
@@ -682,13 +669,6 @@ Eigenvalues give us a way to prove this. For example, if every graph has **λ₂
 If all links have the same capacity, more links out mean more total capacity connecting a group to the rest. Expansion guarantees a minimum amount relative to the group's size.
 
 Routing and traffic still determine how well that capacity is used. Next, we will see how papers express the same eigenvalue information using the adjacency matrix.
-
-<details markdown="1">
-<summary>Optional: see the group-size and ring examples</summary>
-
-{% include visual-primer/spectral/figure-30.html %}
-
-</details>
 
 <details markdown="1">
 <summary>Optional: why the eigenvalue and cut guarantees go together</summary>
