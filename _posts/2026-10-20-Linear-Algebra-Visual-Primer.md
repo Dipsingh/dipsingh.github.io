@@ -6,8 +6,9 @@ primer: linear
 
 > "It is by logic that we prove, but by intuition that we discover." - Henri Poincaré 
 
-## Provide Context
-Todo: 
+Linear algebra appears in subjects ranging from machine learning to network design. Knowing how to multiply matrices is useful, but it helps to understand what those calculations mean. A matrix changes a vector, and the way it changes depends on the vector’s direction. Understanding that relationship gives us a way to break complicated calculations into simpler pieces and see why eigenvectors and eigenvalues are useful.
+
+My aim is to build that understanding through pictures and small examples. We’ll start with arrows on a plane and follow one matrix through most of the primer, introducing each idea as we need it. Along the way, we’ll see how to measure alignment, split a vector into perpendicular pieces, and find directions that make a measurement smallest or largest. This also lays the groundwork for [Understanding Networks Through Spectral Graph Theory]({{ '/Spectral-Graph-Theory-Visual-Primer/' | relative_url }}), where we’ll use these ideas to study connections and bottlenecks in a network.
 
 ## 1. Vectors and coordinates
 
