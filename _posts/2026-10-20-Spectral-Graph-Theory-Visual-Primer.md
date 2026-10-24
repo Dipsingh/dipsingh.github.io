@@ -686,20 +686,54 @@ This recovers Chapter 9's guarantee from an adjacency eigenvalue. The conversion
 
 ### Why does subtraction work?
 
-Follow **node 1** through the two calculations. To make the arithmetic easier, multiply all entries of our eigenvector by the same factor so node 1's value becomes **1**. This changes the scale of the pattern, but leaves its eigenvalues unchanged. Its neighbours, nodes 2, 3 and 4, now have values **1, about 0.618 and about 0.618**.
+Follow **node 1**, whose neighbours are **nodes 2, 3 and 4**. Use Chapter 7's eigenvector, with every entry divided by node 1's original value. Node 1 now holds **1**. Scaling the whole vector this way keeps it an eigenvector with the same eigenvalues.
 
-- **A adds the neighbours' values:** 1 + 0.618 + 0.618 ≈ 2.236.
-- **L adds the differences from node 1:** (1 − 1) + (1 − 0.618) + (1 − 0.618) ≈ 0.764.
+**Row 1 of each matrix computes the output for node 1.** The table pairs each input value with the number that row 1 multiplies it by:
 
-In L's calculation, we use node 1's value **three times** and subtract each neighbour's value **once**. So we can get the same answer by subtracting A's output from three times node 1's value:
+<div class="table-wrap node-one-calculation" markdown="1">
 
-<div class="equation" role="math" aria-label="At node one, L's output is three times one minus the neighbour sum, approximately three minus 2.236, or 0.764.">L's output at node 1<br>≈ 3 × 1 − 2.236 = 0.764</div>
+| Node | Input value | A: row 1 entry | L: row 1 entry |
+| --- | --- | --- | --- |
+| 1 | 1 | 0 | 3 |
+| 2 | 1 | 1 | −1 |
+| 3 | ≈0.618 | 1 | −1 |
+| 4 | ≈0.618 | 1 | −1 |
 
-Now recall what an adjacency eigenvalue of about **2.236** means: **at every node**, A's output is about 2.236 times that node's input value. L therefore returns 3 times the input value minus 2.236 times the input value—about **0.764 times the input value**.
+</div>
 
-Because that same multiplier applies at every node, **the Laplacian eigenvalue for this pattern is about 0.764**. In vector notation, the calculation we just followed is Lx = 3x − Ax.
+In both matrices, row 1 has zeros in columns 5–8: those nodes are not neighbours of node 1, so their values contribute nothing to this calculation.
 
-Subtracting a larger number from three leaves a smaller answer. A's largest eigenvalue, 3, therefore becomes L's smallest eigenvalue, 0. A's next-largest value, about 2.236, becomes L's next-smallest value, λ₂ ≈ 0.764. The **spectral gap** is the difference between those first two values:
+**A's row selects the three neighbours.** Multiply each input value by its A entry, then add. The zero leaves out node 1's own value:
+
+<div class="equation" role="math" aria-label="A's output at node one is approximately zero times one, plus one times one, plus one times 0.618, plus one times 0.618, which equals 2.236.">A's output at node 1<br>≈ 0 × 1 + 1 × 1<br>+ 1 × 0.618 + 1 × 0.618<br>= 2.236</div>
+
+**L's row counts node 1's value three times and subtracts each neighbour's value:**
+
+<div class="equation" role="math" aria-label="L's output at node one is approximately three times one minus one minus 0.618 minus 0.618, which equals 0.764.">L's output at node 1<br>≈ 3 × 1 − 1 − 0.618 − 0.618<br>= 0.764</div>
+
+The values L subtracts are exactly the ones A adds. That is why **L's output = three times the node's input − A's output**. Here, this is about **3 × 1 − 2.236 = 0.764**.
+
+This rule works at every node because every node has three neighbours. For this eigenvector, A multiplies each node's value by about **2.236**. L therefore multiplies it by **3 − 2.236 ≈ 0.764**. The same pattern is an eigenvector of both matrices, with different eigenvalues:
+
+<div class="equation" role="math" aria-label="For this eigenvector x, A x is approximately 2.236 x, and L x equals 3 x minus A x, approximately 0.764 x.">Ax ≈ 2.236x<br>Lx = 3x − Ax ≈ 0.764x</div>
+
+### Why does the second-largest become the second-smallest?
+
+The subtraction rule applies to every eigenvector. Start with A's eigenvalues in order from largest to smallest. Subtract each from three:
+
+<div class="table-wrap eigenvalue-conversion" markdown="1">
+
+| A's eigenvalue | Subtract from 3 | L's eigenvalue |
+| --- | --- | --- |
+| Largest: 3 | 3 − 3 = 0 | Smallest: 0 |
+| Second-largest: ≈2.236 | 3 − 2.236 ≈ 0.764 | Second-smallest: λ₂ ≈ 0.764 |
+| Next: 1 | 3 − 1 = 2 | Next: 2 |
+
+</div>
+
+All the remaining A eigenvalues are smaller than 1, so they give L eigenvalues larger than 2. We can now see why **0.764 is second-smallest: zero is the only L eigenvalue below it**.
+
+Here, the **spectral gap** means the distance between A's two largest eigenvalues: **3 − 2.236 ≈ 0.764**. L has the same gap between its two smallest eigenvalues: **0.764 − 0 ≈ 0.764**. Since L starts at zero, this gap is simply λ₂:
 
 {% include visual-primer/spectral/figure-31.html %}
 
