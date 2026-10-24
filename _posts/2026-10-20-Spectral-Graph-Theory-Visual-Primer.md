@@ -688,18 +688,9 @@ This recovers Chapter 9's guarantee from an adjacency eigenvalue. The conversion
 
 Follow **node 1**, whose neighbours are **nodes 2, 3 and 4**. Use Chapter 7's eigenvector, with every entry divided by node 1's original value. Node 1 now holds **1**. Scaling the whole vector this way keeps it an eigenvector with the same eigenvalues.
 
-**Row 1 of each matrix computes the output for node 1.** The table pairs each input value with the number that row 1 multiplies it by:
+**Row 1 of each matrix computes the output for node 1.** In the figure, match each entry across the highlighted row with the entry in the same position down x, multiply the pair, then add the results. Columns 2, 3 and 4 pick out the neighbours' values: **1, about 0.618 and about 0.618**.
 
-<div class="table-wrap node-one-calculation" markdown="1">
-
-| Node | Input value | A: row 1 entry | L: row 1 entry |
-| --- | --- | --- | --- |
-| 1 | 1 | 0 | 3 |
-| 2 | 1 | 1 | −1 |
-| 3 | ≈0.618 | 1 | −1 |
-| 4 | ≈0.618 | 1 | −1 |
-
-</div>
+{% include visual-primer/spectral/figure-38.html %}
 
 In both matrices, row 1 has zeros in columns 5–8: those nodes are not neighbours of node 1, so their values contribute nothing to this calculation.
 

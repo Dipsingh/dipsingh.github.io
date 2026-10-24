@@ -193,6 +193,16 @@
 .post .visual-primer figure > .art {
   padding: 0;
 }
+.post .visual-primer .node-one-matrices .matrix-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media screen and (max-width: 600px) {
+  .post .visual-primer .node-one-matrices .matrix-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .post .visual-primer figure > figcaption {
   margin: 12px 0 0;
   padding: 0;
