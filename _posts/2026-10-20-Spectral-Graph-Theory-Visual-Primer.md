@@ -435,7 +435,7 @@ Now remove the two crossing links. Put +1/√8 on the four nodes in one half and
 
 </details>
 
-The entries of u₂ give the node values that minimize energy. Chapter 8 turns those values into candidate divisions and checks their cut scores. **Finding the lowest-energy pattern and finding the best cut are separate steps.**
+The entries of u₂ give the node values that minimize energy. In next section, we will turn these values into candidate divisions and checks their cut scores. **Finding the lowest-energy pattern and finding the best cut are separate steps.**
 
 <a id="cut" class="chapter-anchor"></a>
 
